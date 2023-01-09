@@ -1,0 +1,23 @@
+.buttonWrapper {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    width: 440px;
+    height: 56px;
+    border-radius: 24px;
+    cursor: pointer;
+
+    &:hover{
+        filter: opacity(0.8);
+    }
+
+    p {
+        font-family: 'Ubuntu';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        color: white;
+        width: 100%;
+        text-align: center;
+    }
+}
