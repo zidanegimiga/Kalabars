@@ -25,19 +25,21 @@
         font-weight: 500;
     }
 
-    p {
-        font-family: 'Ubuntu';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 18px;
-        text-align: center;
-        color: white;
-        width: 40%;
 
-        span{
-            color: #FFD04C;
-        }
+    span {
+        color: #FFD04C;
     }
+}
+
+.subTitle {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    text-align: center;
+    color: white;
+    width: 40%;
+
 }
 
 .HeroLogo {

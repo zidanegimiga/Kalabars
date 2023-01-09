@@ -10,7 +10,7 @@ const Hero = () => {
       <div className={styles.HeroBody}>
         <div className={styles.HeroLogo}><HeroLogo/></div>
         <h1>Watch African-brewed stories</h1>
-        <p><span>Kalabars</span> exists to  offer African creatives a chance to share their quality content to an audience that craves African productions.</p>
+        <p className={styles.subTitle}><span>Kalabars</span> exists to  offer African creatives a chance to share their quality content to an audience that craves African productions.</p>
         <Button 
           text="Explore  our catalogue"
           fill="#FB1036"
