@@ -16,20 +16,26 @@
         height: 64px;
     }
 
+    @media (max-width: 1441px) {
+        width: 240px;
+        height: 40px;
+    }
+
     @media (max-width: 1126px) {
         width: 320px;
         height: 56px;
-        
-        @media (max-width: 426px) {
-            height: 48px;       
-            width: 240px;
-            padding: 4px;       
-        }
-        @media (max-width: 376px) {
-            height: 40px;       
-            width: 200px;
-            padding: 4px;       
-        }
+    }
+
+    @media (max-width: 426px) {
+        height: 48px;       
+        width: 240px;
+        padding: 4px;       
+    }
+
+    @media (max-width: 376px) {
+        height: 40px;       
+        width: 200px;
+        padding: 4px;       
     }
 
     p {
@@ -44,7 +50,7 @@
         @media (max-width: 1701px) {
             font-size: 24px;
         }
-        @media (max-width: 1126px) {
+        @media (max-width: 1441px) {
             font-size: 20px;
         }
         @media (max-width: 426px) {
