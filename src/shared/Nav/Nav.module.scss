@@ -13,10 +13,27 @@
     width: inherit;
     height: 8px;
     padding: 32px 72px;
+
+    @media (max-width: 1025px) {
+        padding: 32px 40px;        
+    }
+
+    @media (max-width: 426px) {
+        padding: 24px 16px;        
+    }
+    @media (max-width: 321px) {
+        padding: 16px 16px;        
+    }
 }
 
 .NavLeft{
     display: flex;
+}
+
+.logo{
+    @media (max-width: 321px) {
+        transform: scale(150%);        
+    }    
 }
 
 .links{
@@ -26,6 +43,11 @@
     font-family: Ubuntu;
     font-weight: 600;
     padding-left: 100px;
+
+    @media (max-width: 321px) {
+        margin-right: 8px;
+        font-size: 10px;        
+    }
 }
 
 .link{
@@ -34,12 +56,25 @@
     &:hover{
         color: #FFD04C;
     }
+
+    @media (max-width: 769px) {
+        margin-right: 32px;        
+    }
+    @media (max-width: 426px) {
+        margin-right: 20px;        
+    }
 }
 
 .NavRight{
     display: flex;
     align-items: center;
-    margin-right: 156px
+    margin-right: 156px;
+    @media (max-width: 1025px) {
+        margin-right: 100px;        
+    }
+    @media (max-width: 769px) {
+        margin-right: 56px;        
+    }
 }
 
 .SearchBar{
@@ -57,5 +92,15 @@
     
     &:placeholder{
         color: white;
+    }
+
+    @media (max-width: 1025px) {
+        width: 280px;        
+    }
+    @media (max-width: 769px) {
+        width: 240px;        
+    }
+    @media (max-width: 426px) {
+        display: none;        
     }
 }

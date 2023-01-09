@@ -9,7 +9,9 @@ const Nav = () => {
   return (
     <div className={styles.NavWrapper}>
       <div className={styles.NavLeft}>
-        <Image width={160} height={40} alt="Logo" src={"/kalabarslogo.svg"}/>
+        <div className={styles.logo}>
+          <Image width={160} height={40} alt="Logo" src={"/kalabarslogo.svg"}/>
+        </div>
         <div className={styles.links}>
           <div className={styles.link}><Link href={"/sights"}>Sights</Link></div>
           <div className={styles.link}><Link href={"/sounds"}>Sounds</Link></div>

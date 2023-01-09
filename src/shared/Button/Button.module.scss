@@ -11,6 +11,27 @@
         filter: opacity(0.8);
     }
 
+    @media (max-width: 1701px) {
+        width: 400px;
+        height: 64px;
+    }
+
+    @media (max-width: 1126px) {
+        width: 320px;
+        height: 56px;
+        
+        @media (max-width: 426px) {
+            height: 48px;       
+            width: 240px;
+            padding: 4px;       
+        }
+        @media (max-width: 376px) {
+            height: 40px;       
+            width: 200px;
+            padding: 4px;       
+        }
+    }
+
     p {
         font-family: 'Ubuntu';
         font-style: normal;
@@ -19,5 +40,22 @@
         color: white;
         width: 100%;
         text-align: center;
+
+        @media (max-width: 1701px) {
+            font-size: 24px;
+        }
+        @media (max-width: 1126px) {
+            font-size: 20px;
+        }
+        @media (max-width: 426px) {
+            font-size: 16px;
+        }
+        @media (max-width: 376px) {
+            font-size: 14px;
+        }
+
+        
     }
+
+
 }
