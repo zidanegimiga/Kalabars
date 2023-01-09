@@ -1,9 +1,14 @@
 import { FC } from 'react';
+import Layout from "shared/Layout";
 import { AppProps } from 'next/app';
-import "../styles/index.scss";
+import '../styles/_app.scss';
 
 const App:FC = ({ Component, pageProps }:AppProps) => {
-  return <Component {...pageProps} />
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  )
 }
 
 export default App;
