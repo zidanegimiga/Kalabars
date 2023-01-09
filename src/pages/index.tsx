@@ -6,5 +6,5 @@ export default function Index() {
     <div className={styles.homeWrapper}>
       <Hero />
     </div>
-  );
-}
+    );
+  }
