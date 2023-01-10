@@ -5,24 +5,63 @@
     top: 0;
     background: linear-gradient(180deg, rgba(26, 26, 26, 0.81) 0%, #000000 100%);
     backdrop-filter: blur(2px);
+
+    @media (max-width: 426px) {
+        height: 120vh        
+    }
 }
 
 .HeroBody {
-    padding-top: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
 
+    @media (max-width: 1701px) {
+        padding-top: 160px;        
+    }
+    @media (max-width: 1441px) {
+        padding-top: 72px;        
+    }
+    @media (max-width: 1126px) {
+        padding-top: 80px;        
+    }
+    @media (max-width: 849px) {
+        padding-top: 72px;        
+    }
+    @media (max-width: 426px) {
+        padding-top: 48px;        
+    }
+    
+
     h1 {
         font-family: Ubuntu;
         color: white;
-        font-size: 44px;
-        margin-bottom: 4px;
         margin-top: 12px;
         text-align: center;
         font-weight: 500;
+
+        @media (max-width: 1701px) {
+            font-size: 64px;
+            margin-bottom: 16px;                    
+        }
+        
+        @media (max-width: 1441px) {
+            font-size: 50px;
+            margin-top: 10px;                    
+        }
+        @media (max-width: 1126px) {
+            font-size: 48px;
+            margin-top: 8px;                    
+        }
+        @media (max-width: 769px) {
+            font-size: 40px;                  
+        }
+        @media (max-width: 426px) {
+            font-size: 28px;
+            margin-bottom: 0px;                  
+        }
     }
 
 
@@ -35,15 +74,45 @@
     font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
     text-align: center;
     color: white;
-    width: 40%;
+
+    @media (max-width: 1701px) {
+        font-size: 28px;
+        margin-bottom: 48px;
+        width: 65%; 
+        line-height: 40px;                   
+    }
+    @media (max-width: 1441px) {
+        font-size: 20px;
+        width: 50%;
+        margin-bottom: 32px;                   
+    }
+    @media (max-width: 1126px) {
+        font-size: 24px;
+        margin-bottom: 24px;                   
+    }
+    @media (max-width: 769px) {
+        font-size: 20px;
+        margin-bottom: 24px;
+        width: 75%;
+        line-height: 32px;                   
+    }
+    @media (max-width: 426px) {
+        font-size: 16px;
+        margin-bottom: 24px;
+        width: 85%;
+        line-height: 22px;                   
+    }
 
 }
 
 .HeroLogo {
     transform: scale(60%);
+
+    @media (max-width: 426px) {
+        transform: scale(40%);     
+    }
 }
 
 .footerWrapper {
@@ -53,11 +122,36 @@
 
 .footer {
     position: absolute;
-    bottom: 2%;
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: inherit;
+
+    @media (max-width: 1701px) {
+        bottom: 4%;
+        left: 4%;       
+    }
+
+    @media (max-width: 1441px) {
+        bottom: 1%;
+        left: 4%;       
+    }
+
+    @media (max-width: 1251px) {
+        left: 1%;       
+    }
+    @media (max-width: 849px) {
+        flex-direction: column;
+        bottom: -12%;      
+    }
+    @media (max-width: 426px) {
+        flex-direction: column;
+        bottom: 1%;      
+    }
+    @media (max-width: 376px) {
+        flex-direction: column;
+        bottom: 0%;      
+    }
 }
 
 .right {
@@ -66,9 +160,34 @@
     justify-content: space-around;
     font-family: Ubuntu;
 
+    @media (max-width: 849px) {
+        flex-direction: column;
+        
+        span{
+            display: none;
+        }
+
+        p{
+            text-align: center;
+        }
+    }
+
     p,
     span {
         margin: 8px;
+
+        @media (max-width: 1701px) {
+            font-size: 20px;       
+        }
+
+        @media (max-width: 1126px) {
+            font-size: 16px;                  
+        }
+        @media (max-width: 376px) {
+            margin: 4px;
+            font-size: 12
+            px;                  
+        }
     }
 }
 
