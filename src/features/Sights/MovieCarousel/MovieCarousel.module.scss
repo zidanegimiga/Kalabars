@@ -1,0 +1,99 @@
+.hero {
+    height: 100vh;
+    position: relative;
+}
+
+.poster {
+    height: 100vh;
+    width: 100vw;
+}
+
+.detailsWrapper {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(180.46deg, rgba(0, 0, 0, 0) 70.5%, #000000 100.49%);
+    height: 60%;
+    color: white;
+}
+
+.detailsContainer {
+    position: relative;
+    padding-top: 0px;
+    padding-left: 48px;
+}
+
+.title {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 92px;
+}
+
+.description {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 130%;
+    width: 50%;
+}
+
+.tags{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 20%;
+    margin: 16px 0px;
+}
+
+.tag{
+    background: #FFD04C;
+    color: black;
+    padding: 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.time{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeicon {
+    transform: scale(70%); 
+}
+
+.buttonsContainer{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 48px;
+}
+
+.button1{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 16px;
+    font-family: Ubuntu;
+    width: 160px;
+    background: #FB1036;
+    border-radius: 6px;
+    cursor: pointer;    
+}
+
+.button2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-family: Ubuntu;
+    width: 160px;
+    color: black;
+    background: white;
+    border-radius: 6px;
+    padding: 8px;
+    cursor: pointer;    
+}
