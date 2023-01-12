@@ -2,8 +2,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(90.34deg, rgba(255, 51, 84, 0.79) 2.14%, rgba(255, 51, 84, 0.28) 100%);
-    border: 1px solid #FF3354;
+    background: linear-gradient(90.34deg, rgba(247, 247, 247, 0.87) 2.14%, rgba(255, 255, 255, 0.44) 55.82%);
+    border: 1px solid rgba(22, 22, 22, 0.9);
+    box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.32);
     border-top: none;
     box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.32);
     backdrop-filter: blur(20px);
@@ -15,28 +16,29 @@
     padding: 32px 72px;
 
     @media (max-width: 1025px) {
-        padding: 32px 40px;        
+        padding: 32px 40px;
     }
 
     @media (max-width: 426px) {
-        padding: 24px 16px;        
+        padding: 24px 16px;
     }
+
     @media (max-width: 321px) {
-        padding: 16px 16px;        
+        padding: 16px 16px;
     }
 }
 
-.NavLeft{
+.NavLeft {
     display: flex;
 }
 
-.logo{
+.logo {
     @media (max-width: 321px) {
-        transform: scale(150%);        
-    }    
+        transform: scale(150%);
+    }
 }
 
-.links{
+.links {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -46,38 +48,41 @@
 
     @media (max-width: 321px) {
         margin-right: 8px;
-        font-size: 10px;        
+        font-size: 10px;
     }
 }
 
-.link{
+.link {
     margin-right: 48px;
 
-    &:hover{
+    &:hover {
         color: #FFD04C;
     }
 
     @media (max-width: 769px) {
-        margin-right: 32px;        
+        margin-right: 32px;
     }
+
     @media (max-width: 426px) {
-        margin-right: 20px;        
+        margin-right: 20px;
     }
 }
 
-.NavRight{
+.NavRight {
     display: flex;
     align-items: center;
     margin-right: 156px;
+
     @media (max-width: 1025px) {
-        margin-right: 100px;        
+        margin-right: 100px;
     }
+
     @media (max-width: 769px) {
-        margin-right: 56px;        
+        margin-right: 56px;
     }
 }
 
-.SearchBar{
+.SearchBar {
     font-family: Ubuntu;
     outline: none;
     background: linear-gradient(91.3deg, rgba(22, 22, 22, 0.873) 4.17%, rgba(22, 22, 22, 0.776) 99.55%);
@@ -89,18 +94,20 @@
     width: 400px;
     color: white;
     border: solid 1px #161616;
-    
-    &:placeholder{
+
+    &:placeholder {
         color: white;
     }
 
     @media (max-width: 1025px) {
-        width: 280px;        
+        width: 280px;
     }
+
     @media (max-width: 769px) {
-        width: 240px;        
+        width: 240px;
     }
+
     @media (max-width: 426px) {
-        display: none;        
+        display: none;
     }
 }
