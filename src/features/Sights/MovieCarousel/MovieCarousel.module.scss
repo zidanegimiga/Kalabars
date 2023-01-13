@@ -11,14 +11,14 @@
 .detailsWrapper {
     position: absolute;
     bottom: 0;
-    background: linear-gradient(180.46deg, rgba(0, 0, 0, 0) 70.5%, #000000 100.49%);
+    background: linear-gradient(180.46deg, rgba(31, 31, 31, 0) 70.5%, #000000 100.49%);
     height: 60%;
     color: white;
 }
 
 .detailsContainer {
     position: relative;
-    padding-top: 0px;
+    padding-top: 72px;
     padding-left: 48px;
 }
 
@@ -34,9 +34,10 @@
     font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 300;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 130%;
     width: 50%;
+    color: #EDEDED;
 }
 
 .tags{
