@@ -1,11 +1,19 @@
 .hero {
     height: 100vh;
     position: relative;
+
+    @media (max-width: 427px) {
+        height: 70vh;
+    }
 }
 
 .poster {
     height: 100vh;
     width: 100vw;
+
+    @media (max-width: 427px) {
+        height: 70vh;
+    }
 }
 
 .detailsWrapper {
@@ -14,12 +22,22 @@
     background: linear-gradient(180.46deg, rgba(31, 31, 31, 0) 70.5%, #000000 100.49%);
     height: 60%;
     color: white;
+
+    @media (max-width: 427px) {
+        height: 100%;
+        background: linear-gradient(180.46deg, rgba(31, 31, 31, 0.455) 70.5%, #000000 100.49%);
+    }
 }
 
 .detailsContainer {
     position: relative;
     padding-top: 72px;
     padding-left: 48px;
+
+    @media (max-width: 427px) {
+        padding-top: 132px;
+        padding-left: 16px;
+    }
 }
 
 .title {
@@ -40,17 +58,39 @@
     line-height: 130%;
     width: 50%;
     color: #EDEDED;
+
+    @media (max-width: 769px) {
+        width: 80%;
+    }
+
+    @media (max-width: 427px) {
+        width: 100%;
+    }
 }
 
-.tags{
+.tags {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 20%;
     margin: 16px 0px;
+
+    @media (max-width: 769px) {
+        width: 55%;
+    }
+
+    @media (max-width: 427px) {
+        transform: scale(80%);
+        align-items: flex-start;
+        justify-content: space-between;
+        margin: 8px 0px;
+        position: absolute;
+        left: -4px;
+        bottom: -64px;
+    }
 }
 
-.tag{
+.tag {
     background: #FFD04C;
     color: black;
     padding: 8px;
@@ -59,23 +99,28 @@
     font-size: 12px;
 }
 
-.time{
+.time {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .timeicon {
-    transform: scale(70%); 
+    transform: scale(70%);
 }
 
-.buttonsContainer{
+.buttonsContainer {
     display: flex;
     justify-content: space-between;
     padding-right: 48px;
+
+    @media (max-width: 427px) {
+        padding-right: 16px;
+        margin-top: 8px;
+    }
 }
 
-.button1{
+.button1 {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -84,10 +129,10 @@
     width: 160px;
     background: #FB1036;
     border-radius: 6px;
-    cursor: pointer;    
+    cursor: pointer;
 }
 
-.button2{
+.button2 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,7 +143,11 @@
     background: white;
     border-radius: 6px;
     padding: 8px;
-    cursor: pointer;    
+    cursor: pointer;
+
+    @media (max-width: 426px) {
+        display: none;
+    }
 }
 
 .ind {
@@ -111,13 +160,13 @@
     cursor: pointer;
     position: relative;
     z-index: 100;
-  }
-  
-  .ind.active {
+}
+
+.ind.active {
     background-color: #FFD04C;
     transition: 500ms 200ms;
-  }
-  
-  .ind:not(:last-child) {
+}
+
+.ind:not(:last-child) {
     margin-right: 1.4rem;
-  }
+}
