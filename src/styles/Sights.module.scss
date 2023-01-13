@@ -1,3 +1,36 @@
 .pageWrapper{
-    height: 100vh;
+    background-color: #EDEDED;
 }
+
+.sightsCategory{
+    padding: 32px 72px;
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.sightsCategoryTitle{
+    font-family: Ubuntu;
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.moreButton{
+    width: 70px;
+    padding: 8px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.categoryCards{
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    align-items: center;
+}
+
