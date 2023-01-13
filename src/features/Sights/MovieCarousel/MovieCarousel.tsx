@@ -18,6 +18,16 @@ const Hero = () => {
         autoPlay={true}
         interval={2000}
         dynamicHeight={false}
+        renderIndicator={(clickHandler, isSelected, index) => {
+          return (
+            <li
+              onClick={clickHandler}
+              className={isSelected ? styles["ind"] + " " + styles["active"] : styles["ind"]}
+              key={index}
+              role="button"
+            />
+          );
+        }}
       >
         <div className={styles.hero}>
           <img src="/alice.png" alt="poster" className={styles.poster} />
