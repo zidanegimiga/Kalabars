@@ -1,0 +1,172 @@
+.hero {
+    height: 100vh;
+    position: relative;
+
+    @media (max-width: 427px) {
+        height: 75vh;
+    }
+}
+
+.poster {
+    height: 100vh;
+    width: 100vw;
+
+    @media (max-width: 427px) {
+        height: 75vh;
+    }
+}
+
+.detailsWrapper {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(180.46deg, rgba(31, 31, 31, 0) 70.5%, #000000 100.49%);
+    height: 60%;
+    color: white;
+
+    @media (max-width: 427px) {
+        height: 100%;
+        background: linear-gradient(180.46deg, rgba(31, 31, 31, 0.455) 70.5%, #000000 100.49%);
+    }
+}
+
+.detailsContainer {
+    position: relative;
+    padding-top: 72px;
+    padding-left: 48px;
+
+    @media (max-width: 427px) {
+        padding-top: 132px;
+        padding-left: 16px;
+    }
+}
+
+.title {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 92px;
+    text-align: left;
+}
+
+.description {
+    text-align: left;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 130%;
+    width: 50%;
+    color: #EDEDED;
+
+    @media (max-width: 769px) {
+        width: 80%;
+    }
+
+    @media (max-width: 427px) {
+        width: 100%;
+    }
+}
+
+.tags {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 20%;
+    margin: 16px 0px;
+
+    @media (max-width: 769px) {
+        width: 55%;
+    }
+
+    @media (max-width: 427px) {
+        transform: scale(80%);
+        align-items: flex-start;
+        justify-content: space-between;
+        margin: 8px 0px;
+        position: absolute;
+        left: -4px;
+        bottom: -64px;
+    }
+}
+
+.tag {
+    background: #FFD04C;
+    color: black;
+    padding: 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeicon {
+    transform: scale(70%);
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 48px;
+
+    @media (max-width: 427px) {
+        padding-right: 16px;
+        margin-top: 8px;
+    }
+}
+
+.button1 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 16px;
+    font-family: Ubuntu;
+    width: 160px;
+    background: #FB1036;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.button2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-family: Ubuntu;
+    width: 160px;
+    color: black;
+    background: white;
+    border-radius: 6px;
+    padding: 8px;
+    cursor: pointer;
+
+    @media (max-width: 426px) {
+        display: none;
+    }
+}
+
+.ind {
+    width: 8px;
+    height: 8px;
+    list-style: none;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    z-index: 100;
+}
+
+.ind.active {
+    background-color: #FFD04C;
+    transition: 500ms 200ms;
+}
+
+.ind:not(:last-child) {
+    margin-right: 1.4rem;
+}

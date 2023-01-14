@@ -1,0 +1,55 @@
+.pageWrapper{
+    background-color: #EDEDED;
+}
+
+.sightsCategory{
+    padding: 32px 72px;
+    border-top: solid 1px black;
+    background-color: rgb(238, 238, 238);
+
+    @media (max-width: 769px) {
+        padding: 32px 32px;        
+    }
+
+    @media (max-width: 769px) {
+        padding: 32px 14px;        
+    }
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.sightsCategoryTitle{
+    font-family: Ubuntu;
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.moreButton{
+    width: 70px;
+    padding: 8px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.categoryCards{
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    align-items: center;
+
+    @media (max-width: 769px) {
+        display: grid;
+        grid-template-columns: auto auto;        
+    }
+
+    @media (max-width: 426px) {
+        grid-template-columns: auto auto;        
+    }
+}
+
