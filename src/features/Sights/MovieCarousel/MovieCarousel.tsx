@@ -10,7 +10,8 @@ import styles from "./MovieCarousel.module.scss";
 const Hero = () => {
   return (
     <div>
-      <Carousel 
+      <Carousel
+        showStatus={false} 
         showArrows={false}
         showIndicators={true}
         showThumbs={false}
