@@ -16,7 +16,7 @@ const mockData = [
   },
 ];
 
-const sights = () => {
+const sights = ({videos}) => {
   return (
     <div className={styles.pageWrapper}>
       <MovieCarousel />
@@ -31,3 +31,18 @@ const sights = () => {
 };
 
 export default sights;
+
+// export async function loadVideos(){
+//   const res = await fetch('https://content.kalabars.com/videos/all')
+//   const data = await res.json()
+//   return data;
+// }
+
+// export async function getStaticProps(context){
+//   const videos = await loadVideos()
+//   return{
+//     props:{
+//       videos
+//     }
+//   }
+// }
