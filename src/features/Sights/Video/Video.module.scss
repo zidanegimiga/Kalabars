@@ -21,14 +21,14 @@
     width: 100%;
     display: none;
     flex-direction: column;
-    padding: 0px 0px;
     z-index: 20;
+    background: linear-gradient(180deg, rgba(26, 26, 26, 0.414773) 0%, #1A1A1A 100%);
     transition: all ease-in-out 0.5s;
 }
 
 .timeControls {
-    position: absolute;
-    bottom: 2rem;
+    // position: absolute;
+    // bottom: 2rem;
     margin-left: -0.5rem;
     display: flex;
     width: 100%;
@@ -83,14 +83,70 @@
 
 .playbackIcons {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.center{
+    justify-content: center;
+    align-items: center;
+    padding-top: 8px;
+    align-content: center;
+}
+
+.center, .right{
+    display: flex;
+    width: 33%;
+}
+
+.right{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 64px;
 }
 
 .controlIcon {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
     margin-left: 1rem;
     margin-bottom: 1rem;
+}
+
+.controlIconVolume {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin: 4px;
+}
+
+.volumeIcon {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    transition: all ease-in-out 0.5s;
+    padding-left: 24px;
+    width: 33%;
+
+    p{
+        color: white;
+    }
+    
+    &:hover{
+        .volumeRange{
+            width: 20%;
+            display: block;
+            opacity: 1
+        }
+    }
+}
+
+.volumeRange{
+    transition: all ease-in-out 0.5s;
+    width: 0%;
+    opacity: 0;
 }
 
 .time {
