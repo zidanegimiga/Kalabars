@@ -19,6 +19,7 @@ const VideoPlayer = () => {
   const [volume, setVolume] = useState(100);
   const [muted, setMuted] = useState(false);
   const videoRef = useRef(null);
+  const videoContainer = useRef(null);
 
   console.log("current time: ", progress);
 
@@ -81,10 +82,15 @@ const VideoPlayer = () => {
 
   const fullScreen = () =>{
     videoRef.current.requestFullscreen();
+    if(document.fullscreenElement) {
+      document.exitFullscreen();
+  } else {
+      videoContainer.current.requestFullscreen();
+  }
   }
 
   return (
-    <div className={styles.videoWrapper}>
+    <div className={styles.videoWrapper} ref={videoContainer}>
       <video
         id="video1"
         ref={videoRef}
