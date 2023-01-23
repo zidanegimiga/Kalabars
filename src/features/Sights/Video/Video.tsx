@@ -23,20 +23,20 @@ const VideoPlayer = () => {
   const timeline = useRef(null);
 
   useEffect(() => {
-      // setVideoTime(videoRef.current.duration);
-      // setInterval(function () {
-      //   setCurrentTime(videoRef.current.currentTime);
-      //   setProgress((videoRef.current.currentTime / videoTime) * 100);
-      //   timeline.current.style.setProperty("--progress-position", progress);
-      //   console.log("Progress: ", progress)
-      // }, 1000);
-      const videodata = fetch('"https://content.kalabars.com/videos/all', {
-        headers:{
-          'x-access-token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiIwOWVhYjVhOC04ZTEyLTRrMGItYTkyNi1hZmZmMGM1NDNhMjQiLCJleHAiOjE2NzY4NDQ0Mzd9.0QVC_lMKtroGKRMp3_hjf2cLbaGvOt3G0FJXdnTDwZw"
-        } 
-      }).then((data) => console.log("fetch: ",data));
-      console.log("video: ", videodata)
-  }, []);
+      setVideoTime(videoRef.current.duration);
+      setInterval(function () {
+        setCurrentTime(videoRef.current.currentTime );
+        setProgress((videoRef.current.currentTime / videoTime) * 100);
+        timeline.current.style.setProperty("--progress-position", progress);
+        console.log("Progress: ", progress)
+      }, 1000);
+      // const videodata = fetch('https://content.kalabars.com/videos/all', {
+      //   headers:{
+      //     'x-access-token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiIwOWVhYjVhOC04ZTEyLTRrMGItYTkyNi1hZmZmMGM1NDNhMjQiLCJleHAiOjE2NzY4NDQ0Mzd9.0QVC_lMKtroGKRMp3_hjf2cLbaGvOt3G0FJXdnTDwZw"
+      //   } 
+      // }).then((res) => {return res.json()})
+      // .then(json => console.log(json))
+  }, [progress, videoTime]);
 
 
 
@@ -133,8 +133,8 @@ const VideoPlayer = () => {
         onLoadedData={() => formatDuration(videoRef.current.duration)}
         onTimeUpdate={() => formatDuration(videoRef.current.currentTime)}
         className={styles.video}
-        src="https://media.geeksforgeeks.org/wp-content/uploads/20190616234019/Canvas.move_.mp4"
-        // src="/sample.mp4"
+        // src="https://media.geeksforgeeks.org/wp-content/uploads/20190616234019/Canvas.move_.mp4"
+        src="/chambers.mp4"
         poster="/alice.png"
       >
         {/* <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" /> */}
@@ -218,7 +218,6 @@ const VideoPlayer = () => {
           </div>
         </div>
       </div>
-      Playing: {playing ? "true" : "false"}
     </div>
   );
 };
