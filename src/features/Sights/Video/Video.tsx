@@ -27,7 +27,7 @@ const VideoPlayer = () => {
       setInterval(function () {
         setCurrentTime(videoRef.current.currentTime );
         setProgress((videoRef.current.currentTime / videoTime) * 100);
-        timeline.current.style.setProperty("--progress-position", progress);
+        // timeline.current.style.setProperty("--progress-position", progress);
         console.log("Progress: ", progress)
       }, 1000);
       // const videodata = fetch('https://content.kalabars.com/videos/all', {
