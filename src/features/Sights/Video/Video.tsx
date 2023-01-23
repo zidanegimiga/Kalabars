@@ -23,10 +23,10 @@ const VideoPlayer = () => {
   const timeline = useRef(null);
 
   useEffect(() => {
-      setVideoTime(videoRef.current.duration);
+      setVideoTime(videoRef?.current?.duration);
       setInterval(function () {
-        setCurrentTime(videoRef.current.currentTime );
-        setProgress((videoRef.current.currentTime / videoTime) * 100);
+        setCurrentTime(videoRef?.current?.currentTime );
+        setProgress((videoRef?.current?.currentTime / videoTime) * 100);
         // timeline.current.style.setProperty("--progress-position", progress);
         console.log("Progress: ", progress)
       }, 1000);
