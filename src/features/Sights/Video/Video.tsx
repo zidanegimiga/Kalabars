@@ -38,8 +38,6 @@ const VideoPlayer = () => {
       // .then(json => console.log(json))
   }, [progress, videoTime]);
 
-
-
   const handleTimelineUpdate = (e) => {
     e.preventDefault();
     const parentRect = timeline.current.getBoundingClientRect();

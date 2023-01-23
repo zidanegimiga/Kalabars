@@ -10,7 +10,7 @@ const Nav = () => {
     <div className={styles.NavWrapper}>
       <div className={styles.NavLeft}>
         <div className={styles.logo}>
-          <Image width={160} height={40} alt="Logo" src={"/kalabarslogo.svg"}/>
+          <Image width={320} height={80} alt="Logo" src={"/kalabarslogo.svg"}/>
         </div>
         <div className={styles.links}>
           <div className={styles.link}><Link href={"/sights"}>Sights</Link></div>
@@ -19,13 +19,14 @@ const Nav = () => {
       </div>
       <div className={styles.NavRight}>
         <input
-          placeholder='Type to search'
+          placeholder='What would you like to watch or listen to'
           value={searchInput}
           onChange={(e)=> setSearchInput(e.target.value)}
-          className={styles.SearchBar}/>
+          className={styles.SearchBar}
+        />
       </div>
     </div>
-  )
+  );
 }
 
 export default Nav
