@@ -133,8 +133,8 @@ const VideoPlayer = () => {
         onLoadedData={() => formatDuration(videoRef.current.duration)}
         onTimeUpdate={() => formatDuration(videoRef.current.currentTime)}
         className={styles.video}
-        // src="https://media.geeksforgeeks.org/wp-content/uploads/20190616234019/Canvas.move_.mp4"
-        src="/chambers.mp4"
+        src="https://media.geeksforgeeks.org/wp-content/uploads/20190616234019/Canvas.move_.mp4"
+        // src="/chambers.mp4"
         poster="/alice.png"
       >
         {/* <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" /> */}

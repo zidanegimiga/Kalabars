@@ -1,5 +1,129 @@
-.PageWrapper{
+.PageWrapper {
     padding-top: 72px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+}
+
+.videoFeatures {
+    padding-left: 72px;
+    padding-right: 72px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.videoDetails {
+    width: 50%;
+
+    h1 {
+        font-family: Ubuntu;
+        font-size: 32px;
+        color: #1A1A1A;
+        font-weight: 500;
+    }
+}
+
+.videoDescription {
+    background: linear-gradient(180deg, #DCDCDC 0%, #DCDCDC 100%);
+    border-radius: 8px;
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    display: flex;
+    flex-direction: column;
+    max-height: 160px;
+    min-height: 100px;
+    justify-content: flex-start;
+
+    p {
+        color: #262626;
+    }
+}
+
+.tags {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 40px;
+}
+
+.tag {
+    margin-right: 16px;
+    padding: 4px;
+    display: flex;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #DCDCDC 0%, #DCDCDC 100%);
+    align-items: center;
+    align-content: center;
+    cursor: pointer;
+
+    &:hover {
+        background: #ff3a5ab3;
+        color: white;
+    }
+}
+
+.shareButton {
+    padding-top: 8px;
+    padding-left: 4px;
+    display: flex;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #DCDCDC 0%, #DCDCDC 100%);
+    align-items: center;
+    align-content: center;
+    transition: width ease-in-out 0.5s;
+    transform-origin: left;
+    width: 40px;
+
+    span {
+        width: 40px;
+        height: 40px;
+    }
+
+    &:hover {
+        background: #ff3a5ab3;
+        width: 150px;
+
+        .shareButtonHover {
+            transform: scale(1);
+            transition: all ease-in-out 0.5s;
+        }
+    }
+}
+
+.shareButtonHover {
+    transform: scale(0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 16px;
+
+    span {
+        align-items: center;
+    }
+
+    transition: all ease-in-out 0.5s;
+}
+
+.playlistBox{
+    background: linear-gradient(180deg, #DCDCDC 0%, rgba(220, 220, 220, 0) 100%);
+    border-radius: 8px;
+    margin-top: 72px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+
+    p{
+        text-align: center;
+        font-weight: 500;
+        color: rgba(255, 58, 90, 0.7);
+    }
+}
+
+.borderBox{
+    background: #1A1A1A;
+    width: 50%;
+    height: 16px;
+    border-radius: 0 16px 16px 0;
 }
