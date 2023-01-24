@@ -51,7 +51,7 @@ const Hero = () => {
               <div className={styles.buttonsContainer}>
                 <div className={styles.button1}>
                   {" "}
-                  <Play className={styles.timeicon} />
+                  <Play className={styles.playicon} />
                   <p>Start Watching</p>
                 </div>
                 <div className={styles.button2}>

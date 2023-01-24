@@ -24,8 +24,15 @@
         height: 80px;
     }
 
+    @media (max-width: 1441px) {
+        height: 32px;
+        padding-left: 0px;
+        margin-left: -32px;
+    }
+
     @media (max-width: 426px) {
-        padding: 24px 16px;
+        padding: 8px 16px;
+        height: 40px;
     }
 
     @media (max-width: 321px) {
@@ -35,15 +42,22 @@
 
 .NavLeft {
     display: flex;
+    justify-content: flex-start;
 }
 
 .logo {
     @media (max-width: 1801px) {
         transform: scale(70%);
-    }    
+    }
+    
+    @media (max-width: 1441px) {
+        transform: scale(50%);
+    }
 
     @media (max-width: 321px) {
-        transform: scale(150%);
+        transform: scale(115%);
+        margin-left: 40px;
+        margin-right: 24px;
     }
 }
 
@@ -54,6 +68,11 @@
     font-family: Ubuntu;
     font-weight: 600;
     padding-left: 100px;
+
+    @media (max-width: 1441px) {
+        font-size: 24px;
+        padding-left: 0px;
+    }
 
     @media (max-width: 321px) {
         margin-right: 8px;
@@ -73,13 +92,23 @@
       font-size: 32px;
     }
 
+    @media (max-width: 1441px) {
+        font-size: 24px;
+    }
+
+    @media (max-width: 1025px) {
+        font-size: 20px;
+    }
+
     @media (max-width: 769px) {
         margin-right: 32px;
     }
 
-    @media (max-width: 426px) {
-        margin-right: 20px;
+    @media (max-width: 427px) {
+        font-size: 16px;
+        margin-right: 24px;
     }
+    
 }
 
 .NavRight {
@@ -87,12 +116,20 @@
     align-items: center;
     margin-right: 156px;
 
+    @media (max-width: 1441px) {
+        margin-right: 40px;
+    }
+
     @media (max-width: 1025px) {
-        margin-right: 100px;
+        margin-right: 32px;
     }
 
     @media (max-width: 769px) {
         margin-right: 56px;
+    }
+
+    @media (max-width: 426px) {
+        display: none;
     }
 }
 
@@ -125,15 +162,21 @@
         width: 600px;
     }
 
+    @media (max-width: 1441px) {
+        width: 500px;
+        height: 40px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-size: 20px;
+    }
+
     @media (max-width: 1025px) {
-        width: 280px;
+        width: 300px;
+        height: 28px;
+        font-size: 16px;
     }
 
     @media (max-width: 769px) {
         width: 240px;
-    }
-
-    @media (max-width: 426px) {
-        display: none;
     }
 }

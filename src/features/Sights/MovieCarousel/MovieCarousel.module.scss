@@ -5,6 +5,16 @@
     @media (max-width: 2881px) {
         height: 90vh;
     }
+    @media (max-width: 1441px) {
+        height: 80vh;
+    }
+
+    @media (max-width: 427px) {
+        height: 82vh;
+    }
+    @media (max-width: 376px) {
+        height: 75vh;
+    }
 }
 
 .poster {
@@ -13,6 +23,17 @@
 
     @media (max-width: 2881px) {
         height: 90vh;
+    }
+
+    @media (max-width: 1441px) {
+        height: 80vh;
+    }
+
+    @media (max-width: 427px) {
+        height: 82vh;
+    }
+    @media (max-width: 376px) {
+        height: 75vh;
     }
 }
 
@@ -25,12 +46,18 @@
 
     @media (max-width: 1700px) {
         height: 70%;
-        background: linear-gradient(180.46deg, rgba(31, 31, 31, 0) 70.5%, #000000 100.49%);
+    }
+
+    @media (max-width: 1441px) {
+        height: 100%;
+    }
+
+    @media (max-width: 1025px) {
+        height: 200%;
     }
 
     @media (max-width: 427px) {
         height: 100%;
-        background: linear-gradient(180.46deg, rgba(31, 31, 31, 0.455) 70.5%, #000000 100.49%);
     }
 }
 
@@ -43,24 +70,32 @@
     @media (max-width: 2161px) {
         padding-left: 100px;
         padding-right: 100px;
-        padding-top: 900px;
     }
 
     @media (max-width: 1800px) {
         position: relative;
-        padding-top: 240px;
         padding-left: 48px;
+    }
+
+    @media (max-width: 1441px) {
+        position: relative;
+        padding-left: 48px;
+        padding-top: 240px;
     }
 
     @media (max-width: 1025px) {
-        position: relative;
-        padding-top: 80px;
-        padding-left: 48px;
+        height: 140%;
+        padding-top: 840px;
     }
 
     @media (max-width: 427px) {
-        padding-top: 132px;
+        padding-top: 150px;
         padding-left: 16px;
+    }
+    @media (max-width: 376px) {
+        padding-top: 120px;
+        padding-left: 16px;
+        padding-right: 16px;
     }
 }
 
@@ -82,8 +117,18 @@
         margin-bottom: 16px;
     }
 
+    @media (max-width: 1441px) {
+        font-size: 56px;
+        margin-bottom: 0;
+    }
+
     @media (max-width: 1025px) {
         margin-bottom: 0px;
+    }
+
+    @media (max-width: 427px) {
+        font-size: 32px;
+        margin-bottom: -20px;
     }
 }
 
@@ -106,12 +151,30 @@
         font-size: 32px;
     }
 
+    @media (max-width: 1441px) {
+        font-size: 24px;
+    }
+
+    @media (max-width: 1025px) {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
     @media (max-width: 769px) {
         width: 80%;
     }
 
     @media (max-width: 427px) {
         width: 100%;
+        margin-bottom: 8px;
+        font-weight: 400;
+    }
+    @media (max-width: 376px) {
+        width: 100%;
+        margin-bottom: 8px;
+        font-weight: 400;
+        font-size: 14px;
+        margin-bottom: 16px;
     }
 }
 
@@ -155,6 +218,10 @@
         padding: 8px 8px;
         margin-right: 24px;
     }
+
+    @media (max-width: 1441px) {
+        font-size: 16px;
+    }
 }
 
 .time {
@@ -170,6 +237,10 @@
       width: 150px;
       margin-left: 16px;
     }
+
+    @media (max-width: 1441px) {
+        font-size: 16px;
+    }
 }
 
 .timeicon {
@@ -179,6 +250,10 @@
     @media (max-width: 1801px) {
         transform: scale(110%);
         margin-right: 4px;         
+    }
+
+    @media (max-width: 427px) {
+        transform: scale(80%);        
     }
 }
 
@@ -216,6 +291,14 @@
         height: 40px;
         padding: 8px;   
     }
+
+    @media (max-width: 1441px) {
+        font-size: 16px;
+    }
+
+    @media (max-width: 427px) {
+
+    }
 }
 
 .button2 {
@@ -239,8 +322,26 @@
         padding: 8px;   
     }
 
+    @media (max-width: 1441px) {
+        height: 40px;
+    }
+
     @media (max-width: 426px) {
         display: none;
+    }
+}
+
+.playicon {
+    transform: scale(140%);
+    margin-right: 24px;
+
+    @media (max-width: 1801px) {
+        transform: scale(110%);
+        margin-right: 4px;         
+    }
+
+    @media (max-width: 1441px) {
+        transform: scale(80%);
     }
 }
 
