@@ -34,9 +34,9 @@ const sights = ({ videos }) => {
 export default sights;
 
 export async function loadVideos() {
-  const res = await fetch("https://content.kalabars.com/videos/all", {
+  const res = await fetch(`${process.env.API}/videos/all`, {
     headers:{
-      'x-access-token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiIwOWVhYjVhOC04ZTEyLTRrMGItYTkyNi1hZmZmMGM1NDNhMjQiLCJleHAiOjE2NzY4NDQ0Mzd9.0QVC_lMKtroGKRMp3_hjf2cLbaGvOt3G0FJXdnTDwZw"
+      'x-access-token': process.env.TOKEN 
     }});
   const data = await res.json();
   return data;
