@@ -2,7 +2,17 @@
     height: 100vh;
     position: relative;
 
+    @media (max-width: 2881px) {
+        height: 90vh;
+    }
+    @media (max-width: 1441px) {
+        height: 80vh;
+    }
+
     @media (max-width: 427px) {
+        height: 82vh;
+    }
+    @media (max-width: 376px) {
         height: 75vh;
     }
 }
@@ -11,32 +21,81 @@
     height: 100vh;
     width: 100vw;
 
+    @media (max-width: 2881px) {
+        height: 90vh;
+    }
+
+    @media (max-width: 1441px) {
+        height: 80vh;
+    }
+
     @media (max-width: 427px) {
+        height: 82vh;
+    }
+    @media (max-width: 376px) {
         height: 75vh;
     }
 }
 
 .detailsWrapper {
     position: absolute;
-    bottom: 0;
-    background: linear-gradient(180.46deg, rgba(31, 31, 31, 0) 70.5%, #000000 100.49%);
-    height: 60%;
+    bottom: 0%;
+    background: linear-gradient(180deg, #00000059 80%, #000000 100%);
+    height: 100%;
     color: white;
+
+    @media (max-width: 1700px) {
+        height: 70%;
+    }
+
+    @media (max-width: 1441px) {
+        height: 100%;
+    }
+
+    @media (max-width: 1025px) {
+        height: 200%;
+    }
 
     @media (max-width: 427px) {
         height: 100%;
-        background: linear-gradient(180.46deg, rgba(31, 31, 31, 0.455) 70.5%, #000000 100.49%);
     }
 }
 
 .detailsContainer {
     position: relative;
-    padding-top: 72px;
-    padding-left: 48px;
+    padding-top: 800px;
+    padding-left: 156px;
+    padding-right: 156px;
+
+    @media (max-width: 2161px) {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+
+    @media (max-width: 1800px) {
+        position: relative;
+        padding-left: 48px;
+    }
+
+    @media (max-width: 1441px) {
+        position: relative;
+        padding-left: 48px;
+        padding-top: 240px;
+    }
+
+    @media (max-width: 1025px) {
+        height: 140%;
+        padding-top: 840px;
+    }
 
     @media (max-width: 427px) {
-        padding-top: 132px;
+        padding-top: 150px;
         padding-left: 16px;
+    }
+    @media (max-width: 376px) {
+        padding-top: 120px;
+        padding-left: 16px;
+        padding-right: 16px;
     }
 }
 
@@ -44,9 +103,33 @@
     font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 500;
-    font-size: 64px;
+    font-size: 156px;
     line-height: 92px;
+    margin-bottom: 40px;
     text-align: left;
+
+    @media (max-width: 2161px) {
+        font-size: 120px;
+    }
+
+    @media (max-width: 1800px) {
+        font-size: 48px;
+        margin-bottom: 16px;
+    }
+
+    @media (max-width: 1441px) {
+        font-size: 56px;
+        margin-bottom: 0;
+    }
+
+    @media (max-width: 1025px) {
+        margin-bottom: 0px;
+    }
+
+    @media (max-width: 427px) {
+        font-size: 32px;
+        margin-bottom: -20px;
+    }
 }
 
 .description {
@@ -54,10 +137,28 @@
     font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 56px;
     line-height: 130%;
     width: 50%;
     color: #EDEDED;
+
+    @media (max-width: 2161px) {
+        font-size: 48px;
+        width: 70%;
+    }
+
+    @media (max-width: 1801px) {
+        font-size: 32px;
+    }
+
+    @media (max-width: 1441px) {
+        font-size: 24px;
+    }
+
+    @media (max-width: 1025px) {
+      font-size: 16px;
+      font-weight: 500;
+    }
 
     @media (max-width: 769px) {
         width: 80%;
@@ -65,15 +166,28 @@
 
     @media (max-width: 427px) {
         width: 100%;
+        margin-bottom: 8px;
+        font-weight: 400;
+    }
+    @media (max-width: 376px) {
+        width: 100%;
+        margin-bottom: 8px;
+        font-weight: 400;
+        font-size: 14px;
+        margin-bottom: 16px;
     }
 }
 
 .tags {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 20%;
+    justify-content: flex-start;
+    width: 50%;
     margin: 16px 0px;
+
+    @media (max-width: 1700px) {
+        margin: 16px 0px;
+    }
 
     @media (max-width: 769px) {
         width: 55%;
@@ -93,26 +207,64 @@
 .tag {
     background: #FFD04C;
     color: black;
-    padding: 8px;
-    border-radius: 4px;
-    font-weight: 500;
-    font-size: 12px;
+    padding: 8px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 40px;
+    margin-right: 56px;
+
+    @media (max-width: 1801px) {
+        font-size: 24px;
+        padding: 8px 8px;
+        margin-right: 24px;
+    }
+
+    @media (max-width: 1441px) {
+        font-size: 16px;
+    }
 }
 
 .time {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    font-size: 40px;
+    width: 200px;
+
+    @media (max-width: 1801px) {
+      font-size: 28px;
+      kerning: 8px;
+      width: 150px;
+      margin-left: 16px;
+    }
+
+    @media (max-width: 1441px) {
+        font-size: 16px;
+    }
 }
 
 .timeicon {
-    transform: scale(70%);
+    transform: scale(140%);
+    margin-right: 24px;
+
+    @media (max-width: 1801px) {
+        transform: scale(110%);
+        margin-right: 4px;         
+    }
+
+    @media (max-width: 427px) {
+        transform: scale(80%);        
+    }
 }
 
 .buttonsContainer {
     display: flex;
     justify-content: space-between;
-    padding-right: 48px;
+    padding-right: 72px;
+
+    @media (max-width: 1700px) {
+        padding-right: 48px;      
+    }
 
     @media (max-width: 427px) {
         padding-right: 16px;
@@ -122,44 +274,94 @@
 
 .button1 {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    font-size: 16px;
+    font-size: 48px;
     font-family: Ubuntu;
-    width: 160px;
+    width: 480px;
     background: #FB1036;
-    border-radius: 6px;
+    border-radius: 8px;
+    padding: 20px;
+    height: 100px;
     cursor: pointer;
+
+    @media (max-width: 1801px) {
+        font-size: 16px;
+        width: 180px;
+        height: 40px;
+        padding: 8px;   
+    }
+
+    @media (max-width: 1441px) {
+        font-size: 16px;
+    }
+
+    @media (max-width: 427px) {
+
+    }
 }
 
 .button2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
+    font-size: 48px;
     font-family: Ubuntu;
-    width: 160px;
+    width: 480px;
     color: black;
     background: white;
-    border-radius: 6px;
-    padding: 8px;
+    border-radius: 8px;
+    padding: 20px;
+    height: 100px;
     cursor: pointer;
+
+    @media (max-width: 1700px) {
+        font-size: 16px;
+        width: 160px;
+        height: 40px;
+        padding: 8px;   
+    }
+
+    @media (max-width: 1441px) {
+        height: 40px;
+    }
 
     @media (max-width: 426px) {
         display: none;
     }
 }
 
+.playicon {
+    transform: scale(140%);
+    margin-right: 24px;
+
+    @media (max-width: 1801px) {
+        transform: scale(110%);
+        margin-right: 4px;         
+    }
+
+    @media (max-width: 1441px) {
+        transform: scale(80%);
+    }
+}
+
 .ind {
-    width: 8px;
-    height: 8px;
+    width: 24px;
+    height: 24px;
     list-style: none;
     background-color: #f5f5f5;
     border-radius: 50%;
     display: inline-block;
     cursor: pointer;
     position: relative;
+    margin-bottom: 32px;
     z-index: 100;
+
+    @media (max-width: 1700px) {
+        width: 10px;
+        height: 10px;
+        margin-bottom: 8px;
+    }
 }
 
 .ind.active {
