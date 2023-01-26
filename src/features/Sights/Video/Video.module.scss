@@ -168,8 +168,8 @@
   top: 0;
   left: 0;
   bottom: 0;
-  // right: calc(100% - var(--progress-position) * 100%);
-  right: 90%;
+  right: calc(100% - var(--progress-position) * 100%);
+  // right: calc(100% - 100%);
   background-color: red;
   // display: none;
 }
@@ -180,8 +180,8 @@
   height: 200%;
   top: -50%;
   transform: translateX(-50%) scale(var(--scale));
-  // left: calc(var(--progress-position) * 100%);
-  left: 10%;
+  left: calc(var(--progress-position) * 100%);
+  // left: 80%;
   background-color: red;
   border-radius: 50%;
   transition: transform 150ms ease-in-out;
