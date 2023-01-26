@@ -11,7 +11,7 @@ import {
 } from "../../../shared/Icons/Playback";
 import styles from "./Video.module.scss";
 
-const VideoPlayer = () => {
+const VideoPlayer = ({video}: any) => {
   const [playing, setPlaying] = useState(false);
   const [videoTime, setVideoTime] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -28,7 +28,7 @@ const VideoPlayer = () => {
         setCurrentTime(videoRef?.current?.currentTime );
         setProgress((videoRef?.current?.currentTime / videoTime) * 100);
         // timeline.current.style.setProperty("--progress-position", progress);
-        console.log("Progress: ", progress)
+        // console.log("Progress: ", progress)
       }, 1000);
       // const videodata = fetch('https://content.kalabars.com/videos/all', {
       //   headers:{
@@ -131,9 +131,10 @@ const VideoPlayer = () => {
         onLoadedData={() => formatDuration(videoRef.current.duration)}
         onTimeUpdate={() => formatDuration(videoRef.current.currentTime)}
         className={styles.video}
+        // src={process.env.API+`/static/media/videos_images/`+video.landscape_image}
         src="https://media.geeksforgeeks.org/wp-content/uploads/20190616234019/Canvas.move_.mp4"
         // src="/chambers.mp4"
-        poster="/alice.png"
+        poster={process.env.API+`/static/media/videos_images/`+video.landscape_image}
       >
         {/* <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" /> */}
       </video>
