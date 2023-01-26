@@ -19,7 +19,7 @@ const mockData = [
 const Sights = ({ videos }) => {
   const pager = useRef(null)
   // console.log("Videos: ", videos?.response);
-  const carouselVideos = videos.response.result.slice(9, 20)
+  const carouselVideos = videos.response.result.slice(9, 17);
   console.log("Videos: ", carouselVideos);
   return (
     <div className={styles.pageWrapper} ref={pager}>
