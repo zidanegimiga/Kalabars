@@ -25,7 +25,6 @@ const VideoPlayer = ({video}: any) => {
   useEffect(() => {
       setVideoTime(videoRef?.current?.duration);
   }, []);
-  console.log("Duration: ", videoRef?.current?.duration);
 
   const handleTimeUpdate = () =>{
     setCurrentTime(videoRef.current.currentTime);
