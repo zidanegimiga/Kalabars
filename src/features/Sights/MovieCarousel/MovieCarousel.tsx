@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Timer from "../../../../public/timerIcon.svg";
@@ -8,6 +9,7 @@ import Down from "../../../../public/downIcon.svg";
 import styles from "./MovieCarousel.module.scss";
 
 const Hero = ({ videos }) => {
+  const router = useRouter();
   return (
     <div>
       <Carousel
@@ -16,7 +18,7 @@ const Hero = ({ videos }) => {
         showIndicators={true}
         showThumbs={false}
         infiniteLoop={true}
-        autoPlay={false}
+        autoPlay={true}
         interval={2000}
         dynamicHeight={false}
         renderIndicator={(clickHandler, isSelected, index) => {
@@ -56,7 +58,7 @@ const Hero = ({ videos }) => {
                   </div>
                 </div>
                 <div className={styles.buttonsContainer}>
-                  <div className={styles.button1}>
+                  <div className={styles.button1} onClick={()=>router.push(`/videos/${video.public_id}`)}>
                     {" "}
                     <Play className={styles.playicon} />
                     <p>Start Watching</p>

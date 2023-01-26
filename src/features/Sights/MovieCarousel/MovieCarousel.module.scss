@@ -45,21 +45,21 @@
     width: 100%;
     color: white;
 
-    // @media (max-width: 1700px) {
-    //     height: 70%;
-    // }
+    @media (max-width: 1700px) {
+        height: 100%;
+    }
 
-    // @media (max-width: 1441px) {
-    //     height: 100%;
-    // }
+    @media (max-width: 1441px) {
+        height: 100%;
+    }
 
-    // @media (max-width: 1025px) {
-    //     height: 200%;
-    // }
+    @media (max-width: 1025px) {
+        height: 200%;
+    }
 
-    // @media (max-width: 427px) {
-    //     height: 100%;
-    // }
+    @media (max-width: 427px) {
+        height: 100%;
+    }
 }
 
 .detailsContainer {
@@ -85,6 +85,13 @@
         padding-left: 48px;
         padding-top: 240px;
         bottom: -5%;
+    }
+
+    @media (max-width: 1367px) {
+        position: relative;
+        padding-left: 48px;
+        padding-top: 240px;
+        bottom: 5%;
     }
 
     @media (max-width: 1025px) {
@@ -130,6 +137,12 @@
         font-size: 56px;
         margin-bottom: 0;
     }
+
+    @media (max-width: 1367px) {
+        font-size: 48px;
+        line-height: 64px;
+        margin-bottom: 0;
+    }    
 
     @media (max-width: 1025px) {
         margin-bottom: 0px;

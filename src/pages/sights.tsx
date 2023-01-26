@@ -5,22 +5,12 @@ import { useState, useRef } from "react";
 import Down from "../../public/downIcon.svg";
 import styles from "../styles/Sights.module.scss";
 
-const mockData = [
-  {
-    name: "Alice",
-    poster: "/alice.png",
-  },
-  {
-    name: "Black Valentine",
-    poster: "/blackValentine.png",
-  },
-];
-
 const Sights = ({ videos }) => {
   const pager = useRef(null)
   // console.log("Videos: ", videos?.response);
   const carouselVideos = videos.response.result.slice(9, 17);
   console.log("Videos: ", carouselVideos);
+  console.log("Pager: ", pager.current);
   return (
     <div className={styles.pageWrapper} ref={pager}>
       <MovieCarousel videos={carouselVideos}/>
@@ -30,7 +20,6 @@ const Sights = ({ videos }) => {
         <SightsCard />
         <SightsCard />
       </SightsCategory>
-      {}
     </div>
   );
 };
