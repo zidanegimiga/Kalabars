@@ -19,10 +19,11 @@ const mockData = [
 const Sights = ({ videos }) => {
   const pager = useRef(null)
   // console.log("Videos: ", videos?.response);
-  console.log("Videos: ", pager);
+  const carouselVideos = videos.response.result.slice(9, 20)
+  console.log("Videos: ", carouselVideos);
   return (
     <div className={styles.pageWrapper} ref={pager}>
-      <MovieCarousel />
+      <MovieCarousel videos={carouselVideos}/>
       <SightsCategory name={"Staff Picks"}>
         <SightsCard />
         <SightsCard />
@@ -36,23 +37,23 @@ const Sights = ({ videos }) => {
 
 export default Sights;
 
-// export async function loadVideos() {
-//   const res = await fetch(process.env.API + `/videos/all`, {
-//     headers:{
-//       'x-access-token': process.env.TOKEN 
-//     }});
-//   const data = await res.json();
-//   return data;
-// }
+export async function loadVideos() {
+  const res = await fetch(process.env.API+`/videos/all`, {
+    headers:{
+      'x-access-token': process.env.TOKEN 
+    }});
+  const data = await res.json();
+  return data;
+}
 
-// export async function getStaticProps(context) {
-//   const videos = await loadVideos();
-//   return {
-//     props: {
-//       videos,
-//     },
-//   };
-// }
+export async function getStaticProps(context) {
+  const videos = await loadVideos();
+  return {
+    props: {
+      videos,
+    },
+  };
+}
 
 // const videodata = fetch('https://content.kalabars.com/videos/all', {
 //   headers:{
