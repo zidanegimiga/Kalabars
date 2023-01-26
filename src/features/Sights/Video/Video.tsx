@@ -131,8 +131,8 @@ const VideoPlayer = ({video}: any) => {
         onLoadedData={() => formatDuration(videoRef.current.duration)}
         onTimeUpdate={() => formatDuration(videoRef.current.currentTime)}
         className={styles.video}
-        src={process.env.API+`/static/media/videos_images/`+video.landscape_image}
-        // src="https://media.geeksforgeeks.org/wp-content/uploads/20190616234019/Canvas.move_.mp4"
+        // src={process.env.API+`/static/media/videos_images/`+video.landscape_image}
+        src="https://media.geeksforgeeks.org/wp-content/uploads/20190616234019/Canvas.move_.mp4"
         // src="/chambers.mp4"
         poster={process.env.API+`/static/media/videos_images/`+video.landscape_image}
       >
