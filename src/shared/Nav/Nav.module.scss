@@ -83,9 +83,14 @@
 .link {
     font-size: 48px;
     margin-right: 48px;
+    transition: all ease-in-out 0.5s;
 
     &:hover {
-        color: #ff3a5ab3;
+        // color: #ff3a5ab3;
+        transform: scale(120%);
+        padding: 4px;
+        // border-bottom: solid 2px #161616;
+        // border-radius: 4px;
     }
 
     @media (max-width: 1801px) {
@@ -94,6 +99,11 @@
 
     @media (max-width: 1441px) {
         font-size: 18px;
+    }
+
+    @media (max-width: 1367px) {
+        font-size: 16px;
+        padding-left: 0px;
     }
 
     @media (max-width: 1025px) {
@@ -167,6 +177,10 @@
         height: 32px;
         padding-top: 8px;
         padding-bottom: 8px;
+        font-size: 16px;
+    }
+
+    @media (max-width: 1367px) {
         font-size: 16px;
     }
 

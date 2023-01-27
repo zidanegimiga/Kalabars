@@ -11,7 +11,7 @@ import {
 } from "../../../shared/Icons/Playback";
 import styles from "./Video.module.scss";
 
-const VideoPlayer = () => {
+const VideoPlayer = ({video}: any) => {
   const [playing, setPlaying] = useState(false);
   const [videoTime, setVideoTime] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -24,21 +24,24 @@ const VideoPlayer = () => {
 
   useEffect(() => {
       setVideoTime(videoRef?.current?.duration);
-      setInterval(function () {
-        setCurrentTime(videoRef?.current?.currentTime );
-        setProgress((videoRef?.current?.currentTime / videoTime) * 100);
-        // timeline.current.style.setProperty("--progress-position", progress);
-        console.log("Progress: ", progress)
-      }, 1000);
-      // const videodata = fetch('https://content.kalabars.com/videos/all', {
-      //   headers:{
-      //     'x-access-token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiIwOWVhYjVhOC04ZTEyLTRrMGItYTkyNi1hZmZmMGM1NDNhMjQiLCJleHAiOjE2NzY4NDQ0Mzd9.0QVC_lMKtroGKRMp3_hjf2cLbaGvOt3G0FJXdnTDwZw"
-      //   } 
-      // }).then((res) => {return res.json()})
-      // .then(json => console.log(json))
-  }, [progress, videoTime]);
+  }, []);
 
-  const handleTimelineUpdate = (e) => {
+  const handleTimeUpdate = () =>{
+    setCurrentTime(videoRef.current.currentTime);
+    setProgress((videoRef?.current?.currentTime / videoRef?.current?.duration));
+    timeline.current?.style?.setProperty("--progress-position", progress);
+    // console.log("New Progress: ", progress)
+  }
+
+  const handleTimelineClick = (e) =>{
+    const parentRect = timeline.current.getBoundingClientRect();
+    const percent = Math.min(Math.max(0, e.clientX - parentRect.x)) / parentRect.width;
+    videoRef.current.currentTime = Math.floor( percent * videoTime);
+    // console.log("Timeline Clicked", e)
+    // console.log("Part Clicked", percent)
+  }
+
+  const handleTimelineUpdateHover = (e) => {
     e.preventDefault();
     const parentRect = timeline.current.getBoundingClientRect();
 
@@ -52,19 +55,19 @@ const VideoPlayer = () => {
     minimumIntegerDigits: 2,
   });
 
-  const formatDuration = (time) => {
-    const seconds = Math.floor(time % 60);
-    const minutes = Math.floor(time % 60) % 60;
-    const hours = Math.floor(time % 3600);
+  // const formatDuration = (time) => {
+  //   const seconds = Math.floor(time % 60);
+  //   const minutes = Math.floor(time % 60) % 60;
+  //   const hours = Math.floor(time % 3600);
 
-    if (hours === 0) {
-      return `${minutes} : ${leadingZerosFormatter.format(seconds)}`;
-    } else {
-      return `${hours}: ${leadingZerosFormatter.format(
-        minutes
-      )} : ${leadingZerosFormatter.format(seconds)}`;
-    }
-  };
+  //   if (hours === 0) {
+  //     return `${minutes} : ${leadingZerosFormatter.format(seconds)}`;
+  //   } else {
+  //     return `${hours}: ${leadingZerosFormatter.format(
+  //       minutes
+  //     )} : ${leadingZerosFormatter.format(seconds)}`;
+  //   }
+  // };
 
   //play/pause
   const videoHandler = (control) => {
@@ -128,14 +131,12 @@ const VideoPlayer = () => {
         onClick={() => {
           playing ? videoHandler("pause") : videoHandler("play");
         }}
-        onLoadedData={() => formatDuration(videoRef.current.duration)}
-        onTimeUpdate={() => formatDuration(videoRef.current.currentTime)}
+        // onLoadedData={() => formatDuration(videoRef.current.duration)}
+        onTimeUpdate={() => handleTimeUpdate()}
         className={styles.video}
-        src="https://media.geeksforgeeks.org/wp-content/uploads/20190616234019/Canvas.move_.mp4"
-        // src="/chambers.mp4"
-        poster="/alice.png"
+        src={process.env.API+`/static/media/videos/`+video.public_id+`/1080-`+video.public_id+`.MP4`}
+        poster={process.env.API+`/static/media/videos_images/`+video.landscape_image}
       >
-        {/* <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" /> */}
       </video>
       <div className={styles.controlsContainer}>
         <div className={styles.timeControls}>
@@ -146,7 +147,8 @@ const VideoPlayer = () => {
           </p>
           <div 
             className={styles.timelineContainer}
-            onMouseMove={(e) => handleTimelineUpdate(e)}
+            onMouseMove={(e) => handleTimelineUpdateHover(e)}
+            onClick={(e) => handleTimelineClick(e)}
             ref={timeline}
           >
             <div
