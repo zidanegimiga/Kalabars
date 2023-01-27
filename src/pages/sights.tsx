@@ -5,20 +5,27 @@ import { useState, useRef } from "react";
 import Down from "../../public/downIcon.svg";
 import styles from "../styles/Sights.module.scss";
 
-const Sights = ({ videos }) => {
+const Sights = ({ videos, genres, eg }) => {
   const pager = useRef(null)
   // console.log("Videos: ", videos?.response);
   const carouselVideos = videos.response.result.slice(9, 17);
-  console.log("Videos: ", carouselVideos);
-  console.log("Pager: ", pager.current);
+  const pageGenres = genres.response.result;
+  console.log("Videos: ", videos.response.result);
+  console.log("Pager: ", pageGenres);
+  console.log("Genres: ", eg);
+
+  const videosByGenre = () =>{
+
+  }
+
   return (
     <div className={styles.pageWrapper} ref={pager}>
       <MovieCarousel videos={carouselVideos}/>
       <SightsCategory name={"Staff Picks"}>
+        {/* <SightsCard />
         <SightsCard />
         <SightsCard />
-        <SightsCard />
-        <SightsCard />
+        <SightsCard /> */}
       </SightsCategory>
     </div>
   );
@@ -27,19 +34,33 @@ const Sights = ({ videos }) => {
 export default Sights;
 
 export async function loadVideos() {
-  const res = await fetch(process.env.API+`/videos/all`, {
+  const resVideos = await fetch(process.env.API+`/videos/all`, {
     headers:{
       'x-access-token': process.env.TOKEN 
     }});
-  const data = await res.json();
-  return data;
+  const resGenres = await fetch(process.env.API+`/videos/genres`, {
+    headers:{
+      'x-access-token': process.env.TOKEN 
+  }});
+  const kalabarsGenres = await fetch(process.env.API+`/genres/kalabars-originals/videos`, {
+    headers:{
+      'x-access-token': process.env.TOKEN 
+  }});
+  const genres = await resGenres.json();
+  const exampleGenres = await kalabarsGenres.json();
+  const videos = await resVideos.json();
+  return {
+    genres: genres,
+    videos: videos,
+    eg: exampleGenres
+  };
 }
 
 export async function getStaticProps(context) {
-  const videos = await loadVideos();
+  const {genres, videos, eg} = await loadVideos();
   return {
     props: {
-      videos,
+      genres, videos, eg
     },
   };
 }

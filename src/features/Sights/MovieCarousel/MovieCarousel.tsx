@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -10,6 +10,7 @@ import styles from "./MovieCarousel.module.scss";
 
 const Hero = ({ videos }) => {
   const router = useRouter();
+
   return (
     <div>
       <Carousel
@@ -38,7 +39,7 @@ const Hero = ({ videos }) => {
       >
         {videos.map((video, index) => (
           <div className={styles.hero} key={index}>
-            <img src={process.env.API+`/static/media/videos_images/`+video.landscape_image} alt="poster" className={styles.poster} />
+            <Image width={1920} height={1400} src={`https:content.kalabars.com/static/media/videos_images/`+video.landscape_image} alt="poster" className={styles.poster} />
             <div className={styles.detailsWrapper}>
               <div className={styles.detailsContainer}>
                 <div className={styles.title}>{video.title}</div>
