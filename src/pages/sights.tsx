@@ -8,14 +8,13 @@ import styles from "../styles/Sights.module.scss";
 const Sights = ({ videos, genres, eg }) => {
   const pager = useRef(null)
   // console.log("Videos: ", videos?.response);
-  const carouselVideos = videos.response.result.slice(9, 17);
+  const carouselVideos = videos.response.result.slice(18, 26);
   const pageGenres = genres.response.result;
   console.log("Videos: ", videos.response.result);
   console.log("Pager: ", pageGenres);
   console.log("Genres: ", eg);
 
   const videosByGenre = () =>{
-
   }
 
   return (

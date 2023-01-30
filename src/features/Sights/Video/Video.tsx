@@ -11,10 +11,11 @@ import {
 } from "../../../shared/Icons/Playback";
 import styles from "./Video.module.scss";
 
-const VideoPlayer = ({video}: any) => {
+const VideoPlayer = ({ video }: any) => {
   const [playing, setPlaying] = useState(false);
-  const [videoTime, setVideoTime] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
+  const [videoTime, setVideoTime] = useState(null);
+  const [videoDuration, setVideoDuration] = useState("");
+  const [currentTime, setCurrentTime] = useState(1);
   const [progress, setProgress] = useState(0);
   const [volume, setVolume] = useState(100);
   const [muted, setMuted] = useState(false);
@@ -22,52 +23,64 @@ const VideoPlayer = ({video}: any) => {
   const videoContainer = useRef(null);
   const timeline = useRef(null);
 
+  const leadingZerosFormatter = new Intl.NumberFormat(undefined, {
+    minimumIntegerDigits: 2,
+  });
+
+  const formatDuration = (time) => {
+    const seconds = Math.floor(time % 60);
+    const minutes = Math.floor(time / 60);
+    const hours = Math.floor(time / 3600);
+
+    if (hours == 0) {
+      return `${leadingZerosFormatter.format(
+        minutes
+      )} : ${leadingZerosFormatter.format(seconds)}`;
+    } else if (minutes == 0) {
+      return `00 : ${leadingZerosFormatter.format(seconds)}`;
+    } else {
+      return `${leadingZerosFormatter.format(
+        hours
+      )}:${leadingZerosFormatter.format(
+        minutes
+      )}:${leadingZerosFormatter.format(seconds)} `;
+    }
+  };
+
   useEffect(() => {
-      setVideoTime(videoRef?.current?.duration);
+    const vidDuration = videoRef?.current?.duration;
+    setVideoTime(vidDuration);
+    const duration = formatDuration(videoTime);
+    setVideoDuration(duration);
   }, []);
 
-  const handleTimeUpdate = () =>{
+  const handleTimeUpdate = () => {
     setCurrentTime(videoRef.current.currentTime);
-    setProgress((videoRef?.current?.currentTime / videoRef?.current?.duration));
+    setProgress(videoRef?.current?.currentTime / videoRef?.current?.duration);
     timeline.current?.style?.setProperty("--progress-position", progress);
     // console.log("New Progress: ", progress)
-  }
+  };
 
-  const handleTimelineClick = (e) =>{
+  const handleTimelineClick = (e) => {
     const parentRect = timeline.current.getBoundingClientRect();
     const percent = Math.min(Math.max(0, e.clientX - parentRect.x)) / parentRect.width;
-    videoRef.current.currentTime = Math.floor( percent * videoTime);
+    videoRef.current.currentTime = Math.floor(percent * videoTime);
     // console.log("Timeline Clicked", e)
     // console.log("Part Clicked", percent)
-  }
+  };
 
   const handleTimelineUpdateHover = (e) => {
     e.preventDefault();
     const parentRect = timeline.current.getBoundingClientRect();
 
     //calculating the position of our mouse relative to the timeline
-    const percent = Math.min(Math.max(0, e.clientX - parentRect.x)) / parentRect.width;
-    timeline.current.style.setProperty("--preview-position", percent)
+    const percent =
+      Math.min(Math.max(0, e.clientX - parentRect.x)) / parentRect.width;
+    timeline.current.style.setProperty("--preview-position", percent);
     console.log("Timeline Events ", parentRect.width);
   };
 
-  const leadingZerosFormatter = new Intl.NumberFormat(undefined, {
-    minimumIntegerDigits: 2,
-  });
-
-  // const formatDuration = (time) => {
-  //   const seconds = Math.floor(time % 60);
-  //   const minutes = Math.floor(time % 60) % 60;
-  //   const hours = Math.floor(time % 3600);
-
-  //   if (hours === 0) {
-  //     return `${minutes} : ${leadingZerosFormatter.format(seconds)}`;
-  //   } else {
-  //     return `${hours}: ${leadingZerosFormatter.format(
-  //       minutes
-  //     )} : ${leadingZerosFormatter.format(seconds)}`;
-  //   }
-  // };
+  console.log("Seconds: ", videoRef.current?.duration);
 
   //play/pause
   const videoHandler = (control) => {
@@ -131,13 +144,12 @@ const VideoPlayer = ({video}: any) => {
         onClick={() => {
           playing ? videoHandler("pause") : videoHandler("play");
         }}
-        // onLoadedData={() => formatDuration(videoRef.current.duration)}
+        onLoadedData={() => console.log("Video data loaded")}
         onTimeUpdate={() => handleTimeUpdate()}
         className={styles.video}
-        src={process.env.API+`/static/media/videos/`+video.public_id+`/1080-`+video.public_id+`.MP4`}
-        poster={process.env.API+`/static/media/videos_images/`+video.landscape_image}
-      >
-      </video>
+        src={ process.env.API + `/static/media/videos/` + video.public_id +`/1080-` + video.public_id + `.MP4` }
+        poster={process.env.API+`/static/media/videos_images/`+video.landscape_image }
+      />
       <div className={styles.controlsContainer}>
         <div className={styles.timeControls}>
           <p className={styles.time}>
@@ -145,23 +157,19 @@ const VideoPlayer = ({video}: any) => {
               ":" +
               ("0" + Math.floor(currentTime % 60)).slice(-2)}
           </p>
-          <div 
+          <div
             className={styles.timelineContainer}
             onMouseMove={(e) => handleTimelineUpdateHover(e)}
             onClick={(e) => handleTimelineClick(e)}
             ref={timeline}
           >
-            <div
-              className={styles.timeline}
-            >
+            <div className={styles.timeline}>
               <img className={styles.previewImg} src={"/preview.png"} alt="preview"/>
               <div className={styles.thumbIndicator}></div>
             </div>
           </div>
           <p className={styles.time}>
-            {Math.floor(videoTime / 60) +
-              ":" +
-              ("0" + Math.floor(videoTime % 60)).slice(-2)}
+            {videoDuration}
           </p>
         </div>
         <div className={styles.playbackIcons}>

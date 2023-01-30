@@ -59,12 +59,12 @@ const Sight = ({videos}: any) => {
       </div>
       <div className={styles.borderBox}></div>
       <div className={styles.suggestedVideos}>
-      <SightsCategory name={"You might like:"}>
+      {/* <SightsCategory name={"You might like:"}>
         <SightsCard />
         <SightsCard />
         <SightsCard />
         <SightsCard />
-      </SightsCategory>
+      </SightsCategory> */}
       </div>
     </div>
   )
