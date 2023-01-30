@@ -13,7 +13,7 @@ const nextConfig = {
   },
 
   images: {
-    domains: ['content.kalabars.com'],
+     domains: ['content.kalabars.com'],
   },
 }
 
