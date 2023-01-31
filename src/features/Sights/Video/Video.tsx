@@ -16,6 +16,7 @@ const VideoPlayer = ({ video }: any) => {
   const [videoTime, setVideoTime] = useState(null);
   const [videoDuration, setVideoDuration] = useState("");
   const [currentTime, setCurrentTime] = useState(1);
+  const [hoveredTime, setHoveredTime] = useState(1);
   const [progress, setProgress] = useState(0);
   const [volume, setVolume] = useState(100);
   const [muted, setMuted] = useState(false);
@@ -77,9 +78,12 @@ const VideoPlayer = ({ video }: any) => {
     const percent =
       Math.min(Math.max(0, e.clientX - parentRect.x)) / parentRect.width;
     timeline.current.style.setProperty("--preview-position", percent);
+    
     console.log("Timeline Events ", parentRect.width);
+    console.log("Seconds ", percent);
+    const timeHovered = percent * videoRef?.current?.duration;
+    setHoveredTime(timeHovered)
   };
-
   console.log("Seconds: ", videoRef.current?.duration);
 
   //play/pause
@@ -164,12 +168,19 @@ const VideoPlayer = ({ video }: any) => {
             ref={timeline}
           >
             <div className={styles.timeline}>
-              <img className={styles.previewImg} src={"/preview.png"} alt="preview"/>
+              <div className={styles.previewImgContainer}>
+                <img className={styles.previewImg} src={process.env.API+`/static/media/videos_images/`+video.landscape_image} alt="preview"/>
+                <div className={styles.previewImgTime}>{Math.floor(hoveredTime / 60) + ":" + ("0" + Math.floor(hoveredTime % 60)).slice(-2)}</div>
+              </div>
               <div className={styles.thumbIndicator}></div>
             </div>
           </div>
           <p className={styles.time}>
-            {videoDuration}
+            {
+              Math.floor(videoTime / 60) +
+              ":" +
+              ("0" + Math.floor(videoTime % 60)).slice(-2)
+            }
           </p>
         </div>
         <div className={styles.playbackIcons}>
