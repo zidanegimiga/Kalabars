@@ -3,7 +3,7 @@ import styles from "./SightsCategory.module.scss";
 import Down from "../../../../public/downIcon.svg";
 import SightsCard from "../SightsCard/";
 
-const SightsCategory = ({children, name}) => {
+const SightsCategory = ({name, data}) => {
   return (
     <div className={styles.sightsCategory}>
       <div className={styles.top}>
@@ -13,7 +13,13 @@ const SightsCategory = ({children, name}) => {
         </div>
       </div>
       <div className={styles.categoryCards}>
-        {children}
+        {
+          data?.map((video, index) => (
+            <div key={index}>
+              <SightsCard cardData={video}/>
+            </div>
+          ))          
+        }
       </div>
     </div>
   );
