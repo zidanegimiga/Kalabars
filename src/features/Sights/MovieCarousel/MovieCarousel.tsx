@@ -43,9 +43,7 @@ const Hero = ({ videos }) => {
           }
           return (
             <div className={styles.hero} key={index}>
-            <Image
-              width={1920}
-              height={1400}
+            <img
               src={
                 `https:content.kalabars.com/static/media/videos_images/` +
                 video.landscape_image
@@ -55,6 +53,7 @@ const Hero = ({ videos }) => {
             />
             <div className={styles.detailsWrapper}>
               <div className={styles.detailsContainer}>
+                <div className={styles.detailsInnerContainer} >
                 <div className={styles.title}>{video.title}</div>
                 <div className={styles.description}>{video.description}</div>
                 <div className={styles.tags}>
@@ -83,6 +82,7 @@ const Hero = ({ videos }) => {
                     {" "}
                     <Down className={styles.timeicon} /> Explore More
                   </div>
+                </div>
                 </div>
               </div>
             </div>
