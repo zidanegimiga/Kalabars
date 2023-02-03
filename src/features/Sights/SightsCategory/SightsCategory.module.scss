@@ -3,8 +3,7 @@
 }
 
 .sightsCategory{
-    padding: 32px 72px;
-    border-top: solid 1px black;
+    padding: 32px 32px;
     background-color: rgb(238, 238, 238);
 
     @media (max-width: 769px) {
@@ -19,6 +18,7 @@
 .top{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 48px;
 }
 
 .sightsCategoryTitle{
@@ -40,8 +40,8 @@
 .categoryCards{
     display: flex;
     justify-content: flex-start;
-    overflow-x: scroll;
     align-items: center;
+    overflow-x: scroll;
 
     @media (max-width: 769px) {
         display: grid;
@@ -52,4 +52,3 @@
         grid-template-columns: auto auto;        
     }
 }
-

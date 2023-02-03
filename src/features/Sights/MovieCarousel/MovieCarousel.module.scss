@@ -9,12 +9,15 @@
         height: 100vh;
         width: 100vw;
     }
+    @media (max-width: 769px) {
+        height: 90vh;
+    }
 
     @media (max-width: 427px) {
-        height: 82vh;
+        height: 50vh;
     }
     @media (max-width: 376px) {
-        height: 75vh;
+        height: 45vh;
     }
 }
 
@@ -27,15 +30,23 @@
     }
 
     @media (max-width: 1441px) {
-        height: 100vh;
+        height: 130vh;
+        width: 100vw;
+    }
+    @media (max-width: 1025px) {
+        height: 120vh;
+        width: 100vw;
+    }
+    @media (max-width: 769px) {
+        height: 90vh;
         width: 100vw;
     }
 
     @media (max-width: 427px) {
-        height: 82vh;
+        height: 50vh;
     }
     @media (max-width: 376px) {
-        height: 75vh;
+        height: 45vh;
     }
 }
 
@@ -56,7 +67,7 @@
     }
 
     @media (max-width: 1025px) {
-        height: 200%;
+        height: 100%;
     }
 
     @media (max-width: 427px) {
@@ -74,6 +85,10 @@
     @media (max-width: 1700px) {
         padding-left: 64px;
     }
+
+    @media (max-width: 769px) {
+        padding-left: 24px;
+    }
     @media (max-width: 427px) {
         padding-left: 16px;
     }
@@ -85,7 +100,7 @@
     bottom: 10%;
 
     @media (max-width: 427px) {
-        bottom: 18%;
+        bottom: 12%;
     }
 }
 
@@ -221,8 +236,9 @@
 
 .buttonsContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding-right: 72px;
+    width: 100%;
 
     @media (max-width: 1700px) {
         padding-right: 48px;      
@@ -247,6 +263,7 @@
     height: 100px;
     background: #181818a4;
     cursor: pointer;
+    margin-right: 80px;
 
     &:hover{
         background: #FB1036;
@@ -256,8 +273,9 @@
     @media (max-width: 1801px) {
         font-size: 40px;
         width: 240px;
-        height: 48px;
-        padding: 8px;   
+        height: 64px;
+        padding: 8px; 
+        font-size: 16px;  
     }
 
     @media (max-width: 1441px) {
@@ -288,12 +306,11 @@
     @media (max-width: 1801px) {
         font-size: 16px;
         width: 240px;
-        height: 48px;
+        height: 64px;
         padding: 8px;   
     }
 
     @media (max-width: 1441px) {
-        height: 40px;
     }
 
     @media (max-width: 426px) {

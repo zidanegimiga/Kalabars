@@ -169,7 +169,7 @@ const VideoPlayer = ({ video }: any) => {
           >
             <div className={styles.timeline}>
               <div className={styles.previewImgContainer}>
-                <img className={styles.previewImg} src={process.env.API+`/static/media/videos_images/`+video.landscape_image} alt="preview"/>
+                {/* <img className={styles.previewImg} src={process.env.API+`/static/media/videos_images/`+video.landscape_image} alt="preview"/> */}
                 <div className={styles.previewImgTime}>{Math.floor(hoveredTime / 60) + ":" + ("0" + Math.floor(hoveredTime % 60)).slice(-2)}</div>
               </div>
               <div className={styles.thumbIndicator}></div>

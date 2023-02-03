@@ -6,19 +6,33 @@ import { useState, useRef } from "react";
 import Down from "../../public/downIcon.svg";
 import styles from "../styles/Sights.module.scss";
 
-const Sights = ({ videos, drama, originals, comedy, documentary, staffPicks}) => {
+const Sights = ({
+  videos,
+  drama,
+  originals,
+  comedy,
+  documentary,
+  staffPicks,
+}) => {
   const pager = useRef(null);
   const carouselVideos = videos.response.result.slice(15, 24);
-  console.log("Food: ", documentary?.response?.result)
-  
+  console.log("Food: ", documentary?.response?.result);
 
   return (
     <div className={styles.pageWrapper} ref={pager}>
       <MovieCarousel videos={carouselVideos} />
-      <SightsCategory name={"Staff Picks"} data={staffPicks.response.result} />  
-      <SightsCategory name={"Kalabars Originals"} data={originals.response.result} />
-      <SightsCategory name={"Comedy"} data={comedy?.response?.result} />      
-      <SightsCategory name={"Drama"} data={drama?.response?.result} />              
+      <>
+        <SightsCategory
+          name={"Staff Picks"}
+          data={staffPicks.response.result}
+        />
+        <SightsCategory
+          name={"Kalabars Originals"}
+          data={originals.response.result}
+        />
+        <SightsCategory name={"Comedy"} data={comedy?.response?.result} />
+        <SightsCategory name={"Drama"} data={drama?.response?.result} />{" "}
+      </>
     </div>
   );
 };
@@ -26,14 +40,14 @@ const Sights = ({ videos, drama, originals, comedy, documentary, staffPicks}) =>
 export default Sights;
 
 export async function loadVideos() {
-  //All Videos  
+  //All Videos
   const resVideos = await fetch(process.env.API + `/videos/all`, {
     headers: {
       "x-access-token": process.env.TOKEN,
     },
   });
   const videos = await resVideos.json();
-  
+
   //originals
   const originalsGenres = await fetch(
     process.env.API + `/genres/kalabars-originals/videos`,
@@ -44,16 +58,13 @@ export async function loadVideos() {
     }
   );
   const originals = await originalsGenres.json();
-  
+
   //Drama
-  const dramaGenres = await fetch(
-    process.env.API + `/genres/drama/videos`,
-    {
-      headers: {
-        "x-access-token": process.env.TOKEN,
-      },
-    }
-  );
+  const dramaGenres = await fetch(process.env.API + `/genres/drama/videos`, {
+    headers: {
+      "x-access-token": process.env.TOKEN,
+    },
+  });
   const dramaGenre = await dramaGenres.json();
 
   //Documentary
@@ -68,15 +79,12 @@ export async function loadVideos() {
   const documentaryGenre = await documentaryGenres.json();
 
   //Comedy
-  const comedyGenres = await fetch(
-    process.env.API + `/genres/comedy/videos`,
-    {
-      headers: {
-        "x-access-token": process.env.TOKEN,
-      },
-    }
-  );
-  const comedyGenre = await comedyGenres.json(); 
+  const comedyGenres = await fetch(process.env.API + `/genres/comedy/videos`, {
+    headers: {
+      "x-access-token": process.env.TOKEN,
+    },
+  });
+  const comedyGenre = await comedyGenres.json();
 
   //Comedy
   const staffPicksGenres = await fetch(
@@ -87,7 +95,7 @@ export async function loadVideos() {
       },
     }
   );
-  const staffPicks = await staffPicksGenres.json();  
+  const staffPicks = await staffPicksGenres.json();
 
   return {
     videos: videos,
@@ -95,7 +103,7 @@ export async function loadVideos() {
     comedy: comedyGenre,
     documentary: documentaryGenre,
     drama: dramaGenre,
-    staffPicks: staffPicks
+    staffPicks: staffPicks,
   };
 }
 const genres = [
@@ -111,12 +119,17 @@ const genres = [
   "poetic",
 ];
 
-
 export async function getStaticProps(context) {
-  const { videos, originals, comedy, documentary, drama, staffPicks } = await loadVideos();
+  const { videos, originals, comedy, documentary, drama, staffPicks } =
+    await loadVideos();
   return {
     props: {
-      videos, originals, documentary, drama, comedy, staffPicks
+      videos,
+      originals,
+      documentary,
+      drama,
+      comedy,
+      staffPicks,
     },
   };
 }
