@@ -1,8 +1,9 @@
 .categoryCardWrapper {
-    background: #1a1a1a;
+    background: #1A1A1A;
     border-radius: 16px;
+    position: relative;
     width: 240px;
-    height: 320px;
+    min-height: 400px;
     padding-bottom: 16px;
     display: flex;
     flex-direction: column;
@@ -17,20 +18,34 @@
     }
 
     &:hover {
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        background-color: #1A1A1A;
     }
 }
 
 .cardImage {
-    border-radius: 16px;
+    border-radius: 8px 8px 0 0;
     width: 100%;
     margin-bottom: 24px;
 }
 
 .movieTitle {
-    padding-left: 16px;
-    padding-right: 4px;
+    text-align: center;
     font-size: 20px;
-    color: white;
+    color: #f0f0f0;
+}
+
+.cardBtn{
+    position: absolute;
+    bottom: 8%;
+    width: 60%;
+    text-align: center;
+    background-color: #A3A2A2;
+    padding: 8px 24px;
+    margin-top: 8px;
+    border-radius: 4px;
+    color: #ffffff;
+    font-weight: 500;
+
+    &:hover{
+        background-color: #FB1036;
+    }
 }
