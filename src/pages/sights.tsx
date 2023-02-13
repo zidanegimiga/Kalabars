@@ -21,7 +21,7 @@ const Sights = ({
   return (
     <div className={styles.pageWrapper} ref={pager}>
       <MovieCarousel videos={carouselVideos} />
-      <>
+      <div id="more">
         <SightsCategory
           name={"Staff Picks"}
           data={staffPicks.response.result}
@@ -32,7 +32,7 @@ const Sights = ({
         />
         <SightsCategory name={"Comedy"} data={comedy?.response?.result} />
         <SightsCategory name={"Drama"} data={drama?.response?.result} />{" "}
-      </>
+      </div>
     </div>
   );
 };

@@ -5,7 +5,7 @@
     @media (max-width: 2881px) {
         height: 90vh;
     }
-    @media (max-width: 1441px) {
+    @media (max-width: 1601px) {
         height: 100vh;
         width: 100vw;
     }
@@ -29,8 +29,8 @@
         height: 90vh;
     }
 
-    @media (max-width: 1441px) {
-        height: 130vh;
+    @media (max-width: 1601px) {
+        height: 200vh;
         width: 100vw;
     }
     @media (max-width: 1025px) {
@@ -60,6 +60,7 @@
 
     @media (max-width: 1700px) {
         height: 100%;
+        padding-right:64px;
     }
 
     @media (max-width: 1441px) {
@@ -113,10 +114,10 @@
     margin-bottom: 40px;
     text-align: left;
 
-    @media (max-width: 1441px) {    
-        font-size: 80px;
-        line-height: 96px;
-        margin-bottom: 24px;            
+    @media (max-width: 1601px) {    
+        font-size: 56px;
+        line-height: 64px;
+        margin-bottom: 16px;            
     }
     @media (max-width: 1026px) {    
         font-size: 48px;
@@ -138,13 +139,13 @@
     font-size: 56px;
     line-height: 130%;
     width: 50%;
-    color: #EDEDED;
+    color: #969696;
 
     @media (max-width: 1700px) {
-        font-size: 40px;
+        font-size: 24px;
     }
     @media (max-width: 1026px) {    
-        font-size: 28px;                    
+        font-size: 20px;                    
     }
     @media (max-width: 427px) {
         font-size: 16px;
@@ -191,7 +192,9 @@
     }
 
     @media (max-width: 1441px) {
-        font-size: 16px;
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 4px;
     }
 
     @media (max-width: 427px) {    
@@ -225,7 +228,7 @@
     margin-right: 24px;
 
     @media (max-width: 1801px) {
-        transform: scale(110%);
+        transform: scale(90%);
         margin-right: 4px;         
     }
 
@@ -280,6 +283,7 @@
 
     @media (max-width: 1441px) {
         font-size: 16px;
+        height: 48px;
     }
 
     @media (max-width: 427px) {
@@ -303,6 +307,12 @@
     height: 100px;
     cursor: pointer;
 
+    &:hover{
+        background: #FB1036;
+        color: #f8f8f8;
+        border: none;
+    }
+
     @media (max-width: 1801px) {
         font-size: 16px;
         width: 240px;
@@ -311,6 +321,7 @@
     }
 
     @media (max-width: 1441px) {
+        height: 48px;
     }
 
     @media (max-width: 426px) {

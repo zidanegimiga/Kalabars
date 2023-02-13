@@ -78,7 +78,7 @@ const Hero = ({ videos }) => {
                     <Play className={styles.playicon} />
                     <p>Start Watching</p>
                   </div>
-                  <div className={styles.button2}>
+                  <div className={styles.button2} onClick={() => router.push(`/sights/#more`)}>
                     {" "}
                     <Down className={styles.timeicon} /> Explore More
                   </div>
