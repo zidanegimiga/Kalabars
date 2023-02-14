@@ -73,9 +73,9 @@ const Nav = () => {
               onChange={(e) => handleSearch(e)}
               className={styles.SearchBar}
             />
-            <button className={styles.searchBtn}>
+            {/* <button className={styles.searchBtn}>
               <Search />
-            </button>
+            </button> */}
           </form>
         </div>
       </div>
