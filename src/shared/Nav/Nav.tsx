@@ -3,13 +3,14 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Close, Search } from "shared/Icons/Twitter";
 import styles from "./Nav.module.scss";
+import FormData from 'form-data';
 
 const Nav = () => {
   const [searchModal, setSearchModal] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
-  const formData = new FormData();
+  const formData = new URLSearchParams();
 
   const onSearchSubmit = async (term) => {
     if (term?.length <= 1 || null || undefined) {
