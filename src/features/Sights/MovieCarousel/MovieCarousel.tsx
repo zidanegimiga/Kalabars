@@ -20,7 +20,6 @@ const Hero = ({ videos }) => {
         showThumbs={false}
         infiniteLoop={true}
         autoPlay={true}
-        interval={2000}
         dynamicHeight={false}
         renderIndicator={(clickHandler, isSelected, index) => {
           return (
