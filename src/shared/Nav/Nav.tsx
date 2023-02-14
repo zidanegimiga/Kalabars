@@ -1,9 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Close, Search } from "shared/Icons/Twitter";
 import styles from "./Nav.module.scss";
-import FormData from 'form-data';
+import FormData from "form-data";
 
 const Nav = () => {
   const [searchModal, setSearchModal] = useState(false);
@@ -17,13 +18,13 @@ const Nav = () => {
       console.log("Enter the right value");
     } else {
       try {
-        formData.append("search_key", term)
-        const res = await fetch(`https:content.kalabars.com/search`,{
+        formData.append("search_key", term);
+        const res = await fetch(`https:content.kalabars.com/search`, {
           headers: {
             "x-access-token": process.env.TOKEN,
           },
-          method: 'POST',
-          body: formData
+          method: "POST",
+          body: formData,
         });
         const searchArray = await res.json();
         setSearchResults(searchArray.response.videos);
@@ -88,20 +89,36 @@ const Nav = () => {
           </div>
           <div className={styles.modalContent}>
             {searchResults?.map((item, index) => (
-              <div className={styles.result} key={index}>
-                <div className={styles.resultimage}>
-                  <img src={`https:content.kalabars.com/static/media/videos_images/` + item.landscape_image } width={"80px"} height={"64px"} />
-                </div>
-                <div className={styles.resultDetails}>
-                  <div className={styles.resultTitle}>{item.title}</div>
-                  <div className={styles.resultCreator}>{item.creators_name}</div>
-                  <div className={styles.resultTime}>{item.duration}</div>
-                </div>
+              <div key={index}>
+                <Link href={`/videos/${item?.public_id}`}>
+                  <div className={styles.result} key={index}>
+                    <div className={styles.resultimage}>
+                      <img
+                        src={
+                          `https:content.kalabars.com/static/media/videos_images/` +
+                          item.landscape_image
+                        }
+                        width={"80px"}
+                        height={"64px"}
+                        alt={item.title}
+                      />
+                    </div>
+                    <div className={styles.resultDetails}>
+                      <div className={styles.resultTitle}>{item.title}</div>
+                      <div className={styles.resultCreator}>
+                        {item.creators_name}
+                      </div>
+                      <div className={styles.resultTime}>
+                        {item.duration} min
+                      </div>
+                    </div>
+                  </div>
+                </Link>
               </div>
             ))}
           </div>
         </div>
-      ): null}
+      ) : null}
     </div>
   );
 };
