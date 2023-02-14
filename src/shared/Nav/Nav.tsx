@@ -72,6 +72,7 @@ const Nav = () => {
               placeholder="What would you like to watch or listen to"
               value={searchInput}
               onChange={(e) => handleSearch(e)}
+              onBlur={()=> setSearchModal(false)}
               className={styles.SearchBar}
             />
             {/* <button className={styles.searchBtn}>
