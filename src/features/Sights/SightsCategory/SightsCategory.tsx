@@ -4,7 +4,7 @@ import Down from "../../../../public/downIcon.svg";
 import SightsCard from "../SightsCard/";
 
 const SightsCategory = ({ name, data }) => {
-  const classPerView = 3;
+  const classPerView = 8;
   /**
    * logic for the see more button
    */
@@ -12,6 +12,7 @@ const SightsCategory = ({ name, data }) => {
   const seeMore = () => {
     setNext(next + classPerView);
   };
+
   return (
     <div className={styles.sightsCategory}>
       <div className={styles.top}>
