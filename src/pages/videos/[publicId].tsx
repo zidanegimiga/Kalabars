@@ -17,7 +17,9 @@ const Sight = ({videos}: any) => {
   const video = videosData?.find(
     (video: any) => video?.public_id === publicId
   );
-  console.log("Videos", video)
+  const suggestedVideos = videosData.slice(100, 109);
+  console.log("Video: ", suggestedVideos)
+  console.log("Video: ", styles)
   if (router.isFallback) {
     return <h1>Loading...</h1>
   }
@@ -59,12 +61,10 @@ const Sight = ({videos}: any) => {
       </div>
       <div className={styles.borderBox}></div>
       <div className={styles.suggestedVideos}>
-      {/* <SightsCategory name={"You might like:"}>
-        <SightsCard />
-        <SightsCard />
-        <SightsCard />
-        <SightsCard />
-      </SightsCategory> */}
+      <SightsCategory 
+        name={"You might like:"}
+        data={suggestedVideos}
+      />
       </div>
     </div>
   )
@@ -72,21 +72,6 @@ const Sight = ({videos}: any) => {
 
 export default Sight;
 
-// export async function getStaticPaths(){
-//   const res = await fetch(process.env.API+`/videos/all`, {
-//     headers:{
-//       'x-access-token': process.env.TOKEN 
-//     }});
-//     const videos = await res.json();
-
-//     const paths = videos?.map((video) => ({
-//       params: { id: video.public_id },
-//     }));
-
-//     console.log("Paths: ", paths)
-
-//     return { paths, fallback: false };
-// }
 
 export async function loadVideos() {
   const res = await fetch(process.env.API+`/videos/all`, {
@@ -97,34 +82,6 @@ export async function loadVideos() {
   return data;
 }
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const data = await loadVideos();
-//   console.log("Data: ", data)
-//   const pathsWithParams = data.response.result.map((video: Videos) => ({ params: { video: video.public_id }}))
-
-//   return {
-//       paths: pathsWithParams,
-//       fallback: true
-//   }
-// }
-
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const videoID = context.params?.publicId;
-//   const data = await loadVideos();
-//   const foundVideo = data.stars.find((video: Videos) => videoID === video.public_id);
-
-//   if (!foundVideo) {
-//     return {
-//       props: { hasError: true },
-//     }
-// }
-
-// return {
-//   props: {
-//     videoData: foundVideo
-//   }
-// }
-// }
 
 export async function getServerSideProps(context: any) {
   const payload = await loadVideos();
