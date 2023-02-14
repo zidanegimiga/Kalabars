@@ -13,8 +13,8 @@ const nextConfig = {
   },
 
   images: {
-    domains: ['www.bambaapp.creativesgarage.org'],
-  }
+     domains: ['content.kalabars.com'],
+  },
 }
 
 module.exports = nextConfig

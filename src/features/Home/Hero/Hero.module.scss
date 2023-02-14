@@ -7,7 +7,7 @@
     backdrop-filter: blur(2px);
 
     @media (max-width: 426px) {
-        height: 120vh        
+        height: 120vh;        
     }
 }
 
@@ -19,15 +19,9 @@
     width: 100%;
 
     @media (max-width: 1701px) {
-        padding-top: 160px;        
+        padding-top: 120px;        
     }
     @media (max-width: 1441px) {
-        padding-top: 72px;        
-    }
-    @media (max-width: 1126px) {
-        padding-top: 80px;        
-    }
-    @media (max-width: 849px) {
         padding-top: 72px;        
     }
     @media (max-width: 426px) {
@@ -43,8 +37,8 @@
         font-weight: 500;
 
         @media (max-width: 1701px) {
-            font-size: 64px;
-            margin-bottom: 16px;                    
+            font-size: 56px;
+            margin-bottom: 0px;                    
         }
         
         @media (max-width: 1441px) {
@@ -59,8 +53,7 @@
             font-size: 40px;                  
         }
         @media (max-width: 426px) {
-            font-size: 28px;
-            margin-bottom: 0px;                  
+            font-size: 28px;                  
         }
     }
 
@@ -78,7 +71,7 @@
     color: white;
 
     @media (max-width: 1701px) {
-        font-size: 28px;
+        font-size: 24px;
         margin-bottom: 48px;
         width: 65%; 
         line-height: 40px;                   
@@ -89,11 +82,9 @@
         margin-bottom: 32px;                   
     }
     @media (max-width: 1126px) {
-        font-size: 24px;
         margin-bottom: 24px;                   
     }
     @media (max-width: 769px) {
-        font-size: 20px;
         margin-bottom: 24px;
         width: 75%;
         line-height: 32px;                   
@@ -128,7 +119,7 @@
     width: inherit;
 
     @media (max-width: 1701px) {
-        bottom: 4%;
+        bottom: 1%;
         left: 4%;       
     }
 
@@ -155,7 +146,7 @@
 }
 
 .right {
-    color: #FFD04C;
+    color: #4e4e4e;
     display: flex;
     justify-content: space-around;
     font-family: Ubuntu;

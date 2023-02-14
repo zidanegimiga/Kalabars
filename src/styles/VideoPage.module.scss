@@ -1,5 +1,5 @@
 .PageWrapper {
-    padding-top: 72px;
+    padding-top: 88px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -119,11 +119,4 @@
         font-weight: 500;
         color: rgba(255, 58, 90, 0.7);
     }
-}
-
-.borderBox{
-    background: #1A1A1A;
-    width: 50%;
-    height: 16px;
-    border-radius: 0 16px 16px 0;
 }

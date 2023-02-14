@@ -1,31 +1,35 @@
+.NavContainer{
+    position: relative;
+}
+
 .NavWrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(90.34deg, rgba(247, 247, 247, 0.87) 2.14%, rgba(255, 255, 255, 0.44) 55.82%);
-    border: 1px solid rgba(22, 22, 22, 0.9);
+    background: linear-gradient(90.34deg, rgba(247, 247, 247, 0.87) 2.14%, rgba(255, 255, 255, 0.158) 55.82%);
     box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.32);
     border-top: none;
-    box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.32);
-    backdrop-filter: blur(20px);
+    // backdrop-filter: blur(20px);
     position: absolute;
     top: 0;
     z-index: 100;
-    width: inherit;
+    width: 100%;
     height: 100px;
-    padding: 32px 72px;
-
-    @media (max-width: 2881px) {
-        padding: 32px 80px;
-    }
+    padding: 32px 80px;
 
     @media (max-width: 1801px) {
         padding: 24px 40px;
         height: 80px;
     }
 
+    @media (max-width: 1601px) {
+        padding: 16px;
+        height: 56px;
+        margin-left: -40px;
+    }
+
     @media (max-width: 1441px) {
-        height: 32px;
+        height: 16px;
         padding-left: 0px;
         margin-left: -32px;
     }
@@ -49,9 +53,17 @@
     @media (max-width: 1801px) {
         transform: scale(70%);
     }
+
+    @media (max-width: 1601px) {
+        transform: scale(50%);
+    }
     
     @media (max-width: 1441px) {
-        transform: scale(50%);
+        transform: scale(40%);
+    }
+
+    @media (max-width: 427px) {
+        margin-left: -64px;
     }
 
     @media (max-width: 321px) {
@@ -63,15 +75,19 @@
 
 .links {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     font-family: Ubuntu;
     font-weight: 600;
     padding-left: 100px;
 
+    @media (max-width: 1601px) {
+        font-size: 20px;
+        padding-left: 0px;
+    }
+
     @media (max-width: 1441px) {
         font-size: 24px;
-        padding-left: 0px;
     }
 
     @media (max-width: 321px) {
@@ -83,22 +99,23 @@
 .link {
     font-size: 48px;
     margin-right: 48px;
-    transition: all ease-in-out 0.5s;
+    transition: all ease-in-out 0.2s;
 
     &:hover {
-        // color: #ff3a5ab3;
-        transform: scale(120%);
-        padding: 4px;
-        // border-bottom: solid 2px #161616;
-        // border-radius: 4px;
+        transform: translateY(-40%);
     }
 
     @media (max-width: 1801px) {
       font-size: 32px;
+      margin-right: 32px;
+    }
+
+    @media (max-width: 1601px) {
+      font-size: 20px;
     }
 
     @media (max-width: 1441px) {
-        font-size: 24px;
+        font-size: 18px;
     }
 
     @media (max-width: 1367px) {
@@ -126,6 +143,10 @@
     align-items: center;
     margin-right: 156px;
 
+    @media (max-width: 1601px) {
+        margin-right: 32px;
+    }
+
     @media (max-width: 1441px) {
         margin-right: 40px;
     }
@@ -143,20 +164,41 @@
     }
 }
 
+.searchForm{
+    display: flex;
+    align-items: center;
+    height: 64px;
+
+    @media (max-width: 1801px) {
+        height: 48px;        
+    }
+
+    @media (max-width: 1601px) {
+        height: 24px;
+    }
+
+    @media (max-width: 1441px) {
+        height: 32px;
+    }
+
+    @media (max-width: 1025px) {
+        height: 28px;
+    }
+}
+
 .SearchBar {
     font-family: Ubuntu;
     outline: none;
     background: linear-gradient(91.3deg, rgba(22, 22, 22, 0.873) 4.17%, rgba(22, 22, 22, 0.776) 99.55%);
     border-radius: 36px;
     padding-top: 16px;
-    padding-left: 8px;
     padding-bottom: 16px;
-    padding-left: 24px;
-    width: 1000px;
-    height: 64px;
+    padding-left: 20px;
+    padding-right: 24px;
     color: white;
     border: solid 1px #161616;
     font-size: 32px;
+    height: 100%;
 
     &:placeholder {
         color: white;
@@ -168,16 +210,21 @@
 
     @media (max-width: 1801px) {
         font-size: 24px;
-        height: 48px;
         width: 600px;
     }
 
+    @media (max-width: 1601px) {
+        font-size: 16px;
+        width: 400px;
+    }
+
     @media (max-width: 1441px) {
-        width: 500px;
-        height: 40px;
+        width: 380px;
+        height: 32px;
         padding-top: 8px;
         padding-bottom: 8px;
-        font-size: 20px;
+        padding-right: 32px;
+        font-size: 16px;
     }
 
     @media (max-width: 1367px) {
@@ -186,11 +233,112 @@
 
     @media (max-width: 1025px) {
         width: 300px;
-        height: 28px;
         font-size: 16px;
     }
 
     @media (max-width: 769px) {
         width: 240px;
     }
+}
+
+.searchBtn{
+    margin-left: -24px;
+    border-radius: 0px 36px 36px 0px;
+    background-color: #161616;
+    height: 100%;
+    outline: none;
+    border: none;
+
+
+    &:hover{
+        background-color: #333232;
+    }
+
+    @media (max-width: 1601px) {
+        height: 100%;
+    }
+    
+    @media (max-width: 1441px) {
+        padding: 8px;
+        padding-right: 16px;
+        font-size: 16px;
+    }
+}
+
+.searchresultsModal{
+    position: absolute;
+    height: 320px;
+    overflow-y: scroll;
+    width: 400px;
+    background-color: #161616;
+    border-radius: 8px;
+    z-index: 30;
+    top: 170px;
+    right: 5%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    
+    @media (max-width: 1601px) {
+        top: 104px;
+    }
+}
+
+.modalHeader{
+    width: 100%;
+    position: fixed;
+}
+
+.modalContent{
+    padding-top: 38px;
+}
+
+.closeBtn{
+    width: 400px;
+    background-color: #161616;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 8px;
+    border-radius: 16px 16px 0 0;
+}
+
+.result{
+    display: flex;
+    padding: 16px 16px;
+    border-top: solid 1px #292929;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #1f1f1f;        
+    }
+}
+
+.resultDetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.resultTitle{
+    font-family: Ubuntu;   
+    font-weight: 400;
+    font-size: 16px;
+    margin-left: 24px;
+    color: #f3f3f3;  
+}
+
+.resultCreator{
+    font-family: Ubuntu;   
+    font-weight: 400;
+    font-size: 16px;
+    margin-left: 24px;
+    color: #727272;
+    margin-top: 8px; 
+}
+
+.resultTime{
+    font-family: Ubuntu;   
+    font-weight: 300;
+    font-size: 16px;
+    margin-left: 24px;
+    color: #727272;
+    margin-top: 8px; 
 }
