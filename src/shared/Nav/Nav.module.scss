@@ -1,5 +1,6 @@
 .NavContainer{
     position: relative;
+    width: 101vw;
 }
 
 .NavWrapper {
@@ -284,7 +285,7 @@
 
 .modalHeader{
     width: 100%;
-    position: fixed;
+    position: static;
 }
 
 .modalContent{
