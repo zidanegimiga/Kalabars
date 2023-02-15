@@ -98,12 +98,12 @@
 }
 
 .link {
-    font-size: 48px;
+    font-size: 32px;
     margin-right: 48px;
     transition: all ease-in-out 0.2s;
 
     &:hover {
-        transform: translateY(-40%);
+        transform: translateY(-10%);
     }
 
     @media (max-width: 1801px) {
@@ -142,7 +142,7 @@
 .NavRight {
     display: flex;
     align-items: center;
-    margin-right: 156px;
+    margin-right: 176px;
 
     @media (max-width: 1601px) {
         margin-right: 32px;
@@ -168,7 +168,7 @@
 .searchForm{
     display: flex;
     align-items: center;
-    height: 64px;
+    height: 48px;
 
     @media (max-width: 1801px) {
         height: 48px;        
@@ -198,8 +198,8 @@
     padding-right: 24px;
     color: white;
     border: solid 1px #161616;
-    font-size: 32px;
-    height: 100%;
+    font-size: 24px;
+    height: 48px;
 
     &:placeholder {
         color: white;
@@ -207,6 +207,7 @@
 
     @media (max-width: 2161px) {
         width: 700px;
+        height: 48px;
     }
 
     @media (max-width: 1801px) {
