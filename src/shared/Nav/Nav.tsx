@@ -19,7 +19,7 @@ const Nav = () => {
     } else {
       try {
         formData.append("search_key", term);
-        const res = await fetch(`https:content.kalabars.com/search`, {
+        const res = await fetch(`${process.env.API}/search`, {
           headers: {
             "x-access-token": process.env.TOKEN,
           },
