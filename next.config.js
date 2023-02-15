@@ -15,6 +15,8 @@ const nextConfig = {
   images: {
      domains: ['content.kalabars.com'],
   },
+
+  assetPrefix: '',
 }
 
 module.exports = nextConfig
