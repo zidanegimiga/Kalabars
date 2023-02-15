@@ -41,57 +41,57 @@ export default Sights;
 
 export async function loadVideos() {
   //All Videos
-  const resVideos = await fetch(process.env.API + `/videos/all`, {
+  const resVideos = await fetch(process.env.NEXT_PUBLIC_API + `/videos/all`, {
     headers: {
-      "x-access-token": process.env.TOKEN,
+      "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
     },
   });
   const videos = await resVideos.json();
 
   //originals
   const originalsGenres = await fetch(
-    process.env.API + `/genres/kalabars-originals/videos`,
+    process.env.NEXT_PUBLIC_API + `/genres/kalabars-originals/videos`,
     {
       headers: {
-        "x-access-token": process.env.TOKEN,
+        "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
       },
     }
   );
   const originals = await originalsGenres.json();
 
   //Drama
-  const dramaGenres = await fetch(process.env.API + `/genres/drama/videos`, {
+  const dramaGenres = await fetch(process.env.NEXT_PUBLIC_API + `/genres/drama/videos`, {
     headers: {
-      "x-access-token": process.env.TOKEN,
+      "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
     },
   });
   const dramaGenre = await dramaGenres.json();
 
   //Documentary
   const documentaryGenres = await fetch(
-    process.env.API + `/genres/documentaries/videos`,
+    process.env.NEXT_PUBLIC_API + `/genres/documentaries/videos`,
     {
       headers: {
-        "x-access-token": process.env.TOKEN,
+        "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
       },
     }
   );
   const documentaryGenre = await documentaryGenres.json();
 
   //Comedy
-  const comedyGenres = await fetch(process.env.API + `/genres/comedy/videos`, {
+  const comedyGenres = await fetch(process.env.NEXT_PUBLIC_API + `/genres/comedy/videos`, {
     headers: {
-      "x-access-token": process.env.TOKEN,
+      "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
     },
   });
   const comedyGenre = await comedyGenres.json();
 
   //Comedy
   const staffPicksGenres = await fetch(
-    process.env.API + `/tags/staff-picks/videos`,
+    process.env.NEXT_PUBLIC_API + `/tags/staff-picks/videos`,
     {
       headers: {
-        "x-access-token": process.env.TOKEN,
+        "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
       },
     }
   );

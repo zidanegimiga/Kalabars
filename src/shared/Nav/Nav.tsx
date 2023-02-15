@@ -19,9 +19,9 @@ const Nav = () => {
     } else {
       try {
         formData.append("search_key", term);
-        const res = await fetch(`${process.env.API}/search`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API}/search`, {
           headers: {
-            "x-access-token": process.env.TOKEN,
+            "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
           },
           method: "POST",
           body: formData,
