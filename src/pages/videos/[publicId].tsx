@@ -74,9 +74,9 @@ export default Sight;
 
 
 export async function loadVideos() {
-  const res = await fetch(process.env.API+`/videos/all`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/videos/all`, {
     headers:{
-      'x-access-token': process.env.TOKEN 
+      'x-access-token': process.env.NEXT_PUBLIC_TOKEN 
     }});
   const data = await res.json();
   return data;

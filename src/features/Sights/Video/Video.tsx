@@ -14,7 +14,7 @@ import styles from "./Video.module.scss";
 
 const VideoPlayer = ({ video }: any) => {
   const [playing, setPlaying] = useState(false);
-  const [videoTime, setVideoTime] = useState(null);
+  const [videoTime, setVideoTime] = useState(0);
   const [videoDuration, setVideoDuration] = useState("");
   const [currentTime, setCurrentTime] = useState(1);
   const [hoveredTime, setHoveredTime] = useState(1);
@@ -55,6 +55,10 @@ const VideoPlayer = ({ video }: any) => {
     const duration = formatDuration(videoTime);
     setVideoDuration(duration);
   }, []);
+
+  const handleLoadedMetadata = () => {
+    setVideoTime(videoRef.current.duration);
+  };
 
   const handleTimeUpdate = () => {
     setCurrentTime(videoRef.current.currentTime);
@@ -149,11 +153,12 @@ const VideoPlayer = ({ video }: any) => {
         onClick={() => {
           playing ? videoHandler("pause") : videoHandler("play");
         }}
+        onLoadedMetadata={handleLoadedMetadata}
         onLoadedData={() => console.log("Video data loaded")}
         onTimeUpdate={() => handleTimeUpdate()}
         className={styles.video}
-        src={ process.env.NEXT_PUBLIC_API + `/static/media/videos/` + video.public_id +`/1080-` + video.public_id + `.MP4` }
-        poster={process.env.NEXT_PUBLIC_API+`/static/media/videos_images/`+video.landscape_image }
+        src={`${process.env.NEXT_PUBLIC_API}/static/media/videos/` + video.public_id +`/1080-` + video.public_id + `.MP4` }
+        poster={`${process.env.NEXT_PUBLIC_API}/static/media/videos_images/`+video.landscape_image }
       />
       <div className={styles.controlsContainer}>
         <div className={styles.timeControls}>
