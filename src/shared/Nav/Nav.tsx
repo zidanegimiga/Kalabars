@@ -96,7 +96,7 @@ const Nav = () => {
                     <div className={styles.resultimage}>
                       <img
                         src={
-                          `https:content.kalabars.com/static/media/videos_images/` +
+                          `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
                           item.landscape_image
                         }
                         width={"80px"}

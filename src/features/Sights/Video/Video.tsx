@@ -151,8 +151,8 @@ const VideoPlayer = ({ video }: any) => {
         onLoadedData={() => console.log("Video data loaded")}
         onTimeUpdate={() => handleTimeUpdate()}
         className={styles.video}
-        src={ process.env.API + `/static/media/videos/` + video.public_id +`/1080-` + video.public_id + `.MP4` }
-        poster={process.env.API+`/static/media/videos_images/`+video.landscape_image }
+        src={ process.env.NEXT_PUBLIC_API + `/static/media/videos/` + video.public_id +`/1080-` + video.public_id + `.MP4` }
+        poster={process.env.NEXT_PUBLIC_API+`/static/media/videos_images/`+video.landscape_image }
       />
       <div className={styles.controlsContainer}>
         <div className={styles.timeControls}>

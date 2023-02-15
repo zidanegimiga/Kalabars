@@ -44,7 +44,7 @@ const Hero = ({ videos }) => {
             <div className={styles.hero} key={index}>
             <img
               src={
-                `https:content.kalabars.com/static/media/videos_images/` +
+                `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
                 video.landscape_image
               }
               alt="poster"
