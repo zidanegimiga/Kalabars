@@ -14,6 +14,13 @@ const nextConfig = {
 
   images: {
      domains: ['content.kalabars.com'],
+     remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.kalabars.com',
+        pathname: '/static/media/**',
+      },
+    ],
   },
 
   assetPrefix: '',
