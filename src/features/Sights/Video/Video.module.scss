@@ -48,16 +48,17 @@
 }
 
 .center {
+  display: flex;
   justify-content: center;
   align-items: center;
   padding-bottom: 8px;
   align-content: center;
-}
-
-.center,
-.right {
-  display: flex;
   width: 33%;
+
+  @media (max-width: 426px) {
+    width: auto;
+    margin-left: 18px;    
+  }
 }
 
 .right {
@@ -65,6 +66,12 @@
   justify-content: flex-end;
   align-items: center;
   padding-right: 64px;
+  width: 33%;
+
+  @media (max-width: 426px) {
+    padding-right: 16px;
+    width: auto;
+  }
 }
 
 .controlIcon {
@@ -89,8 +96,16 @@
   padding-left: 24px;
   width: 33%;
 
+  @media (max-width: 426px) {
+    padding-left: 16px;
+    width: 1%;
+  }
+
   p {
     color: white;
+    @media (max-width: 426px) {
+      display: none;
+    }
   }
 
   &:hover {
@@ -99,6 +114,10 @@
       display: block;
       opacity: 1;
       transform: scaleX(1);
+
+      @media (max-width: 426px) {
+        display: none;
+      }
     }
   }
 }
@@ -151,6 +170,10 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+
+  @media (max-width: 426px) {
+    width: 70%;        
+  }
 }
 
 .timeline {

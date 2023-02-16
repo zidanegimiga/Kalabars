@@ -59,7 +59,6 @@ const Sight = ({videos}: any) => {
           <p>Playlist Empty</p>
         </div>
       </div>
-      <div className={styles.borderBox}></div>
       <div className={styles.suggestedVideos}>
       <SightsCategory 
         name={"You might like:"}

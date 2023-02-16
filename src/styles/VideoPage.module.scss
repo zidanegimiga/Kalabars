@@ -14,10 +14,19 @@
     padding-right: 72px;
     display: flex;
     justify-content: space-between;
+
+    @media (max-width: 426px) {
+        padding: 16px;
+        flex-direction: column;        
+    }
 }
 
 .videoDetails {
     width: 50%;
+
+    @media (max-width: 426px) {
+        width: 100%;        
+    }
 
     h1 {
         font-family: Ubuntu;
@@ -28,7 +37,7 @@
 }
 
 .videoDescription {
-    background: linear-gradient(180deg, #DCDCDC 0%, #DCDCDC 100%);
+    background: #e2e2e2;
     border-radius: 8px;
     padding-top: 16px;
     padding-left: 16px;
@@ -55,7 +64,7 @@
     padding: 4px;
     display: flex;
     border-radius: 8px;
-    background: linear-gradient(180deg, #DCDCDC 0%, #DCDCDC 100%);
+    background: #e2e2e2;
     align-items: center;
     align-content: center;
     cursor: pointer;
@@ -71,7 +80,7 @@
     padding-left: 4px;
     display: flex;
     border-radius: 8px;
-    background: linear-gradient(180deg, #DCDCDC 0%, #DCDCDC 100%);
+    background: #ff3a5ab3;
     align-items: center;
     align-content: center;
     transition: width ease-in-out 0.5s;
@@ -117,6 +126,11 @@
     flex-direction: column;
     align-items: center;
     width: 30%;
+
+    @media (max-width: 426px) {
+        width: 80%;
+        margin-top: 48px;        
+    }
 
     p{
         text-align: center;
