@@ -267,6 +267,10 @@
     }
 }
 
+.searchresultsModalInnerContainer{
+    position: relative;
+}
+
 .searchresultsModal{
     position: absolute;
     height: 320px;
@@ -275,31 +279,31 @@
     background-color: #161616;
     border-radius: 8px;
     z-index: 30;
-    top: 170px;
     right: 5%;
+    top: 80px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     
     @media (max-width: 1601px) {
-        top: 104px;
+        
     }
 }
 
 .modalHeader{
     width: 100%;
-    position: static;
-}
-
-.modalContent{
-    padding-top: 38px;
+    position: sticky;
+    top: 0;
+    background: #030303;
 }
 
 .closeBtn{
-    width: 400px;
-    background-color: #161616;
     display: flex;
     justify-content: flex-end;
     padding-top: 8px;
     border-radius: 16px 16px 0 0;
+}
+
+.modalContent{
+    padding-top: 0px;
 }
 
 .result{

@@ -72,7 +72,6 @@ const Nav = () => {
               placeholder="What would you like to watch or listen to"
               value={searchInput}
               onChange={(e) => handleSearch(e)}
-              onBlur={()=> setSearchModal(false)}
               className={styles.SearchBar}
             />
             {/* <button className={styles.searchBtn}>
@@ -83,40 +82,42 @@ const Nav = () => {
       </div>
       {searchModal && searchInput.length >= 1 ? (
         <div className={styles.searchresultsModal}>
-          <div className={styles.modalHeader}>
-            <div className={styles.closeBtn}>
-              <Close action={handleCloseModal} />
-            </div>
-          </div>
-          <div className={styles.modalContent}>
-            {searchResults?.map((item, index) => (
-              <div key={index}>
-                <Link href={`/videos/${item?.public_id}`}>
-                  <div className={styles.result} key={index}>
-                    <div className={styles.resultimage}>
-                      <img
-                        src={
-                          `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
-                          item.landscape_image
-                        }
-                        width={"80px"}
-                        height={"64px"}
-                        alt={item.title}
-                      />
-                    </div>
-                    <div className={styles.resultDetails}>
-                      <div className={styles.resultTitle}>{item.title}</div>
-                      <div className={styles.resultCreator}>
-                        {item.creators_name}
-                      </div>
-                      <div className={styles.resultTime}>
-                        {item.duration} min
-                      </div>
-                    </div>
-                  </div>
-                </Link>
+          <div className={styles.searchresultsModalInnerContainer}>
+            <div className={styles.modalHeader}>
+              <div className={styles.closeBtn}>
+                <Close action={handleCloseModal} />
               </div>
-            ))}
+            </div>
+            <div className={styles.modalContent}>
+              {searchResults?.map((item, index) => (
+                <div key={index}>
+                  <Link href={`/videos/${item?.public_id}`}>
+                    <div className={styles.result} key={index}>
+                      <div className={styles.resultimage}>
+                        <img
+                          src={
+                            `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
+                            item.landscape_image
+                          }
+                          width={"80px"}
+                          height={"64px"}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className={styles.resultDetails}>
+                        <div className={styles.resultTitle}>{item.title}</div>
+                        <div className={styles.resultCreator}>
+                          {item.creators_name}
+                        </div>
+                        <div className={styles.resultTime}>
+                          {item.duration} min
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       ) : null}
