@@ -18,6 +18,7 @@ const VideoPlayer = ({ video }: any) => {
   const [videoDuration, setVideoDuration] = useState("");
   const [currentTime, setCurrentTime] = useState(1);
   const [hoveredTime, setHoveredTime] = useState(1);
+  const [buffered, setBuffered] = useState(0);
   const [progress, setProgress] = useState(0);
   const [volume, setVolume] = useState(100);
   const [muted, setMuted] = useState(false);
@@ -60,36 +61,38 @@ const VideoPlayer = ({ video }: any) => {
     setVideoTime(videoRef.current.duration);
   };
 
+  const handleProgress = () => {
+    const video = videoRef.current;
+    const bufferedTime = video.buffered.length > 0 ? video.buffered.end(0) : 0;
+    const duration = video.duration;
+    const bufferProgress = (bufferedTime / videoTime) * 100;
+    setBuffered(bufferProgress);
+    timeline.current?.style?.setProperty("--preview-position", buffered/100);
+  };
+
   const handleTimeUpdate = () => {
     setCurrentTime(videoRef.current.currentTime);
     setProgress(videoRef?.current?.currentTime / videoRef?.current?.duration);
     timeline.current?.style?.setProperty("--progress-position", progress);
-    // console.log("New Progress: ", progress)
   };
 
   const handleTimelineClick = (e) => {
     const parentRect = timeline.current.getBoundingClientRect();
     const percent = Math.min(Math.max(0, e.clientX - parentRect.x)) / parentRect.width;
     videoRef.current.currentTime = Math.floor(percent * videoTime);
-    // console.log("Timeline Clicked", e)
-    // console.log("Part Clicked", percent)
   };
 
+  //calculating the position of our mouse relative to the timeline
   const handleTimelineUpdateHover = (e) => {
     e.preventDefault();
     const parentRect = timeline.current.getBoundingClientRect();
-
-    //calculating the position of our mouse relative to the timeline
     const percent =
       Math.min(Math.max(0, e.clientX - parentRect.x)) / parentRect.width;
-    timeline.current.style.setProperty("--preview-position", percent);
+    timeline.current.style.setProperty("--hover-position", percent);
     
-    console.log("Timeline Events ", parentRect.width);
-    console.log("Seconds ", percent);
     const timeHovered = percent * videoRef?.current?.duration;
     setHoveredTime(timeHovered)
   };
-  console.log("Seconds: ", videoRef.current?.duration);
 
   //play/pause
   const videoHandler = (control) => {
@@ -153,6 +156,7 @@ const VideoPlayer = ({ video }: any) => {
         onClick={() => {
           playing ? videoHandler("pause") : videoHandler("play");
         }}
+        onProgress={handleProgress}
         onLoadedMetadata={handleLoadedMetadata}
         onLoadedData={() => console.log("Video data loaded")}
         onTimeUpdate={() => handleTimeUpdate()}

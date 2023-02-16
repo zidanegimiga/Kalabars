@@ -178,7 +178,7 @@
 
 .timeline {
   height: 3px;
-  background-color: rgba(100, 100, 100, .5);
+  background-color: #64646480;
   width: 100%;
   position: relative;
 }
@@ -190,7 +190,7 @@
   left: 0;
   bottom: 0;
   right: calc(100% - var(--preview-position) * 100%);
-  background-color: rgb(150, 150, 150);
+  background-color: #969696;
   // display: none;
 }
 
@@ -227,7 +227,7 @@
   aspect-ratio: 16/ 9;
   top: -1rem;
   transform: translate(-50%, -100%);
-  left: calc(var(--preview-position) * 100%);
+  left: calc(var(--hover-position) * 100%);
   border-radius: .25rem;
   border: 2px solid white;
   display: none;
