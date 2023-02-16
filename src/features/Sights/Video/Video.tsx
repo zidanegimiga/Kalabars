@@ -61,13 +61,13 @@ const VideoPlayer = ({ video }: any) => {
     setVideoTime(videoRef.current.duration);
   };
 
-  const handleProgress = () => {
+  const handleBuffering = () => {
     const video = videoRef.current;
     const bufferedTime = video.buffered.length > 0 ? video.buffered.end(0) : 0;
     const duration = video.duration;
     const bufferProgress = (bufferedTime / videoTime) * 100;
     setBuffered(bufferProgress);
-    timeline.current?.style?.setProperty("--preview-position", buffered/100);
+    timeline.current?.style?.setProperty("--buffer-position", buffered/100);
   };
 
   const handleTimeUpdate = () => {
@@ -83,7 +83,7 @@ const VideoPlayer = ({ video }: any) => {
   };
 
   //calculating the position of our mouse relative to the timeline
-  const handleTimelineUpdateHover = (e) => {
+  const handleTimelineHover = (e) => {
     e.preventDefault();
     const parentRect = timeline.current.getBoundingClientRect();
     const percent =
@@ -156,7 +156,7 @@ const VideoPlayer = ({ video }: any) => {
         onClick={() => {
           playing ? videoHandler("pause") : videoHandler("play");
         }}
-        onProgress={handleProgress}
+        onProgress={handleBuffering}
         onLoadedMetadata={handleLoadedMetadata}
         onLoadedData={() => console.log("Video data loaded")}
         onTimeUpdate={() => handleTimeUpdate()}
@@ -173,7 +173,7 @@ const VideoPlayer = ({ video }: any) => {
           </p>
           <div
             className={styles.timelineContainer}
-            onMouseMove={(e) => handleTimelineUpdateHover(e)}
+            onMouseMove={(e) => handleTimelineHover(e)}
             onClick={(e) => handleTimelineClick(e)}
             ref={timeline}
           >
