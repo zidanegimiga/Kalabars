@@ -99,7 +99,7 @@ const Nav = () => {
                             `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
                             item.landscape_image
                           }
-                          width={"80px"}
+                          width={"104px"}
                           height={"64px"}
                           alt={item.title}
                         />
