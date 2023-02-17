@@ -18,7 +18,7 @@
     height: 100px;
     padding: 32px 80px;
 
-    @media (max-width: 1801px) {
+    @media (max-width: 1921px) {
         padding: 24px 40px;
         height: 80px;
     }
@@ -51,7 +51,7 @@
 }
 
 .logo {
-    @media (max-width: 1801px) {
+    @media (max-width: 1921px) {
         transform: scale(70%);
     }
 
@@ -280,11 +280,14 @@
     border-radius: 8px;
     z-index: 30;
     right: 5%;
-    top: 80px;
+    top: 156px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     
-    @media (max-width: 1601px) {
-        
+    @media (max-width: 1441px) {
+        top: 80px;         
+    }
+    @media (max-width: 426px) {
+        width: 88%;         
     }
 }
 

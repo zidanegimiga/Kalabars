@@ -17,6 +17,11 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding-top: 200px;
+    
+    @media (min-height: 1056px) {
+        padding-top: 200px;                
+    }
 
     @media (max-width: 1701px) {
         padding-top: 120px;        
@@ -36,7 +41,11 @@
         text-align: center;
         font-weight: 500;
 
-        @media (max-width: 1701px) {
+        @media (max-height: 804px) {
+            margin-top: 0px;                
+        }
+
+        @media (max-width: 1921px) {
             font-size: 56px;
             margin-bottom: 0px;                    
         }
@@ -70,7 +79,7 @@
     text-align: center;
     color: white;
 
-    @media (max-width: 1701px) {
+    @media (max-width: 1921px) {
         font-size: 24px;
         margin-bottom: 48px;
         width: 65%; 
@@ -99,8 +108,17 @@
 }
 
 .HeroLogo {
-    transform: scale(60%);
+    margin-bottom: 56px;
 
+    @media (max-height: 840px) {
+        margin-bottom: 40px;
+        transform: scale(70%);                
+    }
+
+    @media (max-height: 804px) {
+        margin-bottom: 24px;
+        transform: scale(50%);                
+    }
     @media (max-width: 426px) {
         transform: scale(40%);     
     }
@@ -118,8 +136,8 @@
     align-items: center;
     width: inherit;
 
-    @media (max-width: 1701px) {
-        bottom: 1%;
+    @media (max-width: 1921px) {
+        bottom: 2%;
         left: 4%;       
     }
 
@@ -167,8 +185,8 @@
     span {
         margin: 8px;
 
-        @media (max-width: 1701px) {
-            font-size: 20px;       
+        @media (max-width: 1921px) {
+            font-size: 24px;       
         }
 
         @media (max-width: 1126px) {
