@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Link from "next/link";
+import {useRouter} from "next/router";
 import { useEffect, useState } from "react";
 import { Close, Search } from "shared/Icons/Twitter";
 import styles from "./Nav.module.scss";
-import FormData from "form-data";
 
 const Nav = () => {
   const [searchModal, setSearchModal] = useState(false);
@@ -12,6 +12,11 @@ const Nav = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   const formData = new URLSearchParams();
+  const router = useRouter();
+
+  const textColor = {
+    color: router.pathname == "/sights" || "/videos/*" ? "white" : "black"
+  }
 
   const onSearchSubmit = async (term) => {
     if (term?.length <= 1 || null || undefined) {
@@ -49,6 +54,7 @@ const Nav = () => {
     <div className={styles.NavContainer}>
       <div className={styles.NavWrapper}>
         <div className={styles.NavLeft}>
+          <Link href={"/"}>
           <div className={styles.logo}>
             <Image
               width={320}
@@ -57,7 +63,8 @@ const Nav = () => {
               src={"/kalabarslogo.svg"}
             />
           </div>
-          <div className={styles.links}>
+          </Link>
+          <div className={styles.links} style={textColor}>
             <div className={styles.link}>
               <Link href={"/sights"}>Sights</Link>
             </div>

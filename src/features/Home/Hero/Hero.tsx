@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import Button from "shared/Button";
 import { Twitter, Instagram } from "shared/Icons/Twitter";
 import HeroLogo from "../../../../public/heroLogo.svg";
 import styles from "./Hero.module.scss";
 
 const Hero = () => {
+  const router = useRouter();
   return (
     <div className={styles.HeroWrapper}>
       <div className={styles.HeroBody}>
@@ -14,6 +16,7 @@ const Hero = () => {
         <Button 
           text="Explore  our catalogue"
           fill="#FB1036"
+          action={()=> router.push("/sights")}
         />
       </div>
       <div className={styles.footerWrapper}>

@@ -13,6 +13,11 @@
     @media (max-width: 769px) {
         padding: 32px 14px;        
     }
+
+    @media (max-width: 426px) {
+        padding: 20px 16px;
+        border-top: solid 1px #686868;        
+    }
 }
 
 .top{
@@ -49,6 +54,6 @@
     }
 
     @media (max-width: 426px) {
-        grid-template-columns: auto auto;        
+        justify-content: center;       
     }
 }

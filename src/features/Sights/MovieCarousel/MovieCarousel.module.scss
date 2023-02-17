@@ -14,10 +14,10 @@
     }
 
     @media (max-width: 427px) {
-        height: 50vh;
+        height: 55vh;
     }
     @media (max-width: 376px) {
-        height: 45vh;
+        // height: 45vh;
     }
 }
 
@@ -43,17 +43,17 @@
     }
 
     @media (max-width: 427px) {
-        height: 50vh;
+        height: 55vh;
     }
     @media (max-width: 376px) {
-        height: 45vh;
+        // height: 45vh;
     }
 }
 
 .detailsWrapper {
     position: absolute;
     bottom: 0%;
-    background: linear-gradient(180deg, #000000c5 100%, #000000 100%);
+    background: linear-gradient(180deg, #0000007a 100%, #00000070 100%);
     height: 100%;
     width: 100%;
     color: white;
@@ -124,7 +124,7 @@
         margin-bottom: 24px;                      
     }
     @media (max-width: 427px) {
-        font-size: 28px;
+        font-size: 18px;
         line-height: 32px;
         margin-bottom: 0px;
     }
@@ -138,7 +138,7 @@
     font-size: 32px;
     line-height: 130%;
     width: 50%;
-    color: #969696;
+    color: #c4c4c4;
 
     @media (max-width: 1700px) {
         font-size: 24px;
@@ -147,7 +147,7 @@
         font-size: 20px;                    
     }
     @media (max-width: 427px) {
-        font-size: 16px;
+        font-size: 14px;
         width: 80%;
     }
 }
@@ -170,8 +170,8 @@
     @media (max-width: 427px) {
         width: 80%;
         align-items: center;
-        justify-content: space-between;
-        margin: 8px 0px;
+        justify-content: flex-start;
+        margin: 0px 0px;
     }
 }
 
@@ -197,7 +197,7 @@
     }
 
     @media (max-width: 427px) {    
-        font-size: 12px;
+        font-size: 10px;
         border-radius: 4px;
         padding: 4px 12px;    
     }
@@ -219,6 +219,10 @@
 
     @media (max-width: 1441px) {
         font-size: 16px;
+    }
+
+    @media (max-width: 426px) {
+        font-size: 10px;
     }
 }
 
@@ -248,7 +252,7 @@
 
     @media (max-width: 427px) {
         padding-right: 16px;
-        margin-top: 8px;
+        margin-top: 0px;
     }
 }
 
@@ -286,9 +290,13 @@
     }
 
     @media (max-width: 427px) {
-        width: 200px;
-        font-size: 16px;
+        width: 160px;
+        font-size: 14px;
         height: 40px;
+        background: #FB1036;
+        border: none;
+        transform: scale(90%);
+        margin-left: -10px;
     }
 }
 

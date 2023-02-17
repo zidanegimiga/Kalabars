@@ -1,5 +1,5 @@
 .categoryCardWrapper {
-    background: #1A1A1A;
+    background: #ffffff;
     border-radius: 16px;
     position: relative;
     width: 240px;
@@ -17,6 +17,16 @@
         width: 200px;        
     }
 
+    @media (max-width: 769px) {
+        width: 100%;        
+    }
+
+    @media (max-width: 426px) {
+        width: 160px;
+        margin-bottom: 16px;
+        min-height: 320px        
+    }
+
     &:hover {
     }
 }
@@ -30,7 +40,14 @@
 .movieTitle {
     text-align: center;
     font-size: 20px;
-    color: #f0f0f0;
+    color: #2b2b2b;
+    text-transform: capitalize;
+
+    @media (max-width: 426px) {
+        font-size: 16px;
+        text-align: left;
+        margin-left: 16px
+    }
 }
 
 .cardBtn{
@@ -38,14 +55,16 @@
     bottom: 8%;
     width: 60%;
     text-align: center;
-    background-color: #A3A2A2;
+    border: solid 1px #a0a0a0;
     padding: 8px 24px;
     margin-top: 8px;
     border-radius: 4px;
-    color: #ffffff;
+    color: #292929;
     font-weight: 500;
 
     &:hover{
         background-color: #FB1036;
+        color: #ffffff;
+        border: none;
     }
 }
