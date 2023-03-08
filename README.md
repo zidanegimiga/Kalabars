@@ -16,7 +16,7 @@ The project's architecture is inspired by the [https://feature-sliced.design/en/
 
 It's feature-based where we could group all functional code related to an application feature inside a directory so that a developer can concentrate only on the particular directory.
 
-
+```
 └── src/
     ├── pages/                                          # Initializing applicationlogic
          ├── _app.tsx                                   # ApplicationEntryPoint        
@@ -53,9 +53,8 @@ It's feature-based where we could group all functional code related to an applic
                   ├──reducers.js
             ├── constants/                          # constants
     ├── store/                                      # redux store
-
-
-
+ 
+```
 Basically,
 ```
   Application --> Pages --> Features --> Components & Utilities
