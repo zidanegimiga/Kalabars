@@ -16,7 +16,6 @@ const Sights = ({
 }) => {
   const pager = useRef(null);
   const carouselVideos = videos.response.result.slice(15, 24);
-  console.log("Food: ", documentary?.response?.result);
 
   return (
     <div className={styles.pageWrapper} ref={pager}>
