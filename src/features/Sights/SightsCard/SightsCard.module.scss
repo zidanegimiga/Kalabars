@@ -23,9 +23,15 @@
     }
 
     @media (max-width: 426px) {
-        width: 160px;
+        width: 142px;
         margin-bottom: 16px;
         min-height: 320px        
+    }
+
+    @media (max-width: 376px) {
+        width: 100%;
+        margin-bottom: 16px;
+        min-height: 460px        
     }
 
 }
