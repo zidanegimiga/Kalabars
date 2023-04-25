@@ -71,7 +71,6 @@ const Sight = ({videos}: any) => {
 
 export default Sight;
 
-
 export async function loadVideos() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API}/videos/all`, {
     headers:{
@@ -80,7 +79,6 @@ export async function loadVideos() {
   const data = await res.json();
   return data;
 }
-
 
 export async function getServerSideProps(context: any) {
   const payload = await loadVideos();
