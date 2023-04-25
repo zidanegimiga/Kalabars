@@ -68,9 +68,9 @@ const Nav = () => {
             <div className={styles.link}>
               <Link href={"/sights"}>Sights</Link>
             </div>
-            <div className={styles.link}>
+            {/* <div className={styles.link}>
               <Link href={"/sounds"}>Sounds</Link>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className={styles.NavRight}>
