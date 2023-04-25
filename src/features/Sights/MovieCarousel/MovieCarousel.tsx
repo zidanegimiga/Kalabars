@@ -71,7 +71,7 @@ const Hero = ({ videos }) => {
                 <div className={styles.buttonsContainer}>
                   <div
                     className={styles.button1}
-                    onClick={() => router.push(`/videos/${video.public_id}`)}
+                    onClick={() => router.push(`/video/${video.public_id}`)}
                   >
                     {" "}
                     <Play className={styles.playicon} />
