@@ -1,8 +1,8 @@
 .buttonWrapper {
     display: flex;
     align-items: center;
-    padding: 8px;
-    width: 240px;
+    padding: 8px 16px;
+    width: 320px;
     height: 48px;
     border-radius: 16px;
     cursor: pointer;
@@ -40,7 +40,7 @@
         font-family: 'Ubuntu';
         font-style: normal;
         font-weight: 500;
-        font-size: 16px;
+        font-size: 28px;
         color: white;
         width: 100%;
         text-align: center;
