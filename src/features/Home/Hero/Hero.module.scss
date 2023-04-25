@@ -2,9 +2,13 @@
     width: 100%;
     height: 100vh;
     position: absolute;
-    top: 0;
+    top: 100px;
     background: linear-gradient(180deg, #1a1a1acf 0%, #000000d7 100%);
     backdrop-filter: blur(2px);
+
+    @media (max-width: 2000px) {
+        top: 0;       
+    }
 
     @media (max-width: 426px) {
         height: 120vh;        
@@ -17,7 +21,8 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding-top: 200px;
+    padding-top: 160px;
+    margin-bottom: 70px;
     
     @media (min-height: 1056px) {
         padding-top: 200px;                
@@ -40,6 +45,8 @@
         margin-top: 12px;
         text-align: center;
         font-weight: 500;
+        font-size: 72px;
+        margin-bottom: 24px;
 
         @media (max-height: 804px) {
             margin-top: 0px;                
@@ -78,6 +85,8 @@
     font-weight: 400;
     text-align: center;
     color: white;
+    font-size: 28px;
+    width: 60%;
 
     @media (max-width: 1921px) {
         font-size: 24px;
@@ -168,6 +177,7 @@
     display: flex;
     justify-content: space-around;
     font-family: Ubuntu;
+    font-size: 24px;
 
     @media (max-width: 849px) {
         flex-direction: column;
