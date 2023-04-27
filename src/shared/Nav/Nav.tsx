@@ -98,7 +98,7 @@ const Nav = () => {
             <div className={styles.modalContent}>
               {searchResults?.map((item, index) => (
                 <div key={index}>
-                  <Link href={`/videos/${item?.public_id}`}>
+                  <Link href={`/video/${item?.public_id}`}>
                     <div className={styles.result} key={index}>
                       <div className={styles.resultimage}>
                         <img
