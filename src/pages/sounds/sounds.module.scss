@@ -1,0 +1,144 @@
+.pageWrapper {
+    width: 100vw;
+    height: 100vh;
+    // overflow: hidden;  
+}
+
+.top {
+    display: flex;
+    width: 100vw;
+    height: 100vh
+}
+
+.sidebar {
+    padding-top: 180px;
+    background-color: #FFD04C;
+    width: 20vw;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    overflow: scroll;
+
+    @media (max-width: 1700px) {
+        padding-top: 100px;        
+    }
+}
+
+.pagesNavigator,
+.cgLinksNavigator,
+.playstoreNavigator {
+    height: 30%;
+}
+
+.pagesNavigator {}
+
+.cgLinksNavigator {
+    border-top: solid 1px black;
+    padding-left: 5rem;
+    font-weight: 500;
+
+    p{
+        font-size: 1rem;
+    }
+
+    @media (max-width: 1700px) {
+        padding-left: 2rem;
+        
+        p{
+            font-size: 0.75rem;
+        }
+    }
+}
+
+.playstoreNavigator {
+    border-top: solid 1px black;
+    padding-left: 5rem;
+    padding-top: 1rem;
+    font-weight: 500;
+
+    p{
+        font-size: 1rem;
+    }
+
+    @media (max-width: 1700px) {
+        padding-left: 2rem;
+        
+        p{
+            font-size: 0.75rem;
+        }
+    }
+}
+
+.playstoreButton {
+    display: flex;
+    align-items: center;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    width: 70%;
+    padding: 4px 16px;
+    margin-top: 16px;
+
+    @media (max-width: 1700px) {
+        .playIcon{
+            transform: scale(80%)
+        }       
+    }
+}
+
+.playstoreButtonText {
+    margin-left: 0.5rem;
+    font-family: 'Ubuntu';
+    margin-left: 20px;
+
+    @media (max-width: 1700px) {
+        margin-left: 0.8rem;       
+    }
+    
+    span {
+        font-size: 10px;
+        line-height: 0px;
+    }
+
+    p {
+        font-size: 16px;
+        line-height: 16px;
+        margin-top: 0px;
+    }
+}
+
+.sidebarItem {
+    cursor: pointer;
+    padding-left: 80px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 16px;
+
+    @media (max-width: 1700px) {
+        padding-left: 2rem;       
+    }
+}
+
+.sidebarText {
+    margin-left: 16px;
+}
+
+.content {
+    padding-top: 140px;
+    background-color: #F2F2F2;
+    width: 80vw;
+    overflow: scroll;
+}
+
+.player {
+    width: 100vw;
+    padding: 15px;
+    background-color: #181818;
+    position: fixed;
+    bottom: 0;
+    height: 100px;
+
+    @media (max-width: 1700px) {
+        height: 48px;       
+    }
+}
