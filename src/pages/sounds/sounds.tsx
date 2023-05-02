@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./sounds.module.scss";
 import { Home, Playstore, Sights, Sound } from "shared/Icons/SidebarIcons";
 import SoundCategory from "features/Sounds/SoundCategory/SoundCategory";
+import Player from "features/Sounds/Player/Player";
 
 const Sounds = () => {
   return (
@@ -55,7 +56,9 @@ const Sounds = () => {
           />
         </div>
       </div>
-      <div className={styles.player}></div>
+      <div className={styles.player}>
+        <Player />
+      </div>
     </div>
   );
 };

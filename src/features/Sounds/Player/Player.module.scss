@@ -1,0 +1,40 @@
+.playerWrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.audioMetadata{
+    display:flex;
+    align-items: center;
+}
+
+.coverArt{
+    border-radius: 8px;
+}
+
+.audioDetailsRight{
+    margin-left: 16px;
+}
+
+.audioTextualData{
+    .artistName{
+        color: #E9E9E9;
+        font-size: .75rem;
+        margin-bottom: -18px;
+    }
+    .audioTitle{
+        color: #ffffff;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    margin-bottom: -18px;
+}
+
+
+
+.downloadButton{
+    cursor: pointer;
+}
