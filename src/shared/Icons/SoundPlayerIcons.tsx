@@ -132,6 +132,8 @@ const Shuffle = () => {
   const [downloadHover, setDownloadHover] = useState(false);
   return (
     <svg
+      onMouseEnter={() => setDownloadHover(true)}
+      onMouseLeave={() => setDownloadHover(false)}
       width="28"
       height="28"
       viewBox="0 0 40 40"
