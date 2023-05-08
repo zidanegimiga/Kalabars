@@ -8,7 +8,7 @@ const Player = () => {
     <div className={styles.playerWrapper}>
         <div className={styles.audioMetadata}>
             <div className={styles.coverArt}>
-                <Image alt="cover art" src={'/soundExampleImages/coverArt.png'} width={64} height={64}/>
+                <Image alt="cover art" src={'/soundExampleImages/coverArt.png'} width={120} height={120}/>
             </div>
             <div className={styles.audioDetailsRight}>
                 <div className={styles.audioTextualData}>
