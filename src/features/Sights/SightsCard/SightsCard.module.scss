@@ -1,11 +1,6 @@
 .categoryCardWrapper {
-    background: #e0e0e0;
-    border: solid 1px #ffffff;
     border-radius: 16px;
     position: relative;
-    width: 240px;
-    min-height: 450px;
-    padding-bottom: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,6 +8,10 @@
     margin-right: 24px;
     cursor: pointer;
     transition: all ease-in-out 0.5s;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    position: relative;
+    margin-bottom: 0;
+    height: fit-content;
 
     @media (max-width: 769px) {
         width: 200px;        
@@ -34,12 +33,17 @@
         min-height: 460px        
     }
 
+    &:hover{
+        .innerContainer{
+            display: flex;
+        }        
+    }
+
 }
 
 .cardImage {
-    border-radius: 8px 8px 0 0;
     width: 100%;
-    margin-bottom: 24px;
+    border-radius: 8px;
 }
 
 .movieTitle {
@@ -59,22 +63,21 @@
     position: absolute;
     bottom: 8%;
     width: 60%;
-    border: solid 1px #a0a0a0;
-    padding: 8px;
     border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #161616;
+    height: 40px;
 
     p{
         text-align: center;
-        color: #292929;
+        color: #FFF;
         font-weight: 500;
-        margin-left: 4px
+        margin-left: 4px;
     }
 
     &:hover{
-        background-color: #FB1036;
         color: #ffffff;
         border: none;
 
@@ -82,4 +85,17 @@
             color: #ffffff;
         }
     }
+}
+
+.innerContainer{
+    position: absolute;
+    background-color: rgba(22, 22, 22, 0.8);
+    border-radius: 8px;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
