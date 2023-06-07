@@ -7,6 +7,7 @@ import { PlayIcon } from "shared/Icons/Playback";
 
 const SightsCard = ({ cardData }) => {
   const [hovered, setHovered] = useState(false);
+  const [number, setNumber] = useState();
   //Some videos lack images
   if (cardData?.square_image === null) {
     return null;
@@ -15,14 +16,15 @@ const SightsCard = ({ cardData }) => {
   return (
     <Link href={`/video/${cardData?.public_id}`}>
       <div className={styles.categoryCardWrapper}>
+      <div className = {styles.innerCard}>
         <img
           src={`${process.env.NEXT_PUBLIC_API}/static/media/videos_images/${cardData?.square_image}`}
           alt={cardData?.title}
           className={styles.cardImage}
         />
-        <div className={styles.movieTitle}>{cardData?.title}</div>
+        
         <Link href={`/video/${cardData?.public_id}`}>
-          <div
+        <div
             className={styles.cardBtn}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
@@ -30,7 +32,9 @@ const SightsCard = ({ cardData }) => {
             <PlayIcon hovered={hovered} />
             <p>Watch</p>
           </div>
+        
         </Link>
+        </div>
       </div>
     </Link>
   );

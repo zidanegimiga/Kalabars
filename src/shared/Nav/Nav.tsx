@@ -54,6 +54,11 @@ const Nav = () => {
     <div className={styles.NavContainer}>
       <div className={styles.NavWrapper}>
         <div className={styles.NavLeft}>
+          <div className={styles.NavMenuWrapper}>
+            <div className={styles.NavMenuItem}> <div className= {styles.NavMenuItemChild}></div></div>
+            <div className={styles.NavMenuItem}><div className= {styles.NavMenuItemChild}></div></div>
+            <div className={styles.NavMenuItem}><div className= {styles.NavMenuItemChild}></div></div>
+          </div>
           <Link href={"/"}>
           <div className={styles.logo}>
             <Image
@@ -68,9 +73,9 @@ const Nav = () => {
             <div className={styles.link}>
               <Link href={"/sights"}>Sights</Link>
             </div>
-            {/* <div className={styles.link}>
+            <div className={styles.link}>
               <Link href={"/sounds"}>Sounds</Link>
-            </div> */}
+            </div>
           </div>
         </div>
         <div className={styles.NavRight}>

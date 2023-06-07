@@ -3,9 +3,8 @@
     border: solid 1px #ffffff;
     border-radius: 16px;
     position: relative;
-    width: 240px;
-    min-height: 450px;
-    padding-bottom: 16px;
+    width: 25em;
+    min-height: 25em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,11 +34,30 @@
     }
 
 }
+.innerCard{
+   
+    background: #e0e0e0;
+    border: solid 1px #ffffff;
+    border-radius: 16px;
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all ease-in-out 0.5s;
+    cursor: pointer;
+    transition: all ease-in-out 0.5s;
+    
+}
+
 
 .cardImage {
-    border-radius: 8px 8px 0 0;
+    border-radius: 8px;
     width: 100%;
-    margin-bottom: 24px;
+    &:hover{
+        backdrop-filter: brightness(80%);
+    }
+    
 }
 
 .movieTitle {
@@ -55,6 +73,7 @@
     }
 }
 
+
 .cardBtn{
     position: absolute;
     bottom: 8%;
@@ -62,7 +81,8 @@
     border: solid 1px #a0a0a0;
     padding: 8px;
     border-radius: 4px;
-    display: flex;
+    display: none;
+    
     justify-content: center;
     align-items: center;
 
