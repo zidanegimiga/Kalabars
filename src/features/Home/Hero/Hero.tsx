@@ -9,6 +9,7 @@ const Hero = () => {
   const router = useRouter();
   return (
     <div className={styles.HeroWrapper}>
+      
       <div className={styles.HeroBody}>
         <div className={styles.HeroLogo}><HeroLogo/></div>
         <h1>Watch African-brewed stories</h1>
