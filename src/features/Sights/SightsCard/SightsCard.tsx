@@ -22,6 +22,7 @@ const SightsCard = ({ cardData }) => {
           alt={cardData?.title}
           className={styles.cardImage}
         />
+ 
         
         <Link href={`/video/${cardData?.public_id}`}>
         <div
@@ -34,6 +35,20 @@ const SightsCard = ({ cardData }) => {
           </div>
         
         </Link>
+
+        <div className={styles.innerContainer}>
+          <div className={styles.movieTitle}>{cardData?.title}</div>
+          <Link href={`/video/${cardData?.public_id}`}>
+            <div
+              className={styles.cardBtn}
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+            >
+              <PlayIcon hovered={hovered} />
+              <p>Watch</p>
+            </div>
+          </Link>
+
         </div>
       </div>
     </Link>
