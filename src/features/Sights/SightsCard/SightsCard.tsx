@@ -21,8 +21,7 @@ const SightsCard = ({ cardData }) => {
           src={`${process.env.NEXT_PUBLIC_API}/static/media/videos_images/${cardData?.square_image}`}
           alt={cardData?.title}
           className={styles.cardImage}
-        />
-        
+        />        
         <Link href={`/video/${cardData?.public_id}`}>
         <div
             className={styles.cardBtn}
@@ -34,7 +33,7 @@ const SightsCard = ({ cardData }) => {
           </div>
         
         </Link>
-        </div>
+      </div>
       </div>
     </Link>
   );
