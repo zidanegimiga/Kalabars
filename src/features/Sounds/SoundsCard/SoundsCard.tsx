@@ -1,4 +1,3 @@
-import React from 'react'
 import Image from "next/image";
 import { AddToPlaylist } from 'shared/Icons/Playlist';
 import styles from './SoundsCard.module.scss'
