@@ -21,13 +21,13 @@ const SightsCard = ({ cardData }) => {
           src={`${process.env.NEXT_PUBLIC_API}/static/media/videos_images/${cardData?.square_image}`}
           alt={cardData?.title}
           className={styles.cardImage}
-<<<<<<< HEAD
+
         />        
-=======
-        />
+
+        
  
         
->>>>>>> 1863e52ef780f6b589e60854a4256d526f57233d
+
         <Link href={`/video/${cardData?.public_id}`}>
         <div
             className={styles.cardBtn}
@@ -39,9 +39,9 @@ const SightsCard = ({ cardData }) => {
           </div>
         
         </Link>
-<<<<<<< HEAD
+
       </div>
-=======
+
 
         <div className={styles.innerContainer}>
           <div className={styles.movieTitle}>{cardData?.title}</div>
@@ -57,7 +57,7 @@ const SightsCard = ({ cardData }) => {
           </Link>
 
         </div>
->>>>>>> 1863e52ef780f6b589e60854a4256d526f57233d
+
       </div>
     </Link>
   );

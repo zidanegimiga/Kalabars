@@ -81,7 +81,7 @@ const Nav = () => {
         <div className={styles.NavRight}>
           <form className={styles.searchForm}>
             <input
-              placeholder="What would you like to watch or listen to"
+              placeholder="What would you like to watch or listen to..."
               value={searchInput}
               onChange={(e) => handleSearch(e)}
               className={styles.SearchBar}
