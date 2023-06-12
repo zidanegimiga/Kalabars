@@ -16,7 +16,7 @@
     z-index: 100;
     width: 100%;
     height: 100px;
-    padding: 32px 80px;
+    padding: 32px 0px;
 
     @media (max-width: 1921px) {
         padding: 24px 40px;
@@ -47,7 +47,10 @@
 
 .NavLeft {
     display: flex;
-    margin: 4em;
+    margin-left: 0em;
+    margin-right: 4em;
+    margin-top: 4em;
+    margin-bottom: 4em;
     gap: 0.04em;
 
 }
@@ -133,7 +136,7 @@
 }
 
 .link {
-    font-size: 24px;
+    font-size: 28px;
     
     transition: all ease-in-out 0.2s;
     color: #161616;
@@ -179,7 +182,7 @@
 .NavRight {
     display: flex;
     align-items: center;
-    margin-right: 108px;
+    margin-right: 156px;
     justify-content: flex-end;
 
     @media (max-width: 1601px) {
@@ -207,7 +210,7 @@
     display: flex;
     align-items: center;
     height: 48px;
-    width: 70%;
+    width: 75%;
     
 
     @media (max-width: 1801px) {
