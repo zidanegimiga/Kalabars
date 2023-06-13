@@ -41,6 +41,25 @@ const PlayIcon = ({hovered, initialColor}) => {
   );
 };
 
+const PlayIconButton = ({hovered}) => {
+return(
+<div className={styles.PlayIconButton}>
+
+<svg 
+  width="22"  
+  height="25" 
+  viewBox="0 0 22 25" fill="none" 
+  xmlns="http://www.w3.org/2000/svg">
+<path d="M21.2226 11.6671L1.46838 24.1209L0.873032 0.211949L21.2226 11.6671Z" fill="black"/>
+</svg>
+
+
+</div>
+
+
+);
+
+};
 const Pause = ({ action }) => {
   return (
     <div onClick={action} className={styles.playIcon}>
@@ -235,4 +254,5 @@ export {
   VolumeOn,
   VolumeOff,
   FullScreen,
+  PlayIconButton,
 };
