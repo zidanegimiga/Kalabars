@@ -16,7 +16,7 @@
     z-index: 100;
     width: 100%;
     height: 100px;
-    padding: 32px 80px;
+    padding: 32px 0px;
 
     @media (max-width: 1921px) {
         padding: 24px 40px;
@@ -47,20 +47,57 @@
 
 .NavLeft {
     display: flex;
-    justify-content: flex-start;
+    margin-left: 0em;
+    margin-right: 4em;
+    margin-top: 4em;
+    margin-bottom: 4em;
+    gap: 0.04em;
+
 }
 
+
+.NavMenuWrapper{
+    display: flex;
+    flex-direction: column;
+    height:2em;
+    width:30%;
+    gap: 0.4em;
+    align-self: center;
+    margin: 2em;
+    
+   
+}
+
+.NavMenuItem{
+    height: 1em;
+    width: 100%;
+    color: black;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   gap: 0.2em;
+   align-items: center;
+}
+
+.NavMenuItemChild{
+    background-color:  black;
+    width: 60%;
+    height:0.25em;
+    border-radius: 0.8em;
+
+}
 .logo {
+    align-self: center;
     @media (max-width: 1921px) {
-        transform: scale(70%);
+        transform: scale(95%);
     }
 
     @media (max-width: 1601px) {
-        transform: scale(50%);
+        transform: scale(75%);
     }
     
     @media (max-width: 1441px) {
-        transform: scale(40%);
+        transform: scale(65%);
     }
 
     @media (max-width: 427px) {
@@ -68,7 +105,7 @@
     }
 
     @media (max-width: 321px) {
-        transform: scale(115%);
+        transform: scale(145%);
         margin-left: 40px;
         margin-right: 24px;
     }
@@ -79,27 +116,28 @@
     justify-content: flex-start;
     align-items: center;
     font-family: Ubuntu;
-    font-weight: 600;
+    font-weight: 400;
     padding-left: 100px;
-
+    gap: 3em;
+  
     @media (max-width: 1601px) {
-        font-size: 20px;
+        font-size: 30px;
         padding-left: 0px;
     }
 
     @media (max-width: 1441px) {
-        font-size: 24px;
+        font-size: 34px;
     }
 
     @media (max-width: 321px) {
-        margin-right: 8px;
-        font-size: 10px;
+       
+        font-size: 20px;
     }
 }
 
 .link {
-    font-size: 32px;
-    margin-right: 48px;
+    font-size: 28px;
+    
     transition: all ease-in-out 0.2s;
     color: #161616;
 
@@ -110,7 +148,7 @@
 
     @media (max-width: 1801px) {
       font-size: 32px;
-      margin-right: 32px;
+     
     }
 
     @media (max-width: 1601px) {
@@ -123,7 +161,7 @@
 
     @media (max-width: 1367px) {
         font-size: 16px;
-        padding-left: 0px;
+        
     }
 
     @media (max-width: 1025px) {
@@ -131,12 +169,12 @@
     }
 
     @media (max-width: 769px) {
-        margin-right: 32px;
+        
     }
 
     @media (max-width: 427px) {
         font-size: 16px;
-        margin-right: 24px;
+        
     }
     
 }
@@ -144,7 +182,8 @@
 .NavRight {
     display: flex;
     align-items: center;
-    margin-right: 176px;
+    margin-right: 156px;
+    justify-content: flex-end;
 
     @media (max-width: 1601px) {
         margin-right: 32px;
@@ -171,6 +210,8 @@
     display: flex;
     align-items: center;
     height: 48px;
+    width: 75%;
+    
 
     @media (max-width: 1801px) {
         height: 48px;        
@@ -193,23 +234,23 @@
     font-family: Ubuntu;
     outline: none;
     background: linear-gradient(91.3deg, rgba(22, 22, 22, 0.873) 4.17%, rgba(22, 22, 22, 0.776) 99.55%);
-    border-radius: 36px;
+    border-radius: 24px;
     padding-top: 16px;
     padding-bottom: 16px;
     padding-left: 20px;
     padding-right: 24px;
-    color: white;
+    color: snow;
     border: solid 1px #161616;
-    font-size: 24px;
-    height: 48px;
+    font-size: 18px;
+    height: 32px;
 
     &:placeholder {
-        color: white;
+        color: snow;
     }
 
     @media (max-width: 2161px) {
         width: 700px;
-        height: 48px;
+        height: 24px;
     }
 
     @media (max-width: 1801px) {

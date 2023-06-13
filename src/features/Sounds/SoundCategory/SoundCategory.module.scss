@@ -1,0 +1,18 @@
+.categoryContainer{
+    width: 100%;
+    padding-left: 48px;
+    margin-bottom: 80px;
+
+    h1{
+        font-weight: 500;
+        font-family: 'Ubuntu';
+        margin-bottom: 48px;
+        font-size: 2rem;        
+    }
+}
+
+.categoryCardsContainer{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    row-gap: 48px;
+}

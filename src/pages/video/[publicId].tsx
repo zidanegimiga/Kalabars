@@ -4,7 +4,7 @@ import styles from '../../styles/VideoPage.module.scss';
 import { Instagram, Twitter, Share } from 'shared/Icons/Twitter';
 import React from 'react';
 import { useRouter } from 'next/router';
-import Playlist from 'shared/Icons/Playlist';
+import {Playlist} from '../../shared/Icons/Playlist';
 import SightsCategory from 'features/Sights/SightsCategory';
 import SightsCard from 'features/Sights/SightsCard';
 

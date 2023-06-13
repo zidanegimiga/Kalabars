@@ -21,7 +21,7 @@ const Play = ({ action }) => {
   );
 };
 
-const PlayIcon = ({hovered}) => {
+const PlayIcon = ({hovered, initialColor}) => {
   return (
     <div className={styles.playIconL}>
       <svg
@@ -34,13 +34,32 @@ const PlayIcon = ({hovered}) => {
       >
         <path
           d="M25.4 48.0662C24.5111 48.644 23.6107 48.6769 22.6987 48.1649C21.7884 47.6547 21.3333 46.8662 21.3333 45.7996V18.1996C21.3333 17.1329 21.7884 16.3436 22.6987 15.8316C23.6107 15.3213 24.5111 15.3551 25.4 15.9329L47.1333 29.7329C47.9333 30.2662 48.3333 31.0218 48.3333 31.9996C48.3333 32.9773 47.9333 33.7329 47.1333 34.2662L25.4 48.0662Z"
-          fill={hovered ? "#f8f8f8" : "#FB1036"}
+          fill={initialColor}
         />
       </svg>
     </div>
   );
 };
 
+const PlayIconButton = ({hovered}) => {
+return(
+<div className={styles.PlayIconButton}>
+
+<svg 
+  width="22"  
+  height="25" 
+  viewBox="0 0 22 25" fill="none" 
+  xmlns="http://www.w3.org/2000/svg">
+<path d="M21.2226 11.6671L1.46838 24.1209L0.873032 0.211949L21.2226 11.6671Z" fill="black"/>
+</svg>
+
+
+</div>
+
+
+);
+
+};
 const Pause = ({ action }) => {
   return (
     <div onClick={action} className={styles.playIcon}>
@@ -235,4 +254,5 @@ export {
   VolumeOn,
   VolumeOff,
   FullScreen,
+  PlayIconButton,
 };
