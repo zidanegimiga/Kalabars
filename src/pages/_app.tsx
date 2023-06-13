@@ -3,6 +3,7 @@ import NextNProgress from "nextjs-progressbar";
 import Layout from "shared/Layout";
 import { AppProps } from "next/app";
 import "../styles/app.scss";
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
 
 const App: FC = ({ Component, pageProps }: AppProps) => {
   return (

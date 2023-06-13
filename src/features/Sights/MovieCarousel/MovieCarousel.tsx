@@ -7,86 +7,125 @@ import Timer from "../../../../public/timerIcon.svg";
 import Play from "../../../../public/playIcon.svg";
 import Down from "../../../../public/downIcon.svg";
 import styles from "./MovieCarousel.module.scss";
+import { PlayIcon } from "shared/Icons/Playback";
 
 const Hero = ({ videos }) => {
   const router = useRouter();
+  const [hovered, setHovered] = useState();
 
   return (
     <div>
       <Carousel
         showStatus={false}
-        showArrows={false}
-        showIndicators={true}
+        showArrows={true}
+        showIndicators={false}
         showThumbs={false}
         infiniteLoop={true}
-        autoPlay={true}
+        // autoPlay={true}
         dynamicHeight={false}
-        renderIndicator={(clickHandler, isSelected, index) => {
-          return (
-            <li
-              onClick={clickHandler}
-              className={
-                isSelected
-                  ? styles["ind"] + " " + styles["active"]
-                  : styles["ind"]
-              }
-              key={index}
-              role="button"
-            />
-          );
+        renderArrowNext={(clickHandler, hasNext) => {
+          if(hasNext){
+            return(
+              <div className={styles.nextBtn} onClick={clickHandler}>
+                <Image
+                  src={'/next.png'}
+                  width={32}
+                  height={32}
+                  alt="next"
+                />              
+              </div>
+            )
+          }
+        }}
+        renderArrowPrev={(clickHandler, hasPrev) => {
+          return(
+            <div className={styles.prevBtn} onClick={clickHandler}>
+                <Image
+                  src={'/prev.png'}
+                  width={32}
+                  height={32}
+                  alt="next"
+                />              
+            </div>
+          )
         }}
       >
         {videos.map(function (video, index) {
-          if(video.landscape_image === null){
+          if (video.landscape_image === null) {
             return null;
           }
           return (
             <div className={styles.hero} key={index}>
-            <img
-              src={
-                `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
-                video.landscape_image
-              }
-              alt="poster"
-              className={styles.poster}
-            />
-            <div className={styles.detailsWrapper}>
-              <div className={styles.detailsContainer}>
-                <div className={styles.detailsInnerContainer} >
-                <div className={styles.title}>{video.title}</div>
-                <div className={styles.description}>{video.description}</div>
-                <div className={styles.tags}>
-                  <div className={styles.tag}>THRILLER</div>
-                  {video.genre?.length !== 0 &&
-                    video.genre?.map((tag, index) => (
-                      <div className={styles.tag} key={index}>
-                        tag
+              <div className={styles.poster}>
+                <Image
+                  src={
+                    `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
+                    video.landscape_image
+                  }
+                  alt="Image description"
+                  width={2420}
+                  height={1349}
+                />
+              </div>
+              <div className={styles.detailsWrapper}>
+                <div className={styles.detailsContainer}>
+                  <div className={styles.title}>
+                    {" "}
+                    {video.title}
+                    {" "}
+                  </div>
+                  <div className={styles.tagsContainer}>
+                    <div>Thriller</div>
+                    <div> | </div>
+                    <div> {video.duration} Minutes </div>
+                    <div> | </div>
+                    <div> Directed by the Shadow </div>
+                  </div>
+                  <div className={styles.description}>
+                    {video.description}
+                  </div>
+                  <div className={styles.iconsContainer}>
+                    <div className={styles.iconWrapper}  onClick={() => router.push(`/video/${video.public_id}`)}>
+                      <div className={styles.icon}>
+                        <PlayIcon hovered={hovered} initialColor={"white"} />
                       </div>
-                    ))}
-                  <div className={styles.time}>
-                    <Timer className={styles.timeicon} />
-                    <p>{video.duration} min</p>
+                      <div className={styles.iconsText} >Play Title</div>
+                    </div>
+                    <div className={styles.iconWrapper}>
+                      <div className={styles.icon}>
+                        <Image
+                          src={"/clock.png"}
+                          width={30}
+                          height={30}
+                          alt="clock icon"
+                        />
+                      </div>
+                      <div className={styles.iconsText}>Add to watch list</div>
+                    </div>
+                    <div className={styles.iconWrapper}>
+                      <div className={styles.icon}>
+                        <Image
+                          src={"/mouse.png"}
+                          width={30}
+                          height={30}
+                          alt="clock icon"
+                        />
+                      </div>
+                      <div className={styles.iconsText}>Scroll for more</div>
+                    </div>
                   </div>
-                </div>
-                <div className={styles.buttonsContainer}>
-                  <div
-                    className={styles.button1}
-                    onClick={() => router.push(`/video/${video.public_id}`)}
-                  >
-                    {" "}
-                    <Play className={styles.playicon} />
-                    <p>Start Watching</p>
-                  </div>
-                  <div className={styles.button2} onClick={() => router.push(`/sights/#more`)}>
-                    {" "}
-                    <Down className={styles.timeicon} /> Explore More
-                  </div>
-                </div>
+                  {/* <div className={styles.closeButton}>
+                    <Image
+                      src={"/close.png"}
+                      width={44}
+                      height={49}
+                      alt="clock icon"
+                    />
+                  </div> */}
                 </div>
               </div>
             </div>
-          </div>
-        )
+          );
         })}
       </Carousel>
     </div>
