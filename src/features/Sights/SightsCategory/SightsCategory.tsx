@@ -16,7 +16,7 @@ const SightsCategory = ({ name, data }) => {
   return (
     <div className={styles.sightsCategory}>
       <div className={styles.top}>
-        <div className={styles.sightsCategoryTitle}>{name}</div>
+        <div className={styles.sightsCategoryTitle}>{name.toUpperCase()}</div>
         {next < data?.length && (
           <div className={styles.moreButton}  onClick={seeMore}>
             More <Down />
