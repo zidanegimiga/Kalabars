@@ -1,23 +1,24 @@
 .pageWrapper{
-    background-color: #EDEDED;
+    background-color: red;
 }
 
 .sightsCategory{
-    padding: 32px 32px;
+    
     background-color: #fff5f5;
-    margin-top: 24px;
-    width: 85%;
+    margin-top: 10px;
+    width: 90%;
+    min-height: 100%;
 
     @media (max-width: 769px) {
-        padding: 32px 32px;        
+        padding: 0px 0px;        
     }
 
     @media (max-width: 769px) {
-        padding: 32px 14px;        
+        padding: 0px 0px;        
     }
 
     @media (max-width: 426px) {
-        padding: 20px 16px;
+        padding: 0px 0px;
         border-top: solid 1px #686868;        
     }
 }
@@ -25,13 +26,17 @@
 .top{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 48px;
+    margin-bottom: 24px;
+   margin-top: 3em;
+   
 }
 
 .sightsCategoryTitle{
+    text-align: left;
     font-family: Ubuntu;
     font-size: 32px;
     font-weight: 500;
+    
 }
 
 .moreButton{
@@ -49,6 +54,8 @@
     justify-content: flex-start;
     align-items: center;
     overflow-x: scroll;
+    
+    
 
     @media (max-width: 769px) {
         display: grid;
