@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
@@ -56,15 +57,14 @@ const Hero = ({ videos }) => {
           }
           return (
             <div className={styles.hero} key={index}>
-              <div className={styles.poster}>
-                <Image
+              <div>
+                <img
                   src={
                     `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
                     video.landscape_image
                   }
                   alt="Image description"
-                  width={2420}
-                  height={1349}
+                  className={styles.poster}
                 />
               </div>
               <div className={styles.detailsWrapper}>
