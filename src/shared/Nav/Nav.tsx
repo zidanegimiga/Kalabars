@@ -54,20 +54,20 @@ const Nav = () => {
     <div className={styles.NavContainer}>
       <div className={styles.NavWrapper}>
         <div className={styles.NavLeft}>
-          <div className={styles.NavMenuWrapper}>
-            <div className={styles.NavMenuItem}> <div className= {styles.NavMenuItemChild}></div></div>
-            <div className={styles.NavMenuItem}><div className= {styles.NavMenuItemChild}></div></div>
-            <div className={styles.NavMenuItem}><div className= {styles.NavMenuItemChild}></div></div>
+          <div className={styles.NavMenuIconWrapper}>
+            <div className={styles.NavMenuIconBar}> <div className= {styles.NavMenuItemChild}></div></div>
+            <div className={styles.NavMenuIconBar}><div className= {styles.NavMenuItemChild}></div></div>
+            <div className={styles.NavMenuIconBar}><div className= {styles.NavMenuItemChild}></div></div>
           </div>
           <Link href={"/"}>
-          <div className={styles.logo}>
-            <Image
-              width={320}
-              height={80}
-              alt="Logo"
-              src={"/kalabarslogo.svg"}
-            />
-          </div>
+            <div className={styles.logo}>
+              <Image
+                width={320}
+                height={80}
+                alt="Logo"
+                src={"/kalabarslogo.svg"}
+              />
+            </div>
           </Link>
           <div className={styles.links} style={textColor}>
             <div className={styles.link}>
