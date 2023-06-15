@@ -2,6 +2,7 @@
     width: 100%;
     padding-left: 48px;
     margin-bottom: 80px;
+    transition: all 0.5s ease-in-out;
 
     h1{
         font-weight: 500;
@@ -9,19 +10,35 @@
         margin-bottom: 48px;
         font-size: 2rem;        
     }
+
+    @media (max-width: 426px) {
+        padding-left: 16px;        
+        padding-right: 16px;
+        margin-bottom: 64px;
+        
+        h1{
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+    }
 }
 
-.categoryCardsContainer{
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    row-gap: 48px;
+.carouselContainer{
+    z-index: 1;
+}
 
+.categoryItem{
+    margin-right: 64px;
     @media (max-width: 1441px) {
-        grid-template-columns: auto auto auto;        
+        margin-right: 64px;        
     }
     @media (max-width: 1025px) {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 32px;       
+        margin-right: 64px;        
+    }
+    @media (max-width: 769px) {
+        margin-right: 64px;        
+    }
+    @media (max-width: 426px) {
+        margin-right: 16px;        
     }
 }

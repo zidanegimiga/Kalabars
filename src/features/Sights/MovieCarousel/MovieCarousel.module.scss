@@ -8,7 +8,7 @@
 
     @media (max-width: 1601px) {
         height: 100vh;
-        width: 100vw;
+        width: 100%;
     }
 
     @media (max-width: 769px) {
@@ -33,18 +33,18 @@
 
     @media (max-width: 2881px) {
         height: 130vh;
-        width: 100vw;
+        width: 100%;
     }
     @media (max-width: 1441px) {
         height: 125vh;
     }
     @media (max-width: 1025px) {
         height: 100vh;
-        width: 100vw;
+        width: 100%;
     }
     @media (max-width: 769px) {
         height: 100vh;
-        width: 100vw;
+        width: 100%;
     }
 
     @media (max-width: 427px) {
@@ -60,11 +60,11 @@
 }
 
 .detailsWrapper {
-    width: 50%;
+    width: 70%;
     height: fit-content;
     position: absolute;
     bottom: 0;
-    left: 5%;
+    left: 1%;
     background: rgba(77, 74, 74, 0.8);
     padding-left: 40px;
     padding-right: 40px;

@@ -1,14 +1,26 @@
-.pageWrapper{
-    background-color: #111111;
+.top {
+    display: flex;
+    width: 100vw;
+    height: 100vh
+}
+
+.content {
+    background-color: #F2F2F2;
+    width: 100%;
+    height: 100vh;
+    transition: all 0.5s ease-in-out;
+
+    @media (max-width: 426px) {
+        padding-top: 72px;
+        padding-right: 16px;
+    }
+    @media (max-width: 376px) {
+        padding-bottom: 80px;
+    }
 }
 
 .sightsCategory{
     padding: 0px 0px;
-}
-
-.top{
-    display: flex;
-    justify-content: space-between;
 }
 
 .sightsCategoryTitle{
