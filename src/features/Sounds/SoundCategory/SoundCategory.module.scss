@@ -15,4 +15,13 @@
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     row-gap: 48px;
+
+    @media (max-width: 1441px) {
+        grid-template-columns: auto auto auto;        
+    }
+    @media (max-width: 1025px) {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;       
+    }
 }

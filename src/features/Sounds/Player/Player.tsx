@@ -11,9 +11,7 @@ const Player = () => {
   return (
     <div className={styles.playerWrapper}>
         <div className={styles.audioMetadata}>
-            <div className={styles.coverArt}>
-                <Image alt="cover art" src={'/soundExampleImages/coverArt.png'} width={120} height={120}/>
-            </div>
+                <img alt="cover art" src={'/soundExampleImages/coverArt.png'} className={styles.coverArt}/>
             <div className={styles.audioDetailsRight}>
                 <div className={styles.audioTextualData}>
                     <p className={styles.artistName}>Ronnie Okelo</p>
