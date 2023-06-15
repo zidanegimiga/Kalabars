@@ -21,12 +21,14 @@ const SoundsCard = ({ data }) => {
   return (
     <div className={styles.categoryCard}>
       <div>
+        <div className={styles.cardImg}>
         <Image
           width={196}
           height={196}
           alt="Femmolution"
           src={`https://content.kalabars.com/static/media/audios_images/${data.square_image}`}
         />
+        </div>
         <div className={styles.playIcon} onClick={handleSoundCardClick}>
           <PlayIcon hovered={hovered} initialColor={"white"}/>
         </div>

@@ -34,6 +34,10 @@
     }
 }
 
+.cardImg{
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
 .bottomSection{
     display: flex;
     justify-content: space-between;
@@ -53,3 +57,13 @@
         transform: scale(120%)
     }
 }
+
+
+@keyframes skeleton-loading{
+    0%{
+      background-color: hsl(200, 20%, 70%);
+    }
+    100%{
+      background-color: hsl(200, 20%, 95%);
+    }
+  }
