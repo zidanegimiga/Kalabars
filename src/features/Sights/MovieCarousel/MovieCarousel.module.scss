@@ -74,6 +74,7 @@
         width: 85%;
         left: 0%;
     }
+
     @media (max-width: 769px) {
         width: 100%;
         left: 0%;
@@ -82,14 +83,9 @@
         padding-right: 0px;
         height: 70%;
     }
+
     @media (max-width: 436px) {
-         height: 70%;
-    }
-    // @media (max-height: 896px) {
-    //      height: 50%;
-    // }
-    @media (max-height: 668px) {
-        height: 65%;
+         height: 65%;
     }
 }
 
@@ -106,6 +102,10 @@
 
     @media (max-width: 1441px) {
         font-size: 32px;
+    }
+
+    @media (max-width: 436px) {
+        font-size: 24px;
     }
 }
 
@@ -137,6 +137,10 @@
     font-size: 20px;
     font-family: 'Inter';
     font-style: normal;
+
+    @media (max-width: 436px) {
+        font-size: 16px;
+    }
 }
 
 .iconsContainer{
@@ -150,6 +154,10 @@
     @media (max-width: 769px) {
         gap: 2px;
         margin-top: 16px;
+    }
+
+    @media (max-width: 436px) {
+        margin-top: 8PX;
     }
 }
 .iconWrapper{
@@ -210,6 +218,10 @@
         right: 4%;
     }
 
+    @media (max-width: 436px) {
+        transform: scale(70%);
+    }
+
 }
 
 .prevBtn{
@@ -228,6 +240,10 @@
     }
     @media (max-height: 668px) {
         bottom: 14%;
+    }
+
+    @media (max-width: 436px) {
+        transform: scale(70%);
     }
 }
 
