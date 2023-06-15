@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: space-between;
     z-index: 10000;
+    position: relative;
 }
 
 .audioMetadata{
@@ -17,6 +18,9 @@
     border-radius: 8px;
     width: 120px;
     height: 120px;
+    background-color: #5e5e5e;
+    outline: none;
+    border-color: navajowhite;
 
     @media (max-width: 1441px) {
         width: 64px;
@@ -36,11 +40,11 @@
     .artistName{
         color: #E9E9E9;
         font-size: .75rem;
-        margin-bottom: -18px;
+        margin-bottom: -4px;
     }
     .audioTitle{
         color: #ffffff;
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: 600;
     }
 
@@ -148,4 +152,14 @@
 
 .volumeContainer{
     width: 10%
+}
+
+.audioPlaylistContainer{
+    position: absolute;
+    bottom: 130%;
+    right: 5%;
+    width: 240px;
+    height: 200px;
+    background-color: #FF3354;
+    border-radius: 8px 8px 0 0;
 }

@@ -16,6 +16,7 @@ const Sights = ({
   staffPicks,
 }) => {
   const carouselVideos = videos.response.result.slice(15, 24);
+  
 
   return (
     <div className={styles.pageWrapper}>
@@ -54,7 +55,7 @@ export async function loadVideos() {
     },
   });
   const videos = await resVideos.json();
-
+  
   //originals
   const originalsGenres = await fetch(
     process.env.NEXT_PUBLIC_API + `/genres/kalabars-originals/videos`,
@@ -132,9 +133,9 @@ const genres = [
   "poetic",
 ];
 
-export async function getStaticProps(context) {
-  const { videos, originals, comedy, documentary, drama, staffPicks } =
-    await loadVideos();
+export async function getStaticProps() {
+  const { videos, originals, comedy, documentary, drama, staffPicks } = await loadVideos();
+  
   return {
     props: {
       videos,
