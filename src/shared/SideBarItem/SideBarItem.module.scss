@@ -1,0 +1,205 @@
+.sidebar {
+    padding-top: 180px;
+    background-color: #FFD04C;
+    width: 0vw;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    overflow: scroll;
+    height: 100vh;
+    z-index: 3000;
+    transition: all 0.5s ease-in-out;
+    overflow-x: hidden;
+
+    @media (max-width: 1700px) {
+        padding-top: 100px;        
+    }
+}
+
+.sidebarActive{
+    width: 30vw;
+    padding-top: 180px;
+    background-color: #FFD04C;
+    // position: -webkit-sticky;
+    // position: sticky;
+    position: fixed;
+    top: 0;
+    overflow: scroll;
+    height: 100vh;
+    transition: all 0.5s ease-in-out;
+    overflow-x: hidden;
+    z-index: 3000;
+
+    .playstoreButton{
+        transform: scale(100%);
+    }
+
+    @media (max-width: 1700px) {
+        padding-top: 100px;        
+    }
+
+    @media (max-width: 1025px) {
+        padding-top: 100px;
+        width: 45vw;        
+    }
+    
+    @media (max-width: 769px) {
+        width: 70vw;        
+    }
+    @media (max-width: 426px) {
+        width: 80vw;
+        position: fixed;
+        z-index: 3000;
+        height: 100vh;
+        overflow-y: scroll;        
+    }
+    
+}
+
+.pagesNavigator,
+.cgLinksNavigator,
+.playstoreNavigator {
+    height: 30%;
+}
+
+.pagesNavigator {}
+
+.cgLinksNavigator {
+    border-top: solid 1px black;
+    padding-left: 5rem;
+    font-weight: 500;
+
+    p{
+        font-size: 1rem;
+        cursor: pointer;
+
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+
+    @media (max-width: 1700px) {
+        padding-left: 2rem;
+        
+        p{
+            font-size: 0.75rem;
+        }
+    }
+}
+
+.playstoreNavigator {
+    border-top: solid 1px black;
+    padding-left: 5rem;
+    padding-top: 1rem;
+    font-weight: 500;
+
+    p{
+        font-size: 1rem;
+    }
+
+    @media (max-width: 1700px) {
+        padding-left: 2rem;
+        
+        p{
+            font-size: 0.75rem;
+        }
+    }
+    @media (max-width: 769px) {
+        padding-left: 32px;
+        
+        p{
+            font-size: 0.75rem;
+        }
+    }
+}
+
+.playstoreButton {
+    display: flex;
+    align-items: center;
+    border: 2px solid #1f1f1f;
+    border-radius: 8px;
+    width: 70%;
+    padding: 4px 16px;
+    margin-top: 16px;
+    cursor: pointer;
+    transform: scale(0%);
+    transition: all 0.5s ease-in-out;
+
+    &:hover{
+        background-color: #ddaf31;
+
+        .playstoreButtonText{
+            color: white
+        }
+    }
+
+    @media (max-width: 1700px) {
+        .playIcon{
+            transform: scale(80%)
+        }       
+    }
+    @media (max-width: 769px) {
+        padding: 2px 4px;
+        .playIcon{
+            transform: scale(60%)
+        }       
+    }
+}
+
+.playstoreButtonText {
+    margin-left: 0.5rem;
+    font-family: 'Ubuntu';
+    margin-left: 20px;
+
+    @media (max-width: 1700px) {
+        margin-left: 0.8rem;       
+    }
+    
+    span {
+        font-size: 10px;
+        line-height: 0px;
+        @media (max-width: 769px) {
+            font-size: 8px;
+        }
+    }
+
+    p {
+        font-size: 16px;
+        line-height: 16px;
+        margin-top: 0px;
+        font-family: 'Ubuntu';
+        font-weight: 500;
+        color: #1f1f1f;
+        
+
+        @media (max-width: 769px) {
+            font-size: 14px;
+        }
+    }
+}
+
+.sidebarItem {
+    cursor: pointer;
+    padding-left: 80px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 16px;
+    color: #353535;
+
+    &:hover{
+        .sidebarText{
+            color: #1f1f1f
+        }
+    }
+
+    @media (max-width: 1700px) {
+        padding-left: 2rem;       
+    }
+}
+
+.sidebarText {
+    margin-left: 16px;
+    font-family: Ubuntu;
+    font-weight: bold;
+}
