@@ -2,11 +2,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import {useRouter} from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Close, Search } from "shared/Icons/Twitter";
 import styles from "./Nav.module.scss";
+import { KalabarsContext } from "global/KalabarsContext";
 
 const Nav = () => {
+  const {openMenu, setOpenMenu} = useContext(KalabarsContext)
+
+  const handleMenuClick = () =>{
+    setOpenMenu(!openMenu)
+    console.log(openMenu)
+  }
+  
   const [searchModal, setSearchModal] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -54,20 +62,20 @@ const Nav = () => {
     <div className={styles.NavContainer}>
       <div className={styles.NavWrapper}>
         <div className={styles.NavLeft}>
-          <div className={styles.NavMenuWrapper}>
-            <div className={styles.NavMenuItem}> <div className= {styles.NavMenuItemChild}></div></div>
-            <div className={styles.NavMenuItem}><div className= {styles.NavMenuItemChild}></div></div>
-            <div className={styles.NavMenuItem}><div className= {styles.NavMenuItemChild}></div></div>
+          <div className={styles.NavMenuIconWrapper} onClick={handleMenuClick}>
+            <div className={styles.NavMenuIconBar}> <div className= {styles.NavMenuItemChild}></div></div>
+            <div className={styles.NavMenuIconBar}><div className= {styles.NavMenuItemChild}></div></div>
+            <div className={styles.NavMenuIconBar}><div className= {styles.NavMenuItemChild}></div></div>
           </div>
           <Link href={"/"}>
-          <div className={styles.logo}>
-            <Image
-              width={320}
-              height={80}
-              alt="Logo"
-              src={"/kalabarslogo.svg"}
-            />
-          </div>
+            <div className={styles.logo}>
+              <Image
+                width={320}
+                height={80}
+                alt="Logo"
+                src={"/kalabarslogo.svg"}
+              />
+            </div>
           </Link>
           <div className={styles.links} style={textColor}>
             <div className={styles.link}>

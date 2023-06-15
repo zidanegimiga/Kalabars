@@ -1,8 +1,7 @@
 .categoryCardWrapper {
     border-radius: 16px;
-    position: relative;
     width: 400px;
-    min-height: 800px;
+    min-height: 720px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,39 +10,23 @@
     cursor: pointer;
     transition: all ease-in-out 0.5s;
     position: relative;
-    
-   
+    margin-bottom: 24px;  
 
     @media (max-width: 769px) {
-        width: 200px;        
-    }
-
-    @media (max-width: 769px) {
-        width: 100%;        
+        width: 256px;        
     }
 
     @media (max-width: 426px) {
-        width: 142px;
-        
-        min-height: 320px        
+        width: 80%;               
     }
 
     @media (max-width: 376px) {
-        width: 100%;
-        
+        width: 100%;        
         min-height: 460px        
     }
-
-    &:hover{
-        .innerContainer{
-            display: flex;
-        }        
-    }
-
 }
 
-.innerCard{
-   
+.innerCard{   
     background: #ffffff;
     border-radius: 16px;
     position: absolute;
@@ -62,19 +45,17 @@
 .cardImage {
     border-radius: 8px;
     width: 100%;
-    min-height: 100%;
-    border-radius: 8px;
-    margin-bottom: 16px;
-    
+    border-radius: 8px;   
 }
 
 .movieTitle {
     align-self:flex-start;
     padding-left: 8px;
-    margin-top: 108px;
+    margin-top: 24px;
     font-size: 36px;
     color: #2b2b2b;
     text-transform: capitalize;
+
     @media (max-width: 426px) {
         font-size: 16px;
         text-align: left;
@@ -85,12 +66,9 @@
 
 
 .cardBtn{
-    position: absolute;
-    bottom: 10%;
     width: 60%;
     display: flex;
-    border-radius: 4px;
-    
+    border-radius: 4px;    
     margin-left: 0;
     height: 50px;
 
@@ -103,28 +81,17 @@
     }
 
     &:hover{
-        color: #ffffff;
+        color: #2b2b2b;
         border: none;
 
         p{
-            color: #ffffff;
+            color: #2b2b2b;
         }
     }
 }
 
 .innerContainer{
-    position: absolute;
-    border-radius: 8px;
-    top: 20%;
-    width: 100%;
-    height: 85%;
-    display: flex;
-    margin-top: 16px;
-    gap: 16px;
-    flex-direction: column;
-    justify-content: center;
-    
-    
+    flex-direction: column; 
 }
 
 .movieSummary{
@@ -132,18 +99,16 @@
     padding-left: 16px;
     padding-right: 16px;
     text-align: left;
-        color: black;
-        font-weight: 300;
-        margin-top: 24px;
-        
+    color: black;
+    font-weight: 300;
+    margin-top: 24px;    
+    margin-bottom: 24px;    
 }
 
 .movieType{
-    word-spacing:4px;
     text-align: left;
     padding-left: 16px;
-        color: black;
-        font-weight: 400;
-        margin-left: 4px;
-        
+    color: black;
+    font-weight: 400;
+    margin-top: 16px;       
 }

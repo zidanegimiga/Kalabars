@@ -1,4 +1,4 @@
-.NavContainer{
+.NavContainer {
     position: relative;
     width: 101vw;
 }
@@ -7,13 +7,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #f7f7f7 ;
+    background: #f7f7f7;
     box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.32);
     border-top: none;
     // backdrop-filter: blur(20px);
-    position: absolute;
+    position: fixed;
     top: 0;
-    z-index: 100;
+    z-index: 3001;
     width: 100%;
     height: 100px;
     padding: 32px 0px;
@@ -26,13 +26,13 @@
     @media (max-width: 1601px) {
         padding: 16px;
         height: 56px;
-        margin-left: -40px;
+        margin-left: 0px;
     }
 
     @media (max-width: 1441px) {
         height: 40px;
         padding-left: 0px;
-        margin-left: -32px;
+        margin-left: 0;
     }
 
     @media (max-width: 426px) {
@@ -48,46 +48,50 @@
 .NavLeft {
     display: flex;
     margin-left: 0em;
-    margin-right: 4em;
-    margin-top: 4em;
-    margin-bottom: 4em;
-    gap: 0.04em;
+    gap: 8px;
+    justify-content: flex-start;
 
+    @media (max-width: 426px) {
+        margin-right: 0;
+        gap: 0
+    }
 }
 
 
-.NavMenuWrapper{
+.NavMenuIconWrapper {
     display: flex;
     flex-direction: column;
-    height:2em;
-    width:30%;
+    height: 2em;
+    width: 40px;
     gap: 0.4em;
     align-self: center;
     margin: 2em;
-    
-   
+    justify-content: center;
+
 }
 
-.NavMenuItem{
+.NavMenuIconBar {
     height: 1em;
     width: 100%;
     color: black;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   gap: 0.2em;
-   align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.2em;
+    align-items: center;
 }
 
-.NavMenuItemChild{
-    background-color:  black;
-    width: 60%;
-    height:0.25em;
-    border-radius: 0.8em;
+.NavMenuItemChild {
+    background-color: black;
+    width: 40px;
+    height: 4px;
+    border-radius: 2;
 
 }
+
 .logo {
     align-self: center;
+
     @media (max-width: 1921px) {
         transform: scale(95%);
     }
@@ -95,19 +99,14 @@
     @media (max-width: 1601px) {
         transform: scale(75%);
     }
-    
+
     @media (max-width: 1441px) {
         transform: scale(65%);
     }
 
     @media (max-width: 427px) {
-        margin-left: -64px;
-    }
-
-    @media (max-width: 321px) {
-        transform: scale(145%);
-        margin-left: 40px;
-        margin-right: 24px;
+        margin-left: 0px;
+        transform: translateX(-20%) scale(60%)
     }
 }
 
@@ -118,8 +117,8 @@
     font-family: Ubuntu;
     font-weight: 400;
     padding-left: 100px;
-    gap: 3em;
-  
+    gap: 24px;
+
     @media (max-width: 1601px) {
         font-size: 30px;
         padding-left: 0px;
@@ -129,15 +128,16 @@
         font-size: 34px;
     }
 
-    @media (max-width: 321px) {
-       
+    @media (max-width: 426px) {
+        gap: 8px;
         font-size: 20px;
+        display: none
     }
 }
 
 .link {
     font-size: 28px;
-    
+
     transition: all ease-in-out 0.2s;
     color: #161616;
 
@@ -147,12 +147,12 @@
     }
 
     @media (max-width: 1801px) {
-      font-size: 32px;
-     
+        font-size: 32px;
+
     }
 
     @media (max-width: 1601px) {
-      font-size: 20px;
+        font-size: 20px;
     }
 
     @media (max-width: 1441px) {
@@ -161,22 +161,20 @@
 
     @media (max-width: 1367px) {
         font-size: 16px;
-        
+
     }
 
     @media (max-width: 1025px) {
         font-size: 20px;
     }
 
-    @media (max-width: 769px) {
-        
-    }
+    @media (max-width: 769px) {}
 
     @media (max-width: 427px) {
         font-size: 16px;
-        
+
     }
-    
+
 }
 
 .NavRight {
@@ -206,15 +204,15 @@
     }
 }
 
-.searchForm{
+.searchForm {
     display: flex;
     align-items: center;
     height: 48px;
     width: 75%;
-    
+
 
     @media (max-width: 1801px) {
-        height: 48px;        
+        height: 48px;
     }
 
     @media (max-width: 1601px) {
@@ -286,7 +284,7 @@
     }
 }
 
-.searchBtn{
+.searchBtn {
     margin-left: -24px;
     border-radius: 0px 36px 36px 0px;
     background-color: #161616;
@@ -295,14 +293,14 @@
     border: none;
 
 
-    &:hover{
+    &:hover {
         background-color: #333232;
     }
 
     @media (max-width: 1601px) {
         height: 100%;
     }
-    
+
     @media (max-width: 1441px) {
         padding: 8px;
         padding-right: 16px;
@@ -310,11 +308,11 @@
     }
 }
 
-.searchresultsModalInnerContainer{
+.searchresultsModalInnerContainer {
     position: relative;
 }
 
-.searchresultsModal{
+.searchresultsModal {
     position: absolute;
     height: 320px;
     overflow-y: scroll;
@@ -325,72 +323,73 @@
     right: 5%;
     top: 156px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    
+
     @media (max-width: 1441px) {
-        top: 80px;         
+        top: 80px;
     }
+
     @media (max-width: 426px) {
-        width: 88%;         
+        width: 88%;
     }
 }
 
-.modalHeader{
+.modalHeader {
     width: 100%;
     position: sticky;
     top: 0;
     background: #030303;
 }
 
-.closeBtn{
+.closeBtn {
     display: flex;
     justify-content: flex-end;
     padding-top: 8px;
     border-radius: 16px 16px 0 0;
 }
 
-.modalContent{
+.modalContent {
     padding-top: 0px;
 }
 
-.result{
+.result {
     display: flex;
     padding: 16px 16px;
     border-top: solid 1px #292929;
     cursor: pointer;
 
-    &:hover{
-        background-color: #1f1f1f;        
+    &:hover {
+        background-color: #1f1f1f;
     }
 }
 
-.resultDetails{
+.resultDetails {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-.resultTitle{
-    font-family: Ubuntu;   
+.resultTitle {
+    font-family: Ubuntu;
     font-weight: 400;
     font-size: 16px;
     margin-left: 24px;
-    color: #f3f3f3;  
+    color: #f3f3f3;
 }
 
-.resultCreator{
-    font-family: Ubuntu;   
+.resultCreator {
+    font-family: Ubuntu;
     font-weight: 400;
     font-size: 16px;
     margin-left: 24px;
     color: #727272;
-    margin-top: 8px; 
+    margin-top: 8px;
 }
 
-.resultTime{
-    font-family: Ubuntu;   
+.resultTime {
+    font-family: Ubuntu;
     font-weight: 300;
     font-size: 16px;
     margin-left: 24px;
     color: #727272;
-    margin-top: 8px; 
+    margin-top: 8px;
 }

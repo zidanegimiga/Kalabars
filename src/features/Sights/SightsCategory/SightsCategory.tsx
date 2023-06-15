@@ -4,6 +4,7 @@ import Down from "../../../../public/downIcon.svg";7
 import SightsCard from "../SightsCard/";
 
 const SightsCategory = ({ name, data }) => {
+  
   const classPerView = 8;
   /**
    * logic for the see more button

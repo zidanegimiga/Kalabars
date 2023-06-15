@@ -8,16 +8,19 @@
 
     @media (max-width: 1601px) {
         height: 100vh;
-        width: 100vw;
+        width: 100%;
     }
 
     @media (max-width: 769px) {
-        height: 90vh;
+        height: 70vh;
     }
 
-    @media (max-width: 427px) {
-        height: 55vh;
+    @media (max-width: 436px) {
+        height: 50vh;
     }
+    // @media (max-height: 769px) {
+    //     height: 70vh;
+    // }
 
     @media (max-width: 376px) {
         // height: 45vh;
@@ -28,42 +31,62 @@
     height: 100vh;
     width: 100%;
 
-    // @media (max-width: 2881px) {
-    //     height: 130vh;
-    //     width: 100vw;
-    // }
-    // @media (max-width: 1441px) {
-    //     height: 120vh;
-    // }
-    // @media (max-width: 1025px) {
-    //     height: 120vh;
-    //     width: 100vw;
-    // }
-    // @media (max-width: 769px) {
-    //     height: 90vh;
-    //     width: 100vw;
-    // }
+    @media (max-width: 2881px) {
+        height: 130vh;
+        width: 100%;
+    }
+    @media (max-width: 1441px) {
+        height: 125vh;
+    }
+    @media (max-width: 1025px) {
+        height: 100vh;
+        width: 100%;
+    }
+    @media (max-width: 769px) {
+        height: 100vh;
+        width: 100%;
+    }
 
-    // @media (max-width: 427px) {
-    //     height: 55vh;
-    // }
-    // @media (max-width: 376px) {
-    //     // height: 45vh;
-    // }
+    @media (max-width: 436px) {
+        height: 50vh;
+        width: 100%;
+    }
+
+    @media (max-width: 376px) {
+        // height: 45vh;
+    }
 }
 
 .detailsWrapper {
-    width: 50%;
+    width: 70%;
     height: fit-content;
     position: absolute;
     bottom: 0;
-    left: 5%;
-    background: rgba(77, 74, 74, 0.7);
+    left: 1%;
+    background: rgba(77, 74, 74, 0.8);
     padding-left: 40px;
     padding-right: 40px;
     padding-top: 40px;
     padding-bottom: 40px;
     border-radius: 8px 8px 0 0;
+
+    @media (max-width: 1441px) {
+        width: 85%;
+        left: 0%;
+    }
+
+    @media (max-width: 769px) {
+        width: 100%;
+        left: 0%;
+        padding-bottom: 20px;
+        padding-left: 20px;
+        padding-right: 0px;
+        height: 70%;
+    }
+
+    @media (max-width: 436px) {
+         height: 65%;
+    }
 }
 
 .detailsContainer{
@@ -75,6 +98,15 @@
     color: white;
     font-size: 64px;
     text-align: left;
+    font-weight: 600;
+
+    @media (max-width: 1441px) {
+        font-size: 32px;
+    }
+
+    @media (max-width: 436px) {
+        font-size: 24px;
+    }
 }
 
 .tagsContainer {
@@ -86,8 +118,17 @@
     line-height: 19px;
     gap: 24px;
     color: #FFFFFF;
-    margin-top: 24px;
-    margin-bottom: 24px;
+    margin: 24px 0px;
+
+    @media (max-width: 1441px) {
+        gap: 16px;
+        margin: 16px 0px;
+    }
+
+    @media (max-width: 426px) {
+        font-size: 14px;
+        gap: 8px;
+    }
 }
 
 .description{
@@ -96,12 +137,28 @@
     font-size: 20px;
     font-family: 'Inter';
     font-style: normal;
+
+    @media (max-width: 436px) {
+        font-size: 16px;
+    }
 }
 
 .iconsContainer{
     display: flex;
     margin-top: 40px;
-    gap: 40px
+    gap: 40px;
+
+    @media (max-width: 1441px) {
+        gap: 32px;
+    }
+    @media (max-width: 769px) {
+        gap: 2px;
+        margin-top: 16px;
+    }
+
+    @media (max-width: 436px) {
+        margin-top: 8PX;
+    }
 }
 .iconWrapper{
     display: flex;
@@ -111,6 +168,10 @@
     
     &:hover{
         color: #FFD04C
+    }
+
+    @media (max-width: 769px) {
+        gap: 0;        
     }
 }
 
@@ -125,6 +186,16 @@
     border-style: solid;
     margin-right: 16px;
     cursor: pointer;
+    
+    @media (max-width: 1441px) {
+        transform: scale(48%);
+    }
+}
+
+.iconsText{
+    @media (max-width: 426px) {
+        display: none;
+    }
 }
 
 .closeButton{
@@ -142,6 +213,15 @@
     bottom: 2%;
     right: 2%;
     border-radius: 50%;
+
+    @media (max-width: 1441px) {
+        right: 4%;
+    }
+
+    @media (max-width: 436px) {
+        transform: scale(70%);
+    }
+
 }
 
 .prevBtn{
@@ -153,8 +233,19 @@
     right: 5%;
     border-radius: 50%;
     z-index: 1;
-}
 
+    @media (max-width: 1441px) {
+        right: 4%;
+        bottom: 10%;
+    }
+    @media (max-height: 668px) {
+        bottom: 14%;
+    }
+
+    @media (max-width: 436px) {
+        transform: scale(70%);
+    }
+}
 
 .ind.active {
     background-color: #FFD04C;

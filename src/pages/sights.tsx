@@ -5,6 +5,7 @@ import { dirname } from "path";
 import { useState, useRef } from "react";
 import Down from "../../public/downIcon.svg";
 import styles from "../styles/Sights.module.scss";
+import SideBarItem from "shared/SideBarItem/SideBarItem";
 
 const Sights = ({
   videos,
@@ -14,23 +15,30 @@ const Sights = ({
   documentary,
   staffPicks,
 }) => {
-  const pager = useRef(null);
   const carouselVideos = videos.response.result.slice(15, 24);
 
   return (
-    <div className={styles.pageWrapper} ref={pager}>
-      <MovieCarousel videos={carouselVideos} />
-      <div id="more" className={styles.sightsCategoryWrapper}>
-        <SightsCategory
-          name={"Staff Picks"}
-          data={staffPicks.response.result}
-        />
-        <SightsCategory
-          name={"Kalabars Originals"}
-          data={originals.response.result}
-        />
-        <SightsCategory name={"Comedy"} data={comedy?.response?.result} />
-        <SightsCategory name={"Drama"} data={drama?.response?.result} />{" "}
+    <div className={styles.pageWrapper}>
+      <div className={styles.top}>
+        <SideBarItem/>
+        <div className={styles.content}>
+          <MovieCarousel videos={carouselVideos} />
+          <div id="more" className={styles.sightsCategoryWrapper}>
+            <SightsCategory
+              name={"Staff Picks"}
+              data={staffPicks.response.result}
+            />
+            <SightsCategory
+              name={"Kalabars Originals"}
+              data={originals.response.result}
+            />
+            <SightsCategory name={"Comedy"} data={comedy?.response?.result} />
+            <SightsCategory
+              name={"Drama"}
+              data={drama?.response?.result}
+            />{" "}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -59,11 +67,14 @@ export async function loadVideos() {
   const originals = await originalsGenres.json();
 
   //Drama
-  const dramaGenres = await fetch(process.env.NEXT_PUBLIC_API + `/genres/drama/videos`, {
-    headers: {
-      "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
-    },
-  });
+  const dramaGenres = await fetch(
+    process.env.NEXT_PUBLIC_API + `/genres/drama/videos`,
+    {
+      headers: {
+        "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+      },
+    }
+  );
   const dramaGenre = await dramaGenres.json();
 
   //Documentary
@@ -78,11 +89,14 @@ export async function loadVideos() {
   const documentaryGenre = await documentaryGenres.json();
 
   //Comedy
-  const comedyGenres = await fetch(process.env.NEXT_PUBLIC_API + `/genres/comedy/videos`, {
-    headers: {
-      "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
-    },
-  });
+  const comedyGenres = await fetch(
+    process.env.NEXT_PUBLIC_API + `/genres/comedy/videos`,
+    {
+      headers: {
+        "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+      },
+    }
+  );
   const comedyGenre = await comedyGenres.json();
 
   //Comedy

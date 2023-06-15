@@ -13,11 +13,11 @@ const SightsCard = ({ cardData }) => {
   if (cardData?.square_image === null) {
     return null;
   }
+  console.log("Cards: ", cardData)
 
   return (
     <Link href={`/video/${cardData?.public_id}`}>
       <div className={styles.categoryCardWrapper}>
-
         <div className={styles.innerCard}>
           <img
             src={`${process.env.NEXT_PUBLIC_API}/static/media/videos_images/${cardData?.square_image}`}
@@ -25,36 +25,32 @@ const SightsCard = ({ cardData }) => {
             className={styles.cardImage}
           />
 
-
           <div className={styles.innerContainer}>
-
-
-            <div className={styles.movieTitle}>{cardData?.title.toUpperCase()}</div>
-            <div className={styles.movieType}>Thriller  | 7 Minutes  | Directed by The shadow</div>
-            <div className={styles.movieSummary}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
-
+            <div className={styles.movieTitle}>
+              {cardData?.title.toUpperCase()}
+            </div>
+            <div className={styles.movieType}>
+              {/* Thriller | 7 Minutes | Directed by {cardData?.creators_name} */}
+              7 Minutes | Directed by {cardData?.creators_name}
+            </div>
+            <div className={styles.movieSummary}>
+              {cardData?.description}
+            </div>
 
             <Link href={`/video/${cardData?.public_id}`}>
-
-             <div className={styles.cardBtn}
-
+              <div
+                className={styles.cardBtn}
                 onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}>
-
-              <PlayIcon hovered={hovered} />
+                onMouseLeave={() => setHovered(false)}
+              >
+                <PlayIcon hovered={hovered} initialColor={"gray"} />
                 <p>Play Title</p>
-
               </div>
-              </Link>
-
-              
-
+            </Link>
+          </div>
         </div>
-
-
       </div>
-      </div>
-              </Link>
+    </Link>
   );
 };
 
