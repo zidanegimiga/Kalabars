@@ -24,8 +24,8 @@ const Nav = () => {
   const router = useRouter();
 
   const textColor = {
-    color: router.pathname == "/sights" || "/videos/*" ? "white" : "black"
-  }
+    color: router.pathname == "/sights" || "/videos/*" ? "white" : "black",
+  };
 
   const onSearchSubmit = async (term) => {
     if (term?.length <= 1 || null || undefined) {
@@ -77,7 +77,18 @@ const Nav = () => {
                 src={"/kalabarslogo.svg"}
               />
             </div>
-          </Link>
+            <div className={styles.NavMenuIconBar}>
+              <div className={styles.NavMenuItemChild}></div>
+            </div>
+          </div>
+          <div className={styles.logo} onClick={() => router.push("/")}>
+            <Image
+              width={320}
+              height={80}
+              alt="Logo"
+              src={"/kalabarslogo.svg"}
+            />
+          </div>
           <div className={styles.links} style={textColor}>
             <div className={styles.link}>
               <Link href={"/sights"}>Sights</Link>
