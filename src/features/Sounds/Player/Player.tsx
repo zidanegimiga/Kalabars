@@ -12,33 +12,64 @@ import {
 import { KalabarsContext } from "global/KalabarsContext";
 
 const Player = () => {
-  const [audioPlaying, setAudioPlaying] = useState<boolean>();
-  
+  const [audioPlaying, setAudioPlaying] = useState<boolean>(false);
+  const { openMenu,
+    setOpenMenu,
+    currentAudioPlaying,
+    setCurrentAudioPlaying,
+    audioPlaylist,
+    handleAddToAudioPlaylist,
+    handleClearAudioPlaylist 
+} = useContext(KalabarsContext);
+
+  const [ isQueVisible, setIsQueVisible] = useState(false)
+
+  const isObjectEmpty = (objectName) => {
+    return (
+      objectName &&
+      Object.keys(objectName).length === 0 &&
+      objectName.constructor === Object
+    );
+  };
+
+  const handleDisplayAudioPlaylist = () =>{
+    setIsQueVisible(!isQueVisible)
+  }
+
+  useEffect(() => {
+    const playBufferStatus = isObjectEmpty(currentAudioPlaying);
+    setAudioPlaying(playBufferStatus);
+    console.log("Status: ", audioPlaying);
+  }, [currentAudioPlaying]);
+
   const playAudio = () => {};
   return (
     <>
-      {audioPlaying ? (
         <div className={styles.playerWrapper}>
           <div className={styles.audioMetadata}>
-            <img
-              alt="cover art"
-              src={"/soundExampleImages/coverArt.png"}
-              className={styles.coverArt}
-            />
+            {/* <img
+                    alt={currentAudioPlaying?.title}
+                    src={`https://content.kalabars.com/static/media/audios_images/${currentAudioPlaying?.square_image}`}
+                    className={styles.coverArt}
+                  /> */}
             <div className={styles.audioDetailsRight}>
               <div className={styles.audioTextualData}>
-                <p className={styles.artistName}>Ronnie Okelo</p>
-                <p className={styles.audioTitle}>Podvise</p>
+                <p className={styles.artistName}>
+                  {currentAudioPlaying?.creators_name}
+                </p>
+                <p className={styles.audioTitle}>
+                  {currentAudioPlaying?.title}
+                </p>
               </div>
-              <div className={styles.downloadButton}>
-                {" "}
-                <Download />{" "}
-              </div>
+              {/* <div className={styles.downloadButton}>
+                      {" "}
+                      <Download />{" "}
+                    </div> */}
             </div>
           </div>
           <div className={styles.playbackContainer}>
             <div className={styles.playbackIcons}>
-              <div className={styles.repeat}>
+              <div className={styles.repeat} onClick={handleDisplayAudioPlaylist}>
                 <Repeat />
               </div>
               <div className={styles.rewind}>
@@ -65,8 +96,20 @@ const Player = () => {
             </div>
           </div>
           <div className={styles.volumeContainer}></div>
+          {
+            isQueVisible && (
+                <div className={styles.audioPlaylistContainer}>
+                    {
+                        audioPlaylist.map((playlistItem, index) => (
+                            <div key={index} style={{color: "white"}}>
+                                {playlistItem?.title}
+                            </div>
+                        ))
+                    }
+                </div>
+            )
+          }
         </div>
-      ) : null}
     </>
   );
 };
