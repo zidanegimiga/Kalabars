@@ -31,7 +31,7 @@ const SideBarItem = () => {
     </div>
     <div className={styles.playstoreNavigator}>
       <p>WE&apos;RE ON MOBILE</p>
-      <div className={styles.playstoreButton}>
+      <a className={styles.playstoreButton} href={"https://play.google.com/store/apps/details?id=com.kalabars.kalabars&hl=en&gl=US"}>
         <div className={styles.playIcon}>
           <Playstore />
         </div>
@@ -39,7 +39,7 @@ const SideBarItem = () => {
           <span>GET IT ON</span>
           <p>Google Play</p>
         </div>
-      </div>
+      </a>
     </div>
     <div className={styles.cgLinksNavigator}>
       <Link href={"/privacy"}>
