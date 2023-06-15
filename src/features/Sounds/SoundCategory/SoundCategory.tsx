@@ -38,7 +38,7 @@ const responsive = {
   }
 };
 
-const SoundCategory = ({ title }) => {
+const SoundCategory = ({ title, data }) => {
   return (
     <div className={styles.categoryContainer}>
       <h1>{title}</h1>
@@ -59,14 +59,11 @@ const SoundCategory = ({ title }) => {
         // swipeable={true}
         // centerSlidePercentage={100}
       >
-        <SoundsCard/>
-        <SoundsCard/>
-        <SoundsCard/>
-        <SoundsCard/>
-        <SoundsCard/>
-        <SoundsCard/>
-        <SoundsCard/>
-        <SoundsCard/>
+        {data?.map((audio, index) => {
+          return (
+            <SoundsCard key={index} data={audio}/>
+          )
+        })}
       </Carousel>
     </div>
   );

@@ -13,7 +13,6 @@ const SightsCard = ({ cardData }) => {
   if (cardData?.square_image === null) {
     return null;
   }
-  console.log("Cards: ", cardData)
 
   return (
     <Link href={`/video/${cardData?.public_id}`}>
