@@ -13,16 +13,17 @@ import { KalabarsContext } from "global/KalabarsContext";
 
 const Player = () => {
   const [audioPlaying, setAudioPlaying] = useState<boolean>(false);
-  const { openMenu,
+  const {
+    openMenu,
     setOpenMenu,
     currentAudioPlaying,
     setCurrentAudioPlaying,
     audioPlaylist,
     handleAddToAudioPlaylist,
-    handleClearAudioPlaylist 
-} = useContext(KalabarsContext);
+    handleClearAudioPlaylist,
+  } = useContext(KalabarsContext);
 
-  const [ isQueVisible, setIsQueVisible] = useState(false)
+  const [isQueVisible, setIsQueVisible] = useState(false);
 
   const isObjectEmpty = (objectName) => {
     return (
@@ -32,9 +33,9 @@ const Player = () => {
     );
   };
 
-  const handleDisplayAudioPlaylist = () =>{
-    setIsQueVisible(!isQueVisible)
-  }
+  const handleDisplayAudioPlaylist = () => {
+    setIsQueVisible(!isQueVisible);
+  };
 
   useEffect(() => {
     const playBufferStatus = isObjectEmpty(currentAudioPlaying);
@@ -45,71 +46,67 @@ const Player = () => {
   const playAudio = () => {};
   return (
     <>
-        <div className={styles.playerWrapper}>
-          <div className={styles.audioMetadata}>
+      <div className={styles.playerWrapper}>
+        <div className={styles.audioMetadata}>
+          {isObjectEmpty(currentAudioPlaying) === false && (
             <img
-                    alt={currentAudioPlaying?.title}
-                    src={`https://content.kalabars.com/static/media/audios_images/${currentAudioPlaying?.square_image}`}
-                    className={styles.coverArt}
-                  />
-            <div className={styles.audioDetailsRight}>
-              <div className={styles.audioTextualData}>
-                <p className={styles.artistName}>
-                  {currentAudioPlaying?.creators_name}
-                </p>
-                <p className={styles.audioTitle}>
-                  {currentAudioPlaying?.title}
-                </p>
-              </div>
-              {/* <div className={styles.downloadButton}>
+              alt={currentAudioPlaying?.title}
+              src={`https://content.kalabars.com/static/media/audios_images/${currentAudioPlaying?.square_image}`}
+              className={styles.coverArt}
+            />
+          )}
+          <div className={styles.audioDetailsRight}>
+            <div className={styles.audioTextualData}>
+              <p className={styles.artistName}>
+                {currentAudioPlaying?.creators_name}
+              </p>
+              <p className={styles.audioTitle}>{currentAudioPlaying?.title}</p>
+            </div>
+            {/* <div className={styles.downloadButton}>
                       {" "}
                       <Download />{" "}
                     </div> */}
-            </div>
           </div>
-          <div className={styles.playbackContainer}>
-            <div className={styles.playbackIcons}>
-              <div className={styles.repeat} onClick={handleDisplayAudioPlaylist}>
-                <Repeat />
-              </div>
-              <div className={styles.rewind}>
-                <Rewind />
-              </div>
-              <div className={styles.play}>
-                <Play />
-              </div>
-              <div className={styles.forward}>
-                <Forward />
-              </div>
-              <div className={styles.shuffle}>
-                <Shuffle />
-              </div>
-            </div>
-            <div className={styles.progressArea}>
-              <div className={styles.progressBar}>
-                <audio src={""} />
-              </div>
-              <div className={styles.timer}>
-                <span className={styles.current}>10:09</span>
-                <span className={styles.current}>10:09</span>
-              </div>
-            </div>
-          </div>
-          <div className={styles.volumeContainer}></div>
-          {
-            isQueVisible && (
-                <div className={styles.audioPlaylistContainer}>
-                    {
-                        audioPlaylist.map((playlistItem, index) => (
-                            <div key={index} style={{color: "white"}}>
-                                {playlistItem?.title}
-                            </div>
-                        ))
-                    }
-                </div>
-            )
-          }
         </div>
+        <div className={styles.playbackContainer}>
+          <div className={styles.playbackIcons}>
+            <div className={styles.repeat} onClick={handleDisplayAudioPlaylist}>
+              <Repeat />
+            </div>
+            <div className={styles.rewind}>
+              <Rewind />
+            </div>
+            <div className={styles.play}>
+              <Play />
+            </div>
+            <div className={styles.forward}>
+              <Forward />
+            </div>
+            <div className={styles.shuffle}>
+              <Shuffle />
+            </div>
+          </div>
+          <div className={styles.progressArea}>
+            <div className={styles.progressBar}>
+              <audio src={""} />
+            </div>
+            <div className={styles.timer}>
+              <span className={styles.current}>10:09</span>
+              <span className={styles.current}>10:09</span>
+            </div>
+          </div>
+        </div>
+        <div className={styles.volumeContainer}></div>
+        {isQueVisible && (
+          <div className={styles.audioPlaylistContainer}>
+            {audioPlaylist.map((playlistItem, index) => (
+              <div key={index} style={{ color: "white" }}>
+                {playlistItem?.title}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </>
   );
 };
