@@ -14,20 +14,23 @@
 
 }
 
-// .coverArt{
-//     border-radius: 8px;
-//     width: 120px;
-//     height: 120px;
+.coverArt{
+    border-radius: 8px;
+    width: 120px;
+    height: 120px;
+    background-color: #5e5e5e;
+    outline: none;
+    border-color: navajowhite;
 
-//     @media (max-width: 1441px) {
-//         width: 64px;
-//         height: 64px;        
-//     }
-//     @media (max-width: 426px) {
-//         width: 40px;
-//         height: 40px;        
-//     }
-// }
+    @media (max-width: 1441px) {
+        width: 64px;
+        height: 64px;        
+    }
+    @media (max-width: 426px) {
+        width: 40px;
+        height: 40px;        
+    }
+}
 
 .audioDetailsRight{
     margin-left: 16px;

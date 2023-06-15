@@ -47,11 +47,11 @@ const Player = () => {
     <>
         <div className={styles.playerWrapper}>
           <div className={styles.audioMetadata}>
-            {/* <img
+            <img
                     alt={currentAudioPlaying?.title}
                     src={`https://content.kalabars.com/static/media/audios_images/${currentAudioPlaying?.square_image}`}
                     className={styles.coverArt}
-                  /> */}
+                  />
             <div className={styles.audioDetailsRight}>
               <div className={styles.audioTextualData}>
                 <p className={styles.artistName}>
