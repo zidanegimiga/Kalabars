@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { Close, Search } from "shared/Icons/Twitter";
 import styles from "./Nav.module.scss";
 import { KalabarsContext } from "global/KalabarsContext";
+import SearchInput from "shared/Search/Search";
 
 const Nav = () => {
   const { openMenu, setOpenMenu } = useContext(KalabarsContext);
@@ -62,23 +63,11 @@ const Nav = () => {
     <div className={styles.NavContainer}>
       <div className={styles.NavWrapper}>
         <div className={styles.NavLeft}>
-          {router.pathname === "/about" || router.pathname === "/privacy" || router.pathname === "/termsofuse" || router.pathname === "/" ? null : (
-            <div
-              className={styles.NavMenuIconWrapper}
-              onClick={handleMenuClick}
-            >
-              <div className={styles.NavMenuIconBar}>
-                {" "}
-                <div className={styles.NavMenuItemChild}></div>
-              </div>
-              <div className={styles.NavMenuIconBar}>
-                <div className={styles.NavMenuItemChild}></div>
-              </div>
-              <div className={styles.NavMenuIconBar}>
-                <div className={styles.NavMenuItemChild}></div>
-              </div>
-            </div>
-          )}
+          <div className={openMenu? styles['NavMenuIconWrapper'] + ' ' + styles['NavMenuIconWrapperActive'] : styles['NavMenuIconWrapper']}  onClick={handleMenuClick}>
+            <div className={styles.NavMenuIconBar}> <div className= {styles.NavMenuItemChild}></div></div>
+            <div className={styles.NavMenuIconBar}><div className= {styles.NavMenuItemChild}></div></div>
+            <div className={styles.NavMenuIconBar}><div className= {styles.NavMenuItemChild}></div></div>
+          </div>
           <Link href={"/"}>
             <div className={styles.logo}>
               <Image
@@ -99,17 +88,11 @@ const Nav = () => {
           </div>
         </div>
         <div className={styles.NavRight}>
-          <form className={styles.searchForm}>
-            <input
-              placeholder="What would you like to watch or listen to..."
-              value={searchInput}
-              onChange={(e) => handleSearch(e)}
-              className={styles.SearchBar}
-            />
-            {/* <button className={styles.searchBtn}>
-              <Search />
-            </button> */}
-          </form>
+          <SearchInput 
+          placeholder = "What do you want to watch?"
+          value={searchInput} 
+          handleSearch={handleSearch} 
+          />
         </div>
       </div>
       {searchModal && searchInput.length >= 1 ? (
