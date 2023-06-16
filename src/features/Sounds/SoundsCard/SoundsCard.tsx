@@ -1,26 +1,44 @@
 import Image from "next/image";
+import { useState } from 'react'
 import { AddToPlaylist } from "shared/Icons/Playlist";
-import { useContext } from 'react'
+import { useContext } from "react";
 import { KalabarsContext } from "global/KalabarsContext";
 import styles from "./SoundsCard.module.scss";
+import { PlayIcon } from "shared/Icons/Playback";
 
-const SoundsCard = ({data}) => {
-  const { setNowPlaying } = useContext(KalabarsContext)
+const SoundsCard = ({ data }) => {
+  const [ hovered, setHovered ] = useState(true)
+  const {
+    currentAudioPlaying,
+    setCurrentAudioPlaying,
+    handleAddToAudioPlaylist,
+  } = useContext(KalabarsContext);
 
-  const handleSoundCardClick = () =>{
-    setNowPlaying(data)
-  }
+  const handleSoundCardClick = () => {
+    setCurrentAudioPlaying(data);
+    console.log("Current Audio: ", currentAudioPlaying);
+  };
   return (
-    <div className={styles.categoryCard} onClick={handleSoundCardClick}>
+    <div className={styles.categoryCard}>
+      <div>
+        <div className={styles.cardImg}>
         <Image
           width={196}
           height={196}
           alt="Femmolution"
           src={`https://content.kalabars.com/static/media/audios_images/${data.square_image}`}
         />
+        </div>
+        <div className={styles.playIcon} onClick={handleSoundCardClick}>
+          <PlayIcon hovered={hovered} initialColor={"white"}/>
+        </div>
+      </div>
       <div className={styles.bottomSection}>
         <div className={styles.cardTitle}>{data.title}</div>
-        <div className={styles.playlistIcon}>
+        <div
+          className={styles.playlistIcon}
+          onClick={() => handleAddToAudioPlaylist(data)}
+        >
           <AddToPlaylist />
         </div>
       </div>

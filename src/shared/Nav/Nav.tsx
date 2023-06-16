@@ -1,20 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Link from "next/link";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { Close, Search } from "shared/Icons/Twitter";
 import styles from "./Nav.module.scss";
 import { KalabarsContext } from "global/KalabarsContext";
+import SearchInput from "shared/Search/Search";
 
 const Nav = () => {
-  const {openMenu, setOpenMenu} = useContext(KalabarsContext)
+  const { openMenu, setOpenMenu } = useContext(KalabarsContext);
 
-  const handleMenuClick = () =>{
-    setOpenMenu(!openMenu)
-    console.log(openMenu)
-  }
-  
+  const handleMenuClick = () => {
+    setOpenMenu(!openMenu);
+    console.log(openMenu);
+  };
+
   const [searchModal, setSearchModal] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -23,8 +24,8 @@ const Nav = () => {
   const router = useRouter();
 
   const textColor = {
-    color: router.pathname == "/sights" || "/videos/*" ? "white" : "black"
-  }
+    color: router.pathname == "/sights" || "/videos/*" ? "white" : "black",
+  };
 
   const onSearchSubmit = async (term) => {
     if (term?.length <= 1 || null || undefined) {
@@ -62,7 +63,7 @@ const Nav = () => {
     <div className={styles.NavContainer}>
       <div className={styles.NavWrapper}>
         <div className={styles.NavLeft}>
-          <div className={styles.NavMenuIconWrapper} onClick={handleMenuClick}>
+          <div className={openMenu? styles['NavMenuIconWrapper'] + ' ' + styles['NavMenuIconWrapperActive'] : styles['NavMenuIconWrapper']}  onClick={handleMenuClick}>
             <div className={styles.NavMenuIconBar}> <div className= {styles.NavMenuItemChild}></div></div>
             <div className={styles.NavMenuIconBar}><div className= {styles.NavMenuItemChild}></div></div>
             <div className={styles.NavMenuIconBar}><div className= {styles.NavMenuItemChild}></div></div>
@@ -87,17 +88,11 @@ const Nav = () => {
           </div>
         </div>
         <div className={styles.NavRight}>
-          <form className={styles.searchForm}>
-            <input
-              placeholder="What would you like to watch or listen to..."
-              value={searchInput}
-              onChange={(e) => handleSearch(e)}
-              className={styles.SearchBar}
-            />
-            {/* <button className={styles.searchBtn}>
-              <Search />
-            </button> */}
-          </form>
+          <SearchInput 
+          placeholder = "What do you want to watch?"
+          value={searchInput} 
+          handleSearch={handleSearch} 
+          />
         </div>
       </div>
       {searchModal && searchInput.length >= 1 ? (
