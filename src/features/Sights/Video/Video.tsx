@@ -95,7 +95,7 @@ const VideoPlayer = ({ video }: any) => {
   };
 
   //play/pause
-  const videoHandler = (control) => {
+  const videoHandler = (control: any) => {
     if (control === "play") {
       videoRef.current.play();
       setPlaying(true);
