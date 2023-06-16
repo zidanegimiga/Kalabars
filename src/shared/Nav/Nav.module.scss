@@ -91,15 +91,18 @@
 }
 
 
-.NavMenuIconBar:nth-child(1) {
+
+
+.NavMenuIconWrapperActive .NavMenuIconBar:nth-child(1) {
     transform: translateY(12px) rotate(45deg);
   }
   
-  .NavMenuIconBar:nth-child(2) {
+  .NavMenuIconWrapperActive .NavMenuIconBar:nth-child(2) {
     opacity: 0;
+    transform: scaleX(0);
   }
   
-  .NavMenuIconBar:nth-child(3) {
+  .NavMenuIconWrapperActive .NavMenuIconBar:nth-child(3) {
     transform: translateY(-12px) rotate(-45deg);
   }
   
