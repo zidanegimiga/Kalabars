@@ -13,11 +13,14 @@
     
 
     @media (max-width: 769px) {
-        width: 256px;        
+        width: 256px;   
+        height: 640px;     
     }
 
     @media (max-width: 426px) {
-        width: 80%;               
+        width: 80%; 
+        margin-bottom: 32px; 
+        height: 620px;             
     }
 
     @media (max-width: 376px) {
@@ -56,14 +59,14 @@
     text-transform: capitalize;
 
     @media (max-width: 426px) {
-        font-size: 16px;
+        font-size: 24px;
         text-align: left;
-        margin-left: 16px
+        margin-left: 8px
     }
 }
 
 .cardBtn{
-    bottom: 5%;
+    bottom: 2%;
     width: 60%;
     display: flex;
     border-radius: 4px;    

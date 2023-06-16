@@ -23,7 +23,7 @@ const SightsCard = ({ cardData }) => {
           alt={cardData?.title}
           className={styles.cardImage}
         />
-
+        </Link>
         <div className={styles.innerContainer}>
           <div className={styles.movieTitle}>
             {cardData?.title.toUpperCase()}
@@ -45,9 +45,9 @@ const SightsCard = ({ cardData }) => {
               <PlayIcon hovered={hovered} initialColor={"gray"} />
               <p>Play Title</p>
             </div>
-          </Link>
+            </Link>
         </div>
-      </Link>
+      
     </div>
   );
 };
