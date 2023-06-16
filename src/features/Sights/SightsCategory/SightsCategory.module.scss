@@ -11,7 +11,7 @@
 
     @media (max-width: 426px) {
         padding: 0px 0px;
-        border-top: solid 1px #686868;        
+            
     }
 }
 
@@ -28,8 +28,8 @@
     text-align: left;
     font-family: Ubuntu;
     font-size: 32px;
-    font-weight: 500;    
-}
+    font-weight: 500;
+    
 
 .moreButton{
     width: 70px;
@@ -44,20 +44,25 @@
 .categoryCards{
     display: flex;
     flex-wrap: wrap; 
+    row-gap: 48px;
     width: 100%;
     margin-top: 48px;
     padding: 16px 48px;  
+    margin-bottom: 72px;
 
     @media (max-width: 769px) {
         display: grid;
-        grid-template-columns: auto auto;        
+        grid-template-columns: auto auto;  
+          
     }
 
     @media (max-width: 426px) {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        overflow-x: hidden;       
+        overflow-x: hidden;  
+        row-gap: 0;    
+       
     }
 }
 
