@@ -32,28 +32,20 @@ y.hero {
     width: 100%;
 
     @media (max-width: 2881px) {
-        height: 130vh;
-        width: 100%;
+        height: 100vh;
     }
     @media (max-width: 1441px) {
         height: 125vh;
     }
     @media (max-width: 1025px) {
         height: 100vh;
-        width: 100%;
     }
     @media (max-width: 769px) {
         height: 100vh;
-        width: 100%;
     }
 
     @media (max-width: 436px) {
         height: 50vh;
-        width: 100%;
-    }
-
-    @media (max-width: 376px) {
-        // height: 45vh;
     }
 }
 
