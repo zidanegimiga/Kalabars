@@ -4,7 +4,7 @@ import Layout from "shared/Layout";
 import { AppProps } from "next/app";
 import "../styles/app.scss";
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
-import { KalabarsContext, KalabarsProvider } from "global/KalabarsContext";
+import { KalabarsContext, KalabarsProvider } from "../global/KalabarsContext";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const App: FC = ({ Component, pageProps }: AppProps) => {
