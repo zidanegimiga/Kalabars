@@ -12,6 +12,26 @@ const Sounds = ({ podcasts }) => {
   const [ topAudio, setTopAudio ] = useState([])
   const [ music, setMusic ] = useState([])
 
+  const {
+    openMenu,
+    setOpenMenu,
+    currentAudioPlaying,
+    setCurrentAudioPlaying,
+    audioPlaylist,
+    handleAddToAudioPlaylist,
+    handleClearAudioPlaylist,
+    isCurrentAudioPlaying,
+    setIsCurrentAudioPlaying,
+  } = useContext(KalabarsContext);
+
+  const isObjectEmpty = (objectName) => {
+    return (
+      objectName &&
+      Object.keys(objectName).length === 0 &&
+      objectName.constructor === Object
+    );
+  };
+
   async function loadVideos() {
     //All Videos
     const podAudios = await fetch(process.env.NEXT_PUBLIC_API + `/tags/podcast/audios`, {
@@ -44,6 +64,8 @@ const Sounds = ({ podcasts }) => {
   useEffect(()=>{
     loadVideos()
   }, [])
+
+
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.top}>
@@ -55,9 +77,11 @@ const Sounds = ({ podcasts }) => {
           {/* <SoundCategory title="New Sounds" /> */}
         </div>
       </div>
-      <div className={styles.player}>
+      {isObjectEmpty(currentAudioPlaying) === false && (
+        <div className={styles.player}>
         <Player />
       </div>
+      )}
     </div>
   );
 };

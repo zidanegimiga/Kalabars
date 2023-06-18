@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
-import { useState } from 'react'
+import { useState } from "react";
 import { AddToPlaylist } from "shared/Icons/Playlist";
 import { useContext } from "react";
 import { KalabarsContext } from "global/KalabarsContext";
@@ -7,32 +8,30 @@ import styles from "./SoundsCard.module.scss";
 import { PlayIcon } from "shared/Icons/Playback";
 
 const SoundsCard = ({ data }) => {
-  const [ hovered, setHovered ] = useState(true)
+  const [hovered, setHovered] = useState(true);
   const {
     currentAudioPlaying,
     setCurrentAudioPlaying,
     handleAddToAudioPlaylist,
-    setIsCurrentAudioPlaying
+    setIsCurrentAudioPlaying,
   } = useContext(KalabarsContext);
 
   const handleSoundCardClick = () => {
     setCurrentAudioPlaying(data);
-    setIsCurrentAudioPlaying(false)
+    setIsCurrentAudioPlaying(false);
     console.log("Current Audio: ", currentAudioPlaying);
   };
   return (
     <div className={styles.categoryCard}>
       <div>
-        <div className={styles.cardImg}>
-        <Image
-          width={196}
-          height={196}
+        <img
           alt="Femmolution"
           src={`https://content.kalabars.com/static/media/audios_images/${data.square_image}`}
+          className={styles.cardImg}
         />
-        </div>
+
         <div className={styles.playIcon} onClick={handleSoundCardClick}>
-          <PlayIcon hovered={hovered} initialColor={"white"}/>
+          <PlayIcon hovered={hovered} initialColor={"white"} />
         </div>
       </div>
       <div className={styles.bottomSection}>

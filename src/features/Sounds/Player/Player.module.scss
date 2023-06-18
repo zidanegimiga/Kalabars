@@ -12,6 +12,9 @@
     display:flex;
     align-items: center;
 
+    @media (max-width: 586px) {
+        width: fit-content;
+    }
 }
 
 .coverArt{
@@ -26,35 +29,56 @@
         width: 64px;
         height: 64px;        
     }
+
     @media (max-width: 426px) {
-        width: 40px;
-        height: 40px;        
+        width: 56px;
+        height: 56px;        
     }
 }
 
 .audioDetailsRight{
     margin-left: 16px;
+
+    @media (max-width: 586px) {
+        width: fit-content;
+    }
+
+    @media (max-width: 586px){
+        margin-left: 8px;
+    }
 }
 
 .audioTextualData{
+
+    @media (max-width: 586px) {
+        width: fit-content;
+    }
+
     .artistName{
         color: #E9E9E9;
         font-size: .75rem;
         margin-bottom: -4px;
+
+        @media (max-width: 586px){
+            font-size: 10px;
+        }
     }
+
     .audioTitle{
         color: #ffffff;
         font-size: 1rem;
         font-weight: 600;
-    }
 
-    margin-bottom: -18px;
+        @media (max-width: 586px){
+            font-size: 12px;
+        }
+    }
 }
 
 .downloadButton{
     cursor: pointer;
 
-    @media (max-width: 426px) {
+    @media (max-width: 586px) {
         display: none;
     }
 }
@@ -65,6 +89,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 586px) {
+        width: 50%;
+    }
     
 }
 
@@ -76,7 +104,8 @@
     gap: 24px;
 
     @media (max-width: 426px) {
-        gap: 16px;
+        gap: 2px;
+        display: none;
     }
 }
 
@@ -100,9 +129,9 @@
 
     @media (max-width: 426px) {
         position: absolute;
+        top: -28px;
+        left: -9px;
         width: 100%;
-        bottom: 0;
-        left: 0;
     }
 }
 
@@ -163,4 +192,38 @@
     height: 200px;
     background-color: #FF3354;
     border-radius: 8px 8px 0 0;
+}
+
+.queBtnWrapper{
+    display: flex;
+    flex-direction: column;
+
+    .queBarText{
+        font-size: 6px;
+        color: white;
+    }
+
+}
+.queBtn{
+    width: 24px;
+    height: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: center;
+}
+
+.queBar{
+    height: 3px;
+    width: 100%;
+    background-color: #E9E9E9;
+}
+
+.playIconMobile{
+    display: none;
+    @media (max-width: 586px) {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;        
+    }
 }

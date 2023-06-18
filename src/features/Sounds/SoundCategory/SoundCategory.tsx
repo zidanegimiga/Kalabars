@@ -8,28 +8,33 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 5,
-    slidesToSlide: 2
+    items: 4,
+    slidesToSlide: 3
   },
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 6,
-    slidesToSlide: 2
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
+    breakpoint: { max: 3000, min: 1441 },
     items: 4,
     slidesToSlide: 2
   },
+  laptop: {
+    breakpoint: { max: 1441, min: 1025 },
+    items: 4,
+    slidesToSlide: 2
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 769 },
+    items: 3,
+    slidesToSlide: 2
+  },
   iPadMini: {
-    breakpoint: { max: 769, min: 464 },
+    breakpoint: { max: 769, min: 426 },
     items: 2,
-    slidesToSlide: 1
+    slidesToSlide: 2
   },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
+    breakpoint: { max: 426, min: 376 },
     items: 2,
-    slidesToSlide: 1
+    slidesToSlide: 2
   },
   iPhoneX: {
     breakpoint: { max: 376, min: 0 },
