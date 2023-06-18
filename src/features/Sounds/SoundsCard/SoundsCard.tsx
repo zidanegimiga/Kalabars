@@ -12,10 +12,12 @@ const SoundsCard = ({ data }) => {
     currentAudioPlaying,
     setCurrentAudioPlaying,
     handleAddToAudioPlaylist,
+    setIsCurrentAudioPlaying
   } = useContext(KalabarsContext);
 
   const handleSoundCardClick = () => {
     setCurrentAudioPlaying(data);
+    setIsCurrentAudioPlaying(false)
     console.log("Current Audio: ", currentAudioPlaying);
   };
   return (
