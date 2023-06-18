@@ -26,18 +26,18 @@ const SideBarItem = () => {
       </div>
       <div className={styles.pagesNavigator}>
         <Link href={"/"}>
-          <div className={styles.sidebarItem}>
+          <div className={styles.sidebarItem} onClick={()=> setOpenMenu(false)}>
             <Home />
             <div className={styles.sidebarText}>Home</div>
           </div>
         </Link>
         <Link href={"/sounds"}>
-          <div className={styles.sidebarItem}>
+          <div className={styles.sidebarItem} onClick={()=> setOpenMenu(false)}>
             <Sound />
             <div className={styles.sidebarText}>Sounds</div>
           </div>
         </Link>
-        <Link href={"/sights"}>
+        <Link href={"/sights"} onClick={()=> setOpenMenu(false)}>
           <div className={styles.sidebarItem}>
             <Sights />
             <div className={styles.sidebarText}>Sights</div>
