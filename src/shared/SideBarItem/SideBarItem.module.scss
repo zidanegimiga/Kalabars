@@ -10,6 +10,7 @@
     z-index: 3000;
     transition: all 0.5s ease-in-out;
     overflow-x: hidden;
+    overflow-y: scroll;
 
     @media (max-width: 1700px) {
         padding-top: 100px;        
@@ -28,6 +29,7 @@
     height: 100vh;
     transition: all 0.5s ease-in-out;
     overflow-x: hidden;
+    overflow-y: scroll;
     z-index: 3000;
 
     .playstoreButton{
@@ -60,6 +62,11 @@
 .cgLinksNavigator,
 .playstoreNavigator {
     height: 30%;
+
+    @media (max-width: 426px) {
+        height: fit-content;
+        padding-bottom: 32px;
+    }
 }
 
 .pagesNavigator {}
@@ -123,7 +130,6 @@
     margin-top: 16px;
     cursor: pointer;
     transform: scale(0%);
-    transition: all 0.5s ease-in-out;
 
     &:hover{
         background-color: #ddaf31;
@@ -202,4 +208,17 @@
     margin-left: 16px;
     font-family: Ubuntu;
     font-weight: bold;
+}
+
+.mobileHeader{
+    display: none;
+
+    @media (max-width: 426px){
+        position: absolute;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        top: 0.7%;
+        width: 100%
+    }
 }

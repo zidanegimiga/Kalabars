@@ -10,7 +10,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 const App: FC = ({ Component, pageProps }: AppProps) => {
   return (
     <KalabarsProvider>
-      <NextNProgress color="#29D" startPosition={0.3} stopDelayMs={200} height={3} showOnShallow={true}/>
+      <NextNProgress color="#ff5a5a" startPosition={0.3} stopDelayMs={200} height={3} showOnShallow={true}/>
       <Layout>
         <Component {...pageProps} />
       </Layout>
