@@ -1,6 +1,7 @@
 .NavContainer {
     position: relative;
-    width: 101vw;
+    width: 100vw;
+    background-color: #03030300;
 }
 
 .NavWrapper {
@@ -12,118 +13,63 @@
     border-top: none;
     // backdrop-filter: blur(20px);
     position: fixed;
-    top: 0;
+    top: 0%;
     z-index: 3001;
-    width: 100%;
-    height: 100px;
-    padding: 32px 0px;
-
-    @media (max-width: 1921px) {
-        padding: 24px 40px;
-        height: 80px;
-    }
-
-    @media (max-width: 1601px) {
-        padding: 16px;
-        height: 56px;
-        margin-left: 0px;
-    }
+    width: 100vw;
+    height: 80px;
 
     @media (max-width: 1441px) {
-        height: 40px;
-        padding-left: 0px;
-        margin-left: 0;
+        height: 56px;
     }
-
-    @media (max-width: 426px) {
-        padding: 8px 16px;
-        height: 40px;
+    @media (max-width: 436px) {
         display: none;
-    }
-
-    @media (max-width: 321px) {
-        padding: 16px 16px;
     }
 }
 
 .NavLeft {
     display: flex;
-    margin-left: 0em;
+    margin-left: 132px;
     gap: 8px;
     justify-content: flex-start;
 
-    @media (max-width: 426px) {
-        margin-right: 0;
-        gap: 0
+    @media (max-width: 1601px) {
+        margin-left: 64px;
+    }
+    @media (max-width: 1441px) {
+        margin-left: 32px;
+    }
+    @media (max-width: 1025px) {
+        margin-left: 32px;
+    }
+    @media (max-width: 821px) {
+        margin-left: 16px;
     }
 }
 
-
-.NavMenuIconWrapper {
+.NavRight {
     display: flex;
-    flex-direction: column;
-    height: 2em;
-    width: 40px;
-    gap: 0.4em;
-    align-self: center;
-    margin: 2em;
-    justify-content: center;
-
-}
-
-.NavMenuIconBar {
-    height: 1em;
-    width: 100%;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.2em;
     align-items: center;
-}
-
-.NavMenuItemChild {
-    background-color: black;
-    width: 40px;
-    height: 4px;
-    border-radius: 2;
-    transition: transform 0.3s ease;
-
-}
-
-
-
-
-.NavMenuIconWrapperActive .NavMenuIconBar:nth-child(1) {
-    transform: translateY(12px) rotate(45deg);
-  }
-  
-  .NavMenuIconWrapperActive .NavMenuIconBar:nth-child(2) {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-  
-  .NavMenuIconWrapperActive .NavMenuIconBar:nth-child(3) {
-    transform: translateY(-12px) rotate(-45deg);
-  }
-  
-
-.logo {
-    align-self: center;
-
-    @media (max-width: 1921px) {
-        transform: scale(95%);
-    }
+    margin-right: 132px;
 
     @media (max-width: 1601px) {
-        transform: scale(75%);
+        margin-right: 64px;
     }
 
     @media (max-width: 1441px) {
-        transform: scale(65%);
+        margin-right: 32px;
     }
 
-    
+    @media (max-width: 1025px) {
+        margin-right: 16px;
+    }
+
+    @media (max-width: 821px) {
+        margin-right: 24px;
+    }
+}
+
+.logo {
+    align-self: center;
 }
 
 .links {
@@ -132,221 +78,76 @@
     align-items: center;
     font-family: Ubuntu;
     font-weight: 400;
-    padding-left: 100px;
+    padding-left: 32px;
     gap: 24px;
 
-    @media (max-width: 1601px) {
-        font-size: 30px;
-        padding-left: 0px;
-    }
+    @media (max-width: 1441px) {}
 
-    @media (max-width: 1441px) {
-        font-size: 34px;
-    }
-
-    @media (max-width: 426px) {
-        gap: 8px;
-        font-size: 20px;
+    @media (max-width: 769px) {
         display: none
     }
 }
 
 .link {
-    font-size: 28px;
-
+    font-size: 24px;
     transition: all ease-in-out 0.2s;
     color: #161616;
+    font-weight: bold;
 
     &:hover {
         transform: translateY(-10%);
         color: #ff5a5a;
     }
 
-    @media (max-width: 1801px) {
-        font-size: 32px;
-
-    }
-
-    @media (max-width: 1601px) {
-        font-size: 20px;
-    }
-
     @media (max-width: 1441px) {
-        font-size: 18px;
+        font-size: 20px;        
     }
-
-    @media (max-width: 1367px) {
-        font-size: 16px;
-
-    }
-
-    @media (max-width: 1025px) {
-        font-size: 20px;
-    }
-
-    @media (max-width: 769px) {}
-
-    @media (max-width: 427px) {
-        font-size: 16px;
-
-    }
-
 }
 
-.NavRight {
-    display: flex;
-    align-items: center;
-    margin-right: 156px;
-    justify-content: flex-end;
+.searchresultsModal {
+    // position: relative;
+    // height: 320px;
+    // overflow-y: scroll;
+    // width: 400px;
+    // background-color: #161616;
+    // border-radius: 8px;
+    // z-index: 30;
+    // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    background-color: #161616;
+    z-index: 30;
+    width: 480px;
+    height: fit-content;
+    max-height: 560px;
+    overflow-y: scroll;
+    right: 132px;
+    top: 88px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     @media (max-width: 1601px) {
-        margin-right: 32px;
+        right: 64px;
     }
 
     @media (max-width: 1441px) {
-        margin-right: 40px;
+        right: 32px;
     }
 
     @media (max-width: 1025px) {
-        margin-right: 32px;
-    }
-
-    @media (max-width: 769px) {
-        margin-right: 56px;
+        right: 16px;
     }
 
     @media (max-width: 426px) {
         display: none;
-    }
-}
 
-.searchForm {
-    display: flex;
-    align-items: center;
-    height: 48px;
-    width: 75%;
-
-
-    @media (max-width: 1801px) {
-        height: 48px;
     }
 
-    @media (max-width: 1601px) {
-        height: 24px;
-    }
-
-    @media (max-width: 1441px) {
-        height: 32px;
-    }
-
-    @media (max-width: 1025px) {
-        height: 28px;
-    }
-}
-
-.SearchBar {
-    font-family: Ubuntu;
-    outline: none;
-    background: linear-gradient(91.3deg, rgba(22, 22, 22, 0.873) 4.17%, rgba(22, 22, 22, 0.776) 99.55%);
-    border-radius: 24px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    padding-left: 20px;
-    padding-right: 24px;
-    color: snow;
-    border: solid 1px #161616;
-    font-size: 18px;
-    height: 32px;
-
-    &:placeholder {
-        color: snow;
-    }
-
-    @media (max-width: 2161px) {
-        width: 700px;
-        height: 24px;
-    }
-
-    @media (max-width: 1801px) {
-        font-size: 24px;
-        width: 600px;
-    }
-
-    @media (max-width: 1601px) {
-        font-size: 16px;
-        width: 400px;
-    }
-
-    @media (max-width: 1441px) {
-        width: 380px;
-        height: 32px;
-        padding-top: 8px;
-        padding-bottom: 8px;
-        padding-right: 32px;
-        font-size: 16px;
-    }
-
-    @media (max-width: 1367px) {
-        font-size: 16px;
-    }
-
-    @media (max-width: 1025px) {
-        width: 300px;
-        font-size: 16px;
-    }
-
-    @media (max-width: 769px) {
-        width: 240px;
-    }
-}
-
-.searchBtn {
-    margin-left: -24px;
-    border-radius: 0px 36px 36px 0px;
-    background-color: #161616;
-    height: 100%;
-    outline: none;
-    border: none;
-
-
-    &:hover {
-        background-color: #333232;
-    }
-
-    @media (max-width: 1601px) {
-        height: 100%;
-    }
-
-    @media (max-width: 1441px) {
-        padding: 8px;
-        padding-right: 16px;
-        font-size: 16px;
-    }
 }
 
 .searchresultsModalInnerContainer {
-    position: relative;
-}
-
-.searchresultsModal {
-    position: absolute;
-    height: 320px;
-    overflow-y: scroll;
-    width: 400px;
-    background-color: #161616;
-    border-radius: 8px;
-    z-index: 30;
-    right: 5%;
-    top: 156px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-    @media (max-width: 1441px) {
-        top: 80px;
-    }
-
-    @media (max-width: 426px) {
-        width: 88%;
-    }
+    // position: absolute;
+    // right: 5%;
+    // top: 50%;
 }
 
 .modalHeader {
@@ -410,16 +211,74 @@
     margin-top: 8px;
 }
 
-.navMobileWrapper{
-    display: none;
-    width: 100%;
-    height: 100px;
-    
+.navLogo {
+    align-self: center;
+}
 
+.NavWrapperMobile{
+    display: none;
+    
     @media (max-width: 426px) {
-        display: block;        
+        display: flex;
+        background: linear-gradient(182.7deg, #FFFFFF 2.25%, #ffffff 97.74%);
+        height: 40px;
+        width: 100%;
+        padding-left: 16px;
+        align-items: center;
+        z-index: 30;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;        
     }
 }
-.navLogo{
-    align-self: center;
+
+.leftMobile{
+    display: flex;
+    align-items: center;
+}
+
+.rightMobile{
+    margin-right: 32px;
+}
+
+.searchInputMobile{
+    display: none;
+    z-index: 5050;
+
+    @media (max-width: 426px) {
+        display: flex;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #030303a2;
+        padding-top: 72px;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    width: 100%;
+
+    @media (max-width: 380px) {
+        gap: 24px
+    }
+}
+
+.mobileSearchResultsModal{
+    width: 80%;
+    height: 400px;
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    margin-top: 16px;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    @media (max-width: 380px) {
+        width: 90%;
+    }
 }
