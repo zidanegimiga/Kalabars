@@ -21,7 +21,7 @@
     @media (max-width: 1441px) {
         height: 56px;
     }
-    @media (max-width: 436px) {
+    @media (max-width: 586px) {
         display: none;
     }
 }
@@ -218,7 +218,7 @@
 .NavWrapperMobile{
     display: none;
     
-    @media (max-width: 426px) {
+    @media (max-width: 586px) {
         display: flex;
         background: linear-gradient(182.7deg, #FFFFFF 2.25%, #ffffff 97.74%);
         height: 40px;

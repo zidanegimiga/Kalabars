@@ -1,7 +1,7 @@
 .playIcon{
     position: absolute;
     top: 60%;
-    left: 3%;
+    right: 3%;
     border-radius: 50%;
     background-color: #ff3354;
     display: none;
@@ -14,7 +14,7 @@
 }
 
 .categoryCard{
-    width: 196px;
+    width: 392px;
     height: 100%;
     position: relative;
     transition: all ease-in-out 0.5s;
@@ -26,22 +26,35 @@
             top: 50%;
         }
     }
-    @media (max-width: 426px) {
-        width: 100%
+    @media (max-width: 1441px) {
+        width: 284px;
     }
-    @media (max-width: 415px) {
-        width: 150px
+    @media (max-width: 1141px) {
+        width: 196px
     }
 }
 
 .cardImg{
-    animation: skeleton-loading 1s linear infinite alternate;
+    width: 392px;
+    height: 392px;
+
+    @media (max-width: 1441px) {
+        width: 284px;
+        height: 284px;
+    }
+
+    @media (max-width: 1141px) {
+        width: 196px;
+        height: 196px;
+    }
+    // animation: skeleton-loading 1s linear infinite alternate;
 }
 
 .bottomSection{
     display: flex;
     justify-content: space-between;
     margin-top: 16px;
+    gap: 32px;
 }
 
 .cardTitle{

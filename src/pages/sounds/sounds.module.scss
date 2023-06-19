@@ -30,8 +30,7 @@
 
 .player {
     width: 100vw;
-    padding: 15px;
-    // background-color: #181818;
+    padding: 16px;
     background-color: #3b3b3b;
     position: fixed;
     bottom: 0;
@@ -40,5 +39,10 @@
 
     @media (max-width: 1700px) {
         height: 48px;       
+    }
+
+    @media (max-width: 426px) {
+        height: 48px;
+        padding-left: 8px;       
     }
 }
