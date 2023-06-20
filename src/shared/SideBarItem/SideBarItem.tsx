@@ -37,12 +37,12 @@ const SideBarItem = () => {
             <div className={styles.sidebarText}>Sounds</div>
           </div>
         </Link>
-        <Link href={"/sights"} onClick={()=> setOpenMenu(false)}>
+        {/* <Link href={"/"} onClick={()=> setOpenMenu(false)}>
           <div className={styles.sidebarItem}>
             <Sights />
             <div className={styles.sidebarText}>Sights</div>
           </div>
-        </Link>
+        </Link> */}
       </div>
       <div className={styles.playstoreNavigator}>
         <p>WE&apos;RE ON MOBILE</p>
