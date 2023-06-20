@@ -61,7 +61,18 @@
         flex-direction: column;
         justify-content: center;
         overflow-x: hidden;  
-        row-gap: 0;    
+        row-gap: 0;  
+        margin-top: 24px; 
+       
+    }
+
+    @media (max-width: 496px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow-x: hidden;  
+        row-gap: 0px;  
+        margin-top: 24px; 
        
     }
 }

@@ -45,6 +45,7 @@ const Nav = () => {
         });
         const searchArray = await res.json();
         setSearchResults(searchArray.response.videos);
+        console.log("Search results: ", searchArray);
       } catch (error) {
         console.log("There was a problem");
       }
@@ -170,30 +171,32 @@ const Nav = () => {
             <div className={styles.modalContent}>
               {searchResults?.map((item, index) => (
                 <div key={index}>
-                  <Link href={`/video/${item?.public_id}`}>
-                    <div className={styles.result} key={index}>
-                      <div className={styles.resultimage}>
-                        <img
-                          src={
-                            `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
-                            item.landscape_image
-                          }
-                          width={"96px"}
-                          height={"80px"}
-                          alt={item.title}
-                        />
-                      </div>
-                      <div className={styles.resultDetails}>
-                        <div className={styles.resultTitle}>{item.title}</div>
-                        <div className={styles.resultCreator}>
-                          Creator: {item.creators_name}
+                  {item?.status === "active" && (
+                    <Link href={`/video/${item?.public_id}`}>
+                      <div className={styles.result} key={index}>
+                        <div className={styles.resultimage}>
+                          <img
+                            src={
+                              `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
+                              item.landscape_image
+                            }
+                            width={"96px"}
+                            height={"80px"}
+                            alt={item.title}
+                          />
                         </div>
-                        <div className={styles.resultTime}>
-                          {item.duration} min
+                        <div className={styles.resultDetails}>
+                          <div className={styles.resultTitle}>{item.title}</div>
+                          <div className={styles.resultCreator}>
+                            Creator: {item.creators_name}
+                          </div>
+                          <div className={styles.resultTime}>
+                            {item.duration} min
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
+                  )}
                 </div>
               ))}
             </div>

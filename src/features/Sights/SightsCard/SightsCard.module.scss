@@ -20,12 +20,22 @@
     @media (max-width: 426px) {
         width: 80%; 
         margin-bottom: 32px; 
-        height: 620px;             
+        height: 620px;   
+        margin-left: -8px;          
     }
 
     @media (max-width: 376px) {
-        width: 100%;        
-        min-height: 460px        
+        width: 80%;        
+        min-height: 460px;
+        margin-left: -8px;
+             
+    }
+
+    @media (max-width: 496px) {
+        width: 80%;
+        margin-bottom: 32px; 
+        height: 720px;    
+                 
     }
 }
 
@@ -80,6 +90,11 @@
         margin-left: 4px;
         
     }
+    @media (max-width: 496px) {
+        
+        bottom: 5%;
+    }
+    
 }
 
 .innerContainer{
@@ -87,7 +102,6 @@
 }
 
 .movieSummary{
-    justify-content: flex-start;
     padding-left: 16px;
     padding-right: 16px;
     text-align: left;
