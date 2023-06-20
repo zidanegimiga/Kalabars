@@ -16,8 +16,9 @@ y.hero {
     }
 
     @media (max-width: 436px) {
-        height: 50vh;
+        height: 60vh;
     }
+
     // @media (max-height: 769px) {
     //     height: 70vh;
     // }
@@ -34,18 +35,21 @@ y.hero {
     @media (max-width: 2881px) {
         height: 100vh;
     }
+
     @media (max-width: 1441px) {
         height: 125vh;
     }
+
     @media (max-width: 1025px) {
         height: 100vh;
     }
+
     @media (max-width: 769px) {
         height: 100vh;
     }
 
     @media (max-width: 436px) {
-        height: 50vh;
+        height: 60vh;
     }
 }
 
@@ -76,12 +80,12 @@ y.hero {
         height: 70%;
     }
 
-    @media (max-width: 436px) {
-         height: 65%;
+    @media (max-width: 496px) {
+        display: none;
     }
 }
 
-.detailsContainer{
+.detailsContainer {
     position: relative;
 }
 
@@ -123,7 +127,7 @@ y.hero {
     }
 }
 
-.description{
+.description {
     text-align: left;
     color: white;
     font-size: 20px;
@@ -135,7 +139,7 @@ y.hero {
     }
 }
 
-.iconsContainer{
+.iconsContainer {
     display: flex;
     margin-top: 40px;
     gap: 40px;
@@ -143,6 +147,7 @@ y.hero {
     @media (max-width: 1441px) {
         gap: 32px;
     }
+
     @media (max-width: 769px) {
         gap: 2px;
         margin-top: 16px;
@@ -152,22 +157,23 @@ y.hero {
         margin-top: 8PX;
     }
 }
-.iconWrapper{
+
+.iconWrapper {
     display: flex;
     align-items: center;
     color: white;
     cursor: pointer;
-    
-    &:hover{
+
+    &:hover {
         color: #FFD04C
     }
 
     @media (max-width: 769px) {
-        gap: 0;        
+        gap: 0;
     }
 }
 
-.icon{
+.icon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -178,25 +184,25 @@ y.hero {
     border-style: solid;
     margin-right: 16px;
     cursor: pointer;
-    
+
     @media (max-width: 1441px) {
         transform: scale(48%);
     }
 }
 
-.iconsText{
+.iconsText {
     @media (max-width: 426px) {
         display: none;
     }
 }
 
-.closeButton{
+.closeButton {
     position: absolute;
     top: -7%;
     right: -2%
 }
 
-.nextBtn{
+.nextBtn {
     color: white;
     display: flex;
     justify-content: center;
@@ -210,13 +216,13 @@ y.hero {
         right: 4%;
     }
 
-    @media (max-width: 436px) {
-        transform: scale(70%);
+    @media (max-width: 496px) {
+        display: none;
     }
 
 }
 
-.prevBtn{
+.prevBtn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -230,20 +236,122 @@ y.hero {
         right: 4%;
         bottom: 10%;
     }
+
     @media (max-height: 668px) {
         bottom: 14%;
     }
 
-    @media (max-width: 436px) {
-        transform: scale(70%);
+    @media (max-width: 496px) {
+        display: none;
     }
 }
 
-.ind.active {
-    background-color: #FFD04C;
-    transition: 500ms 200ms;
+
+.detailsWrapperMobile {
+    display: none;
+
+    @media (max-width: 496px) {
+        display: block;
+        width: 100%;
+        height: 70%;
+        background: linear-gradient(0deg, #1A1A1A 2.25%, rgba(26, 26, 26, 0) 97.74%);
+        position: absolute;
+        bottom: 0;
+        padding: 40px 16px 9px 16px;
+
+        h2 {
+            font-family: "Ubuntu";
+            font-weight: 500;
+            font-size: 32px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+    }
 }
 
-.ind:not(:last-child) {
-    margin-right: 1.4rem;
+.videoDetails,
+.buttonRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.buttonRow {
+    margin-top: 8px;
+    padding: 0px 0px;
+    margin-top: 14px;
+}
+
+.genre {
+    color: white;
+    border: white solid 1.5px;
+    padding: 4px 8px;
+    font-family: 'Ubuntu';
+    font-size: 16px;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.category {
+    color: #FFFFFF;
+    font-family: 'Ubuntu';
+}
+
+.addToWatchList{
+    width: 160px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #FFFFFF;
+    border-radius: 16px;
+    
+    p{
+        text-align: center;
+        color:#FFFFFF;
+        font-family: 'Ubuntu';
+        font-size: 14px;
+
+        @media (max-width: 496px) {
+            font-size: 10px;
+        }
+    }
+
+    @media (max-width: 496px) {
+        width: 132px;
+    }
+}
+
+.redButton {
+    background-color: #FB1036;
+    display: flex;
+    align-items: center;
+    width: 160px;
+    height: 40px;
+    border-radius: 16px;
+
+    p {
+        color: #FFFFFF;
+        font-size: 14px;
+        font-family: 'Ubuntu';
+        text-align: center;
+
+        @media (max-width: 496px) {
+            font-size: 10px;
+        }
+    }
+
+    @media (max-width: 496px) {
+        width: 132px;
+    }
+}
+
+// .ind.active {
+//     background-color: #FFD04C;
+//     transition: 500ms 200ms;
+// }
+
+// .ind:not(:last-child) {
+//     margin-right: 1.4rem;
+// }

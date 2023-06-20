@@ -124,6 +124,24 @@ const Hero = ({ videos }) => {
                   </div> */}
                 </div>
               </div>
+              <div className={styles.detailsWrapperMobile}>
+                <h2>Alice</h2>
+                <div className={styles.videoDetails}>
+                  <div className={styles.genre}>Thriller</div>
+                  <div className={styles.category}>Short Film</div>
+                  <div className={styles.category}>Liz Kilili</div>
+                  <div className={styles.category}>4 min</div>
+                </div>
+                <div className={styles.buttonRow}>
+                  <div className={styles.redButton}>
+                    <PlayIcon hovered={hovered} initialColor={"white"}/>
+                    <p>Start Watching</p>
+                  </div>
+                  <div className={styles.addToWatchList}>
+                    <p>Add to watchlist</p>
+                  </div>
+                </div>
+              </div>
             </div>
           );
         })}
