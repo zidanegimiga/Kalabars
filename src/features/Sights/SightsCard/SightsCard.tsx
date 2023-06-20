@@ -33,7 +33,7 @@ const SightsCard = ({ cardData }) => {
             7 Minutes | Directed by {cardData?.creators_name}
           </div>
           <div className={styles.movieSummary}>
-            {`${cardData?.description.slice(0, 100)} . . .`}
+            {`${cardData?.description.slice(0, 100)}...`}
           </div>
 
           <Link href={`/video/${cardData?.public_id}`}>
