@@ -1,6 +1,7 @@
 .hero {
     height: 100vh;
     position: relative;
+    overvlow-y: hidden;
 
     @media (max-width: 2881px) {
         height: 100vh;
@@ -33,7 +34,7 @@
     width: 100%;
 
     @media (max-width: 2881px) {
-        height: 100vh;
+        height: 110vh;
     }
 
     @media (max-width: 1441px) {
