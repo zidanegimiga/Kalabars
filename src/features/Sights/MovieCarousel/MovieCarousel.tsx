@@ -98,7 +98,7 @@ const Hero = ({ videos }) => {
                       </div>
                       <div className={styles.iconsText}>Add to watch list</div>
                     </div>
-                    <div className={styles.iconWrapper}>
+                    <div className={styles.iconWrapper} onClick={() => router.push(`/#more`)}>
                       <div className={styles.icon}>
                         <Image
                           src={"/mouse.png"}
