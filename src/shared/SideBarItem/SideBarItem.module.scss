@@ -133,8 +133,9 @@
 
     &:hover{
         background-color: #ddaf31;
+        border: 2px solid #ffffff;
 
-        .playstoreButtonText{
+        .playstoreButtonText, span, p{
             color: white
         }
     }
