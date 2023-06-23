@@ -69,12 +69,13 @@
     padding-right: 16px;
     display: flex;
     flex-direction: column;
-    max-height: 160px;
+    max-height: 200px;
     min-height: 100px;
     justify-content: flex-start;
 
     p {
         color: #262626;
+        font-family: 'Actor';
     }
 }
 
