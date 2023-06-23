@@ -26,7 +26,7 @@ const SightsCard = ({ cardData }) => {
       <div className={styles.innerContainer}>
         <div className={styles.movieTitle}>{cardData?.title.toUpperCase()}</div>
         <div className={styles.movieType}>
-          {/* Thriller | 7 Minutes | Directed by {cardData?.creators_name} */}7
+          Thriller | 7
           Minutes | Directed by {cardData?.creators_name}
         </div>
         <div className={styles.movieSummary}>
