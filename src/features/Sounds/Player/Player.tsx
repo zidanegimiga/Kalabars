@@ -12,6 +12,7 @@ import {
 import { Play, Pause } from "shared/Icons/Playback";
 import { KalabarsContext } from "global/KalabarsContext";
 import { AddToPlaylist, AddToPlaylistWhite, Playlist } from "shared/Icons/Playlist";
+import { Close } from "shared/Icons/Twitter";
 
 const Player = () => {
   const [isQueVisible, setIsQueVisible] = useState(false);
@@ -117,6 +118,12 @@ const Player = () => {
     setAudioTime(audioRef.current.duration);
   };
 
+  const handlePlaylistItemClick = (data) => {
+    setCurrentAudioPlaying(data);
+    setIsCurrentAudioPlaying(false);
+    console.log("Current Audio: ", currentAudioPlaying);
+  };
+
   useEffect(() => {
     setProgress(0);
     const playBufferStatus = isObjectEmpty(currentAudioPlaying);
@@ -143,6 +150,7 @@ const Player = () => {
               {currentAudioPlaying?.creators_name}
             </p>
             <p className={styles.audioTitle}>{currentAudioPlaying?.title.slice(0, 11)}...</p>
+            <p className={styles.audioTitleMobile}>{currentAudioPlaying?.title}</p>
           </div>
           {/* <div className={styles.downloadButton}>
                       {" "}
@@ -152,9 +160,9 @@ const Player = () => {
       </div>
       <div className={styles.playbackContainer}>
         <div className={styles.playbackIcons}>
-          <div className={styles.repeat} onClick={handleDisplayAudioPlaylist}>
+          {/* <div className={styles.repeat}>
             <Repeat />
-          </div>
+          </div> */}
           <div className={styles.rewind} onClick={revert}>
             <Rewind />
           </div>
@@ -178,9 +186,9 @@ const Player = () => {
           <div className={styles.forward} onClick={fastForward}>
             <Forward />
           </div>
-          <div className={styles.shuffle}>
+          {/* <div className={styles.shuffle}>
             <Shuffle />
-          </div>
+          </div> */}
         </div>
         <div
           className={styles.progressArea}
@@ -232,19 +240,42 @@ const Player = () => {
             />
           </div>
         )}
-        {/* <div className={styles.queBtnWrapper}>
-          <AddToPlaylistWhite />
-          <p className={styles.queBarText}> QUEUE </p>
-        </div> */}
+        <div className={styles.queBtnWrapper} >
+          {
+            isQueVisible ? <Close action={()=> setIsQueVisible(false)}/> : <div onClick={()=> setIsQueVisible(true)}><AddToPlaylistWhite /></div>
+          }          
+        </div>
       </div>
-      <div className={styles.volumeContainer}></div>
+      <div className={styles.volumeContainer}>
+      <div className={styles.queBtnWrapper} >
+          {
+            isQueVisible ? <Close action={()=> setIsQueVisible(false)}/> : <div onClick={()=> setIsQueVisible(true)}><AddToPlaylistWhite /></div>
+          }          
+        </div>
+      </div>
       {isQueVisible && (
         <div className={styles.audioPlaylistContainer}>
+          <div className={styles.audioPlaylistWrapper}>
+            <div className={styles.playlistHeader}>Queue</div>
           {audioPlaylist.map((playlistItem, index) => (
-            <div key={index} style={{ color: "white" }}>
-              {playlistItem?.title}
+            // <div key={index} style={{ color: "white" }}>
+            //   {playlistItem?.title}
+            // </div>
+            <div className={styles.playlistItem} key={index} onClick={()=>handlePlaylistItemClick(playlistItem)}>
+              <div className={styles.playlistItemImage}>
+                <Image src={`https://content.kalabars.com/static/media/audios_images/${playlistItem?.square_image}`} width={80} height={80} alt="playlist"/>
+              </div>
+              <div className={styles.playlistItemTitle}>
+                {playlistItem?.title}
+              </div>
             </div>
           ))}
+          {
+            audioPlaylist.length === 0 && (
+              <div className={styles.playlistEmptyStatus}> Playlist Empty</div>
+            )
+          }
+          </div>
         </div>
       )}
     </div>
