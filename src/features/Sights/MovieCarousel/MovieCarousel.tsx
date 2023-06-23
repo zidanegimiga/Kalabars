@@ -141,7 +141,7 @@ const Hero = ({ videos }) => {
                   <div className={styles.category}>{video.duration} min</div>
                 </div>
                 <div className={styles.buttonRow}>
-                  <div className={styles.redButton}>
+                  <div className={styles.redButton} onClick={() => router.push(`/video/${video.public_id}`)}>
                     <PlayIcon hovered={hovered} initialColor={"white"} />
                     <p>Start Watching</p>
                   </div>
