@@ -80,7 +80,7 @@ const Nav = () => {
           </Link>
           <div className={styles.links} style={textColor}>
             <div className={styles.link}>
-              <Link href={"/sights"}>Sights</Link>
+              <Link href={"/"}>Sights</Link>
             </div>
             <div className={styles.link}>
               <Link href={"/sounds"}>Sounds</Link>
