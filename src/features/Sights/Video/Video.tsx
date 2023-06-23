@@ -187,9 +187,9 @@ const VideoPlayer = ({ video }: any) => {
         id="video1"
         ref={videoRef}
         onEnded={() => setPlaying(false)}
-        // onClick={() => {
-        //   playing ? videoHandler("pause") : videoHandler("play");
-        // }}
+        onClick={() => {
+          playing ? videoHandler("pause") : videoHandler("play");
+        }}
         onProgress={handleBuffering}
         onLoadedMetadata={handleLoadedMetadata}
         onLoadedData={() => console.log("Video data loaded")}
