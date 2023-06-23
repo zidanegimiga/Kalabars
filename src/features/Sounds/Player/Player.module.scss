@@ -68,9 +68,22 @@
         color: #ffffff;
         font-size: 1rem;
         font-weight: 600;
+        display: block;
 
         @media (max-width: 586px){
             font-size: 12px;
+            display: none;
+        }
+    }
+    .audioTitleMobile{
+        color: #ffffff;
+        font-size: 1rem;
+        font-weight: 600;
+        display: none;
+
+        @media (max-width: 586px){
+            font-size: 12px;
+            display: block
         }
     }
 }
@@ -129,7 +142,7 @@
 
     @media (max-width: 426px) {
         position: absolute;
-        top: -28px;
+        bottom: -16px;
         left: -9px;
         width: 100%;
     }

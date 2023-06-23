@@ -143,6 +143,7 @@ const Player = () => {
               {currentAudioPlaying?.creators_name}
             </p>
             <p className={styles.audioTitle}>{currentAudioPlaying?.title.slice(0, 11)}...</p>
+            <p className={styles.audioTitleMobile}>{currentAudioPlaying?.title}</p>
           </div>
           {/* <div className={styles.downloadButton}>
                       {" "}
