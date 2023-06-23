@@ -61,7 +61,7 @@ const Hero = ({ videos }) => {
               </div>
               <div className={styles.detailsWrapper}>
                 <div className={styles.detailsContainer}>
-                  <div className={styles.title}> {video.title} </div>
+                  <div className={styles.title}> {video.title.toUpperCase()} </div>
 
                   {showDetails && (
                     <>
