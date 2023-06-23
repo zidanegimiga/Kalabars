@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import { useState } from "react";
-import { AddToPlaylist } from "shared/Icons/Playlist";
+import { AddToPlaylist, Check } from "shared/Icons/Playlist";
 import { useContext } from "react";
 import { KalabarsContext } from "global/KalabarsContext";
 import styles from "./SoundsCard.module.scss";
@@ -9,12 +9,18 @@ import { PlayIcon } from "shared/Icons/Playback";
 
 const SoundsCard = ({ data }) => {
   const [hovered, setHovered] = useState(true);
+  const [checked, setChecked] = useState(false);
   const {
     currentAudioPlaying,
     setCurrentAudioPlaying,
     handleAddToAudioPlaylist,
     setIsCurrentAudioPlaying,
   } = useContext(KalabarsContext);
+
+  const handlePlaylistAdd = (data) =>{
+    handleAddToAudioPlaylist(data);
+    setChecked(!checked)
+  }
 
   const handleSoundCardClick = () => {
     setCurrentAudioPlaying(data);
@@ -38,9 +44,12 @@ const SoundsCard = ({ data }) => {
         <div className={styles.cardTitle}>{data.title}</div>
         <div
           className={styles.playlistIcon}
-          onClick={() => handleAddToAudioPlaylist(data)}
+          // onClick={}
+          onClick={() => handlePlaylistAdd(data)}
         >
-          <AddToPlaylist />
+          {
+            checked ? <Check /> : <AddToPlaylist />
+          }
         </div>
       </div>
     </div>
