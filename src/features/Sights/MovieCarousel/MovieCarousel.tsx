@@ -64,7 +64,7 @@ const Hero = ({ videos }) => {
                   <div className={styles.title}> {video.title.toUpperCase()} </div>
 
                   {showDetails && (
-                    <>
+                    <div>
                       <div className={styles.tagsContainer}>
                         <div>Thriller</div>
                         <div> | </div>
@@ -75,9 +75,9 @@ const Hero = ({ videos }) => {
                       <div className={styles.description}>
                         {video.description}
                       </div>
-                    </>
+                    </div>
                   )}
-                  <div className={styles.iconsContainer}>
+                  <div className={styles.iconsContainer} style={{marginTop: "48px"}}>
                     <div
                       className={styles.iconWrapper}
                       onClick={() => router.push(`/video/${video.public_id}`)}
