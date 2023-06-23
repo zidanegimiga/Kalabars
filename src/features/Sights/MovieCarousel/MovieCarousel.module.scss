@@ -37,7 +37,7 @@
     }
 
     @media (max-width: 1441px) {
-        height: 125vh;
+        height: 180vh;
     }
 
     @media (max-width: 1025px) {
@@ -141,7 +141,8 @@
 
 .iconsContainer {
     display: flex;
-    margin-top: 40px;
+    // margin-top: 40px;
+    margin-left: -16px;
     gap: 40px;
 
     @media (max-width: 1441px) {
@@ -257,12 +258,12 @@
         background: linear-gradient(0deg, #1A1A1A 2.25%, rgba(26, 26, 26, 0) 97.74%);
         position: absolute;
         bottom: 0;
-        padding: 40px 16px 9px 16px;
+        padding: 40px 16px 0px 16px;
 
         h2 {
             font-family: "Ubuntu";
             font-weight: 500;
-            font-size: 32px;
+            font-size: 24px;
             text-align: center;
             color: #ffffff;
         }
@@ -275,6 +276,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.videoDetails{
+    gap: 4px
 }
 
 .buttonRow {
@@ -296,6 +301,7 @@
 .category {
     color: #FFFFFF;
     font-family: 'Ubuntu';
+    font-size: 16px;
 }
 
 .addToWatchList{
