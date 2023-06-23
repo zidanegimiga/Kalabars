@@ -86,11 +86,11 @@ const Sight = ({ videos }: any) => {
                 </div>
               </div>
             </div>
-            <div className={styles.playlistBox}>
+            {/* <div className={styles.playlistBox}>
               <h2>Playlist</h2>
               <Playlist />
               <p>Playlist Empty</p>
-            </div>
+            </div> */}
           </div>
           <div className={styles.suggestedVideos}>
             <SightsCategory name={"You might like:"} data={suggestedVideos} />
