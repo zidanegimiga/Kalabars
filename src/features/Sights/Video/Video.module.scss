@@ -225,12 +225,12 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  aspect-ratio: 16/ 9;
-  top: -1rem;
+  // aspect-ratio: 16/ 9;
+  top: 0;
   transform: translate(-50%, -100%);
   left: calc(var(--hover-position) * 100%);
   border-radius: .25rem;
-  border: 2px solid white;
+  // border: 2px solid white;
   display: none;
   justify-content: center;
 }
@@ -238,7 +238,7 @@
 .previewImgTime {
   color: white;
   background-color: #1a1a1a;
-  border-top: 2px solid white;
+  // border-top: 2px solid white;
   text-align: center;
 }
 
