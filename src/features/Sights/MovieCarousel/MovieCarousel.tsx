@@ -13,6 +13,8 @@ import { PlayIcon } from "shared/Icons/Playback";
 const Hero = ({ videos }) => {
   const router = useRouter();
   const [hovered, setHovered] = useState();
+  const [showDetails, setShowDetails] = useState(false);
+  console.log(videos);
 
   return (
     <div>
@@ -25,30 +27,20 @@ const Hero = ({ videos }) => {
         // autoPlay={true}
         dynamicHeight={false}
         renderArrowNext={(clickHandler, hasNext) => {
-          if(hasNext){
-            return(
+          if (hasNext) {
+            return (
               <div className={styles.nextBtn} onClick={clickHandler}>
-                <Image
-                  src={'/next.png'}
-                  width={32}
-                  height={32}
-                  alt="next"
-                />              
+                <Image src={"/next.png"} width={32} height={32} alt="next" />
               </div>
-            )
+            );
           }
         }}
         renderArrowPrev={(clickHandler, hasPrev) => {
-          return(
+          return (
             <div className={styles.prevBtn} onClick={clickHandler}>
-                <Image
-                  src={'/prev.png'}
-                  width={32}
-                  height={32}
-                  alt="next"
-                />              
+              <Image src={"/prev.png"} width={32} height={32} alt="next" />
             </div>
-          )
+          );
         }}
       >
         {videos.map(function (video, index) {
@@ -69,27 +61,31 @@ const Hero = ({ videos }) => {
               </div>
               <div className={styles.detailsWrapper}>
                 <div className={styles.detailsContainer}>
-                  <div className={styles.title}>
-                    {" "}
-                    {video.title}
-                    {" "}
-                  </div>
-                  <div className={styles.tagsContainer}>
-                    <div>Thriller</div>
-                    <div> | </div>
-                    <div> {video.duration} Minutes </div>
-                    <div> | </div>
-                    <div> Directed by the Shadow </div>
-                  </div>
-                  <div className={styles.description}>
-                    {video.description}
-                  </div>
+                  <div className={styles.title}> {video.title} </div>
+
+                  {showDetails && (
+                    <>
+                      <div className={styles.tagsContainer}>
+                        <div>Thriller</div>
+                        <div> | </div>
+                        <div> {video.duration} Minutes </div>
+                        <div> | </div>
+                        <div> Directed by {video.creators_name} </div>
+                      </div>
+                      <div className={styles.description}>
+                        {video.description}
+                      </div>
+                    </>
+                  )}
                   <div className={styles.iconsContainer}>
-                    <div className={styles.iconWrapper}  onClick={() => router.push(`/video/${video.public_id}`)}>
+                    <div
+                      className={styles.iconWrapper}
+                      onClick={() => router.push(`/video/${video.public_id}`)}
+                    >
                       <div className={styles.icon}>
                         <PlayIcon hovered={hovered} initialColor={"white"} />
                       </div>
-                      <div className={styles.iconsText} >Play Title</div>
+                      <div className={styles.iconsText}>Play Title</div>
                     </div>
                     <div className={styles.iconWrapper}>
                       <div className={styles.icon}>
@@ -114,27 +110,39 @@ const Hero = ({ videos }) => {
                       <div className={styles.iconsText}>Scroll for more</div>
                     </div>
                   </div>
-                  {/* <div className={styles.closeButton}>
-                    <Image
-                      src={"/close.png"}
-                      width={44}
-                      height={49}
-                      alt="clock icon"
-                    />
-                  </div> */}
+                  <div
+                    className={styles.closeButton}
+                    onClick={() => setShowDetails(!showDetails)}
+                  >
+                    {showDetails ? (
+                      <Image
+                        src={"/close.png"}
+                        width={44}
+                        height={48}
+                        alt="clock icon"
+                      />
+                    ) : (
+                      <Image
+                        src={"/maximize.png"}
+                        width={44}
+                        height={44}
+                        alt="clock icon"
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
               <div className={styles.detailsWrapperMobile}>
-                <h2>Alice</h2>
+                <h2>{video.title}</h2>
                 <div className={styles.videoDetails}>
                   <div className={styles.genre}>Thriller</div>
                   <div className={styles.category}>Short Film</div>
-                  <div className={styles.category}>Liz Kilili</div>
-                  <div className={styles.category}>4 min</div>
+                  <div className={styles.category}>{video.creators_name}</div>
+                  <div className={styles.category}>{video.duration} min</div>
                 </div>
                 <div className={styles.buttonRow}>
                   <div className={styles.redButton}>
-                    <PlayIcon hovered={hovered} initialColor={"white"}/>
+                    <PlayIcon hovered={hovered} initialColor={"white"} />
                     <p>Start Watching</p>
                   </div>
                   <div className={styles.addToWatchList}>
