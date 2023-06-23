@@ -13,7 +13,7 @@ import { PlayIcon } from "shared/Icons/Playback";
 const Hero = ({ videos }) => {
   const router = useRouter();
   const [hovered, setHovered] = useState();
-  const [showDetails, setShowDetails] = useState(false);
+  const [showDetails, setShowDetails] = useState(true);
   console.log(videos);
 
   return (
@@ -24,7 +24,7 @@ const Hero = ({ videos }) => {
         showIndicators={false}
         showThumbs={false}
         infiniteLoop={true}
-        // autoPlay={true}
+        autoPlay={true}
         dynamicHeight={false}
         renderArrowNext={(clickHandler, hasNext) => {
           if (hasNext) {
