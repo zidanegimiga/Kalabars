@@ -256,7 +256,10 @@ const Player = () => {
       {isQueVisible && (
         <div className={styles.audioPlaylistContainer}>
           <div className={styles.audioPlaylistWrapper}>
-            <div className={styles.playlistHeader}>Playlist</div>
+            <div className={styles.playlistHeader}>
+              <h2>Playlist</h2>
+              <Close action={()=> setIsQueVisible(false)}/>
+            </div>
           {audioPlaylist.map((playlistItem, index) => (
             // <div key={index} style={{ color: "white" }}>
             //   {playlistItem?.title}

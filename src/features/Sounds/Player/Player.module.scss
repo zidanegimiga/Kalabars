@@ -250,6 +250,14 @@
         justify-content: center;
         background: #181818;
         z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h2{
+            margin-left: 16px;
+            font-size: 24px;
+        }
     }
 }
 
