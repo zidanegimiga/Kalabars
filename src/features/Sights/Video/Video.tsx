@@ -50,17 +50,6 @@ const VideoPlayer = ({ video }: any) => {
     }
   };
 
-  useEffect(() => {
-    const vidDuration = videoRef?.current?.duration;
-    setVideoTime(vidDuration);
-    const duration = formatDuration(videoTime);
-    setVideoDuration(duration);
-  }, []);
-
-  const handleLoadedMetadata = () => {
-    setVideoTime(videoRef.current.duration);
-  };
-
   const handleBuffering = () => {
     const video = videoRef.current;
     const bufferedTime = video.buffered.length > 0 ? video.buffered.end(0) : 0;
@@ -147,15 +136,48 @@ const VideoPlayer = ({ video }: any) => {
     setVolume(Math.floor(videoRef.current.volume * 100));
   };
 
+  const handleLoadedMetadata = () => {
+    setVideoTime(videoRef.current.duration);
+  };
+
+  const handleKeyDown = event => {
+    switch(event.key){
+      case 'm': {
+        if(muted){
+          handleVolumeUnmute()
+        } else{
+          handleVolumeMute()
+        }
+      } break;
+      case ' ': {
+        if(playing){
+          videoHandler("pause")
+        } else{
+          videoHandler("play")
+        }
+      }
+
+      default:
+        console.log("Yay")   
+    }
+  };
+
+  useEffect(() => {
+    const vidDuration = videoRef?.current?.duration;
+    setVideoTime(vidDuration);
+    const duration = formatDuration(videoTime);
+    setVideoDuration(duration);
+  }, []);
+
   return (
-    <div className={styles.videoWrapper} ref={videoContainer}>
+    <div className={styles.videoWrapper} ref={videoContainer} tabIndex={1  } onKeyDown={(e)=> handleKeyDown(e)}>
       <video
         id="video1"
         ref={videoRef}
         onEnded={() => setPlaying(false)}
-        onClick={() => {
-          playing ? videoHandler("pause") : videoHandler("play");
-        }}
+        // onClick={() => {
+        //   playing ? videoHandler("pause") : videoHandler("play");
+        // }}
         onProgress={handleBuffering}
         onLoadedMetadata={handleLoadedMetadata}
         onLoadedData={() => console.log("Video data loaded")}
