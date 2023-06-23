@@ -73,9 +73,9 @@ const SideBarItem = () => {
           <p>TERMS OF USE</p>
         </Link>
       </div>
-      <div className={styles.partners}>
+      {/* <div className={styles.partners}>
         <h3>Our Partners</h3>
-      </div>
+      </div> */}
     </div>
   );
 };
