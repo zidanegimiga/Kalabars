@@ -155,7 +155,19 @@ const VideoPlayer = ({ video }: any) => {
         } else{
           videoHandler("play")
         }
-      }
+      } break;
+      
+      case 'ArrowRight':{
+        fastForward()
+      } break;
+
+      case 'ArrowLeft':{
+        revert()
+      } break;
+
+      case 'f':{
+        fullScreen()
+      } break;
 
       default:
         console.log("Yay")   
