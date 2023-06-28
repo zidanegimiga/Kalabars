@@ -7,10 +7,10 @@ import { KalabarsContext } from "global/KalabarsContext";
 import Link from "next/link";
 import SideBarItem from "shared/SideBarItem/SideBarItem";
 
-const Sounds = ({ podcasts }) => { 
-  const [ pods, setPodcasts ] = useState([])
-  const [ topAudio, setTopAudio ] = useState([])
-  const [ music, setMusic ] = useState([])
+const Sounds = ({ podcasts }) => {
+  const [pods, setPodcasts] = useState([]);
+  const [topAudio, setTopAudio] = useState([]);
+  const [music, setMusic] = useState([]);
 
   const {
     openMenu,
@@ -34,37 +34,44 @@ const Sounds = ({ podcasts }) => {
 
   async function loadVideos() {
     //All Videos
-    const podAudios = await fetch(process.env.NEXT_PUBLIC_API + `/tags/podcast/audios`, {
-      headers: {
-        "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
-      },
-    });
+    const podAudios = await fetch(
+      process.env.NEXT_PUBLIC_API + `/tags/podcast/audios`,
+      {
+        headers: {
+          "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+        },
+      }
+    );
     const podcasts = await podAudios.json();
-    setPodcasts( podcasts.response.result)
+    setPodcasts(podcasts.response.result);
 
-    const topAudiosRes = await fetch(process.env.NEXT_PUBLIC_API + `/tags/top-audio/audios`, {
-      headers: {
-        "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
-      },
-    });
+    const topAudiosRes = await fetch(
+      process.env.NEXT_PUBLIC_API + `/tags/top-audio/audios`,
+      {
+        headers: {
+          "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+        },
+      }
+    );
     const topAudiosData = await topAudiosRes.json();
-    setTopAudio( topAudiosData.response.result) 
+    setTopAudio(topAudiosData.response.result);
 
-    const musicRes = await fetch(process.env.NEXT_PUBLIC_API + `/tags/audio-book/audios`, {
-      headers: {
-        "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
-      },
-    });
+    const musicRes = await fetch(
+      process.env.NEXT_PUBLIC_API + `/tags/audio-book/audios`,
+      {
+        headers: {
+          "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+        },
+      }
+    );
     const musicData = await musicRes.json();
-    setMusic( musicData.response.result) 
-
+    setMusic(musicData.response.result);
 
     // console.log("Audio: ", data)
   }
-  useEffect(()=>{
-    loadVideos()
-  }, [])
-
+  useEffect(() => {
+    loadVideos();
+  }, []);
 
   return (
     <div className={styles.pageWrapper}>
@@ -73,30 +80,29 @@ const Sounds = ({ podcasts }) => {
         <div className={styles.content}>
           <SoundCategory title="Podcasts" data={pods} />
           <SoundCategory title="Top Audios" data={topAudio} />
-          <SoundCategory title="Audio Book" data={music}/>
+          <SoundCategory title="Audio Book" data={music} />
           {/* <SoundCategory title="New Sounds" /> */}
         </div>
       </div>
-      {isObjectEmpty(currentAudioPlaying) === false && (
-        <div className={styles.player}>
-        <Player />
-      </div>
-      )}
+      { isObjectEmpty(currentAudioPlaying) === false && <Player /> }
     </div>
   );
 };
 
 export async function loadAudios() {
   //Podcasts
-  const podAudios = await fetch(process.env.NEXT_PUBLIC_API + `/tags/podcast/audios`, {
-    headers: {
-      "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
-    },
-  });
+  const podAudios = await fetch(
+    process.env.NEXT_PUBLIC_API + `/tags/podcast/audios`,
+    {
+      headers: {
+        "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+      },
+    }
+  );
   const podcasts = await podAudios.json();
 
   return {
-    podcasts    
+    podcasts,
   };
 }
 const genres = [
@@ -117,10 +123,9 @@ export async function getStaticProps() {
 
   return {
     props: {
-      podcasts
+      podcasts,
     },
   };
 }
-
 
 export default Sounds;
