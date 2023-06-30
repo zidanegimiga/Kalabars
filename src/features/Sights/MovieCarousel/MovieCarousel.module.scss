@@ -261,7 +261,9 @@
         background: linear-gradient(0deg, #1A1A1A 2.25%, rgba(26, 26, 26, 0) 97.74%);
         position: absolute;
         bottom: 0;
-        padding: 40px 16px 0px 16px;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 120px;
 
         h2 {
             font-family: "Ubuntu";
@@ -286,7 +288,6 @@
 }
 
 .buttonRow {
-    margin-top: 8px;
     padding: 0px 0px;
     margin-top: 14px;
 }
