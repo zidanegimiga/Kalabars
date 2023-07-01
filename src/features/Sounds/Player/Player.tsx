@@ -5,6 +5,8 @@ import Image from "next/image";
 import {
   Download,
   Forward,
+  PauseTest,
+  PlayTest,
   Repeat,
   Rewind,
   Shuffle,
@@ -51,11 +53,11 @@ const Player = () => {
     const minutes = Math.floor(time / 60);
     const hours = Math.floor(time / 3600);
 
-    if (hours == 0) {
+    if (hours === 0) {
       return `${leadingZerosFormatter.format(
         minutes
       )} : ${leadingZerosFormatter.format(seconds)}`;
-    } else if (minutes == 0) {
+    } else if (minutes === 0) {
       return `00 : ${leadingZerosFormatter.format(seconds)}`;
     } else {
       return `${leadingZerosFormatter.format(
@@ -101,6 +103,7 @@ const Player = () => {
   const handleTimeUpdate = () => {
     setCurrentTime(audioRef.current.currentTime);
     setProgress(audioRef?.current?.currentTime / audioRef?.current?.duration);
+    // console.log("Progress: ", progress)
     timeline.current?.style?.setProperty("--progress-position", progress);
   };
 
@@ -112,12 +115,9 @@ const Player = () => {
     audioRef.current.currentTime -= 5;
   };
 
-  const handleTimelineClick = (e) => {
-    const parentRect = timeline.current.getBoundingClientRect();
-    const percent =
-      Math.min(Math.max(0, e.clientX - parentRect.x)) / parentRect.width;
-    audioRef.current.currentTime = Math.floor(percent * audioTime);
-  };
+  const handleAudioSeeking = (e) => {
+    audioRef.current.currentTime = e.target.value
+  }
 
   const handleLoadedMetadata = () => {
     setAudioTime(audioRef.current.duration);
@@ -133,11 +133,14 @@ const Player = () => {
     setProgress(0);
     const playBufferStatus = isObjectEmpty(currentAudioPlaying);
     setAudioPlaying(playBufferStatus);
-    const audioDuration = audioRef?.current?.duration;
-    setAudioTime(audioDuration);
-    const duration = formatDuration(audioTime);
-    setAudioDuration(duration);
-  }, [currentAudioPlaying]);
+
+    // const totalAudioDuration = audioRef?.current?.duration;
+    // setAudioTime(totalAudioDuration);
+    console.log("Audio Duration: ", audioTime)
+
+    const formattedDuration = formatDuration(audioTime);
+    setAudioDuration(formattedDuration);
+  }, [audioTime, currentAudioPlaying]);
 
   // return (
   //   <div className={styles.playerWrapper}>
@@ -339,69 +342,91 @@ const Player = () => {
             </div>
           </div>
           <div className={styles.playerCenter}>
-            <div className={styles.playersControls}>
-              <div className={styles.playerButtons}>
-                <div className={styles.playbackIcons}>
-                  {/* <div className={styles.repeat}>
+            <div className={styles.playerControls}>
+              <div className={styles.playbackIcons}>
+                <div className={styles.playbackIconsLeft}>
+                  <div className={styles.repeat}>
                     <Repeat />
-                  </div> */}
+                  </div>
                   <div className={styles.rewind} onClick={revert}>
                     <Rewind />
                   </div>
+                </div>
+                <div className={styles.playbackIconsCenter}>
                   {isCurrentAudioPlaying ? (
-                    <div className={styles.play}>
-                      <Pause
-                        action={() => {
-                          playPauseHandler("pause");
-                        }}
-                      />
-                    </div>
+                    <button
+                      className={styles.play}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        playPauseHandler("pause");
+                      }}
+                    >
+                      <PauseTest role={"img"} height={16} width={16} />
+                    </button>
                   ) : (
-                    <div className={styles.play}>
-                      <Play
-                        action={() => {
-                          playPauseHandler("play");
-                        }}
-                      />
-                    </div>
+                    <button
+                      className={styles.play}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        playPauseHandler("play");
+                      }}
+                    >
+                      <PlayTest role={"img"} height={16} width={16} />
+                    </button>
                   )}
+                </div>
+                <div className={styles.playbackIconsRight}>
                   <div className={styles.forward} onClick={fastForward}>
                     <Forward />
                   </div>
-                  {/* <div className={styles.shuffle}>
-            <Shuffle />
-          </div> */}
+                  <div className={styles.shuffle}>
+                    <Shuffle />
+                  </div>
                 </div>
-                <div
-                  className={styles.progressArea}
-                  ref={timeline}
-                  onClick={(e) => handleTimelineClick(e)}
-                  // onMouseMove={(e) => handleTimelineClick(e)}
-                  // onMouseDown={(e) => handleTimelineClick(e)}
-                >
-                  <div className={styles.progressBar}>
+              </div>
+              <div className={styles.progressWrapper}>
+                <div className={styles.currentTime}>
+                  {Math.floor(currentTime / 60) +
+                    ":" +
+                    ("0" + Math.floor(currentTime % 60)).slice(-2)}
+                </div>
+                <div className={styles.progressBarContainer}>
+                  <input
+                    type="range"
+                    min={0}
+                    max={audioTime}
+                    step="any"
+                    value={currentTime}
+                    onInput={(e) => {
+                      handleAudioSeeking(e);
+                    }}
+                    className={styles.progressBarInputRange}
+                  />
+                  <div className={styles.audio}>
                     <audio
                       ref={audioRef}
                       src={`https://content.kalabars.com/static/media/audios/${currentAudioPlaying.audio_file}`}
                       onProgress={handleBuffering}
                       onLoadedMetadata={handleLoadedMetadata}
-                      onLoadedData={() => console.log("Video data loaded")}
+                      onLoadedData={(
+                        event: React.ChangeEvent<HTMLAudioElement>
+                      ) => setAudioTime(event?.target?.duration)}
                       onTimeUpdate={() => handleTimeUpdate()}
                       onEnded={(e) => setIsCurrentAudioPlaying(false)}
                     />
                   </div>
-                  <div className={styles.timer}>
-                    <span className={styles.current}>
-                      {Math.floor(currentTime / 60) +
-                        ":" +
-                        ("0" + Math.floor(currentTime % 60)).slice(-2)}
-                    </span>
-                    <span className={styles.current}>
-                      {Math.floor(audioTime / 60) +
-                        ":" +
-                        ("0" + Math.floor(audioTime % 60)).slice(-2)}
-                    </span>
-                  </div>
+                </div>
+                <div className={styles.totalTime} style={{}}>
+                  {(isNaN(Math.floor(audioTime / 60))
+                    ? "--"
+                    : Math.floor(audioTime / 60)) +
+                    ":" +
+                    (
+                      "0" +
+                      (isNaN(Math.floor(audioTime % 60))
+                        ? "--"
+                        : Math.floor(audioTime % 60))
+                    ).slice(-2)}
                 </div>
               </div>
             </div>

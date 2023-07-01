@@ -34,8 +34,8 @@ const Repeat = () => {
       onMouseLeave={() => setDownloadHover(false)}
     >
       <svg
-        width="28"
-        height="28"
+        width="20"
+        height="20"
         viewBox="0 0 40 40"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -60,8 +60,8 @@ const Rewind = () => {
       onMouseLeave={() => setDownloadHover(false)}
     >
       <svg
-        width="28"
-        height="28"
+        width="20"
+        height="20"
         viewBox="0 0 40 40"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -105,6 +105,51 @@ const Play = () => {
   );
 };
 
+const PauseTest = ({role, width, height}) => {
+  const [downloadHover, setDownloadHover] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => setDownloadHover(true)}
+      onMouseLeave={() => setDownloadHover(false)}
+    >
+      <svg
+        role={role}
+        height={height}
+        width={width}
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill="black" 
+          d="M2.7 1a.7.7 0 0 0-.7.7v12.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7H2.7zm8 0a.7.7 0 0 0-.7.7v12.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-2.6z"></path>
+      </svg>
+    </div>
+  );
+};
+
+const PlayTest = ({role, width, height}) => {
+  const [downloadHover, setDownloadHover] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => setDownloadHover(true)}
+      onMouseLeave={() => setDownloadHover(false)}
+    >
+      <svg
+        role="img"
+        height={height}
+        width={width}
+        aria-hidden="true"
+        viewBox="0 0 16 16"
+        data-encore-id="icon"
+      >
+        <path 
+          d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"
+          fill="black"
+        ></path>
+      </svg>
+    </div>
+  );
+};
+
 const Forward = () => {
   const [downloadHover, setDownloadHover] = useState(false);
   return (
@@ -113,8 +158,8 @@ const Forward = () => {
       onMouseLeave={() => setDownloadHover(false)}
     >
       <svg
-        width="28"
-        height="28"
+        width="20"
+        height="20"
         viewBox="0 0 40 40"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -134,8 +179,8 @@ const Shuffle = () => {
     <svg
       onMouseEnter={() => setDownloadHover(true)}
       onMouseLeave={() => setDownloadHover(false)}
-      width="28"
-      height="28"
+      width="20"
+      height="20"
       viewBox="0 0 40 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -151,4 +196,4 @@ const Shuffle = () => {
   );
 };
 
-export { Download, Shuffle, Play, Forward, Repeat, Rewind };
+export { Download, Shuffle, Play, Forward, Repeat, Rewind, PlayTest, PauseTest };
