@@ -23,7 +23,6 @@ const VideoPlayer = ({ video }: any) => {
   const [volume, setVolume] = useState(100);
   const [muted, setMuted] = useState(false);
   const videoRef = useRef(null);
-  const videoContainer = useRef(null);
   const timeline = useRef(null);
 
   const leadingZerosFormatter = new Intl.NumberFormat(undefined, {
@@ -148,7 +147,7 @@ const VideoPlayer = ({ video }: any) => {
   };
 
   return (
-    <div className={styles.videoWrapper} ref={videoContainer}>
+    <div className={styles.videoWrapper}>
       <video
         id="video1"
         ref={videoRef}
