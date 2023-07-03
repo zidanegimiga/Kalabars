@@ -1,10 +1,88 @@
+.videoContainer {
+  width: 100vw;
+  height: 80vh;
+  // background-color: #FF3354;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  padding-top: 80px;
+
+  @media (max-width: 627px) {
+    padding-top: 120px;
+    height: 50vh;
+    align-items: flex-start;
+  }
+  @media (max-width: 501px) {
+    padding-top: 40px;
+    height: 30vh;
+    align-items: flex-start;
+  }
+  @media (max-width: 376px) {
+    height: 30vh;
+    align-items: flex-start;
+  }
+  @media (max-width: 321px) {
+    height: 25vh;
+    align-items: flex-start;
+  }
+}
+
+.videoBgGradient{
+  position: absolute;
+  top: 0%;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #38383800 30%, #383838 100%);
+}
+
+.videoWrapper {
+  position: relative;
+  transition: all ease-in-out 0.5s;
+  width: fit-content;
+  z-index: 2;
+
+    @media (max-width: 321px) {
+        width: 100%;
+        align-items: flex-start;
+    }
+
+  &:hover {
+    .controlsContainer {
+      display: flex;
+      width: 100%;
+    }
+  }
+}
+
+.loader{
+    @media (max-width: 501px) {
+        transform: scale(50%) translateY(-270px) translateX(40px);
+    }
+}
+
 .video {
   height: 70vh;
-  width: 100vw;
-  background-color: black;
+  // width: 100%;
+  background-color: #000000;
+  box-shadow: 0px 4px 24px -1px #00000052;
+  border-radius: 8px;
 
-  @media (max-width: 426px) {
-    height: 46vh;       
+  @media (max-width: 769px) {
+    height: 50vh;
+  }
+
+  @media (max-width: 725px) {
+    height: 40vh;
+  }
+
+  @media (max-width: 627px) {
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -16,28 +94,27 @@
   display: none !important;
 }
 
-.videoWrapper {
-  position: relative;
-  transition: all ease-in-out 0.5s;
-
-  &:hover {
-    .controlsContainer {
-      display: flex;
-    }
-  }
-}
 
 .controlsContainer {
   position: absolute;
   bottom: 0;
   width: 100%;
   display: none;
-  flex-direction: column;
-  justify-content: end;
-  align-items: center;
   z-index: 20;
   background: linear-gradient(180deg, rgba(26, 26, 26, 0) 0%, #1a1a1a 100%);
   transition: all ease-in-out 0.5s;
+  border-radius: 0 0 8px 8px;
+  // padding: 8px;
+}
+
+.controlsInnerContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 20;
+  padding: 0px 16px;
 }
 
 .playbackIcons {
@@ -45,107 +122,125 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  height: 48px;
+  line-height: 48px;
+  font-size: 109%;
+  text-align: left;
+  direction: ltr;
 }
 
-.center {
+.leftControls{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 8px;
-  align-content: center;
-  width: 33%;
-
-  @media (max-width: 426px) {
-    width: auto;
-    margin-left: 18px;    
-  }
+  align-items: flex-start;
+  gap: 8px
 }
 
-.right {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding-right: 64px;
-  width: 33%;
-
-  @media (max-width: 426px) {
-    padding-right: 16px;
-    width: auto;
-  }
+.rightControls{
+    display: flex;
+    align-items: baseline;
+    gap: 12px
 }
 
-.controlIcon {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  margin-left: 1rem;
-  margin-bottom: 1rem;
-}
-
-.controlIconVolume {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  margin: 4px;
-}
-
-.volumeIconContainer {
+.volumeIconContainer{
   display: flex;
   align-items: center;
-  transition: all ease-in-out 0.5s;
-  padding-left: 24px;
-  width: 33%;
-
-  @media (max-width: 426px) {
-    padding-left: 16px;
-    width: 1%;
-  }
-
-  p {
-    color: white;
-    @media (max-width: 426px) {
-      display: none;
-    }
-  }
-
-  &:hover {
-    .volumeRange {
-      width: 20%;
-      display: block;
-      opacity: 1;
-      transform: scaleX(1);
-
-      @media (max-width: 426px) {
-        display: none;
-      }
-    }
-  }
 }
+
+// .center {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-bottom: 8px;
+//   max-width: 33%;
+//   gap: 16px;
+
+//   @media (max-width: 426px) {
+//     width: auto;
+//     margin-left: 18px;    
+//   }
+// }
+
+// .right {
+//   display: flex;
+//   justify-content: flex-end;
+//   align-items: center;
+//   max-width: 33%;
+
+//   @media (max-width: 426px) {
+//     padding-right: 16px;
+//     width: auto;
+//   }
+// }
+
+// .controlIcon {
+//   width: 24px;
+//   height: 24px;
+//   cursor: pointer;
+//   margin-left: 1rem;
+//   margin-bottom: 1rem;
+// }
+
+// .controlIconVolume {
+//   width: 24px;
+//   height: 24px;
+//   cursor: pointer;
+//   margin: 4px;
+// }
+
+// .volumeIconContainer {
+//   display: flex;
+//   justify-content: flex-start;
+//   align-items: center;
+//   transition: all ease-in-out 0.5s;
+//   padding-left: 24px;
+//   // max-width: 33%;
+
+//   @media (max-width: 426px) {
+//     padding-left: 16px;
+//     width: 1%;
+//   }
+
+//   p {
+//     color: white;
+//     @media (max-width: 426px) {
+//       display: none;
+//     }
+//   }
+
+//   &:hover {
+//     .volumeRange {
+//       width: 100%;
+//       display: block;
+//       opacity: 1;
+//       transform: scaleX(1);
+
+//       @media (max-width: 426px) {
+//         display: none;
+//       }
+//     }
+//   }
+// }
 
 .volumeRange {
-  -webkit-appearance: none;
-  appearance: none;
   transition: all ease-in-out 0.5s;
-  transform-origin: left;
-  transform: scaleX(0);
-  width: 0%;
   border-radius: 8px;
-  opacity: 0;
+  background-color: #FF3354;
+  height: 4px;
+  margin-bottom: 16px;
 }
 
-.volumeRange::-webkit-slider-runnable-track {
-  -webkit-appearance: none;
-  appearance: none;
-  background: #FF3354;
-  border-radius: 8px;
-}
+// .volumeRange::-webkit-slider-runnable-track {
+//   -webkit-appearance: none;
+//   appearance: none;
+//   background: #FF3354;
+//   height: 4px;
+//   border-radius: 8px;
+// }
 
 .volumeRange::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: white;
-  height: 1rem;
-  width: 1rem;
+  background-color: #FF3354;
+  height: 4px;
+  width: 4px;
   border-radius: 50%;
 }
 
@@ -155,18 +250,24 @@
   // margin-left: 1rem;
   // margin-bottom: -0.5rem;
   display: flex;
-  width: 95%;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
 }
 
-.time {
+.timeLeft {
   color: white;
+  text-align: right;
+}
+.timeRight {
+  color: white;
+  text-align: right;
 }
 
 .timelineContainer {
   height: 8px;
-  width: 90%;
+  width: 100%;
   cursor: pointer;
   display: flex;
   align-items: center;

@@ -1,22 +1,22 @@
 .NavContainer {
     position: relative;
     width: 100vw;
-    background-color: #03030300;
+    // background-color: #03030300;
 }
 
 .NavWrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #f7f7f7;
-    box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.32);
+    background: #f7f7f78c;
+    // box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.32);
     border-top: none;
-    // backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     position: fixed;
     top: 0%;
     z-index: 3001;
     width: 100vw;
-    height: 80px;
+    height: 64px;
 
     @media (max-width: 1441px) {
         height: 56px;
@@ -76,10 +76,11 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-family: Ubuntu;
-    font-weight: 400;
+    font-family: 'Actor';
+    font-weight: bold;
     padding-left: 32px;
     gap: 24px;
+    font-size: 16px;
 
     @media (max-width: 1441px) {}
 
@@ -89,9 +90,8 @@
 }
 
 .link {
-    font-size: 24px;
     transition: all ease-in-out 0.2s;
-    color: #161616;
+    color: #3b3b3b;
     font-weight: bold;
 
     &:hover {
@@ -100,7 +100,7 @@
     }
 
     @media (max-width: 1441px) {
-        font-size: 20px;        
+        // font-size: 20px;        
     }
 }
 

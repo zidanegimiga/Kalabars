@@ -6,11 +6,13 @@ import {
   Rewind,
   Forward,
   PictureInPicture,
-  VolumeOn,
+  Volume1,
   VolumeOff,
   FullScreen,
 } from "../../../shared/Icons/Playback";
 import styles from "./Video.module.scss";
+import MoonLoader from "react-spinners/MoonLoader";
+import { PauseTest, PlayTest } from "shared/Icons/SoundPlayerIcons";
 
 const VideoPlayer = ({ video }: any) => {
   const [playing, setPlaying] = useState(false);
@@ -22,6 +24,7 @@ const VideoPlayer = ({ video }: any) => {
   const [progress, setProgress] = useState(0);
   const [volume, setVolume] = useState(100);
   const [muted, setMuted] = useState(false);
+  const [waiting, setWaiting] = useState(false);
   const videoRef = useRef(null);
   const timeline = useRef(null);
 
@@ -66,7 +69,7 @@ const VideoPlayer = ({ video }: any) => {
     const duration = video.duration;
     const bufferProgress = (bufferedTime / videoTime) * 100;
     setBuffered(bufferProgress);
-    timeline.current?.style?.setProperty("--buffer-position", buffered/100);
+    timeline.current?.style?.setProperty("--buffer-position", buffered / 100);
   };
 
   const handleTimeUpdate = () => {
@@ -77,7 +80,8 @@ const VideoPlayer = ({ video }: any) => {
 
   const handleTimelineClick = (e) => {
     const parentRect = timeline.current.getBoundingClientRect();
-    const percent = Math.min(Math.max(0, e.clientX - parentRect.x)) / parentRect.width;
+    const percent =
+      Math.min(Math.max(0, e.clientX - parentRect.x)) / parentRect.width;
     videoRef.current.currentTime = Math.floor(percent * videoTime);
   };
 
@@ -88,9 +92,9 @@ const VideoPlayer = ({ video }: any) => {
     const percent =
       Math.min(Math.max(0, e.clientX - parentRect.x)) / parentRect.width;
     timeline.current.style.setProperty("--hover-position", percent);
-    
+
     const timeHovered = percent * videoRef?.current?.duration;
-    setHoveredTime(timeHovered)
+    setHoveredTime(timeHovered);
   };
 
   //play/pause
@@ -146,106 +150,164 @@ const VideoPlayer = ({ video }: any) => {
     setVolume(Math.floor(videoRef.current.volume * 100));
   };
 
+  const backgroundImage =
+    `${process.env.NEXT_PUBLIC_API}` +
+    `/static/media/videos_images/` +
+    video.landscape_image;
+
   return (
-    <div className={styles.videoWrapper}>
-      <video
-        id="video1"
-        ref={videoRef}
-        onEnded={() => setPlaying(false)}
-        onClick={() => {
-          playing ? videoHandler("pause") : videoHandler("play");
-        }}
-        onProgress={handleBuffering}
-        onLoadedMetadata={handleLoadedMetadata}
-        onLoadedData={() => console.log("Video data loaded")}
-        onTimeUpdate={() => handleTimeUpdate()}
-        className={styles.video}
-        src={`${process.env.NEXT_PUBLIC_API}/static/media/videos/` + video.public_id +`/1080-` + video.public_id + `.MP4` }
-        poster={`${process.env.NEXT_PUBLIC_API}/static/media/videos_images/`+video.landscape_image }
-      />
-      <div className={styles.controlsContainer}>
-        <div className={styles.timeControls}>
-          <p className={styles.time}>
-            {Math.floor(currentTime / 60) +
-              ":" +
-              ("0" + Math.floor(currentTime % 60)).slice(-2)}
-          </p>
-          <div
-            className={styles.timelineContainer}
-            onMouseMove={(e) => handleTimelineHover(e)}
-            onClick={(e) => handleTimelineClick(e)}
-            ref={timeline}
-          >
-            <div className={styles.timeline}>
-              <div className={styles.previewImgContainer}>
-                <img className={styles.previewImg} src={process.env.NEXT_PUBLIC_API+`/static/media/videos_images/`+video.landscape_image} alt="preview"/>
-                <div className={styles.previewImgTime}>{Math.floor(hoveredTime / 60) + ":" + ("0" + Math.floor(hoveredTime % 60)).slice(-2)}</div>
-              </div>
-              <div className={styles.thumbIndicator}></div>
-            </div>
-          </div>
-          <p className={styles.time}>
-            {
-              Math.floor(videoTime / 60) +
-              ":" +
-              ("0" + Math.floor(videoTime % 60)).slice(-2)
-            }
-          </p>
+    <div
+      className={styles.videoContainer}
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
+      <div className={styles.videoWrapper}>
+        <video
+          id="video1"
+          ref={videoRef}
+          preload="metadata"
+          onEnded={() => setPlaying(false)}
+          onClick={() => {
+            playing ? videoHandler("pause") : videoHandler("play");
+          }}
+          onWaiting={() => setWaiting(true)}
+          onLoad={() => setWaiting(true)}
+          onPlaying={() => setWaiting(false)}
+          onProgress={handleBuffering}
+          onLoadedMetadata={handleLoadedMetadata}
+          onLoadedData={() => console.log("Video data loaded")}
+          onTimeUpdate={() => handleTimeUpdate()}
+          className={styles.video}
+          controlsList=""
+          src={
+            `${process.env.NEXT_PUBLIC_API}/static/media/videos/` +
+            video.public_id +
+            `/1080-` +
+            video.public_id +
+            `.MP4`
+          }
+        />
+        <div className={styles.loader}>
+          <MoonLoader
+            color="red"
+            cssOverride={{
+              position: "absolute",
+              top: "50%",
+              right: "50%",
+            }}
+            size={48}
+            loading={waiting}
+          />
         </div>
-        <div className={styles.playbackIcons}>
-          <div className={styles.volumeIconContainer}>
-            <div className={styles.controlIconVolume}>
-              {muted === true ? (
-                <VolumeOff action={handleVolumeUnmute} />
-              ) : (
-                <VolumeOn action={handleVolumeMute} />
-              )}
+        <div className={styles.controlsContainer}>
+          <div className={styles.controlsInnerContainer}>
+            <div className={styles.timeControls}>
+              <p className={styles.timeLeft}>
+                {Math.floor(currentTime / 60) +
+                  ":" +
+                  ("0" + Math.floor(currentTime % 60)).slice(-2)}
+              </p>
+              <div
+                className={styles.timelineContainer}
+                onMouseMove={(e) => handleTimelineHover(e)}
+                onClick={(e) => handleTimelineClick(e)}
+                ref={timeline}
+              >
+                <div className={styles.timeline}>
+                  <div className={styles.previewImgContainer}>
+                    <img
+                      className={styles.previewImg}
+                      src={
+                        process.env.NEXT_PUBLIC_API +
+                        `/static/media/videos_images/` +
+                        video.landscape_image
+                      }
+                      alt="preview"
+                    />
+                    <div className={styles.previewImgTime}>
+                      {Math.floor(hoveredTime / 60) +
+                        ":" +
+                        ("0" + Math.floor(hoveredTime % 60)).slice(-2)}
+                    </div>
+                  </div>
+                  <div className={styles.thumbIndicator}></div>
+                </div>
+              </div>
+              <p className={styles.timeRight}>
+                {Math.floor(videoTime / 60) +
+                  ":" +
+                  ("0" + Math.floor(videoTime % 60)).slice(-2)}
+              </p>
             </div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              className={styles.volumeRange}
-              value={volume}
-              onChange={(e) => {
-                handleVolumeChange(e);
-              }}
-            />
-            <p>{volume}</p>
-          </div>
-          <div className={styles.center}>
-            <div className={styles.controlIcon}>
-              <Rewind action={revert} />
-            </div>
-            <div>
-              {playing ? (
-                <Pause
-                  action={() => {
-                    videoHandler("pause");
-                  }}
-                />
-              ) : (
-                <Play
-                  action={() => {
-                    videoHandler("play");
-                  }}
-                />
-              )}
-            </div>
-            <div className={styles.controlIcon}>
-              <Forward action={fastForward} />
-            </div>
-          </div>
-          <div className={styles.right}>
-            <div className={styles.controlIcon}>
-              <PictureInPicture action={pictureInPicture} />
-            </div>
-            <div className={styles.controlIcon}>
-              <FullScreen action={fullScreen} />
+            <div className={styles.playbackIcons}>
+              <div className={styles.leftControls}>
+                <div>
+                  {playing ? (
+                    <div
+                      style={{
+                        backgroundColor: "white",
+                        height: 40,
+                        width: 40,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: "50%",
+                      }}
+                      onClick={() => {
+                        videoHandler("pause");
+                      }}
+                    >
+                      <PauseTest role={"img"} width={16} height={16} />
+                    </div>
+                  ) : (
+                    <div
+                      style={{
+                        backgroundColor: "white",
+                        height: 40,
+                        width: 40,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: "50%",
+                      }}
+                      onClick={() => {
+                        videoHandler("play");
+                      }}
+                    >
+                      <PlayTest role={"img"} width={16} height={16} />
+                    </div>
+                  )}
+                </div>
+                <Rewind action={revert} />
+                <Forward action={fastForward} />
+                <div className={styles.volumeIconContainer}>
+                  <div className={styles.controlIconVolume}>
+                    {muted === true ? (
+                      <VolumeOff action={handleVolumeUnmute} />
+                    ) : (
+                      <Volume1 action={handleVolumeMute} />
+                    )}
+                  </div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    className={styles.volumeRange}
+                    value={volume}
+                    onChange={(e) => {
+                      handleVolumeChange(e);
+                    }}
+                  />
+                </div>
+              </div>
+              <div className={styles.rightControls}>
+                <PictureInPicture action={pictureInPicture} />
+                <FullScreen action={fullScreen} />
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div className={styles.videoBgGradient}></div>
     </div>
   );
 };

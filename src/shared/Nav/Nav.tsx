@@ -71,19 +71,23 @@ const Nav = () => {
           <Link href={"/"}>
             <div className={styles.logo}>
               <Image
-                width={160}
+                width={100}
                 height={40}
                 alt="Logo"
                 src={"/kalabarslogo.svg"}
               />
             </div>
           </Link>
-          <div className={styles.links} style={textColor}>
+          <div className={styles.links}>
             <div className={styles.link}>
-              <Link href={"/sights"}>Sights</Link>
+              <Link href={"/"}>
+                <p>Sights</p>
+              </Link>
             </div>
             <div className={styles.link}>
-              <Link href={"/sounds"}>Sounds</Link>
+              <Link href={"/sounds"}>
+                <p>Sounds</p>
+              </Link>
             </div>
           </div>
         </div>

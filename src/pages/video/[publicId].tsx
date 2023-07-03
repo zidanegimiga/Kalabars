@@ -8,6 +8,7 @@ import { Playlist } from "../../shared/Icons/Playlist";
 import SightsCategory from "features/Sights/SightsCategory";
 import SightsCard from "features/Sights/SightsCard";
 import SideBarItem from "shared/SideBarItem/SideBarItem";
+import Image from 'next/image'
 
 type Videos = any;
 
@@ -22,6 +23,10 @@ const Sight = ({ videos }: any) => {
   if (router.isFallback) {
     return <h1>Loading...</h1>;
   }
+    const backgroundImage =
+      `${process.env.NEXT_PUBLIC_API}` +
+      `/static/media/videos_images/` +
+      video.landscape_image;
 
   //Date Formatting
   const days = [
@@ -55,12 +60,22 @@ const Sight = ({ videos }: any) => {
   const year = date.getFullYear();
 
   return (
-    <div className={styles.PageWrapper}>
+    <div
+      className={styles.PageWrapper}
+    >
       <div className={styles.top}>
         <SideBarItem />
         <div className={styles.content}>
           <VideoPlayer video={video} />
           <div className={styles.videoFeatures}>
+            <div className={styles.videoImage}>
+              <Image 
+                width={240}
+                height={320}
+                alt="poster"
+                src={backgroundImage}
+              />
+            </div>
             <div className={styles.videoDetails}>
               <h1>{video.title}</h1>
               <div className={styles.videoDescription}>
@@ -86,11 +101,11 @@ const Sight = ({ videos }: any) => {
                 </div>
               </div>
             </div>
-            <div className={styles.playlistBox}>
+            {/* <div className={styles.playlistBox}>
               <h2>Playlist</h2>
               <Playlist />
               <p>Playlist Empty</p>
-            </div>
+            </div> */}
           </div>
           <div className={styles.suggestedVideos}>
             <SightsCategory name={"You might like:"} data={suggestedVideos} />
