@@ -70,7 +70,7 @@ const Sight = ({ videos }: any) => {
           <div className={styles.videoFeatures}>
             <div className={styles.videoImage}>
               <Image 
-                width={240}
+                width={320}
                 height={320}
                 alt="poster"
                 src={backgroundImage}
