@@ -116,8 +116,8 @@ const Player = () => {
   };
 
   const handleAudioSeeking = (e) => {
-    audioRef.current.currentTime = e.target.value
-  }
+    audioRef.current.currentTime = e.target.value;
+  };
 
   const handleLoadedMetadata = () => {
     setAudioTime(audioRef.current.duration);
@@ -136,7 +136,7 @@ const Player = () => {
 
     // const totalAudioDuration = audioRef?.current?.duration;
     // setAudioTime(totalAudioDuration);
-    console.log("Audio Duration: ", audioTime)
+    console.log("Audio Duration: ", audioTime);
 
     const formattedDuration = formatDuration(audioTime);
     setAudioDuration(formattedDuration);
@@ -255,37 +255,9 @@ const Player = () => {
   //       </div>
   //     </div>
   //     <div className={styles.volumeContainer}>
-  //     <div className={styles.queBtnWrapper} >
-  //         {
-  //           isQueVisible ? <Close action={()=> setIsQueVisible(false)}/> : <div onClick={()=> setIsQueVisible(true)}><AddToPlaylistWhite /></div>
-  //         }
-  //       </div>
+
   //     </div>
-  //     {isQueVisible && (
-  //       <div className={styles.audioPlaylistContainer}>
-  //         <div className={styles.audioPlaylistWrapper}>
-  //           <div className={styles.playlistHeader}>Queue</div>
-  //         {audioPlaylist.map((playlistItem, index) => (
-  //           // <div key={index} style={{ color: "white" }}>
-  //           //   {playlistItem?.title}
-  //           // </div>
-  //           <div className={styles.playlistItem} key={index} onClick={()=>handlePlaylistItemClick(playlistItem)}>
-  //             <div className={styles.playlistItemImage}>
-  //               <Image src={`https://content.kalabars.com/static/media/audios_images/${playlistItem?.square_image}`} width={80} height={80} alt="playlist"/>
-  //             </div>
-  //             <div className={styles.playlistItemTitle}>
-  //               {playlistItem?.title}
-  //             </div>
-  //           </div>
-  //         ))}
-  //         {
-  //           audioPlaylist.length === 0 && (
-  //             <div className={styles.playlistEmptyStatus}> Playlist Empty</div>
-  //           )
-  //         }
-  //         </div>
-  //       </div>
-  //     )}
+
   //   </div>
   // );
   return (
@@ -315,7 +287,7 @@ const Player = () => {
               </span>
             </div>
             <div className={styles.addToPlaylistTogglerContainer}>
-              <button
+              {/* <button
                 className={styles.addToPlaylistToggler}
                 type="button"
                 role="switch"
@@ -338,7 +310,7 @@ const Player = () => {
                   height="24px"
                   width="24px"
                 />
-              </button>
+              </button> */}
             </div>
           </div>
           <div className={styles.playerCenter}>
@@ -431,9 +403,51 @@ const Player = () => {
               </div>
             </div>
           </div>
-          <div className={styles.playerRight}></div>
+          <div className={styles.playerRight}>
+            <div className={styles.queBtnWrapper}>
+              {isQueVisible ? (
+                <Close action={() => setIsQueVisible(false)} />
+              ) : (
+                <div onClick={() => setIsQueVisible(true)}>
+                  <AddToPlaylistWhite />
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </footer>
+      {isQueVisible && (
+        <div className={styles.audioPlaylistContainer}>
+          <div className={styles.audioPlaylistWrapper}>
+            <div className={styles.playlistHeader}>Queue</div>
+            {audioPlaylist.map((playlistItem, index) => (
+              // <div key={index} style={{ color: "white" }}>
+              //   {playlistItem?.title}
+              // </div>
+              <div
+                className={styles.playlistItem}
+                key={index}
+                onClick={() => handlePlaylistItemClick(playlistItem)}
+              >
+                <div className={styles.playlistItemImage}>
+                  <Image
+                    src={`https://content.kalabars.com/static/media/audios_images/${playlistItem?.square_image}`}
+                    width={80}
+                    height={80}
+                    alt="playlist"
+                  />
+                </div>
+                <div className={styles.playlistItemTitle}>
+                  {playlistItem?.title}
+                </div>
+              </div>
+            ))}
+            {audioPlaylist.length === 0 && (
+              <div className={styles.playlistEmptyStatus}> Playlist Empty</div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

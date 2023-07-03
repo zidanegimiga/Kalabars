@@ -162,6 +162,8 @@
     -ms-flex-direction: row;
     flex-direction: row;
     justify-content: flex-end;
+    align-items: center;
+    padding-right: 80px;
     min-width: 180px;
     width: 30%;
 }
@@ -269,26 +271,27 @@
 }
 
 .progressBarInputRange {
-    -webkit-appearance: none;
+    // -webkit-appearance: none;
     cursor: pointer;
     margin: 2px;
     height: 4px;
     width: 100%;
-    background-color: #FF3354;
+    background-color: #363636;
 
     &::-webkit-slider-thumb {
-        transform: scale(0%);
+        transform: scale(10%);
         transition: all ease-out .5s;
-        background-color: #FF3354;
+        color: #FF3354;
+        margin-top: -6px;
     }
 
     &::-webkit-slider-runnable-track{
-        // background-color: #FF3354;
-        // height: 4px;
+        background-color: #cecece;
+        height: 4px;
     }
 
     &::-moz-range-thumb {
-        transform: scale(0%);
+        transform: scale(10%);
         transition: all ease-out .5s;
         background-color: #FF3354;
     }
@@ -531,116 +534,116 @@
 //     }
 // }
 
-// .audioPlaylistContainer{
-//     position: absolute;
-//     bottom: 116%;
-//     // bottom: 130%;
-//     right: 5%;
-//     width: 840px;
-//     height: 200px;
-//     background-color: #222222;
-//     border-radius: 8px 8px 0 0;
-//     overflow-y: scroll;
+.audioPlaylistContainer{
+    position: absolute;
+    bottom: 116%;
+    // bottom: 130%;
+    right: 5%;
+    width: 840px;
+    height: 200px;
+    background-color: #222222;
+    border-radius: 8px 8px 0 0;
+    overflow-y: scroll;
 
-//     @media (max-width: 1601px) {
-//         width: 640px;        
-//     }
-//     @media (max-width: 769px) {
-//         width: 480px;        
-//     }
-//     @media (max-width: 501px) {
-//         width: 320px;        
-//     }
-//     @media (max-width: 426px) {
-//         width: 101.8%;
-//         bottom: 130%;
-//         right: 0%;        
-//     }
-// }
+    @media (max-width: 1601px) {
+        width: 640px;        
+    }
+    @media (max-width: 769px) {
+        width: 480px;        
+    }
+    @media (max-width: 501px) {
+        width: 320px;        
+    }
+    @media (max-width: 426px) {
+        width: 101.8%;
+        bottom: 130%;
+        right: 0%;        
+    }
+}
 
-// .audioPlaylistWrapper{
-//     width: 100%;
-//     height: 100%;
-//     position: relative;
-//     // padding-top: 32px;
+.audioPlaylistWrapper{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    // padding-top: 32px;
 
 
-//     .playlistHeader{
-//         position: sticky;
-//         top: 0;
-//         width: 100%;
-//         height: 40px;
-//         text-align: center;
-//         color: #E9E9E9;
-//         font-family: 'Ubuntu';
-//         font-size: 20px;
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//         background: #181818;
-//         z-index: 5;
-//     }
-// }
+    .playlistHeader{
+        position: sticky;
+        top: 0;
+        width: 100%;
+        height: 40px;
+        text-align: center;
+        color: #E9E9E9;
+        font-family: 'Ubuntu';
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #181818;
+        z-index: 5;
+    }
+}
 
-// .playlistEmptyStatus{
-//     width: 100%;
-//     height: 100%;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// }
+.playlistEmptyStatus{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-// .playlistItem{
-//     display: flex;
-//     align-items: center;
-//     gap: 16px;
-//     border: 1px solid #383838;
-//     height: 40px;
-//     cursor: pointer;
+.playlistItem{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid #383838;
+    height: 40px;
+    cursor: pointer;
 
-//     &:hover{
-//         background-color: #383838;
-//     }
-// }
+    &:hover{
+        background-color: #383838;
+    }
+}
 
-// .playlistItemImage{
-//     height: 40px;
-//     width: 40px;
-// }
+.playlistItemImage{
+    height: 40px;
+    width: 40px;
+}
 
-// .playlistItemTitle{
-//     color: white;
-//     font-family: 'Ubuntu';
-//     font-size: 16px;
-// }
+.playlistItemTitle{
+    color: white;
+    font-family: 'Ubuntu';
+    font-size: 16px;
+}
 
-// .queBtnWrapper{
-//     display: flex;
-//     flex-direction: column;
-//     margin-bottom: -4px;
-//     margin-left: 0px;
+.queBtnWrapper{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: -4px;
+    margin-left: 0px;
 
-//     .queBarText{
-//         font-size: 6px;
-//         color: white;
-//     }
+    .queBarText{
+        font-size: 6px;
+        color: white;
+    }
 
-// }
-// .queBtn{
-//     width: 24px;
-//     height: 24px;
-//     display: flex;
-//     flex-direction: column;
-//     gap: 4px;
-//     justify-content: center;
-// }
+}
+.queBtn{
+    width: 24px;
+    height: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: center;
+}
 
-// .playIconMobile{
-//     display: none;
-//     @media (max-width: 586px) {
-//         display: flex;
-//         justify-content: flex-end;
-//         align-items: center;
-//         margin-right: 16px;        
-//     }
-// }
+.playIconMobile{
+    display: none;
+    @media (max-width: 586px) {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: 16px;        
+    }
+}
