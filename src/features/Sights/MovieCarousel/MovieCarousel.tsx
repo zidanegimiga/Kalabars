@@ -142,7 +142,8 @@ const Hero = ({ videos }) => {
                 </div>
               </div>
               <div className={styles.detailsWrapperMobile}>
-                <h2>{video.title}</h2>
+                <div className={styles.detailsWrapperMobileContent}>
+                  <h2>{video.title}</h2>
                 <div className={styles.videoDetails}>
                   <div className={styles.genre}>Thriller</div>
                   <div className={styles.category}>Short Film</div>
@@ -160,6 +161,7 @@ const Hero = ({ videos }) => {
                   <div className={styles.addToWatchList}>
                     <p>Add to watchlist</p>
                   </div>
+                </div>
                 </div>
               </div>
             </div>

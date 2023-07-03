@@ -1,206 +1,538 @@
-.playerWrapper{
+.playerWrapper {
     width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     z-index: 10000;
+    background-color: #121212;
+    position: fixed;
+    bottom: 0;
+    padding: 8px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.playerFooter {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    display: flex;
+    flex-direction: column;
+    height: 64px;
+    width: 100%;
+}
+
+.player {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    align-items: center;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.playerLeft, .playerRight, .playerCenter{
+    height: 100%;
+}
+
+.playerLeft {
+    min-width: 180px;
+    width: 30%;
+    display: flex;
+    gap: 16px;
+}
+
+.coverArtContainer {
+    height: 56px;
+    width: 56px;
+    background-color: #282828;
+    border: 0;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    display: block;
+    margin: 0;
     position: relative;
 }
 
-.audioMetadata{
-    display:flex;
-    align-items: center;
-
-    @media (max-width: 586px) {
-        width: 50%;
-    }
-}
-
-.coverArt{
-    border-radius: 8px;
-    width: 120px;
-    height: 120px;
-    background-color: #5e5e5e;
-    outline: none;
-    border-color: navajowhite;
-
-    @media (max-width: 1441px) {
-        width: 64px;
-        height: 64px;        
-    }
-
-    @media (max-width: 426px) {
-        width: 56px;
-        height: 56px;        
-    }
-}
-
-.audioDetailsRight{
-    margin-left: 16px;
-
-    @media (max-width: 586px) {
-        width: auto;
-    }
-
-    @media (max-width: 586px){
-        margin-left: 8px;
-    }
-}
-
-.audioTextualData{
-
-    @media (max-width: 586px) {
-        width: fit-content;
-    }
-
-    .artistName{
-        color: #E9E9E9;
-        font-size: .75rem;
-        margin-bottom: -4px;
-
-        @media (max-width: 586px){
-            font-size: 10px;
-        }
-    }
-
-    .audioTitle{
-        color: #ffffff;
-        font-size: 1rem;
-        font-weight: 600;
-        display: block;
-
-        @media (max-width: 586px){
-            font-size: 12px;
-            display: none;
-        }
-    }
-    .audioTitleMobile{
-        color: #ffffff;
-        font-size: 1rem;
-        font-weight: 600;
-        display: none;
-
-        @media (max-width: 586px){
-            font-size: 12px;
-            display: block
-        }
-    }
-}
-
-.downloadButton{
+.coverArt {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+    overflow-clip-margin: content-box;
+    overflow: clip;
     cursor: pointer;
-
-    @media (max-width: 586px) {
-        display: none;
-    }
+    border-radius: 4px;
 }
 
-.playbackContainer{
-    width: 70%;
+.audioTitles {
+    margin: 0px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 6px;
+}
+
+.audioTitle {
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #fff;
+    overflow: hidden;
+    vertical-align: baseline;
+    -webkit-tap-highlight-color: transparent;
+    width: 100%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.audioArtist {
+    font-weight: 200;
+    font-size: 12px;
+    color: #ccc2c2;
+    letter-spacing: 1px;
+    overflow: hidden;
+    vertical-align: baseline;
+    -webkit-tap-highlight-color: transparent;
+    width: 100%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.addToPlaylistTogglerContainer{
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    margin-left: 8px;
+}
 
-    @media (max-width: 586px) {
-        width: auto;
-    }
-    
+.addToPlaylistToggler {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    touch-action: manipulation;
+    background-color: transparent;
+    border: none;
+    color: hsla(0, 0%, 100%, .7);
+    height: 32px;
+    min-width: 32px;
+    width: 32px;
+    cursor: pointer;
+}
+
+.playerCenter {
+    max-width: 722px;
+    width: 40%;
+}
+
+.playerControls {
+    -webkit-box-direction: normal;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .playbackIcons{
     display: flex;
     width: 100%;
-    justify-content: center;
+    flex-flow: row nowrap;
+    gap: 16px;
+    margin-bottom: 8px;
+}
+
+.playerRight {
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    justify-content: flex-end;
     align-items: center;
-    gap: 24px;
-
-    @media (max-width: 426px) {
-        gap: 2px;
-        display: none;
-    }
+    padding-right: 80px;
+    min-width: 180px;
+    width: 30%;
 }
 
-.play{
-    cursor: pointer;
+.playbackIconsLeft {
+    -webkit-box-flex: 1;
+    display: flex;
+    -ms-flex: 1;
+    flex: 1;
+    gap: 8px;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-.rewind, .repeat, .forward, .shuffle{
-    @media (max-width: 426px) {
-        transform: scale(70%);        
-    }
-}
-
-.progressArea{
-    margin-top: 12px;
-    height: 4px;
-    width: 80%;
-    cursor: pointer;
-    border-radius: 50px;
-    background-color: #f3f3f3;
-
-    @media (max-width: 426px) {
-        position: absolute;
-        bottom: -16px;
-        left: -9px;
-        width: 100%;
-    }
-}
-
-.progressArea .progressBar{
-    height: 4px;
-    width: calc(var(--progress-position) * 100%);
-    border-radius: 50px;
-    background: #FF3354;
+.play {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    align-items: center;
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 32px;
+    justify-content: center;
+    min-width: 32px;
     position: relative;
-    overflow-x: hidden;
+    -webkit-transition: none 33ms cubic-bezier(.3, 0, .7, 1);
+    transition: none 33ms cubic-bezier(.3, 0, .7, 1);
+    -webkit-transition-property: all;
+    transition-property: all;
+    width: 32px;
+    cursor: pointer;
 }
 
-.progressBar::before{
-    content: "";
-    position: absolute;
-    height: 12px;
-    width: 12px;
-    background-color: #FF3354;
-    border-radius: inherit;
-    top: 50%;
-    right: -5px;
-    transform: translateY(-50%);
-    background: inherit;
-    opacity: 0;
-    transition:  opacity 0.2s ease;
+.playbackIconsRight {
+    -webkit-box-flex: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex: 1;
+    flex: 1;
+    gap: 8px;
+    align-items: center;
 }
 
-.progressArea:hover .progressBar::before{
-    opacity: 1;
+.progressWrapper{
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+
 }
 
-.progressArea .timer{
+.currentTime, .totalTime {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    margin-block: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    font-family: 'Ubuntu';
+    color: #b8b8b8;
+    min-width: 40px;
+}
+
+.currentTime{
+    text-align: right;
+}
+
+.totalTime{
+    text-align: left;
+}
+
+.progressBarContainer{
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
+}
 
-    @media (max-width: 426px) {
-        display: none;
+.hiddenVisually {
+    clip: rect(0 0 0 0);
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+}
+
+.progressBarInputRange {
+    // -webkit-appearance: none;
+    cursor: pointer;
+    margin: 2px;
+    height: 4px;
+    width: 100%;
+    background-color: #363636;
+
+    &::-webkit-slider-thumb {
+        transform: scale(10%);
+        transition: all ease-out .5s;
+        color: #FF3354;
+        margin-top: -6px;
+    }
+
+    &::-webkit-slider-runnable-track{
+        background-color: #cecece;
+        height: 4px;
+    }
+
+    &::-moz-range-thumb {
+        transform: scale(10%);
+        transition: all ease-out .5s;
+        background-color: #FF3354;
+    }
+
+    &::-ms-thumb {
+        transform: scale(0%);
+        transition: all ease-out .5s;
+        background-color: #FF3354;
+    }
+
+    &:hover {
+        &::-webkit-slider-thumb {
+            transform: scale(100%);
+        }
     }
 }
 
-.timer span{
-    font-size: 1.1rem;
-    font-family: 'Ubuntu';
-    color: #E9E9E9;
+.progressBar{
+    touch-action: none;
+    width: 100%;
 }
 
-.volumeContainer{
-    width: 10%;
-
-    @media (max-width: 586px) {
-        display: none;
-        width: 25%;      
-    }
+.audio{
+    display: none;
 }
+
+
+.nowPlaying {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    justify-content: flex-start;
+    position: relative;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    // -webkit-transition: -webkit-transform .25s cubic-bezier(.3, 0, 0, 1);
+    // transition: -webkit-transform .25s cubic-bezier(.3, 0, 0, 1);
+    // transition: transform .25s cubic-bezier(.3, 0, 0, 1);
+    // transition: transform .25s cubic-bezier(.3, 0, 0, 1), -webkit-transform .25s cubic-bezier(.3, 0, 0, 1);
+}
+
+// .audioMetadata{
+//     display:flex;
+//     align-items: center;
+
+//     @media (max-width: 586px) {
+//         width: 50%;
+//     }
+// }
+
+// .coverArt{
+//     border-radius: 8px;
+//     width: 120px;
+//     height: 120px;
+//     background-color: #5e5e5e;
+//     outline: none;
+//     border-color: navajowhite;
+
+//     @media (max-width: 1441px) {
+//         width: 64px;
+//         height: 64px;        
+//     }
+
+//     @media (max-width: 426px) {
+//         width: 56px;
+//         height: 56px;        
+//     }
+// }
+
+// .audioDetailsRight{
+//     margin-left: 16px;
+
+//     @media (max-width: 586px) {
+//         width: auto;
+//     }
+
+//     @media (max-width: 586px){
+//         margin-left: 8px;
+//     }
+// }
+
+// .audioTextualData{
+
+//     @media (max-width: 586px) {
+//         width: fit-content;
+//     }
+
+//     .artistName{
+//         color: #E9E9E9;
+//         font-size: .75rem;
+//         margin-bottom: -4px;
+
+//         @media (max-width: 586px){
+//             font-size: 10px;
+//         }
+//     }
+
+//     .audioTitle{
+//         color: #ffffff;
+//         font-size: 1rem;
+//         font-weight: 600;
+//         display: block;
+
+//         @media (max-width: 586px){
+//             font-size: 12px;
+//             display: none;
+//         }
+//     }
+//     .audioTitleMobile{
+//         color: #ffffff;
+//         font-size: 1rem;
+//         font-weight: 600;
+//         display: none;
+
+//         @media (max-width: 586px){
+//             font-size: 12px;
+//             display: block
+//         }
+//     }
+// }
+
+// .downloadButton{
+//     cursor: pointer;
+
+//     @media (max-width: 586px) {
+//         display: none;
+//     }
+// }
+
+// .playbackContainer{
+//     width: 80%;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+
+//     @media (max-width: 586px) {
+//         width: auto;
+//     }
+
+// }
+
+// .playbackIcons{
+//     display: flex;
+//     width: 100%;
+//     justify-content: center;
+//     align-items: center;
+//     gap: 24px;
+
+//     @media (max-width: 426px) {
+//         gap: 2px;
+//         display: none;
+//     }
+// }
+
+// .play{
+//     cursor: pointer;
+// }
+
+// .rewind, .repeat, .forward, .shuffle{
+//     @media (max-width: 426px) {
+//         transform: scale(70%);        
+//     }
+// }
+
+// .progressArea{
+//     margin-top: 12px;
+//     height: 4px;
+//     width: 80%;
+//     cursor: pointer;
+//     border-radius: 50px;
+//     background-color: #f3f3f3;
+
+//     @media (max-width: 426px) {
+//         position: absolute;
+//         bottom: -16px;
+//         left: -9px;
+//         width: 100%;
+//     }
+// }
+
+// .progressArea .progressBar{
+//     height: 4px;
+//     width: calc(var(--progress-position) * 100%);
+//     border-radius: 50px;
+//     background: #FF3354;
+//     position: relative;
+//     overflow-x: hidden;
+// }
+
+// .progressBar::before{
+//     content: "";
+//     position: absolute;
+//     height: 12px;
+//     width: 12px;
+//     background-color: #FF3354;
+//     border-radius: inherit;
+//     top: 50%;
+//     right: -5px;
+//     transform: translateY(-50%);
+//     background: inherit;
+//     opacity: 0;
+//     transition:  opacity 0.2s ease;
+// }
+
+// .progressArea:hover .progressBar::before{
+//     opacity: 1;
+// }
+
+// .progressArea .timer{
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     margin-top: 10px;
+
+//     @media (max-width: 426px) {
+//         display: none;
+//     }
+// }
+
+// .timer span{
+//     font-size: 1.1rem;
+//     font-family: 'Ubuntu';
+//     color: #E9E9E9;
+// }
+
+// .volumeContainer{
+//     width: 10%;
+
+//     @media (max-width: 586px) {
+//         display: none;
+//         width: 25%;      
+//     }
+// }
 
 .audioPlaylistContainer{
     position: absolute;
@@ -234,7 +566,7 @@
     height: 100%;
     position: relative;
     // padding-top: 32px;
-    
+
 
     .playlistHeader{
         position: sticky;

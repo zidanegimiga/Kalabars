@@ -6,7 +6,6 @@
     outline: none;
     border: none;
 
-
     &:hover {
         background-color: #333232;
     }
@@ -30,8 +29,9 @@
     padding: 8px 24px;
     color: snow;
     border: solid 1px #161616;
-    font-size: 18px;
-    height: 100%;
+    font-size: 16px;
+    height: 60%;
+    width: 320px;
 
     &:placeholder {
         color: snow;
@@ -40,13 +40,17 @@
     @media (max-width: 1441px) {
         font-size: 16px;
     }
+
+    @media (max-width: 376px) {
+        width: 60%;
+    }
 }
 
 .searchForm {
     display: flex;
     align-items: center;
-    height: 48px;
-    width: 75%;
+    height: 40px;
+    width: 100%;
 
 
     @media (max-width: 1441px) {
