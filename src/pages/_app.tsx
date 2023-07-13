@@ -9,7 +9,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const App: FC = ({ Component, pageProps }: AppProps) => {
   return (
-    <div tabIndex={0} onKeyDown={(e) => e.preventDefault()}>
+    <div tabIndex={0}>
+    {/* <div tabIndex={0} onKeyDown={(e) => e.preventDefault()}> */}
       <KalabarsProvider>
         <NextNProgress
           color="#ff5a5a"
