@@ -148,18 +148,31 @@
 }
 
 .volumeRange {
+  -webkit-appearance: none;
   transition: all ease-in-out 0.5s;
   border-radius: 8px;
-  background-color: #FF3354;
+  background-color: #ffffff;
   height: 4px;
   margin-bottom: 16px;
 }
 
 .volumeRange::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #FF3354;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.volumeRange::-moz-range-progress {
   background-color: #FF3354;
   height: 4px;
-  width: 4px;
-  border-radius: 50%;
+}
+
+.volumeRange::-webkit-progress-inner-element {
+  background-color: #FF3354;
+  height: 4px;
 }
 
 .timeControls {
