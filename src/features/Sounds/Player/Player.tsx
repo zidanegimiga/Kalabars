@@ -155,11 +155,7 @@ const Player = () => {
   const revert = () => {
     audioRef.current.currentTime -= 5;
   };
-
-  const handleAudioSeeking = (e) => {
-    audioRef.current.currentTime = e.target.value;
-  };
-
+  
   const handleLoadedMetadata = () => {
     setAudioTime(audioRef.current.duration);
   };
@@ -265,17 +261,6 @@ const Player = () => {
                   {secondsToHms(currentTime)}
                 </div>
                 <div className={styles.progressBarContainer}>
-                  {/* <input
-                    type="range"
-                    min={0}
-                    max={audioTime}
-                    step="0.01"
-                    value={currentTime}
-                    onInput={(e) => {
-                      handleAudioSeeking(e);
-                    }}
-                    className={styles.progressBarInputRange}
-                  /> */}
                   <Slider percentage={percentage} onChange={onChange} />
                   <div className={styles.audio}>
                     <audio
