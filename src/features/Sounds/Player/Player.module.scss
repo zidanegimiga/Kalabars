@@ -582,6 +582,14 @@
         justify-content: center;
         background: #181818;
         z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h2{
+            margin-left: 16px;
+            font-size: 24px;
+        }
     }
 }
 
@@ -591,6 +599,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #E9E9E9;
+    padding-bottom: 32px;
 }
 
 .playlistItem{

@@ -52,17 +52,6 @@ const VideoPlayer = ({ video }: any) => {
     }
   };
 
-  useEffect(() => {
-    const vidDuration = videoRef?.current?.duration;
-    setVideoTime(vidDuration);
-    const duration = formatDuration(videoTime);
-    setVideoDuration(duration);
-  }, []);
-
-  const handleLoadedMetadata = () => {
-    setVideoTime(videoRef.current.duration);
-  };
-
   const handleBuffering = () => {
     const video = videoRef.current;
     const bufferedTime = video.buffered.length > 0 ? video.buffered.end(0) : 0;
@@ -149,6 +138,51 @@ const VideoPlayer = ({ video }: any) => {
     videoRef.current.volume = 0.5;
     setVolume(Math.floor(videoRef.current.volume * 100));
   };
+
+  const handleLoadedMetadata = () => {
+    setVideoTime(videoRef.current.duration);
+  };
+
+  const handleKeyDown = event => {
+    switch(event.key){
+      case 'm': {
+        if(muted){
+          handleVolumeUnmute()
+        } else{
+          handleVolumeMute()
+        }
+      } break;
+      case ' ': {
+        if(playing){
+          videoHandler("pause")
+        } else{
+          videoHandler("play")
+        }
+      } break;
+      
+      case 'ArrowRight':{
+        fastForward()
+      } break;
+
+      case 'ArrowLeft':{
+        revert()
+      } break;
+
+      case 'f':{
+        fullScreen()
+      } break;
+
+      default:
+        console.log("Yay")   
+    }
+  };
+
+  useEffect(() => {
+    const vidDuration = videoRef?.current?.duration;
+    setVideoTime(vidDuration);
+    const duration = formatDuration(videoTime);
+    setVideoDuration(duration);
+  }, []);
 
   const backgroundImage =
     `${process.env.NEXT_PUBLIC_API}` +

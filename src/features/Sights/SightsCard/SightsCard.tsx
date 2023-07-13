@@ -15,7 +15,6 @@ const SightsCard = ({ cardData }) => {
   }
 
   return (
-
     <div className={styles.categoryCardWrapper}>
       <Link href={`/video/${cardData?.public_id}`}>
         <img
@@ -23,31 +22,29 @@ const SightsCard = ({ cardData }) => {
           alt={cardData?.title}
           className={styles.cardImage}
         />
-        </Link>
-        <div className={styles.innerContainer}>
-          <div className={styles.movieTitle}>
-            {cardData?.title.toUpperCase()}
-          </div>
-          <div className={styles.movieType}>
-            {/* Thriller | 7 Minutes | Directed by {cardData?.creators_name} */}
-            7 Minutes | Directed by {cardData?.creators_name}
-          </div>
-          <div className={styles.movieSummary}>
-            {`${cardData?.description.slice(0, 100)}...`}
-          </div>
-
-          <Link href={`/video/${cardData?.public_id}`}>
-            <div
-              className={styles.cardBtn}
-              onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
-            >
-              <PlayIcon hovered={hovered} initialColor={"gray"} />
-              <p>Play Title</p>
-            </div>
-            </Link>
+      </Link>
+      <div className={styles.innerContainer}>
+        <div className={styles.movieTitle}>{cardData?.title.toUpperCase()}</div>
+        <div className={styles.movieType}>
+          {cardData?.genres[0]?.title} | {cardData?.duration} Minutes | Directed by <span style={{fontWeight: "500"}}> {cardData?.creators_name}</span>
         </div>
-      
+        <div className={styles.movieSummary}>
+          {`${cardData?.description.slice(0, 100)}...`}
+        </div>
+
+        <Link href={`/video/${cardData?.public_id}`}>
+          <div
+            className={styles.cardBtn}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+          >
+            <div className={styles.playIcon}>
+              <PlayIcon hovered={hovered} initialColor={"#2b2b2b"} />
+            </div>
+            <p>Play Title</p>
+          </div>
+        </Link>
+      </div>
     </div>
   );
 };

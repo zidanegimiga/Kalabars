@@ -13,7 +13,7 @@ import { PlayIcon } from "shared/Icons/Playback";
 const Hero = ({ videos }) => {
   const router = useRouter();
   const [hovered, setHovered] = useState();
-  const [showDetails, setShowDetails] = useState(true);
+  const [showDetails, setShowDetails] = useState(false);
   console.log(videos);
 
   return (
@@ -61,12 +61,15 @@ const Hero = ({ videos }) => {
               </div>
               <div className={styles.detailsWrapper}>
                 <div className={styles.detailsContainer}>
-                  <div className={styles.title}> {video.title} </div>
+                  <div className={styles.title}>
+                    {" "}
+                    {video.title.toUpperCase()}{" "}
+                  </div>
 
                   {showDetails && (
-                    <>
+                    <div>
                       <div className={styles.tagsContainer}>
-                        <div>Thriller</div>
+                        <div key={index}>{video.genres[0]?.title}</div>
                         <div> | </div>
                         <div> {video.duration} Minutes </div>
                         <div> | </div>
@@ -75,9 +78,12 @@ const Hero = ({ videos }) => {
                       <div className={styles.description}>
                         {video.description}
                       </div>
-                    </>
+                    </div>
                   )}
-                  <div className={styles.iconsContainer}>
+                  <div
+                    className={styles.iconsContainer}
+                    style={{ marginTop: "48px" }}
+                  >
                     <div
                       className={styles.iconWrapper}
                       onClick={() => router.push(`/video/${video.public_id}`)}
@@ -98,7 +104,10 @@ const Hero = ({ videos }) => {
                       </div>
                       <div className={styles.iconsText}>Add to watch list</div>
                     </div>
-                    <div className={styles.iconWrapper}>
+                    <div
+                      className={styles.iconWrapper}
+                      onClick={() => router.push(`/#more`)}
+                    >
                       <div className={styles.icon}>
                         <Image
                           src={"/mouse.png"}
@@ -142,7 +151,10 @@ const Hero = ({ videos }) => {
                   <div className={styles.category}>{video.duration} min</div>
                 </div>
                 <div className={styles.buttonRow}>
-                  <div className={styles.redButton} onClick={() => router.push(`/video/${video.public_id}`)}>
+                  <div
+                    className={styles.redButton}
+                    onClick={() => router.push(`/video/${video.public_id}`)}
+                  >
                     <PlayIcon hovered={hovered} initialColor={"white"} />
                     <p>Start Watching</p>
                   </div>

@@ -15,7 +15,6 @@ import { Play, Pause } from "shared/Icons/Playback";
 import { KalabarsContext } from "global/KalabarsContext";
 import {
   AddToPlaylist,
-  AddToPlaylistTest,
   AddToPlaylistWhite,
   Playlist,
 } from "shared/Icons/Playlist";
@@ -419,7 +418,10 @@ const Player = () => {
       {isQueVisible && (
         <div className={styles.audioPlaylistContainer}>
           <div className={styles.audioPlaylistWrapper}>
-            <div className={styles.playlistHeader}>Queue</div>
+            <div className={styles.playlistHeader}>
+              <h2>Playlist</h2>
+              <Close action={()=> setIsQueVisible(false)}/>
+            </div>
             {audioPlaylist.map((playlistItem, index) => (
               // <div key={index} style={{ color: "white" }}>
               //   {playlistItem?.title}

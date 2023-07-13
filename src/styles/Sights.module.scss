@@ -53,5 +53,14 @@
     align-items: center;
     gap: 0;
     width: 100%;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 80px;
+
+    @media (max-width: 1601px) {                
+        padding-left: 0px;
+        padding-right: 32px;
+        padding-top: 32px;
+    }
 }
 
