@@ -148,32 +148,29 @@
 }
 
 .volumeRange {
-  -webkit-appearance: none;
   transition: all ease-in-out 0.5s;
-  border-radius: 8px;
-  background-color: #ffffff;
-  height: 4px;
-  margin-bottom: 16px;
+  transform: translateY(-10%);
+  margin-left: 8px;
 }
 
-.volumeRange::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  background-color: #FF3354;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  cursor: pointer;
-}
+// .volumeRange::-webkit-slider-thumb {
+//   -webkit-appearance: none;
+//   background-color: #FF3354;
+//   height: 20px;
+//   width: 20px;
+//   border-radius: 50%;
+//   cursor: pointer;
+// }
 
-.volumeRange::-moz-range-progress {
-  background-color: #FF3354;
-  height: 4px;
-}
+// .volumeRange::-moz-range-progress {
+//   background-color: #FF3354;
+//   height: 4px;
+// }
 
-.volumeRange::-webkit-progress-inner-element {
-  background-color: #FF3354;
-  height: 4px;
-}
+// .volumeRange::-webkit-progress-inner-element {
+//   background-color: #FF3354;
+//   height: 4px;
+// }
 
 .timeControls {
   display: flex;
