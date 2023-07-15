@@ -93,6 +93,7 @@
     transition: all ease-in-out 0.2s;
     color: #3b3b3b;
     font-weight: bold;
+    cursor: pointer;
 
     &:hover {
         transform: translateY(-10%);
