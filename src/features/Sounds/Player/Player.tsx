@@ -102,7 +102,6 @@ const Player = () => {
   const handleTimeUpdate = () => {
     setCurrentTime(audioRef.current.currentTime);
     setProgress(audioRef?.current?.currentTime / audioRef?.current?.duration);
-    // console.log("Progress: ", progress)
     timeline.current?.style?.setProperty("--progress-position", progress);
   };
 
@@ -132,133 +131,10 @@ const Player = () => {
     setProgress(0);
     const playBufferStatus = isObjectEmpty(currentAudioPlaying);
     setAudioPlaying(playBufferStatus);
-
-    // const totalAudioDuration = audioRef?.current?.duration;
-    // setAudioTime(totalAudioDuration);
-    console.log("Audio Duration: ", audioTime);
-
     const formattedDuration = formatDuration(audioTime);
     setAudioDuration(formattedDuration);
   }, [audioTime, currentAudioPlaying]);
 
-  // return (
-  //   <div className={styles.playerWrapper}>
-  //     <div className={styles.audioMetadata}>
-  //       {isObjectEmpty(currentAudioPlaying) === false && (
-  //         <img
-  //           alt={currentAudioPlaying?.title}
-  //           src={`https://content.kalabars.com/static/media/audios_images/${currentAudioPlaying?.square_image}`}
-  //           className={styles.coverArt}
-  //         />
-  //       )}
-  //       <div className={styles.audioDetailsRight}>
-  //         <div className={styles.audioTextualData}>
-  //           <p className={styles.artistName}>
-  //             {currentAudioPlaying?.creators_name}
-  //           </p>
-  //           <p className={styles.audioTitle}>{currentAudioPlaying?.title.slice(0, 11)}...</p>
-  //           <p className={styles.audioTitleMobile}>{currentAudioPlaying?.title}</p>
-  //         </div>
-  //         {/* <div className={styles.downloadButton}>
-  //                     {" "}
-  //                     <Download />{" "}
-  //                   </div> */}
-  //       </div>
-  //     </div>
-  //     <div className={styles.playbackContainer}>
-  //       <div className={styles.playbackIcons}>
-  //         {/* <div className={styles.repeat}>
-  //           <Repeat />
-  //         </div> */}
-  //         <div className={styles.rewind} onClick={revert}>
-  //           <Rewind />
-  //         </div>
-  //         {isCurrentAudioPlaying ? (
-  //           <div className={styles.play}>
-  //             <Pause
-  //               action={() => {
-  //                 playPauseHandler("pause");
-  //               }}
-  //             />
-  //           </div>
-  //         ) : (
-  //           <div className={styles.play}>
-  //             <Play
-  //               action={() => {
-  //                 playPauseHandler("play");
-  //               }}
-  //             />
-  //           </div>
-  //         )}
-  //         <div className={styles.forward} onClick={fastForward}>
-  //           <Forward />
-  //         </div>
-  //         {/* <div className={styles.shuffle}>
-  //           <Shuffle />
-  //         </div> */}
-  //       </div>
-  //       <div
-  //         className={styles.progressArea}
-  //         ref={timeline}
-  //         onClick={(e) => handleTimelineClick(e)}
-  //         // onMouseMove={(e) => handleTimelineClick(e)}
-  //         // onMouseDown={(e) => handleTimelineClick(e)}
-  //       >
-  //         <div className={styles.progressBar}>
-  //           <audio
-  //             ref={audioRef}
-  //             src={`https://content.kalabars.com/static/media/audios/${currentAudioPlaying.audio_file}`}
-  //             onProgress={handleBuffering}
-  //             onLoadedMetadata={handleLoadedMetadata}
-  //             onLoadedData={() => console.log("Video data loaded")}
-  //             onTimeUpdate={() => handleTimeUpdate()}
-  //             onEnded={(e) => setIsCurrentAudioPlaying(false)}
-  //           />
-  //         </div>
-  //         <div className={styles.timer}>
-  //           <span className={styles.current}>
-  //             {Math.floor(currentTime / 60) +
-  //               ":" +
-  //               ("0" + Math.floor(currentTime % 60)).slice(-2)}
-  //           </span>
-  //           <span className={styles.current}>
-  //             {Math.floor(audioTime / 60) +
-  //               ":" +
-  //               ("0" + Math.floor(audioTime % 60)).slice(-2)}
-  //           </span>
-  //         </div>
-  //       </div>
-  //     </div>
-  //     <div className={styles.playIconMobile}>
-  //       {isCurrentAudioPlaying ? (
-  //         <div className={styles.play}>
-  //           <Pause
-  //             action={() => {
-  //               playPauseHandler("pause");
-  //             }}
-  //           />
-  //         </div>
-  //       ) : (
-  //         <div className={styles.play}>
-  //           <Play
-  //             action={() => {
-  //               playPauseHandler("play");
-  //             }}
-  //           />
-  //         </div>
-  //       )}
-  //       <div className={styles.queBtnWrapper} >
-  //         {
-  //           isQueVisible ? <Close action={()=> setIsQueVisible(false)}/> : <div onClick={()=> setIsQueVisible(true)}><AddToPlaylistWhite /></div>
-  //         }
-  //       </div>
-  //     </div>
-  //     <div className={styles.volumeContainer}>
-
-  //     </div>
-
-  //   </div>
-  // );
   return (
     <div className={styles.playerWrapper}>
       <footer className={styles.playerFooter}>
