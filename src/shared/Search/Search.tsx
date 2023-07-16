@@ -10,9 +10,11 @@ const SearchInput = ({ placeholder, value, handleSearch }) => {
         onChange={(e) => handleSearch(e)}
         className={styles.SearchBar}
       />
-      {/* <button className={styles.searchBtn}>
-              <Search />
-            </button> */}
+      {/* 
+        <button className={styles.searchBtn}>
+          <Search />
+        </button> 
+      */}
     </form>
   );
 };

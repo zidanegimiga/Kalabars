@@ -158,6 +158,29 @@ const AddToPlaylist = () => {
   );
 };
 
+const Check = () => {
+  const [hover, setHovered] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+      >
+        <path
+          d="M8.83333 13.5L14.7083 7.625L13.5417 6.45833L8.83333 11.1667L6.45833 8.79167L5.29167 9.95833L8.83333 13.5ZM4.16667 17.5C3.70833 17.5 3.31583 17.3367 2.98917 17.01C2.6625 16.6833 2.49945 16.2911 2.5 15.8333V4.16667C2.5 3.70833 2.66333 3.31583 2.99 2.98917C3.31667 2.6625 3.70889 2.49945 4.16667 2.5H15.8333C16.2917 2.5 16.6842 2.66333 17.0108 2.99C17.3375 3.31667 17.5006 3.70889 17.5 4.16667V15.8333C17.5 16.2917 17.3367 16.6842 17.01 17.0108C16.6833 17.3375 16.2911 17.5006 15.8333 17.5H4.16667Z"
+          fill="#FB1036"
+        />
+      </svg>
+    </div>
+  );
+};
+
 type addToPlaylistButton = {
   initialColor: string,
   role?: string,
@@ -198,4 +221,4 @@ const AddToPlaylistTest = ({
   );
 };
 
-export { Playlist, AddToPlaylist, AddToPlaylistWhite, AddToPlaylistTest };
+export { Check, Playlist, AddToPlaylist, AddToPlaylistWhite, AddToPlaylistTest };

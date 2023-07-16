@@ -13,6 +13,7 @@ import {
 import styles from "./Video.module.scss";
 import MoonLoader from "react-spinners/MoonLoader";
 import { PauseTest, PlayTest } from "shared/Icons/SoundPlayerIcons";
+import Slider from "features/Sounds/Slider/Slider";
 
 const VideoPlayer = ({ video }: any) => {
   const [playing, setPlaying] = useState(false);
@@ -265,6 +266,10 @@ const VideoPlayer = ({ video }: any) => {
                   </div>
                   <div className={styles.thumbIndicator}></div>
                 </div>
+                {/* <Slider
+                  percentage={Math.floor(100 * (currentTime / videoTime))}
+                  onChange={handleTimeUpdate}
+                /> */}
               </div>
               <p className={styles.timeRight}>
                 {Math.floor(videoTime / 60) +
@@ -321,7 +326,7 @@ const VideoPlayer = ({ video }: any) => {
                       <Volume1 action={handleVolumeMute} />
                     )}
                   </div>
-                  <input
+                  {/* <input
                     type="range"
                     min="0"
                     max="100"
@@ -330,7 +335,10 @@ const VideoPlayer = ({ video }: any) => {
                     onChange={(e) => {
                       handleVolumeChange(e);
                     }}
-                  />
+                  /> */}
+                  <div className={styles.volumeRange}>
+                    <Slider percentage={volume} onChange={handleVolumeChange} />
+                  </div>
                 </div>
               </div>
               <div className={styles.rightControls}>
