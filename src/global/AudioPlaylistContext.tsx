@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext } from 'react';
 
-const PlaylistContext = createContext();
+const PlaylistContext = createContext(null);
 
 export function usePlaylist() {
   return useContext(PlaylistContext);
