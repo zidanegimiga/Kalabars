@@ -10,14 +10,7 @@ import { PlayIcon } from "shared/Icons/Playback";
 
 const SoundsCard = ({ data }) => {
   const [hovered, setHovered] = useState(true);
-  const [checked, setChecked] = useState(false);
-  const {
-    currentAudioPlaying,
-    setCurrentAudioPlaying,
-    // handleAddToAudioPlaylist,
-    setIsCurrentAudioPlaying,
-  } = useContext(KalabarsContext);
-  const { playlist, addToPlaylist, removeFromPlaylist } = usePlaylist();
+  const { playlist, addToPlaylist, removeFromPlaylist, playAudio, stopAudio, currentAudio } = usePlaylist();
 
   const isAddedToPlaylist = (musicId) => {
     return playlist?.some((music) => music.id === musicId);
@@ -31,10 +24,11 @@ const SoundsCard = ({ data }) => {
     removeFromPlaylist(musicData);
   };
 
-  const handleSoundCardClick = () => {
-    setCurrentAudioPlaying(data);
-    setIsCurrentAudioPlaying(false);
-    console.log("Current Audio: ", currentAudioPlaying);
+  const handleSoundCardClick = (data) => {
+    // setCurrentAudioPlaying(data);
+    // setIsCurrentAudioPlaying(false);
+    playAudio(data)
+    console.log("Current Audio: ", currentAudio);
   };
   return (
     <div className={styles.categoryCard}>
@@ -45,7 +39,7 @@ const SoundsCard = ({ data }) => {
           className={styles.cardImg}
         />
 
-        <div className={styles.playIcon} onClick={handleSoundCardClick}>
+        <div className={styles.playIcon} onClick={()=>handleSoundCardClick(data)}>
           <PlayIcon hovered={hovered} initialColor={"white"} />
         </div>
       </div>

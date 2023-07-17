@@ -4,8 +4,10 @@ import { Home, Playstore, Sights, Sound } from "shared/Icons/SidebarIcons";
 import SoundCategory from "features/Sounds/SoundCategory/SoundCategory";
 import Player from "features/Sounds/Player/Player";
 import { KalabarsContext } from "global/KalabarsContext";
+import { usePlaylist } from "global/AudioPlaylistContext";
 import Link from "next/link";
 import SideBarItem from "shared/SideBarItem/SideBarItem";
+import { ToastContainer, toast} from 'react-toastify'
 
 const Sounds = ({ podcasts }) => {
   const [pods, setPodcasts] = useState([]);
@@ -13,16 +15,18 @@ const Sounds = ({ podcasts }) => {
   const [music, setMusic] = useState([]);
 
   const {
-    openMenu,
-    setOpenMenu,
     currentAudioPlaying,
-    setCurrentAudioPlaying,
-    audioPlaylist,
-    handleAddToAudioPlaylist,
-    handleClearAudioPlaylist,
-    isCurrentAudioPlaying,
-    setIsCurrentAudioPlaying,
   } = useContext(KalabarsContext);
+
+  const {
+    currentAudio,
+    playlist,
+    addToPlaylist,
+    removeFromPlaylist,
+    playAudio,
+    stopAudiocurrentAudio,
+  } = usePlaylist();
+
 
   const isObjectEmpty = (objectName) => {
     return (
@@ -84,7 +88,8 @@ const Sounds = ({ podcasts }) => {
           {/* <SoundCategory title="New Sounds" /> */}
         </div>
       </div>
-      { isObjectEmpty(currentAudioPlaying) === false && <Player /> }
+      { isObjectEmpty(currentAudio) === false && <Player /> }
+      <ToastContainer />
     </div>
   );
 };

@@ -34,12 +34,21 @@ const Player = () => {
   const {
     openMenu,
     setOpenMenu,
-    currentAudioPlaying,
-    setCurrentAudioPlaying,
+    // currentAudioPlaying,
+    // setCurrentAudioPlaying,
     isCurrentAudioPlaying,
-    setIsCurrentAudioPlaying,
+    // setIsCurrentAudioPlaying,
   } = useContext(KalabarsContext);
-  const { playlist, addToPlaylist, removeFromPlaylist } = usePlaylist();
+  
+  const {
+    playlist,
+    addToPlaylist,
+    removeFromPlaylist,
+    isPlaying,
+    setIsPlaying,
+    currentAudio,
+    playAudio
+  } = usePlaylist();
 
   const audioRef = useRef(null);
   const timeline = useRef(null);
@@ -106,16 +115,16 @@ const Player = () => {
 
   const handleDisplayAudioPlaylist = () => {
     setIsQueVisible(!isQueVisible);
-    console.log("Current: ", currentAudioPlaying);
+    console.log("Current: ", currentAudio);
   };
 
   const playPauseHandler = (control) => {
     if (control === "play") {
       audioRef.current.play();
-      setIsCurrentAudioPlaying(true);
+      setIsPlaying(true)
     } else if (control === "pause") {
       audioRef.current.pause();
-      setIsCurrentAudioPlaying(false);
+      setIsPlaying(false)
     }
   };
 
@@ -159,9 +168,9 @@ const Player = () => {
   };
 
   const handlePlaylistItemClick = (data) => {
-    setCurrentAudioPlaying(data);
-    setIsCurrentAudioPlaying(false);
-    console.log("Current Audio: ", currentAudioPlaying);
+    playAudio(data);
+    // setIsCurrentAudioPlaying(false);
+    console.log("Current Audio: ", currentAudio);
   };
 
   const onChange = (e) => {
@@ -172,11 +181,18 @@ const Player = () => {
 
   useEffect(() => {
     setProgress(0);
-    const playBufferStatus = isObjectEmpty(currentAudioPlaying);
+    const playBufferStatus = isObjectEmpty(currentAudio);
     setAudioPlaying(playBufferStatus);
     const formattedDuration = formatDuration(audioTime);
     setAudioDuration(formattedDuration);
-  }, [audioTime, currentAudioPlaying]);
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.play();
+      } else {
+        audioRef.current.pause();
+      }
+    }
+  }, [audioTime, currentAudio, isPlaying]);
 
   return (
     <div className={styles.playerWrapper}>
@@ -185,11 +201,11 @@ const Player = () => {
           <div className={styles.playerLeft}>
             <div className={styles.nowPlaying}>
               <div className={styles.coverArtContainer}>
-                {isObjectEmpty(currentAudioPlaying) === false && (
+                {isObjectEmpty(currentAudio) === false && (
                   <img
                     loading="eager"
-                    alt={currentAudioPlaying?.title}
-                    src={`https://content.kalabars.com/static/media/audios_images/${currentAudioPlaying?.square_image}`}
+                    alt={currentAudio?.title}
+                    src={`https://content.kalabars.com/static/media/audios_images/${currentAudio?.square_image}`}
                     className={styles.coverArt}
                   />
                 )}
@@ -197,11 +213,11 @@ const Player = () => {
             </div>
             <div className={styles.audioTitles}>
               <span className={styles.audioTitle}>
-                {currentAudioPlaying?.title}
+                {currentAudio?.title}
               </span>
 
               <span className={styles.audioArtist}>
-                {currentAudioPlaying?.creators_name}
+                {currentAudio?.creators_name}
               </span>
             </div>
             <div className={styles.addToPlaylistTogglerContainer}></div>
@@ -218,7 +234,7 @@ const Player = () => {
                   </div>
                 </div>
                 <div className={styles.playbackIconsCenter}>
-                  {isCurrentAudioPlaying ? (
+                  {isPlaying ? (
                     <button
                       className={styles.play}
                       onClick={(e) => {
@@ -258,14 +274,14 @@ const Player = () => {
                   <div className={styles.audio}>
                     <audio
                       ref={audioRef}
-                      src={`https://content.kalabars.com/static/media/audios/${currentAudioPlaying.audio_file}`}
+                      src={`https://content.kalabars.com/static/media/audios/${currentAudio.audio_file}`}
                       onProgress={handleBuffering}
                       onLoadedMetadata={handleLoadedMetadata}
                       onLoadedData={(
                         event: React.ChangeEvent<HTMLAudioElement>
                       ) => setAudioTime(event?.target?.duration)}
                       onTimeUpdate={(e) => handleTimeUpdate(e)}
-                      onEnded={(e) => setIsCurrentAudioPlaying(false)}
+                      // onEnded={(e) => setIsCurrentAudioPlaying(false)}
                     />
                   </div>
                 </div>
@@ -292,7 +308,7 @@ const Player = () => {
         <div className={styles.audioPlaylistContainer}>
           <div className={styles.audioPlaylistWrapper}>
             <div className={styles.playlistHeader}>
-              <h2>Playlist</h2>
+              <h2>Queue</h2>
               <Close action={() => setIsQueVisible(false)} />
             </div>
             {playlist?.map((playlistItem, index) => (
@@ -315,7 +331,7 @@ const Player = () => {
               </div>
             ))}
             {playlist?.length === 0 && (
-              <div className={styles.playlistEmptyStatus}> Playlist Empty</div>
+              <div className={styles.playlistEmptyStatus}> Queue Empty</div>
             )}
           </div>
         </div>
