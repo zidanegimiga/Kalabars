@@ -36,9 +36,6 @@ const Player = () => {
     setOpenMenu,
     currentAudioPlaying,
     setCurrentAudioPlaying,
-    audioPlaylist,
-    handleAddToAudioPlaylist,
-    handleClearAudioPlaylist,
     isCurrentAudioPlaying,
     setIsCurrentAudioPlaying,
   } = useContext(KalabarsContext);
