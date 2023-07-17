@@ -144,7 +144,6 @@ const Player = () => {
     getCurrDuration(e)
     setCurrentTime(audioRef.current.currentTime);
     setProgress(audioRef?.current?.currentTime / audioRef?.current?.duration);
-    // console.log("Progress: ", progress)
     timeline.current?.style?.setProperty("--progress-position", progress);
   };
 
@@ -176,11 +175,6 @@ const Player = () => {
     setProgress(0);
     const playBufferStatus = isObjectEmpty(currentAudioPlaying);
     setAudioPlaying(playBufferStatus);
-
-    // const totalAudioDuration = audioRef?.current?.duration;
-    // setAudioTime(totalAudioDuration);
-    console.log("Audio Duration: ", audioTime);
-
     const formattedDuration = formatDuration(audioTime);
     setAudioDuration(formattedDuration);
   }, [audioTime, currentAudioPlaying]);
