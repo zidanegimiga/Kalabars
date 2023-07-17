@@ -44,9 +44,9 @@
     align-items: flex-start;
     gap: 48px;
 
-    @media (max-width: 426px) {
+    @media (max-width: 428px) {
         padding: 16px;
-        flex-direction: column;        
+        // flex-direction: column;        
     }
 }
 
