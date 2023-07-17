@@ -48,10 +48,10 @@
   width: fit-content;
   z-index: 2;
 
-    @media (max-width: 321px) {
-        width: 100%;
-        align-items: flex-start;
-    }
+  @media (max-width: 429px) {
+    width: 100%;
+    align-items: flex-start;
+  }
 
   &:hover {
     .controlsContainer {
