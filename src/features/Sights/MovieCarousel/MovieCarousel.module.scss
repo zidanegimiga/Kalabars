@@ -12,6 +12,19 @@
         width: 100%;
     }
 
+    @media (max-width: 1115px) {
+        height: 80vh;
+        width: 100%;
+    }
+
+    @media (max-width: 835px) {
+        height: 58vh;
+    }
+
+    @media (max-width: 821px) {
+        height: 50vh;
+    }
+
     @media (max-width: 769px) {
         height: 70vh;
     }
@@ -20,17 +33,21 @@
         height: 60vh;
     }
 
-    // @media (max-height: 769px) {
-    //     height: 70vh;
-    // }
+    @media (max-width: 394px) {
+        height: 50vh;
+    }
 
     @media (max-width: 376px) {
         // height: 45vh;
     }
+
+    @media (max-width: 361px) {
+        height: 50vh
+    }
 }
 
 .poster {
-    height: 100vh;
+    height: 100%;
     width: 100%;
 
     @media (max-width: 2881px) {
@@ -41,8 +58,20 @@
         height: 180vh;
     }
 
-    @media (max-width: 1025px) {
-        height: 100vh;
+    @media (max-width: 821px) {
+        height: 65vh;
+    }
+
+    @media (max-width: 1115px) {
+        height: 100%;
+    }
+
+    @media (max-width: 835px) {
+        height: 58vh;
+    }
+
+    @media (max-width: 821px) {
+        height: 58vh;
     }
 
     @media (max-width: 769px) {
@@ -52,13 +81,21 @@
     @media (max-width: 436px) {
         height: 60vh;
     }
+
+    @media (max-width: 394px) {
+        height: 50vh;
+    }
+
+    @media (max-width: 361px) {
+        height: 45vh;
+    }
 }
 
 .detailsWrapper {
     width: 50%;
     height: fit-content;
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
     left: 1%;
     background: #4d4a4acc;
     padding-left: 40px;
@@ -66,6 +103,10 @@
     padding-top: 40px;
     padding-bottom: 40px;
     border-radius: 8px 8px 0 0;
+
+    @media (min-height: 1438px) {
+        bottom: 32px;
+    }
 
     @media (max-width: 1441px) {
         width: 85%;
@@ -216,6 +257,10 @@
     right: 2%;
     border-radius: 50%;
 
+    @media (min-height: 1438px) {
+        bottom: 32px;
+    }
+
     @media (max-width: 1441px) {
         right: 4%;
     }
@@ -235,6 +280,10 @@
     right: 5%;
     border-radius: 50%;
     z-index: 1;
+
+    @media (min-height: 1438px) {
+        bottom: 32px;
+    }
 
     @media (max-width: 1441px) {
         right: 4%;
@@ -283,7 +332,7 @@
     align-items: center;
 }
 
-.videoDetails{
+.videoDetails {
     gap: 4px
 }
 
@@ -308,7 +357,7 @@
     font-size: 10px;
 }
 
-.addToWatchList{
+.addToWatchList {
     width: 160px;
     height: 40px;
     display: flex;
@@ -316,10 +365,10 @@
     justify-content: center;
     border: 1px solid #FFFFFF;
     border-radius: 16px;
-    
-    p{
+
+    p {
         text-align: center;
-        color:#FFFFFF;
+        color: #FFFFFF;
         font-family: 'Ubuntu';
         font-size: 14px;
 
