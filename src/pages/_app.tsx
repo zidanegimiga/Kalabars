@@ -7,6 +7,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { KalabarsContext, KalabarsProvider } from "../global/KalabarsContext";
 import { PlaylistProvider } from "global/AudioPlaylistContext";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import 'react-toastify/dist/ReactToastify.css'
 
 const App: FC = ({ Component, pageProps }: AppProps) => {
   return (
