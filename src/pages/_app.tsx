@@ -5,6 +5,7 @@ import { AppProps } from "next/app";
 import "../styles/app.scss";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { KalabarsContext, KalabarsProvider } from "../global/KalabarsContext";
+import { PlaylistProvider } from "global/AudioPlaylistContext";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const App: FC = ({ Component, pageProps }: AppProps) => {
@@ -19,9 +20,11 @@ const App: FC = ({ Component, pageProps }: AppProps) => {
           height={3}
           showOnShallow={true}
         />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <PlaylistProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </PlaylistProvider>
       </KalabarsProvider>
     </div>
   );

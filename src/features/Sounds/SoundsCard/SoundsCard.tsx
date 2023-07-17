@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AddToPlaylist, Check } from "shared/Icons/Playlist";
 import { useContext } from "react";
 import { KalabarsContext } from "global/KalabarsContext";
+import { usePlaylist } from "global/AudioPlaylistContext";
 import styles from "./SoundsCard.module.scss";
 import { PlayIcon } from "shared/Icons/Playback";
 
@@ -13,14 +14,22 @@ const SoundsCard = ({ data }) => {
   const {
     currentAudioPlaying,
     setCurrentAudioPlaying,
-    handleAddToAudioPlaylist,
+    // handleAddToAudioPlaylist,
     setIsCurrentAudioPlaying,
   } = useContext(KalabarsContext);
+  const { playlist, addToPlaylist, removeFromPlaylist } = usePlaylist();
 
-  const handlePlaylistAdd = (data) =>{
-    handleAddToAudioPlaylist(data);
-    setChecked(!checked)
-  }
+  const isAddedToPlaylist = (musicId) => {
+    return playlist?.some((music) => music.id === musicId);
+  };
+
+  const handleAddToPlaylist = (musicData) => {
+    addToPlaylist(musicData);
+  };
+
+  const handleRemoveFromPlaylist = (musicData) => {
+    removeFromPlaylist(musicData);
+  };
 
   const handleSoundCardClick = () => {
     setCurrentAudioPlaying(data);
@@ -45,11 +54,16 @@ const SoundsCard = ({ data }) => {
         <div
           className={styles.playlistIcon}
           // onClick={}
-          onClick={() => handlePlaylistAdd(data)}
         >
-          {
-            checked ? <Check /> : <AddToPlaylist />
-          }
+          {isAddedToPlaylist(data?.id) ? (
+            <div onClick={() => handleRemoveFromPlaylist(data)}>
+              <Check />
+            </div>
+          ) : (
+            <div onClick={() => handleAddToPlaylist(data)}>
+              <AddToPlaylist />
+            </div>
+          )}
         </div>
       </div>
     </div>

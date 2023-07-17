@@ -15,7 +15,7 @@ const Sights = ({
   documentary,
   staffPicks,
 }) => {
-  const carouselVideos = videos.response.result.slice(15, 24);
+  const carouselVideos = videos?.response?.result?.slice(15, 24);
   
 
   return (

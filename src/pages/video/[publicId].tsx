@@ -13,7 +13,7 @@ import Image from 'next/image'
 type Videos = any;
 
 const Sight = ({ videos }: any) => {
-  const videosData = videos.response.result;
+  const videosData = videos?.response.result;
   const router = useRouter();
   const { publicId } = router.query;
   const video = videosData?.find((video: any) => video?.public_id === publicId);

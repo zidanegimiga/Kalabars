@@ -13,6 +13,7 @@ import {
 } from "shared/Icons/SoundPlayerIcons";
 import { Play, Pause } from "shared/Icons/Playback";
 import { KalabarsContext } from "global/KalabarsContext";
+import { usePlaylist } from "global/AudioPlaylistContext";
 import {
   AddToPlaylist,
   AddToPlaylistWhite,
@@ -41,6 +42,7 @@ const Player = () => {
     isCurrentAudioPlaying,
     setIsCurrentAudioPlaying,
   } = useContext(KalabarsContext);
+  const { playlist, addToPlaylist, removeFromPlaylist } = usePlaylist();
 
   const audioRef = useRef(null);
   const timeline = useRef(null);
@@ -296,7 +298,7 @@ const Player = () => {
               <h2>Playlist</h2>
               <Close action={() => setIsQueVisible(false)} />
             </div>
-            {audioPlaylist.map((playlistItem, index) => (
+            {playlist?.map((playlistItem, index) => (
               <div
                 className={styles.playlistItem}
                 key={index}
@@ -315,7 +317,7 @@ const Player = () => {
                 </div>
               </div>
             ))}
-            {audioPlaylist.length === 0 && (
+            {playlist?.length === 0 && (
               <div className={styles.playlistEmptyStatus}> Playlist Empty</div>
             )}
           </div>

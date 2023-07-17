@@ -14,7 +14,7 @@ const Hero = ({ videos }) => {
   const router = useRouter();
   const [hovered, setHovered] = useState();
   const [showDetails, setShowDetails] = useState(false);
-  console.log(videos[0]);
+  // console.log(videos[0]);
 
   return (
     <div>
@@ -43,7 +43,7 @@ const Hero = ({ videos }) => {
           );
         }}
       >
-        {videos.map(function (video, index) {
+        {videos?.map(function (video, index) {
           if (video.landscape_image === null) {
             return null;
           }

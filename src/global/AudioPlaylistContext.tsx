@@ -11,6 +11,7 @@ export function PlaylistProvider({ children }) {
 
   const addToPlaylist = (musicData) => {
     setPlaylist((prevPlaylist) => [...prevPlaylist, musicData]);
+    console.log(playlist)
   };
 
   const removeFromPlaylist = (musicData) => {
