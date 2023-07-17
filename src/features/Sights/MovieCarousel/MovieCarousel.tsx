@@ -14,7 +14,7 @@ const Hero = ({ videos }) => {
   const router = useRouter();
   const [hovered, setHovered] = useState();
   const [showDetails, setShowDetails] = useState(false);
-  console.log(videos);
+  // console.log(videos[0]);
 
   return (
     <div>
@@ -43,7 +43,7 @@ const Hero = ({ videos }) => {
           );
         }}
       >
-        {videos.map(function (video, index) {
+        {videos?.map(function (video, index) {
           if (video.landscape_image === null) {
             return null;
           }
@@ -53,7 +53,7 @@ const Hero = ({ videos }) => {
                 <img
                   src={
                     `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
-                    video.landscape_image
+                    video.large_image
                   }
                   alt="Image description"
                   className={styles.poster}

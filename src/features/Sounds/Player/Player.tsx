@@ -13,12 +13,14 @@ import {
 } from "shared/Icons/SoundPlayerIcons";
 import { Play, Pause } from "shared/Icons/Playback";
 import { KalabarsContext } from "global/KalabarsContext";
+import { usePlaylist } from "global/AudioPlaylistContext";
 import {
   AddToPlaylist,
   AddToPlaylistWhite,
   Playlist,
 } from "shared/Icons/Playlist";
 import { Close } from "shared/Icons/Twitter";
+import Slider from "../Slider/Slider";
 
 const Player = () => {
   const [isQueVisible, setIsQueVisible] = useState(false);
@@ -28,17 +30,25 @@ const Player = () => {
   const [currentTime, setCurrentTime] = useState(1);
   const [buffered, setBuffered] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [percentage, setPercentage] = useState(0);
   const {
     openMenu,
     setOpenMenu,
-    currentAudioPlaying,
-    setCurrentAudioPlaying,
-    audioPlaylist,
-    handleAddToAudioPlaylist,
-    handleClearAudioPlaylist,
+    // currentAudioPlaying,
+    // setCurrentAudioPlaying,
     isCurrentAudioPlaying,
-    setIsCurrentAudioPlaying,
+    // setIsCurrentAudioPlaying,
   } = useContext(KalabarsContext);
+  
+  const {
+    playlist,
+    addToPlaylist,
+    removeFromPlaylist,
+    isPlaying,
+    setIsPlaying,
+    currentAudio,
+    playAudio
+  } = usePlaylist();
 
   const audioRef = useRef(null);
   const timeline = useRef(null);
@@ -67,6 +77,34 @@ const Player = () => {
     }
   };
 
+  function secondsToHms(seconds) {
+    if (!seconds) return "00m 00s";
+
+    let duration: any = seconds;
+    let hours: any = Math.floor(duration / 3600);
+    duration = Math.floor(duration % 3600);
+
+    let min: any = Math.floor(duration / 60);
+    duration = Math.floor(duration % 60);
+
+    let sec: any = parseInt(duration);
+
+    if (sec < 10) {
+      sec = `0${sec}`;
+    }
+    if (min < 10) {
+      min = `0${min}`;
+    }
+
+    if (parseInt(hours, 10) > 0) {
+      return `${parseInt(hours, 10)}h ${min}m ${sec}s`;
+    } else if (min == 0) {
+      return `00m ${sec}s`;
+    } else {
+      return `${min}m ${sec}s`;
+    }
+  }
+
   const isObjectEmpty = (objectName) => {
     return (
       objectName &&
@@ -77,16 +115,16 @@ const Player = () => {
 
   const handleDisplayAudioPlaylist = () => {
     setIsQueVisible(!isQueVisible);
-    console.log("Current: ", currentAudioPlaying);
+    console.log("Current: ", currentAudio);
   };
 
   const playPauseHandler = (control) => {
     if (control === "play") {
       audioRef.current.play();
-      setIsCurrentAudioPlaying(true);
+      setIsPlaying(true)
     } else if (control === "pause") {
       audioRef.current.pause();
-      setIsCurrentAudioPlaying(false);
+      setIsPlaying(false)
     }
   };
 
@@ -99,10 +137,21 @@ const Player = () => {
     timeline.current?.style?.setProperty("--buffer-position", buffered / 100);
   };
 
-  const handleTimeUpdate = () => {
+  const getCurrDuration = (e) => {
+    const percent = (
+      (e.currentTarget.currentTime / e.currentTarget.duration) *
+      100
+    ).toFixed(2);
+    const time = e.currentTarget.currentTime;
+
+    setPercentage(+percent);
+    setCurrentTime(time.toFixed(2));
+  };
+
+  const handleTimeUpdate = (e) => {
+    getCurrDuration(e)
     setCurrentTime(audioRef.current.currentTime);
     setProgress(audioRef?.current?.currentTime / audioRef?.current?.duration);
-    // console.log("Progress: ", progress)
     timeline.current?.style?.setProperty("--progress-position", progress);
   };
 
@@ -113,152 +162,38 @@ const Player = () => {
   const revert = () => {
     audioRef.current.currentTime -= 5;
   };
-
-  const handleAudioSeeking = (e) => {
-    audioRef.current.currentTime = e.target.value;
-  };
-
+  
   const handleLoadedMetadata = () => {
     setAudioTime(audioRef.current.duration);
   };
 
   const handlePlaylistItemClick = (data) => {
-    setCurrentAudioPlaying(data);
-    setIsCurrentAudioPlaying(false);
-    console.log("Current Audio: ", currentAudioPlaying);
+    playAudio(data);
+    // setIsCurrentAudioPlaying(false);
+    console.log("Current Audio: ", currentAudio);
+  };
+
+  const onChange = (e) => {
+    const aud = audioRef.current;
+    aud.currentTime = (aud.duration / 100) * e.target.value;
+    setPercentage(e.target.value);
   };
 
   useEffect(() => {
     setProgress(0);
-    const playBufferStatus = isObjectEmpty(currentAudioPlaying);
+    const playBufferStatus = isObjectEmpty(currentAudio);
     setAudioPlaying(playBufferStatus);
-
-    // const totalAudioDuration = audioRef?.current?.duration;
-    // setAudioTime(totalAudioDuration);
-    console.log("Audio Duration: ", audioTime);
-
     const formattedDuration = formatDuration(audioTime);
     setAudioDuration(formattedDuration);
-  }, [audioTime, currentAudioPlaying]);
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.play();
+      } else {
+        audioRef.current.pause();
+      }
+    }
+  }, [audioTime, currentAudio, isPlaying]);
 
-  // return (
-  //   <div className={styles.playerWrapper}>
-  //     <div className={styles.audioMetadata}>
-  //       {isObjectEmpty(currentAudioPlaying) === false && (
-  //         <img
-  //           alt={currentAudioPlaying?.title}
-  //           src={`https://content.kalabars.com/static/media/audios_images/${currentAudioPlaying?.square_image}`}
-  //           className={styles.coverArt}
-  //         />
-  //       )}
-  //       <div className={styles.audioDetailsRight}>
-  //         <div className={styles.audioTextualData}>
-  //           <p className={styles.artistName}>
-  //             {currentAudioPlaying?.creators_name}
-  //           </p>
-  //           <p className={styles.audioTitle}>{currentAudioPlaying?.title.slice(0, 11)}...</p>
-  //           <p className={styles.audioTitleMobile}>{currentAudioPlaying?.title}</p>
-  //         </div>
-  //         {/* <div className={styles.downloadButton}>
-  //                     {" "}
-  //                     <Download />{" "}
-  //                   </div> */}
-  //       </div>
-  //     </div>
-  //     <div className={styles.playbackContainer}>
-  //       <div className={styles.playbackIcons}>
-  //         {/* <div className={styles.repeat}>
-  //           <Repeat />
-  //         </div> */}
-  //         <div className={styles.rewind} onClick={revert}>
-  //           <Rewind />
-  //         </div>
-  //         {isCurrentAudioPlaying ? (
-  //           <div className={styles.play}>
-  //             <Pause
-  //               action={() => {
-  //                 playPauseHandler("pause");
-  //               }}
-  //             />
-  //           </div>
-  //         ) : (
-  //           <div className={styles.play}>
-  //             <Play
-  //               action={() => {
-  //                 playPauseHandler("play");
-  //               }}
-  //             />
-  //           </div>
-  //         )}
-  //         <div className={styles.forward} onClick={fastForward}>
-  //           <Forward />
-  //         </div>
-  //         {/* <div className={styles.shuffle}>
-  //           <Shuffle />
-  //         </div> */}
-  //       </div>
-  //       <div
-  //         className={styles.progressArea}
-  //         ref={timeline}
-  //         onClick={(e) => handleTimelineClick(e)}
-  //         // onMouseMove={(e) => handleTimelineClick(e)}
-  //         // onMouseDown={(e) => handleTimelineClick(e)}
-  //       >
-  //         <div className={styles.progressBar}>
-  //           <audio
-  //             ref={audioRef}
-  //             src={`https://content.kalabars.com/static/media/audios/${currentAudioPlaying.audio_file}`}
-  //             onProgress={handleBuffering}
-  //             onLoadedMetadata={handleLoadedMetadata}
-  //             onLoadedData={() => console.log("Video data loaded")}
-  //             onTimeUpdate={() => handleTimeUpdate()}
-  //             onEnded={(e) => setIsCurrentAudioPlaying(false)}
-  //           />
-  //         </div>
-  //         <div className={styles.timer}>
-  //           <span className={styles.current}>
-  //             {Math.floor(currentTime / 60) +
-  //               ":" +
-  //               ("0" + Math.floor(currentTime % 60)).slice(-2)}
-  //           </span>
-  //           <span className={styles.current}>
-  //             {Math.floor(audioTime / 60) +
-  //               ":" +
-  //               ("0" + Math.floor(audioTime % 60)).slice(-2)}
-  //           </span>
-  //         </div>
-  //       </div>
-  //     </div>
-  //     <div className={styles.playIconMobile}>
-  //       {isCurrentAudioPlaying ? (
-  //         <div className={styles.play}>
-  //           <Pause
-  //             action={() => {
-  //               playPauseHandler("pause");
-  //             }}
-  //           />
-  //         </div>
-  //       ) : (
-  //         <div className={styles.play}>
-  //           <Play
-  //             action={() => {
-  //               playPauseHandler("play");
-  //             }}
-  //           />
-  //         </div>
-  //       )}
-  //       <div className={styles.queBtnWrapper} >
-  //         {
-  //           isQueVisible ? <Close action={()=> setIsQueVisible(false)}/> : <div onClick={()=> setIsQueVisible(true)}><AddToPlaylistWhite /></div>
-  //         }
-  //       </div>
-  //     </div>
-  //     <div className={styles.volumeContainer}>
-
-  //     </div>
-
-  //   </div>
-  // );
   return (
     <div className={styles.playerWrapper}>
       <footer className={styles.playerFooter}>
@@ -266,11 +201,11 @@ const Player = () => {
           <div className={styles.playerLeft}>
             <div className={styles.nowPlaying}>
               <div className={styles.coverArtContainer}>
-                {isObjectEmpty(currentAudioPlaying) === false && (
+                {isObjectEmpty(currentAudio) === false && (
                   <img
                     loading="eager"
-                    alt={currentAudioPlaying?.title}
-                    src={`https://content.kalabars.com/static/media/audios_images/${currentAudioPlaying?.square_image}`}
+                    alt={currentAudio?.title}
+                    src={`https://content.kalabars.com/static/media/audios_images/${currentAudio?.square_image}`}
                     className={styles.coverArt}
                   />
                 )}
@@ -278,39 +213,14 @@ const Player = () => {
             </div>
             <div className={styles.audioTitles}>
               <span className={styles.audioTitle}>
-                {currentAudioPlaying?.title}
+                {currentAudio?.title}
               </span>
 
               <span className={styles.audioArtist}>
-                {currentAudioPlaying?.creators_name}
+                {currentAudio?.creators_name}
               </span>
             </div>
-            <div className={styles.addToPlaylistTogglerContainer}>
-              {/* <button
-                className={styles.addToPlaylistToggler}
-                type="button"
-                role="switch"
-                aria-checked={false}
-              >
-                <AddToPlaylistTest
-                  initialColor="white"
-                  height="24px"
-                  width="24px"
-                />
-              </button>
-              <button
-                className={styles.addToPlaylistToggler}
-                type="button"
-                role="switch"
-                aria-checked={false}
-              >
-                <AddToPlaylistTest
-                  initialColor="white"
-                  height="24px"
-                  width="24px"
-                />
-              </button> */}
-            </div>
+            <div className={styles.addToPlaylistTogglerContainer}></div>
           </div>
           <div className={styles.playerCenter}>
             <div className={styles.playerControls}>
@@ -324,7 +234,7 @@ const Player = () => {
                   </div>
                 </div>
                 <div className={styles.playbackIconsCenter}>
-                  {isCurrentAudioPlaying ? (
+                  {isPlaying ? (
                     <button
                       className={styles.play}
                       onClick={(e) => {
@@ -357,47 +267,26 @@ const Player = () => {
               </div>
               <div className={styles.progressWrapper}>
                 <div className={styles.currentTime}>
-                  {Math.floor(currentTime / 60) +
-                    ":" +
-                    ("0" + Math.floor(currentTime % 60)).slice(-2)}
+                  {secondsToHms(currentTime)}
                 </div>
                 <div className={styles.progressBarContainer}>
-                  <input
-                    type="range"
-                    min={0}
-                    max={audioTime}
-                    step="any"
-                    value={currentTime}
-                    onInput={(e) => {
-                      handleAudioSeeking(e);
-                    }}
-                    className={styles.progressBarInputRange}
-                  />
+                  <Slider percentage={percentage} onChange={onChange} />
                   <div className={styles.audio}>
                     <audio
                       ref={audioRef}
-                      src={`https://content.kalabars.com/static/media/audios/${currentAudioPlaying.audio_file}`}
+                      src={`https://content.kalabars.com/static/media/audios/${currentAudio.audio_file}`}
                       onProgress={handleBuffering}
                       onLoadedMetadata={handleLoadedMetadata}
                       onLoadedData={(
                         event: React.ChangeEvent<HTMLAudioElement>
                       ) => setAudioTime(event?.target?.duration)}
-                      onTimeUpdate={() => handleTimeUpdate()}
-                      onEnded={(e) => setIsCurrentAudioPlaying(false)}
+                      onTimeUpdate={(e) => handleTimeUpdate(e)}
+                      // onEnded={(e) => setIsCurrentAudioPlaying(false)}
                     />
                   </div>
                 </div>
                 <div className={styles.totalTime} style={{}}>
-                  {(isNaN(Math.floor(audioTime / 60))
-                    ? "--"
-                    : Math.floor(audioTime / 60)) +
-                    ":" +
-                    (
-                      "0" +
-                      (isNaN(Math.floor(audioTime % 60))
-                        ? "--"
-                        : Math.floor(audioTime % 60))
-                    ).slice(-2)}
+                  {secondsToHms(audioTime)}
                 </div>
               </div>
             </div>
@@ -419,13 +308,10 @@ const Player = () => {
         <div className={styles.audioPlaylistContainer}>
           <div className={styles.audioPlaylistWrapper}>
             <div className={styles.playlistHeader}>
-              <h2>Playlist</h2>
-              <Close action={()=> setIsQueVisible(false)}/>
+              <h2>Queue</h2>
+              <Close action={() => setIsQueVisible(false)} />
             </div>
-            {audioPlaylist.map((playlistItem, index) => (
-              // <div key={index} style={{ color: "white" }}>
-              //   {playlistItem?.title}
-              // </div>
+            {playlist?.map((playlistItem, index) => (
               <div
                 className={styles.playlistItem}
                 key={index}
@@ -444,8 +330,8 @@ const Player = () => {
                 </div>
               </div>
             ))}
-            {audioPlaylist.length === 0 && (
-              <div className={styles.playlistEmptyStatus}> Playlist Empty</div>
+            {playlist?.length === 0 && (
+              <div className={styles.playlistEmptyStatus}> Queue Empty</div>
             )}
           </div>
         </div>

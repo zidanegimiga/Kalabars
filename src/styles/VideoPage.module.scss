@@ -38,10 +38,11 @@
 .videoFeatures {
     padding-left: 72px;
     padding-right: 72px;
+    padding-top: 88px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 24px;
+    gap: 48px;
 
     @media (max-width: 426px) {
         padding: 16px;

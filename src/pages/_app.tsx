@@ -5,11 +5,14 @@ import { AppProps } from "next/app";
 import "../styles/app.scss";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { KalabarsContext, KalabarsProvider } from "../global/KalabarsContext";
+import { PlaylistProvider } from "global/AudioPlaylistContext";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import 'react-toastify/dist/ReactToastify.css'
 
 const App: FC = ({ Component, pageProps }: AppProps) => {
   return (
-    <div tabIndex={0} onKeyDown={(e) => e.preventDefault()}>
+    <div tabIndex={0}>
+    {/* <div tabIndex={0} onKeyDown={(e) => e.preventDefault()}> */}
       <KalabarsProvider>
         <NextNProgress
           color="#ff5a5a"
@@ -18,9 +21,11 @@ const App: FC = ({ Component, pageProps }: AppProps) => {
           height={3}
           showOnShallow={true}
         />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <PlaylistProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </PlaylistProvider>
       </KalabarsProvider>
     </div>
   );
