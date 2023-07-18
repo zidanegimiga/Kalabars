@@ -15,6 +15,7 @@
     flex-direction: column;
     height: 64px;
     width: 100%;
+    position: relative;
 }
 
 .player {
@@ -41,6 +42,10 @@
     width: 30%;
     display: flex;
     gap: 16px;
+
+    @media (max-width: 429px) {
+        width: 60%        
+    }
 }
 
 .coverArtContainer {
@@ -166,6 +171,13 @@
     padding-right: 80px;
     min-width: 180px;
     width: 30%;
+
+    @media (max-width: 449px) {
+        position: absolute;
+        right: -56px;
+        min-width: 0px;
+        width: fit-content;
+    }
 }
 
 .playbackIconsLeft {
@@ -178,6 +190,10 @@
     -ms-flex-pack: end;
     justify-content: flex-end;
     align-items: center;
+
+    @media (max-width: 449px) {
+        display: none
+    }
 }
 
 .play {
@@ -202,6 +218,12 @@
     transition-property: all;
     width: 32px;
     cursor: pointer;
+
+    @media (max-width: 449px) {
+        position: absolute;
+        right: 64px;
+        top: 25%
+    }
 }
 
 .playbackIconsRight {
@@ -213,6 +235,10 @@
     flex: 1;
     gap: 8px;
     align-items: center;
+
+    @media (max-width: 449px) {
+        display: none
+    }
 }
 
 .progressWrapper{
@@ -235,7 +261,8 @@
 
 }
 
-.currentTime, .totalTime {
+.currentTime,
+.totalTime {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     margin-block: 0px;
@@ -244,6 +271,14 @@
     font-family: 'Ubuntu';
     color: #b8b8b8;
     min-width: 56px;
+
+    @media (max-width: 829px) {
+        min-width: 5px;
+    }
+
+    @media (max-width: 449px) {
+        display: none
+    }
 }
 
 .currentTime{
@@ -258,6 +293,13 @@
     width: 100%;
     display: flex;
     align-items: center;
+
+    @media (max-width: 829px) {
+        position: absolute;
+        top: -16px;
+        left: -16px;
+        width: 100%        
+    }
 }
 
 .hiddenVisually {
@@ -334,210 +376,11 @@
     position: relative;
     -webkit-transform: translateX(0);
     transform: translateX(0);
-    // -webkit-transition: -webkit-transform .25s cubic-bezier(.3, 0, 0, 1);
-    // transition: -webkit-transform .25s cubic-bezier(.3, 0, 0, 1);
-    // transition: transform .25s cubic-bezier(.3, 0, 0, 1);
-    // transition: transform .25s cubic-bezier(.3, 0, 0, 1), -webkit-transform .25s cubic-bezier(.3, 0, 0, 1);
 }
-
-// .audioMetadata{
-//     display:flex;
-//     align-items: center;
-
-//     @media (max-width: 586px) {
-//         width: 50%;
-//     }
-// }
-
-// .coverArt{
-//     border-radius: 8px;
-//     width: 120px;
-//     height: 120px;
-//     background-color: #5e5e5e;
-//     outline: none;
-//     border-color: navajowhite;
-
-//     @media (max-width: 1441px) {
-//         width: 64px;
-//         height: 64px;        
-//     }
-
-//     @media (max-width: 426px) {
-//         width: 56px;
-//         height: 56px;        
-//     }
-// }
-
-// .audioDetailsRight{
-//     margin-left: 16px;
-
-//     @media (max-width: 586px) {
-//         width: auto;
-//     }
-
-//     @media (max-width: 586px){
-//         margin-left: 8px;
-//     }
-// }
-
-// .audioTextualData{
-
-//     @media (max-width: 586px) {
-//         width: fit-content;
-//     }
-
-//     .artistName{
-//         color: #E9E9E9;
-//         font-size: .75rem;
-//         margin-bottom: -4px;
-
-//         @media (max-width: 586px){
-//             font-size: 10px;
-//         }
-//     }
-
-//     .audioTitle{
-//         color: #ffffff;
-//         font-size: 1rem;
-//         font-weight: 600;
-//         display: block;
-
-//         @media (max-width: 586px){
-//             font-size: 12px;
-//             display: none;
-//         }
-//     }
-//     .audioTitleMobile{
-//         color: #ffffff;
-//         font-size: 1rem;
-//         font-weight: 600;
-//         display: none;
-
-//         @media (max-width: 586px){
-//             font-size: 12px;
-//             display: block
-//         }
-//     }
-// }
-
-// .downloadButton{
-//     cursor: pointer;
-
-//     @media (max-width: 586px) {
-//         display: none;
-//     }
-// }
-
-// .playbackContainer{
-//     width: 80%;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-
-//     @media (max-width: 586px) {
-//         width: auto;
-//     }
-
-// }
-
-// .playbackIcons{
-//     display: flex;
-//     width: 100%;
-//     justify-content: center;
-//     align-items: center;
-//     gap: 24px;
-
-//     @media (max-width: 426px) {
-//         gap: 2px;
-//         display: none;
-//     }
-// }
-
-// .play{
-//     cursor: pointer;
-// }
-
-// .rewind, .repeat, .forward, .shuffle{
-//     @media (max-width: 426px) {
-//         transform: scale(70%);        
-//     }
-// }
-
-// .progressArea{
-//     margin-top: 12px;
-//     height: 4px;
-//     width: 80%;
-//     cursor: pointer;
-//     border-radius: 50px;
-//     background-color: #f3f3f3;
-
-//     @media (max-width: 426px) {
-//         position: absolute;
-//         bottom: -16px;
-//         left: -9px;
-//         width: 100%;
-//     }
-// }
-
-// .progressArea .progressBar{
-//     height: 4px;
-//     width: calc(var(--progress-position) * 100%);
-//     border-radius: 50px;
-//     background: #FF3354;
-//     position: relative;
-//     overflow-x: hidden;
-// }
-
-// .progressBar::before{
-//     content: "";
-//     position: absolute;
-//     height: 12px;
-//     width: 12px;
-//     background-color: #FF3354;
-//     border-radius: inherit;
-//     top: 50%;
-//     right: -5px;
-//     transform: translateY(-50%);
-//     background: inherit;
-//     opacity: 0;
-//     transition:  opacity 0.2s ease;
-// }
-
-// .progressArea:hover .progressBar::before{
-//     opacity: 1;
-// }
-
-// .progressArea .timer{
-//     display: flex;
-//     align-items: center;
-//     justify-content: space-between;
-//     margin-top: 10px;
-
-//     @media (max-width: 426px) {
-//         display: none;
-//     }
-// }
-
-// .timer span{
-//     font-size: 1.1rem;
-//     font-family: 'Ubuntu';
-//     color: #E9E9E9;
-// }
-
-// .volumeContainer{
-//     width: 10%;
-
-//     @media (max-width: 586px) {
-//         display: none;
-//         width: 25%;      
-//     }
-// }
 
 .audioPlaylistContainer{
     position: absolute;
     bottom: 116%;
-    // bottom: 130%;
     right: 5%;
     width: 840px;
     height: 200px;
@@ -552,7 +395,8 @@
         width: 480px;        
     }
     @media (max-width: 501px) {
-        width: 320px;        
+        width: 94%;
+        bottom: 100%;
     }
     @media (max-width: 426px) {
         width: 101.8%;
@@ -565,8 +409,6 @@
     width: 100%;
     height: 100%;
     position: relative;
-    // padding-top: 32px;
-
 
     .playlistHeader{
         position: sticky;
@@ -588,7 +430,8 @@
 
         h2{
             margin-left: 16px;
-            font-size: 24px;
+            font-size: 20px;
+            font-weight: 400;
         }
     }
 }
@@ -639,21 +482,12 @@
     }
 
 }
-.queBtn{
+
+.queBtn {
     width: 24px;
     height: 24px;
     display: flex;
     flex-direction: column;
     gap: 4px;
     justify-content: center;
-}
-
-.playIconMobile{
-    display: none;
-    @media (max-width: 586px) {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        margin-right: 16px;        
-    }
 }

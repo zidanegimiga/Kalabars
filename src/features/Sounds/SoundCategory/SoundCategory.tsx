@@ -27,12 +27,12 @@ const responsive = {
     slidesToSlide: 2
   },
   iPadMini: {
-    breakpoint: { max: 769, min: 426 },
+    breakpoint: { max: 769, min: 428 },
     items: 2,
     slidesToSlide: 2
   },
   mobile: {
-    breakpoint: { max: 426, min: 376 },
+    breakpoint: { max: 428, min: 376 },
     items: 2,
     slidesToSlide: 2
   },
