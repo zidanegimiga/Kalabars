@@ -6,41 +6,19 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
 const responsive = {
-  superLargeDesktop: {
-    breakpoint: { max: 4000, min: 3000 },
-    items: 4,
-    slidesToSlide: 3
-  },
   desktop: {
-    breakpoint: { max: 3000, min: 1441 },
-    items: 4,
-    slidesToSlide: 2
-  },
-  laptop: {
-    breakpoint: { max: 1441, min: 1025 },
-    items: 4,
-    slidesToSlide: 2
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
   },
   tablet: {
-    breakpoint: { max: 1024, min: 769 },
-    items: 3,
-    slidesToSlide: 2
-  },
-  iPadMini: {
-    breakpoint: { max: 769, min: 428 },
+    breakpoint: { max: 1024, min: 464 },
     items: 2,
-    slidesToSlide: 2
+    slidesToSlide: 2,
   },
   mobile: {
-    breakpoint: { max: 428, min: 376 },
+    breakpoint: { max: 464, min: 0 },
     items: 2,
-    slidesToSlide: 2
   },
-  iPhoneX: {
-    breakpoint: { max: 376, min: 0 },
-    items: 1,
-    slidesToSlide: 1
-  }
 };
 
 const SoundCategory = ({ title, category }) => {
@@ -95,43 +73,42 @@ const SoundCategory = ({ title, category }) => {
     setLoading(false);
   };
 
-  useEffect(()=>{
-      switch (category) {
-        case "podcasts":
-          loadPodcasts();
-          break;
-        case "topAudio":
-          loadTopAudios();
-          break;
-        case "music":
-          loadMusic();
-          break;
-      }
-  }, [category])
+  useEffect(() => {
+    switch (category) {
+      case "podcasts":
+        loadPodcasts();
+        break;
+      case "topAudio":
+        loadTopAudios();
+        break;
+      case "music":
+        loadMusic();
+        break;
+    }
+  }, [category]);
 
   return (
     <div className={styles.categoryContainer}>
       <h1>{title}</h1>
       <Carousel
         responsive={responsive}
-        centerMode={true}
-        draggable={true}
-        swipeable={true}
         itemClass={styles.categoryItem}
         containerClass={styles.carouselContainer}
+        swipeable={true}
+        ssr={true}
+        // showDots={true}
+        keyBoardControl={true}
+        customTransition="all .5"
+        transitionDuration={500}
+        centerMode={true}
       >
-        {
-          audioData?.map((audio, index) => {
-              return <SoundsCard key={index} data={audio} loading={loading}/>
-          })
-        }
-        {
-          loading && [0,1,2,3,4,5,6].map((skeleton, index) =>{
-            return(
-              <SoundsCardSkeleton key={index}/>
-            )
-          })
-        }
+        {audioData?.map((audio, index) => {
+          return <SoundsCard key={index} data={audio} loading={loading} />;
+        })}
+        {loading &&
+          [0, 1, 2, 3, 4, 5, 6].map((skeleton, index) => {
+            return <SoundsCardSkeleton key={index} />;
+          })}
       </Carousel>
     </div>
   );

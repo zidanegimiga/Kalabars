@@ -21,7 +21,6 @@ const SideBarItem = () => {
             />
           </div>
         </Link>
-
         <Close action={()=> setOpenMenu(false)}/>
       </div>
       <div className={styles.pagesNavigator}>

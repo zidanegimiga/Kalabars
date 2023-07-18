@@ -7,7 +7,7 @@
 .top {
     display: flex;
     width: 100vw;
-    height: 100vh
+    // height: 100vh
 }
 .content {
     padding-top: 140px;
@@ -25,24 +25,5 @@
     }
     @media (max-width: 376px) {
         padding-bottom: 80px;
-    }
-}
-
-.player {
-    width: 100vw;
-    padding: 16px;
-    background-color: #3b3b3b;
-    position: fixed;
-    bottom: 0;
-    height: 120px;
-    z-index: 3;
-
-    @media (max-width: 1700px) {
-        height: 100px;       
-    }
-
-    @media (max-width: 426px) {
-        height: 48px;
-        padding-left: 8px;       
     }
 }
