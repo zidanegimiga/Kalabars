@@ -8,7 +8,7 @@ import { usePlaylist } from "global/AudioPlaylistContext";
 import styles from "./SoundsCard.module.scss";
 import { PlayIcon } from "shared/Icons/Playback";
 
-const SoundsCard = ({ data }) => {
+const SoundsCard = ({ data, loading }) => {
   const [hovered, setHovered] = useState(true);
   const { playlist, addToPlaylist, removeFromPlaylist, playAudio, stopAudio, currentAudio } = usePlaylist();
 
@@ -30,38 +30,61 @@ const SoundsCard = ({ data }) => {
     playAudio(data)
     console.log("Current Audio: ", currentAudio);
   };
-  return (
-    <div className={styles.categoryCard}>
-      <div>
-        <img
-          alt="Femmolution"
-          src={`https://content.kalabars.com/static/media/audios_images/${data.square_image}`}
-          className={styles.cardImg}
-        />
 
-        <div className={styles.playIcon} onClick={()=>handleSoundCardClick(data)}>
-          <PlayIcon hovered={hovered} initialColor={"white"} />
-        </div>
-      </div>
-      <div className={styles.bottomSection}>
-        <div className={styles.cardTitle}>{data.title}</div>
-        <div
-          className={styles.playlistIcon}
-          // onClick={}
-        >
-          {isAddedToPlaylist(data?.id) ? (
-            <div onClick={() => handleRemoveFromPlaylist(data)}>
-              <Check />
+  if(!loading){
+      return (
+        <div className={styles.categoryCard}>
+          <div>
+            <img
+              alt="Femmolution"
+              src={`https://content.kalabars.com/static/media/audios_images/${data.square_image}`}
+              className={styles.cardImg}
+            />
+
+            <div
+              className={styles.playIcon}
+              onClick={() => handleSoundCardClick(data)}
+            >
+              <PlayIcon hovered={hovered} initialColor={"white"} />
             </div>
-          ) : (
-            <div onClick={() => handleAddToPlaylist(data)}>
-              <AddToPlaylist />
+          </div>
+          <div className={styles.bottomSection}>
+            <div className={styles.cardTitle}>{data.title}</div>
+            <div
+              className={styles.playlistIcon}
+              // onClick={}
+            >
+              {isAddedToPlaylist(data?.id) ? (
+                <div onClick={() => handleRemoveFromPlaylist(data)}>
+                  <Check />
+                </div>
+              ) : (
+                <div onClick={() => handleAddToPlaylist(data)}>
+                  <AddToPlaylist />
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
-      </div>
-    </div>
-  );
+      )
+//   } else {
+//   return(
+//     <div className={styles.soundsCardSkeletonWrapper}>
+//       <div className={styles.imageSkeleton}></div>
+//       <div className={styles.detailsSkeleton}></div>
+//     </div>
+//   )
 };
+}
 
-export default SoundsCard;
+const SoundsCardSkeleton = () =>{
+  return(
+    <div className={styles.soundsCardSkeletonWrapper}>
+      <div className={styles.imageSkeleton}></div>
+      <div className={styles.detailsSkeleton}></div>
+    </div>
+  )
+}
+
+export {SoundsCard, SoundsCardSkeleton}
+// export default SoundsCard;
