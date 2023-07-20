@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import styles from "./SoundCategory.module.scss";
 import {SoundsCard, SoundsCardSkeleton} from "../SoundsCard/SoundsCard";
 var $ = require("jquery");
-if (typeof window !== "undefined") {
-  window.$ = window.jQuery = require("jquery");
-}
+// if (typeof window !== "undefined") {
+//   window.$ = window.jQuery = require("jquery");
+// }
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import dynamic from "next/dynamic";
@@ -14,16 +14,20 @@ const OwlCarousel = dynamic(() => import("react-owl-carousel"), { ssr: false });
 
 const Responsive = {
   0: {
-    items: 2,
-    margin: 16,
-  },
-  768: {
-    items: 2.5,
+    items: 1.5,
     margin: 10,
   },
+  442: {
+    items: 2,
+    margin: 32,
+  },
+  768: {
+    items: 3,
+    margin: 24,
+  },
   1024: {
-    items: 3.5,
-    margin: 20,
+    items: 4,
+    margin: 24,
     dots: true
   },
 };
@@ -93,7 +97,7 @@ const SoundCategory = ({ title, category }) => {
         break;
     }
     console.log(audioData)
-  }, [category]);
+  }, []);
 
   return (
     <div className={styles.categoryContainer}>
@@ -123,7 +127,7 @@ const SoundCategory = ({ title, category }) => {
         {loading &&
           [0, 1, 2, 3, 4, 5, 6].map((skeleton, index) => {
             return <SoundsCardSkeleton key={index} />;
-          })}
+        })}
       </OwlCarousel>
     </div>
   );

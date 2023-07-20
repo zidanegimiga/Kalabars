@@ -89,25 +89,47 @@
 .prev {
     position: absolute;
     right: 2.5rem;
-    top: 25%;
+    top: 38%;
     transform: translateY(-50%);
     border-radius: 50%;
-    height: 32px;
-    width: 32px;
+    height: 48px;
+    width: 48px;
     outline: none;
     background-color: #ffffffe5;
     border: none;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #ff3355;
+        border: 2px solid #FF3354;
+    }
+
+    @media (max-width: 769px) {
+        height: 32px;
+        width: 32px;
+    }
 }
 
 .next {
     position: absolute;
     right: 2.5rem;
-    top: 40%;
+    top: 50%;
     transform: translateY(-50%);
     border-radius: 50%;
-    height: 32px;
-    width: 32px;
+    height: 48px;
+    width: 48px;
     outline: none;
     background-color: #ffffffde;
     border: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #ff3355;
+        border: 2px solid #FF3354;
+    }
+
+    @media (max-width: 769px) {
+        height: 32px;
+        width: 32px;
+    }
 }
