@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from "react";
 import styles from "./SoundCategory.module.scss";
-// import SoundsCard from "../SoundsCard/SoundsCard";
 import {SoundsCard, SoundsCardSkeleton} from "../SoundsCard/SoundsCard";
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+var $ = require("jquery");
+if (typeof window !== "undefined") {
+  window.$ = window.jQuery = require("jquery");
+}
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+import dynamic from "next/dynamic";
 
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
+
+const OwlCarousel = dynamic(() => import("react-owl-carousel"), { ssr: false });
+
+const Responsive = {
+  0: {
     items: 2,
-    slidesToSlide: 2,
+    margin: 16,
   },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 2,
+  768: {
+    items: 2.5,
+    margin: 10,
+  },
+  1024: {
+    items: 3.5,
+    margin: 20,
+    dots: true
   },
 };
 
@@ -85,22 +92,30 @@ const SoundCategory = ({ title, category }) => {
         loadMusic();
         break;
     }
+    console.log(audioData)
   }, [category]);
 
   return (
     <div className={styles.categoryContainer}>
       <h1>{title}</h1>
-      <Carousel
-        responsive={responsive}
-        itemClass={styles.categoryItem}
-        containerClass={styles.carouselContainer}
-        swipeable={true}
-        ssr={true}
+      <OwlCarousel
+        responsive={Responsive}
+        nav={true}
+        navContainerClass={styles.arrow}
+        navClass={[styles.prev, styles.next]}
+        center={audioData.length > 1}
+        loop={audioData.length > 1}
+        // navClass={styles.prev}
+        // responsive={responsive}
+        // itemClass={styles.categoryItem}
+        // containerClass={styles.carouselContainer}
+        // swipeable={true}
+        // ssr={true}
         // showDots={true}
-        keyBoardControl={true}
-        customTransition="all .5"
-        transitionDuration={500}
-        centerMode={true}
+        // keyBoardControl={true}
+        // customTransition="all .5"
+        // transitionDuration={500}
+        // centerMode={true}
       >
         {audioData?.map((audio, index) => {
           return <SoundsCard key={index} data={audio} loading={loading} />;
@@ -109,7 +124,7 @@ const SoundCategory = ({ title, category }) => {
           [0, 1, 2, 3, 4, 5, 6].map((skeleton, index) => {
             return <SoundsCardSkeleton key={index} />;
           })}
-      </Carousel>
+      </OwlCarousel>
     </div>
   );
 };
