@@ -13,11 +13,11 @@ import Image from 'next/image'
 type Videos = any;
 
 const Sight = ({ videos }: any) => {
-  const videosData = videos?.response.result;
+  const videosData = videos?.response?.result;
   const router = useRouter();
   const { publicId } = router.query;
   const video = videosData?.find((video: any) => video?.public_id === publicId);
-  const suggestedVideos = videosData.slice(100, 109);
+  const suggestedVideos = videosData?.slice(100, 109);
   console.log("Video: ", suggestedVideos);
   console.log("Video: ", styles);
   if (router.isFallback) {
@@ -26,7 +26,7 @@ const Sight = ({ videos }: any) => {
     const backgroundImage =
       `${process.env.NEXT_PUBLIC_API}` +
       `/static/media/videos_images/` +
-      video.landscape_image;
+      video?.landscape_image;
 
   //Date Formatting
   const days = [
@@ -52,7 +52,7 @@ const Sight = ({ videos }: any) => {
     "November",
     "December",
   ];
-  const date = new Date(video.created_on);
+  const date = new Date(video?.created_on);
 
   // const day = days[date.getDay()]
   const day = date.getDate();
@@ -77,12 +77,12 @@ const Sight = ({ videos }: any) => {
               />
             </div>
             <div className={styles.videoDetails}>
-              <h1>{video.title}</h1>
+              <h1>{video?.title}</h1>
               <div className={styles.videoDescription}>
-                <p>{video.description}</p>
+                <p>{video?.description}</p>
               </div>
               <div className={styles.tags}>
-                <div className={styles.tag}>{video.creators_name}</div>
+                <div className={styles.tag}>{video?.creators_name}</div>
                 <div className={styles.tag}>
                   {day} {month}, {year}
                 </div>

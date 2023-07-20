@@ -188,7 +188,7 @@ const VideoPlayer = ({ video }: any) => {
   const backgroundImage =
     `${process.env.NEXT_PUBLIC_API}` +
     `/static/media/videos_images/` +
-    video.landscape_image;
+    video?.landscape_image;
 
   return (
     <div
@@ -215,9 +215,9 @@ const VideoPlayer = ({ video }: any) => {
           controlsList=""
           src={
             `${process.env.NEXT_PUBLIC_API}/static/media/videos/` +
-            video.public_id +
+            video?.public_id +
             `/1080-` +
-            video.public_id +
+            video?.public_id +
             `.MP4`
           }
         />
@@ -254,7 +254,7 @@ const VideoPlayer = ({ video }: any) => {
                       src={
                         process.env.NEXT_PUBLIC_API +
                         `/static/media/videos_images/` +
-                        video.landscape_image
+                        video?.landscape_image
                       }
                       alt="preview"
                     />

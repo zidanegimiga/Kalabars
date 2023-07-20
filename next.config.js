@@ -1,20 +1,63 @@
+// /** @type {import('next').NextConfig} */
+// const webpack = require("webpack");
+// const nextConfig = {
+//   reactStrictMode: true,
+//   swcMinify: true,
+
+//   // webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) {
+//   //   config.module.rules.push({
+//   //     test: /\.svg$/,
+//   //     use: ["@svgr/webpack"],
+//   //   })
+
+//   //   config.plugins.push(new webpack.ProvidePlugin({
+//   //     $: 'jquery',
+//   //     jQuery: 'jquery',
+//   //     'window.jQuery': 'jquery'
+//   //   }))
+
+//   //   return config;
+//   // },
+
+//   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+//     config.plugins.push(
+//       new webpack.ProvidePlugin({
+//         $: “jquery”,
+//         jQuery: “jquery”,
+//     “window.jQuery”: “jquery”,
+//  }));
+
+
+// }
+
+// module.exports = nextConfig
+
 /** @type {import('next').NextConfig} */
+const { config } = require('process');
+const webpack = require("webpack");
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-
-  webpack(config) {
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    config.plugins.push(
+      new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        "window.jQuery": "jquery"
+      })
+    );
     config.module.rules.push({
       test: /\.svg$/,
-      use: ["@svgr/webpack"]
-    });
+      use: ["@svgr/webpack"],
+    })
 
     return config;
   },
 
   images: {
-     domains: ['content.kalabars.com'],
-     remotePatterns: [
+    domains: ['content.kalabars.com'],
+    remotePatterns: [
       {
         protocol: 'https',
         hostname: '**.kalabars.com',
