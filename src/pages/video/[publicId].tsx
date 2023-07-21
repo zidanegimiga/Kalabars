@@ -81,7 +81,7 @@ const Sight = ({ videos }: any) => {
               <div className={styles.videoDescription}>
                 <p>{video?.description}</p>
               </div>
-              <div className={styles.tags}>
+              {/* <div className={styles.tags}>
                 <div className={styles.tag}>{video?.creators_name}</div>
                 <div className={styles.tag}>
                   {day} {month}, {year}
@@ -99,7 +99,7 @@ const Sight = ({ videos }: any) => {
                     </span>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
             {/* <div className={styles.playlistBox}>
               <h2>Playlist</h2>
