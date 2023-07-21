@@ -14,10 +14,11 @@ const Sights = ({
   comedy,
   documentary,
   staffPicks,
+  kids
 }) => {
-  const carouselVideos = videos?.response?.result?.slice(15, 24);
-  
-
+  const carouselVideos = videos?.response?.result;
+  // const carouselVideos = videos?.response?.result?.slice(15, 24);
+  console.log("Kids", kids);
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.top}>
@@ -34,10 +35,15 @@ const Sights = ({
               data={originals.response.result}
             />
             <SightsCategory name={"Comedy"} data={comedy?.response?.result} />
+            <SightsCategory name={"Documentary"} data={documentary?.response?.result} />
             <SightsCategory
               name={"Drama"}
               data={drama?.response?.result}
             />{" "}
+            <SightsCategory
+              name={"Kids"}
+              data={kids?.response?.result}
+            />
           </div>
         </div>
       </div>
@@ -50,7 +56,8 @@ export default Sights;
 
 export async function loadVideos() {
   //All Videos
-  const resVideos = await fetch(process.env.NEXT_PUBLIC_API + `/videos/all`, {
+  const resVideos = await fetch(process.env.NEXT_PUBLIC_API + `/tags/now-playing/videos`, {
+  // const resVideos = await fetch(process.env.NEXT_PUBLIC_API + `/videos/all`, {
     headers: {
       "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
     },
@@ -101,7 +108,7 @@ export async function loadVideos() {
   );
   const comedyGenre = await comedyGenres.json();
 
-  //Comedy
+  //Staff Picks
   const staffPicksGenres = await fetch(
     process.env.NEXT_PUBLIC_API + `/tags/staff-picks/videos`,
     {
@@ -112,6 +119,18 @@ export async function loadVideos() {
   );
   const staffPicks = await staffPicksGenres.json();
 
+  //Kids
+  const kidsRes = await fetch(
+    process.env.NEXT_PUBLIC_API + `/tags/Kids/videos`,
+    {
+      headers: {
+        "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+      },
+    }
+  );
+  const kids = await kidsRes.json();
+  console.log("Kids: ", kids)
+
   return {
     videos: videos,
     originals: originals,
@@ -119,6 +138,7 @@ export async function loadVideos() {
     documentary: documentaryGenre,
     drama: dramaGenre,
     staffPicks: staffPicks,
+    kids: kids
   };
 }
 const genres = [
@@ -135,7 +155,7 @@ const genres = [
 ];
 
 export async function getStaticProps() {
-  const { videos, originals, comedy, documentary, drama, staffPicks } = await loadVideos();
+  const { videos, originals, comedy, documentary, drama, staffPicks, kids } = await loadVideos();
   
   return {
     props: {
@@ -145,13 +165,7 @@ export async function getStaticProps() {
       drama,
       comedy,
       staffPicks,
+      kids
     },
   };
 }
-
-// const videodata = fetch('https://content.kalabars.com/videos/all', {
-//   headers:{
-//     'x-access-token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiIwOWVhYjVhOC04ZTEyLTRrMGItYTkyNi1hZmZmMGM1NDNhMjQiLCJleHAiOjE2NzY4NDQ0Mzd9.0QVC_lMKtroGKRMp3_hjf2cLbaGvOt3G0FJXdnTDwZw"
-//   }
-// }).then((res) => {return res.json()})
-// .then(json => console.log(json))
