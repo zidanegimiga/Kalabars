@@ -50,6 +50,50 @@
     }
 }
 
+.videoQueue{
+    height: 500px;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+.queueTitle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FF3A5AB2;
+    color: white;
+    height: 10%;
+    width: 100%;
+    font: Ubuntu;
+
+}
+
+.queueItemWrapper{
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.queueItem{
+    display: flex;
+    gap: 1em;
+
+    p{
+        color: white;
+        font-size: 14px;
+    }
+    h1{
+        color: white;
+        font-size: 28px;
+}
+}
+
+.queueItemInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
 .videoImage{
     margin-top: 48px;
 }
