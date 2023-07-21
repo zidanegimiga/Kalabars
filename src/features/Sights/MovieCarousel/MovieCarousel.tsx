@@ -144,24 +144,24 @@ const Hero = ({ videos }) => {
               <div className={styles.detailsWrapperMobile}>
                 <div className={styles.detailsWrapperMobileContent}>
                   <h2>{video.title}</h2>
-                <div className={styles.videoDetails}>
-                  <div className={styles.genre}>Thriller</div>
-                  <div className={styles.category}>Short Film</div>
-                  <div className={styles.category}>{video.creators_name}</div>
-                  <div className={styles.category}>{video.duration} min</div>
-                </div>
-                <div className={styles.buttonRow}>
-                  <div
-                    className={styles.redButton}
-                    onClick={() => router.push(`/video/${video.public_id}`)}
-                  >
-                    <PlayIcon hovered={hovered} initialColor={"white"} />
-                    <p>Start Watching</p>
+                  <div className={styles.videoDetails}>
+                    <div className={styles.genre}>Thriller</div>
+                    <div className={styles.category}>Short Film</div>
+                    <div className={styles.category}>{video.creators_name}</div>
+                    <div className={styles.category}>{video.duration} min</div>
                   </div>
-                  <div className={styles.addToWatchList}>
-                    <p>Add to watchlist</p>
+                  <div className={styles.buttonRow}>
+                    <div
+                      className={styles.redButton}
+                      onClick={() => router.push(`/video/${video.public_id}`)}
+                    >
+                      <PlayIcon hovered={hovered} initialColor={"white"} />
+                      <p>Start Watching</p>
+                    </div>
+                    <div className={styles.addToWatchList}>
+                      <p>Add to watchlist</p>
+                    </div>
                   </div>
-                </div>
                 </div>
               </div>
             </div>

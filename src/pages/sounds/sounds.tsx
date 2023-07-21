@@ -34,8 +34,8 @@ const Sounds = ({ podcasts }) => {
         <SideBarItem />
         <div className={styles.content}>
           <SoundCategory title="Podcasts" category="podcasts"/>
-          <SoundCategory title="Top Audios" category={"topAudio"} />
           <SoundCategory title="Audio Book" category={"music"} />
+          <SoundCategory title="Top Audios" category={"topAudio"} />          
           {/* <SoundCategory title="New Sounds" /> */}
         </div>
       </div>
