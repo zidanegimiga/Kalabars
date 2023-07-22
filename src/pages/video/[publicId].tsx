@@ -81,7 +81,7 @@ const Sight = ({ videos }: any) => {
             <div className={styles.videoDetails}>
               <h1>{video?.title}</h1>
               <div className={styles.videoDescription}>
-                <p>{video?.description}</p>
+                <p>{video?.description.slice(0, 200) + "..."}</p>
                 <div className={styles.descriptionButton}>
                   <p>SEE MORE</p>
                 </div>
