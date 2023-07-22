@@ -68,6 +68,8 @@ const Sight = ({ videos }: any) => {
         <div className={styles.content}>
           <VideoPlayer video={video} />
           <div className={styles.videoFeatures}>
+            <div className={styles.descriptionContainer}>
+            <div className={styles.descriptionWrapper}>
             <div className={styles.videoImage}>
               <Image 
                 width={240}
@@ -105,6 +107,20 @@ const Sight = ({ videos }: any) => {
                 </div>
               </div> */}
             </div>
+            
+            </div>
+            <div className={styles.descriptionTags}>
+              <div className={styles.descriptionTagOne}>
+                <div className={styles.descriptionTagOneTitle}><p>Created by:</p></div>
+                <div className={styles.descriptionTagOneContent}><p>{video?.creators_name}</p></div>
+              </div>
+              <div className={styles.descriptionTagTwo}>
+                <p>thriller</p>
+                <p>thriller</p>
+                <p>thriller</p>
+              </div>
+            </div>
+            </div>
             <div className={styles.videoQueue}>
                 <div className={styles.queueTitle}>Queue</div>
                 <div className={styles.queueItemWrapper}>
@@ -129,7 +145,7 @@ const Sight = ({ videos }: any) => {
                     />
                     <div className={styles.queueItemInfo}>
                       <h1>{video?.title}</h1>
-                    <p>{video?.creators_name}</p>
+                    
                     </div>   
                 </div>
                 <div className={styles.queueItem}>
