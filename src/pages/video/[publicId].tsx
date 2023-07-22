@@ -3,6 +3,7 @@ import VideoPlayer from "features/Sights/Video/Video";
 import styles from "../../styles/VideoPage.module.scss";
 import { Instagram, Twitter, Share } from "shared/Icons/Twitter";
 import React from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { Playlist } from "../../shared/Icons/Playlist";
 import SightsCategory from "features/Sights/SightsCategory";
@@ -13,6 +14,14 @@ import Image from 'next/image'
 type Videos = any;
 
 const Sight = ({ videos }: any) => {
+  const[showFullDescription, setShowFullDescription] = useState(false);
+  const handleSeeMoreClick = ()=>{
+    setShowFullDescription(true);
+  };
+  const handleSeeLessClick =()=>{
+    setShowFullDescription(false);
+  };
+
   const videosData = videos?.response?.result;
   const router = useRouter();
   const { publicId } = router.query;
@@ -81,10 +90,20 @@ const Sight = ({ videos }: any) => {
             <div className={styles.videoDetails}>
               <h1>{video?.title}</h1>
               <div className={styles.videoDescription}>
-                <p>{video?.description.slice(0, 200) + "..."}</p>
-                <div className={styles.descriptionButton}>
-                  <p>SEE MORE</p>
-                </div>
+                <p>{
+                    showFullDescription? video?.description:
+                    video?.description.slice(0, 200) + "..."}
+                    </p>
+                    {video?.description.length>200 && (
+                      <div className={styles.descriptionButton}>
+                      {showFullDescription ? (
+                        <p onClick={handleSeeLessClick}>SEE LESS</p>
+                      ) : (
+                        <p onClick={handleSeeMoreClick}>SEE MORE</p>
+                      )}
+                    </div>
+                    )}
+                
               </div>
               
               {/* <div className={styles.tags}>
