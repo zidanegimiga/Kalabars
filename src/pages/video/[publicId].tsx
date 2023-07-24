@@ -10,6 +10,9 @@ import SightsCategory from "features/Sights/SightsCategory";
 import SightsCard from "features/Sights/SightsCard";
 import SideBarItem from "shared/SideBarItem/SideBarItem";
 import Image from "next/image";
+import { ToastContainer, toast } from "react-toastify";
+import { usePlaylist } from "global/AudioPlaylistContext";
+import Link from 'next/link'
 
 type Videos = any;
 
@@ -19,6 +22,8 @@ type Videos = any;
 */}
 
 const Sight = ({ videos }: any) => {
+  const { videoWatchlist } = usePlaylist();
+  console.log(videoWatchlist)
   const videosData = videos?.response?.result;
   const router = useRouter();
   const { publicId } = router.query;
@@ -71,63 +76,6 @@ const Sight = ({ videos }: any) => {
         <SideBarItem />
         <div className={styles.content}>
           <VideoPlayer video={video} />
-          {/* <div className={styles.videoFeatures}>
-            <div className={styles.videoImage}>
-              <Image
-                width={240}
-                height={240}
-                alt="poster"
-                src={backgroundImage}
-              />
-            </div>
-            <div className={styles.videoDetails}>
-              <h1>{video?.title}</h1>
-              <div className={styles.videoDescription}>
-                <p>{video?.description}</p>
-              </div>
-              <div className={styles.tags}>
-                <div className={styles.tag}>{video?.creators_name}</div>
-                <div className={styles.tag}>
-                  {day} {month}, {year}
-                </div>
-                <div className={styles.shareButton}>
-                  <span>
-                    <Share />
-                  </span>
-                  <div className={styles.shareButtonHover}>
-                    <span>
-                      <Twitter />
-                    </span>
-                    <span>
-                      <Instagram />
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className={styles.videoQueue}>
-              <div className={styles.queueTitle}>Queue</div>
-              <div className={styles.queueItemWrapper}>
-                <div className={styles.queueItem}>
-                  <Image
-                    src={backgroundImage}
-                    height={75}
-                    width={75}
-                    alt="poster"
-                  />
-                  <div className={styles.queueItemInfo}>
-                    <h1>{video?.title}</h1>
-                    <p>{video?.creators_name}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className={styles.playlistBox}>
-              <h2>Playlist</h2>
-              <Playlist />
-              <p>Playlist Empty</p>
-            </div>
-          </div> */}
           <div className={styles.videoFeatures}>
             <div className={styles.videoDetails}>
               <div className={styles.videoDescriptionContainer}>
@@ -155,33 +103,40 @@ const Sight = ({ videos }: any) => {
                 <div className={styles.creators}>
                   Created by: <span>{video?.creators_name}</span>
                 </div>
-                <div className={styles.tags}>{video.genres?.map(
-                  (genre, index) => {
-                    return(
+                <div className={styles.tags}>
+                  {video?.genres?.map((genre, index) => {
+                    return (
                       <div key={index} className={styles.tag}>
                         {genre?.title}
                       </div>
-                    )
-                  }
-                )}</div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
             <div className={styles.videoQueueContainer}>
-              <div className={styles.videoQueue}>
-                <div className={styles.queueHeader}>
-                  QUEUE
-                </div>
-                <div className={styles.queueItem}>
-                  <Image
-                    src={backgroundImage}
-                    height={40}
-                    width={40}
-                    alt="poster"
-                  />
-                  <div className={styles.queueItemInfo}>
-                    <h1>{video?.title}</h1>
-                    <p>{video?.creators_name}</p>
-                  </div>
+              <div className={styles.queueContainer}>
+                <div className={styles.queueHeader}>QUEUE</div>
+                <div className={styles.queueItemsContainer}>
+                  {videoWatchlist?.map((queueItem, index) => {
+                    return (
+                      <React.Fragment key={index}>
+                        <Link href={`https://kalabars.vercel.app/video/${queueItem?.public_id}`}>
+                          <div className={styles.queueItem}>
+                            <img
+                              src={`https://content.kalabars.com/static/media/video_images/${queueItem?.landscape_image}`}
+                              alt="poster"
+                              className={styles.queueItemImage}
+                            />
+                            <div className={styles.queueItemInfo}>
+                              <h1>{queueItem?.title}</h1>
+                              <p>{queueItem?.creators_name}</p>
+                            </div>
+                          </div>
+                        </Link>
+                      </React.Fragment>
+                    );
+                  })}
                 </div>
               </div>
             </div>

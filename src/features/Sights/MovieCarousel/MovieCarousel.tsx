@@ -9,12 +9,19 @@ import Play from "../../../../public/playIcon.svg";
 import Down from "../../../../public/downIcon.svg";
 import styles from "./MovieCarousel.module.scss";
 import { PlayIcon } from "shared/Icons/Playback";
+import { usePlaylist } from "global/AudioPlaylistContext";
+
 
 const Hero = ({ videos }) => {
   const router = useRouter();
   const [hovered, setHovered] = useState();
   const [showDetails, setShowDetails] = useState(false);
+  const { addToWatchlist } = usePlaylist();
   // console.log(videos[0]);
+
+  const handleAddToWatchlist = (data) =>{
+    addToWatchlist(data);
+  }
 
   return (
     <div>
@@ -93,7 +100,7 @@ const Hero = ({ videos }) => {
                       </div>
                       <div className={styles.iconsText}>Play Title</div>
                     </div>
-                    <div className={styles.iconWrapper}>
+                    <div className={styles.iconWrapper} onClick={()=> handleAddToWatchlist(video)}>
                       <div className={styles.icon}>
                         <Image
                           src={"/clock.png"}
