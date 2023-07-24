@@ -10,7 +10,7 @@
     @media (max-width: 1601px) {
         height: 100vh;
         width: 100%;
-        background-color: #4d4a4acc;
+        background-color: #333333;
     }
 
     @media (max-width: 1115px) {
@@ -30,21 +30,21 @@
         height: 70vh;
     }
 
-    @media (max-width: 436px) {
-        height: 60vh;
+    @media (max-width: 496px) {
+        height: 57dvh;
     }
 
-    @media (max-width: 394px) {
-        height: 50vh;
-    }
+    // @media (max-width: 394px) {
+    //     height: 50vh;
+    // }
 
-    @media (max-width: 376px) {
-        // height: 45vh;
-    }
+    // @media (max-width: 376px) {
+    //     // height: 45vh;
+    // }
 
-    @media (max-width: 361px) {
-        height: 50vh;
-    }
+    // @media (max-width: 361px) {
+    //     height: 50vh;
+    // }
 }
 
 .poster {
@@ -79,17 +79,10 @@
         height: 100vh;
     }
 
-    @media (max-width: 436px) {
-        height: 60vh;
+    @media (max-width: 456px) {
+        height: 100%;
     }
 
-    @media (max-width: 394px) {
-        height: 50vh;
-    }
-
-    @media (max-width: 361px) {
-        height: 45vh;
-    }
 }
 
 .detailsWrapper {
@@ -267,7 +260,7 @@
     }
 
     @media (max-width: 496px) {
-        display: none;
+        bottom: 50%
     }
 
 }
@@ -296,7 +289,8 @@
     }
 
     @media (max-width: 496px) {
-        display: none;
+        bottom: 50%;
+        right: 88%;
     }
 }
 
@@ -305,14 +299,17 @@
     display: none;
 
     @media (max-width: 496px) {
-        display: block;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
         width: 100%;
         height: 70%;
-        background: linear-gradient(0deg, #1A1A1A 2.25%, rgba(26, 26, 26, 0) 97.74%);
+        background: linear-gradient(0deg, #1A1A1A 2.25%, #1a1a1a00 100%);
         position: absolute;
         bottom: 0;
         padding-left: 16px;
         padding-right: 16px;
+        padding-bottom: 16px;
         padding-top: 120px;
 
         h2 {
@@ -321,6 +318,7 @@
             font-size: 24px;
             text-align: center;
             color: #ffffff;
+            text-transform: capitalize;
         }
 
     }
@@ -329,12 +327,13 @@
 .videoDetails,
 .buttonRow {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 16px;
 }
 
 .videoDetails {
-    gap: 4px
+    gap: 16px;
 }
 
 .buttonRow {
@@ -347,19 +346,27 @@
     border: white solid 1.5px;
     padding: 2px 6px;
     font-family: 'Ubuntu';
-    font-size: 10px;
+    font-size: 16px;
     text-align: center;
     border-radius: 6px;
+
+    @media (max-width: 361px) {
+        font-size: 14px;
+    }
 }
 
 .category {
     color: #FFFFFF;
     font-family: 'Ubuntu';
-    font-size: 10px;
+    font-size: 16px;
+
+    @media (max-width: 361px) {
+        font-size: 14px;
+    }
 }
 
 .addToWatchList {
-    width: 160px;
+    width: 200px;
     height: 40px;
     display: flex;
     align-items: center;
@@ -371,15 +378,15 @@
         text-align: center;
         color: #FFFFFF;
         font-family: 'Ubuntu';
-        font-size: 14px;
+        font-size: 16px;
 
         @media (max-width: 496px) {
-            font-size: 10px;
+            font-size: 14px;
         }
     }
 
     @media (max-width: 496px) {
-        width: 132px;
+        width: 150px;
     }
 }
 
@@ -387,23 +394,23 @@
     background-color: #FB1036;
     display: flex;
     align-items: center;
-    width: 160px;
+    width: 200px;
     height: 40px;
     border-radius: 16px;
 
     p {
         color: #FFFFFF;
-        font-size: 14px;
+        font-size: 16px;
         font-family: 'Ubuntu';
         text-align: center;
 
         @media (max-width: 496px) {
-            font-size: 10px;
+            font-size: 14px;
         }
     }
 
     @media (max-width: 496px) {
-        width: 132px;
+        width: 150px;
     }
 }
 
