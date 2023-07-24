@@ -1,6 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useRef, useEffect } from "react";
 import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  LinkedinShareButton,
+  LinkedinIcon
+} from "react-share";
+import {
   Play,
   Pause,
   Rewind,
@@ -372,14 +382,40 @@ const VideoPlayer = ({ video }: any) => {
             <p>Share your thoughts: </p>
             <div className={styles.interactiveIcons}>
               <Like />
-              <Comment/>
+              {/* <Comment /> */}
             </div>
           </div>
           <div className={styles.socialMedia}>
             <p>Tell your friends: </p>
             <div className={styles.socialMediaIcons}>
-              <Twitter />
-              <Facebook/>
+              <TwitterShareButton
+                url={`https://www.kalabars.vercel.app/video/${video?.public_id}`}
+                // quote={`🍿🎬 Watching an ${video?.title} on Kalabars! Check out this must-watch film now!`}
+                // hashtag="#Kalabars"
+              >
+                <TwitterIcon size={32} round={true} />
+              </TwitterShareButton>
+              <FacebookShareButton
+                url={`https://www.kalabars.vercel.app/video/${video?.public_id}`}
+                quote={`🍿🎬 Watching an ${video?.title} on Kalabars! Check out this must-watch film now!`}
+                hashtag="#Kalabars"
+              >
+                <FacebookIcon size={32} round={true} />
+              </FacebookShareButton>
+              <WhatsappShareButton
+                url={`https://www.kalabars.vercel.app/video/${video?.public_id}`}
+                // quote={`🍿🎬 Watching an ${video?.title} on Kalabars! Check out this must-watch film now!`}
+                // hashtag="#Kalabars"
+              >
+                <WhatsappIcon size={32} round={true} />
+              </WhatsappShareButton>
+              <LinkedinShareButton
+                url={`https://www.kalabars.vercel.app/video/${video?.public_id}`}
+                // quote={`🍿🎬 Watching an ${video?.title} on Kalabars! Check out this must-watch film now!`}
+                // hashtag="#Kalabars"
+              >
+                <LinkedinIcon size={32} round={true} />
+              </LinkedinShareButton>
             </div>
           </div>
         </div>
