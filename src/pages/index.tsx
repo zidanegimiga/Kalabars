@@ -6,6 +6,7 @@ import { useState, useRef } from "react";
 import Down from "../../public/downIcon.svg";
 import styles from "../styles/Sights.module.scss";
 import SideBarItem from "shared/SideBarItem/SideBarItem";
+import { ToastContainer, toast } from "react-toastify";
 
 const Sights = ({
   videos,
@@ -46,6 +47,7 @@ const Sights = ({
             />
           </div>
         </div>
+        <ToastContainer/>
       </div>
     </div>
   );
