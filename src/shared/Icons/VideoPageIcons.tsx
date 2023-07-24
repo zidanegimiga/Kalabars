@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 
 const Like = () => {
+  const [liked, setLiked] = useState(false)
+  const [hovered, setHovered] = useState(false)
   return (
-    <div>
+    <div
+      style={{ cursor: "pointer" }}
+      onClick={() => setLiked(!liked)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="32"
         height="32"
         viewBox="0 0 32 32"
-        fill="none"
+        fill={liked ? "#FF3354" : "none"}
       >
         <mask
           id="mask0_656_120"
-        //   style="mask-type:luminance"
+          //   style="mask-type:luminance"
           maskUnits="userSpaceOnUse"
           x="1"
           y="4"
@@ -21,14 +28,14 @@ const Like = () => {
         >
           <path
             d="M10 5.33325C5.95001 5.33325 2.66667 8.61659 2.66667 12.6666C2.66667 19.9999 11.3333 26.6666 16 28.2173C20.6667 26.6666 29.3333 19.9999 29.3333 12.6666C29.3333 8.61659 26.05 5.33325 22 5.33325C19.52 5.33325 17.3267 6.56459 16 8.44925C15.3238 7.48606 14.4254 6.69998 13.381 6.15758C12.3366 5.61518 11.1769 5.33242 10 5.33325Z"
-            stroke="white"
+            stroke={liked ? "#FF3354" : "white"}
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
         </mask>
         <g mask="url(#mask0_656_120)">
-          <path d="M0 0H32V32H0V0Z" fill="white" />
+          <path d="M0 0H32V32H0V0Z" fill={hovered ? "#FF3354" : "white"} />
         </g>
       </svg>
     </div>
