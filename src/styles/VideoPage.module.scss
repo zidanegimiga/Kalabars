@@ -18,6 +18,7 @@
         // padding-top: 72px;
         padding-right: 16px;
     }
+
     @media (max-width: 376px) {
         padding-bottom: 80px;
     }
@@ -31,7 +32,7 @@
     // background-color: #fafafa;
 
     @media (max-width: 426px) {
-        padding-top: 48px;        
+        padding-top: 48px;
     }
 }
 
@@ -40,9 +41,10 @@
     padding-right: 72px;
     padding-top: 88px;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 48px;
+    width: 100vw;
+    // justify-content: flex-start;
+    // align-items: flex-start;
+    // gap: 48px;
 
     @media (max-width: 428px) {
         padding: 16px;
@@ -50,133 +52,278 @@
     }
 }
 
-.videoImage{
-    margin-top: 48px;
+.videoDetails {
+    width: 60%;
 }
 
-.videoDetails {
-    width: 50%;
+.videoDescriptionContainer {
+    display: flex;
+    width: 100%;
+    height: 240px;
+    background: #252525;
+    padding: 16px;
+    gap: 24px;
+}
 
-    @media (max-width: 426px) {
-        width: 100%;        
-    }
+.videoTextualData{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
-    h1 {
-        font-family: Ubuntu;
-        font-size: 28px;
-        color: #f1f1f1;
-        font-weight: 500;
-    }
+.videoTitle {
+    color: #FFF;
+    font-family: Ubuntu;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
 }
 
 .videoDescription {
-    background-color: #ffffff1a;
-    border-radius: 8px;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-    display: flex;
-    flex-direction: column;
-    min-height: 100px;
-    height: fit-content;
-    justify-content: flex-start;
-
-    p {
-        color: #e0e0e0;
-        font-size: 14px;
-        font-family: 'Actor';
-        line-height: 125%;
-        // color: #262626;
-    }
-
-    &:hover{
-        background-color: rgba(255, 255, 255, 0.322);
-    }
+    color: #dddddd;
+    font-family: Ubuntu;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    line-height: 110%;
 }
 
-.tags {
+.seeMoreBtn{
     display: flex;
-    justify-content: flex-start;
-    margin-top: 40px;
-}
-
-.tag {
-    margin-right: 16px;
-    padding: 4px;
-    display: flex;
-    border-radius: 8px;
-    background: #ffffff1a;
+    justify-content: center;
     align-items: center;
-    align-content: center;
-    font-family: 'Actor';
-    color: white;
-    cursor: pointer;
-
-    &:hover {
-        background-color: rgba(255, 255, 255, 0.322);
-    }
-}
-
-.shareButton {
-    padding-top: 8px;
-    padding-left: 4px;
-    display: flex;
-    border-radius: 8px;
+    width: 96px;
+    height: 24px;
+    color: #F8F8F8;
+    font-family: Ubuntu;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
     background: #ff3a5ab3;
-    align-items: center;
-    align-content: center;
-    transition: width ease-in-out 0.5s;
-    transform-origin: left;
-    width: 40px;
+    border-radius: 4px;
+    
+}
 
-    span {
-        width: 40px;
-        height: 40px;
-    }
-
-    &:hover {
-        background: #ff3a5ab3;
-        width: 150px;
-
-        .shareButtonHover {
-            transform: scale(1);
-            transition: all ease-in-out 0.5s;
-        }
+.creators{
+    margin-top: 32px;
+    font-family: Ubuntu;
+    color: #A4A4A4;
+    font-size: 16px;
+    
+    span{
+        color: white;
     }
 }
 
-.shareButtonHover {
-    transform: scale(0);
+.tags{
+    display: flex;
+    margin-top: 24px;
+    gap: 16px;
+}
+
+.tag{
+    width: fit-content;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px #A4A4A4 solid;
+    border-radius: 20px;
+    padding: 2px 12px;
+    color: #F8F8F8;
+    font-family: Ubuntu;    
+}
+
+.videoQueueContainer {
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.videoQueue{
+    width: 50%;
+    min-height: 400px;
+    max-height: 560px;
+    background: #252525;
+    position: relative;
+    padding: 40px 12px;
+    overflow-y: scroll;    
+}
+
+.queueHeader {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 16px;
-
-    span {
-        align-items: center;
-    }
-
-    transition: all ease-in-out 0.5s;
+    background-color: #FF3A5AB2;
+    color: white;
+    height: 40px;
+    width: 100%;
+    font-family: Ubuntu;
+    padding: 10.08px 174.72px 8.4px 42px;
+    position: absolute;
+    top: 0
 }
 
-.playlistBox{
-    background: linear-gradient(180deg, #DCDCDC 0%, rgba(220, 220, 220, 0) 100%);
-    border-radius: 8px;
-    margin-top: 72px;
-    padding: 40px;
+.queueItemWrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 30%;
-
-    @media (max-width: 426px) {
-        width: 80%;
-        margin-top: 48px;        
-    }
-
-    p{
-        text-align: center;
-        font-weight: 500;
-        color: rgba(255, 58, 90, 0.7);
-    }
+    overflow: auto;
 }
+
+.queueItem {
+    display: flex;
+    gap: 1em;
+
+    p {
+        color: white;
+        font-size: 14px;
+    }
+
+    h1 {
+        color: white;
+        font-size: 28px;
+    }
+
+}
+
+.queueItemInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+// .videoImage{
+//     margin-top: 48px;
+// }
+
+// .videoDetails {
+//     width: 50%;
+
+//     @media (max-width: 426px) {
+//         width: 100%;        
+//     }
+
+//     h1 {
+//         font-family: Ubuntu;
+//         font-size: 28px;
+//         color: #f1f1f1;
+//         font-weight: 500;
+//     }
+// }
+
+// .videoDescription {
+//     background-color: #ffffff1a;
+//     border-radius: 8px;
+//     padding-top: 16px;
+//     padding-left: 16px;
+//     padding-right: 16px;
+//     display: flex;
+//     flex-direction: column;
+//     min-height: 100px;
+//     height: fit-content;
+//     justify-content: flex-start;
+
+//     p {
+//         color: #e0e0e0;
+//         font-size: 14px;
+//         font-family: 'Actor';
+//         line-height: 125%;
+//         // color: #262626;
+//     }
+
+//     &:hover{
+//         background-color: rgba(255, 255, 255, 0.322);
+//     }
+// }
+
+// .tags {
+//     display: flex;
+//     justify-content: flex-start;
+//     margin-top: 40px;
+// }
+
+// .tag {
+//     margin-right: 16px;
+//     padding: 4px;
+//     display: flex;
+//     border-radius: 8px;
+//     background: #ffffff1a;
+//     align-items: center;
+//     align-content: center;
+//     font-family: 'Actor';
+//     color: white;
+//     cursor: pointer;
+
+//     &:hover {
+//         background-color: rgba(255, 255, 255, 0.322);
+//     }
+// }
+
+// .shareButton {
+//     padding-top: 8px;
+//     padding-left: 4px;
+//     display: flex;
+//     border-radius: 8px;
+//     background: #ff3a5ab3;
+//     align-items: center;
+//     align-content: center;
+//     transition: width ease-in-out 0.5s;
+//     transform-origin: left;
+//     width: 40px;
+
+//     span {
+//         width: 40px;
+//         height: 40px;
+//     }
+
+//     &:hover {
+//         background: #ff3a5ab3;
+//         width: 150px;
+
+//         .shareButtonHover {
+//             transform: scale(1);
+//             transition: all ease-in-out 0.5s;
+//         }
+//     }
+// }
+
+// .shareButtonHover {
+//     transform: scale(0);
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     margin-left: 16px;
+
+//     span {
+//         align-items: center;
+//     }
+
+//     transition: all ease-in-out 0.5s;
+// }
+
+// .playlistBox{
+//     background: linear-gradient(180deg, #DCDCDC 0%, rgba(220, 220, 220, 0) 100%);
+//     border-radius: 8px;
+//     margin-top: 72px;
+//     padding: 40px;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     width: 30%;
+
+//     @media (max-width: 426px) {
+//         width: 80%;
+//         margin-top: 48px;        
+//     }
+
+//     p{
+//         text-align: center;
+//         font-weight: 500;
+//         color: rgba(255, 58, 90, 0.7);
+//     }
+// }

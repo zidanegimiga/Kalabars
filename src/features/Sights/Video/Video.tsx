@@ -1,6 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useRef, useEffect } from "react";
 import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  LinkedinShareButton,
+  LinkedinIcon
+} from "react-share";
+import {
   Play,
   Pause,
   Rewind,
@@ -14,6 +24,7 @@ import styles from "./Video.module.scss";
 import MoonLoader from "react-spinners/MoonLoader";
 import { PauseTest, PlayTest } from "shared/Icons/SoundPlayerIcons";
 import Slider from "features/Sounds/Slider/Slider";
+import { Comment, Facebook, Like, Twitter } from "shared/Icons/VideoPageIcons";
 
 const VideoPlayer = ({ video }: any) => {
   const [playing, setPlaying] = useState(false);
@@ -144,37 +155,47 @@ const VideoPlayer = ({ video }: any) => {
     setVideoTime(videoRef.current.duration);
   };
 
-  const handleKeyDown = event => {
-    switch(event.key){
-      case 'm': {
-        if(muted){
-          handleVolumeUnmute()
-        } else{
-          handleVolumeMute()
+  const handleKeyDown = (event) => {
+    switch (event.key) {
+      case "m":
+        {
+          if (muted) {
+            handleVolumeUnmute();
+          } else {
+            handleVolumeMute();
+          }
         }
-      } break;
-      case ' ': {
-        if(playing){
-          videoHandler("pause")
-        } else{
-          videoHandler("play")
+        break;
+      case " ":
+        {
+          if (playing) {
+            videoHandler("pause");
+          } else {
+            videoHandler("play");
+          }
         }
-      } break;
-      
-      case 'ArrowRight':{
-        fastForward()
-      } break;
+        break;
 
-      case 'ArrowLeft':{
-        revert()
-      } break;
+      case "ArrowRight":
+        {
+          fastForward();
+        }
+        break;
 
-      case 'f':{
-        fullScreen()
-      } break;
+      case "ArrowLeft":
+        {
+          revert();
+        }
+        break;
+
+      case "f":
+        {
+          fullScreen();
+        }
+        break;
 
       default:
-        console.log("Yay")   
+        console.log("Yay");
     }
   };
 
@@ -191,142 +212,143 @@ const VideoPlayer = ({ video }: any) => {
     video?.landscape_image;
 
   return (
-    <div
-      className={styles.videoContainer}
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
-      <div className={styles.videoWrapper}>
-        <video
-          id="video1"
-          ref={videoRef}
-          preload="metadata"
-          onEnded={() => setPlaying(false)}
-          onClick={() => {
-            playing ? videoHandler("pause") : videoHandler("play");
-          }}
-          onWaiting={() => setWaiting(true)}
-          onLoad={() => setWaiting(true)}
-          onPlaying={() => setWaiting(false)}
-          onProgress={handleBuffering}
-          onLoadedMetadata={handleLoadedMetadata}
-          onLoadedData={() => console.log("Video data loaded")}
-          onTimeUpdate={() => handleTimeUpdate()}
-          className={styles.video}
-          controlsList=""
-          src={
-            `${process.env.NEXT_PUBLIC_API}/static/media/videos/` +
-            video?.public_id +
-            `/1080-` +
-            video?.public_id +
-            `.MP4`
-          }
-        />
-        <div className={styles.loader}>
-          <MoonLoader
-            color="red"
-            cssOverride={{
-              position: "absolute",
-              top: "50%",
-              right: "50%",
+    <>
+      <div
+        className={styles.videoContainer}
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      >
+        <div className={styles.videoWrapper}>
+          <video
+            id="video1"
+            ref={videoRef}
+            preload="metadata"
+            onEnded={() => setPlaying(false)}
+            onClick={() => {
+              playing ? videoHandler("pause") : videoHandler("play");
             }}
-            size={48}
-            loading={waiting}
+            onWaiting={() => setWaiting(true)}
+            onLoad={() => setWaiting(true)}
+            onPlaying={() => setWaiting(false)}
+            onProgress={handleBuffering}
+            onLoadedMetadata={handleLoadedMetadata}
+            onLoadedData={() => console.log("Video data loaded")}
+            onTimeUpdate={() => handleTimeUpdate()}
+            className={styles.video}
+            controlsList=""
+            src={
+              `${process.env.NEXT_PUBLIC_API}/static/media/videos/` +
+              video?.public_id +
+              `/1080-` +
+              video?.public_id +
+              `.MP4`
+            }
           />
-        </div>
-        <div className={styles.controlsContainer}>
-          <div className={styles.controlsInnerContainer}>
-            <div className={styles.timeControls}>
-              <p className={styles.timeLeft}>
-                {Math.floor(currentTime / 60) +
-                  ":" +
-                  ("0" + Math.floor(currentTime % 60)).slice(-2)}
-              </p>
-              <div
-                className={styles.timelineContainer}
-                onMouseMove={(e) => handleTimelineHover(e)}
-                onClick={(e) => handleTimelineClick(e)}
-                ref={timeline}
-              >
-                <div className={styles.timeline}>
-                  <div className={styles.previewImgContainer}>
-                    <img
-                      className={styles.previewImg}
-                      src={
-                        process.env.NEXT_PUBLIC_API +
-                        `/static/media/videos_images/` +
-                        video?.landscape_image
-                      }
-                      alt="preview"
-                    />
-                    <div className={styles.previewImgTime}>
-                      {Math.floor(hoveredTime / 60) +
-                        ":" +
-                        ("0" + Math.floor(hoveredTime % 60)).slice(-2)}
+          <div className={styles.loader}>
+            <MoonLoader
+              color="red"
+              cssOverride={{
+                position: "absolute",
+                top: "50%",
+                right: "50%",
+              }}
+              size={48}
+              loading={waiting}
+            />
+          </div>
+          <div className={styles.controlsContainer}>
+            <div className={styles.controlsInnerContainer}>
+              <div className={styles.timeControls}>
+                <p className={styles.timeLeft}>
+                  {Math.floor(currentTime / 60) +
+                    ":" +
+                    ("0" + Math.floor(currentTime % 60)).slice(-2)}
+                </p>
+                <div
+                  className={styles.timelineContainer}
+                  onMouseMove={(e) => handleTimelineHover(e)}
+                  onClick={(e) => handleTimelineClick(e)}
+                  ref={timeline}
+                >
+                  <div className={styles.timeline}>
+                    <div className={styles.previewImgContainer}>
+                      <img
+                        className={styles.previewImg}
+                        src={
+                          process.env.NEXT_PUBLIC_API +
+                          `/static/media/videos_images/` +
+                          video?.landscape_image
+                        }
+                        alt="preview"
+                      />
+                      <div className={styles.previewImgTime}>
+                        {Math.floor(hoveredTime / 60) +
+                          ":" +
+                          ("0" + Math.floor(hoveredTime % 60)).slice(-2)}
+                      </div>
                     </div>
+                    <div className={styles.thumbIndicator}></div>
                   </div>
-                  <div className={styles.thumbIndicator}></div>
-                </div>
-                {/* <Slider
+                  {/* <Slider
                   percentage={Math.floor(100 * (currentTime / videoTime))}
                   onChange={handleTimeUpdate}
                 /> */}
-              </div>
-              <p className={styles.timeRight}>
-                {Math.floor(videoTime / 60) +
-                  ":" +
-                  ("0" + Math.floor(videoTime % 60)).slice(-2)}
-              </p>
-            </div>
-            <div className={styles.playbackIcons}>
-              <div className={styles.leftControls}>
-                <div>
-                  {playing ? (
-                    <div
-                      style={{
-                        backgroundColor: "white",
-                        height: 40,
-                        width: 40,
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        borderRadius: "50%",
-                      }}
-                      onClick={() => {
-                        videoHandler("pause");
-                      }}
-                    >
-                      <PauseTest role={"img"} width={16} height={16} />
-                    </div>
-                  ) : (
-                    <div
-                      style={{
-                        backgroundColor: "white",
-                        height: 40,
-                        width: 40,
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        borderRadius: "50%",
-                      }}
-                      onClick={() => {
-                        videoHandler("play");
-                      }}
-                    >
-                      <PlayTest role={"img"} width={16} height={16} />
-                    </div>
-                  )}
                 </div>
-                <Rewind action={revert} />
-                <Forward action={fastForward} />
-                <div className={styles.volumeIconContainer}>
-                  <div className={styles.controlIconVolume}>
-                    {muted === true ? (
-                      <VolumeOff action={handleVolumeUnmute} />
+                <p className={styles.timeRight}>
+                  {Math.floor(videoTime / 60) +
+                    ":" +
+                    ("0" + Math.floor(videoTime % 60)).slice(-2)}
+                </p>
+              </div>
+              <div className={styles.playbackIcons}>
+                <div className={styles.leftControls}>
+                  <div>
+                    {playing ? (
+                      <div
+                        style={{
+                          backgroundColor: "white",
+                          height: 40,
+                          width: 40,
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          borderRadius: "50%",
+                        }}
+                        onClick={() => {
+                          videoHandler("pause");
+                        }}
+                      >
+                        <PauseTest role={"img"} width={16} height={16} />
+                      </div>
                     ) : (
-                      <Volume1 action={handleVolumeMute} />
+                      <div
+                        style={{
+                          backgroundColor: "white",
+                          height: 40,
+                          width: 40,
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          borderRadius: "50%",
+                        }}
+                        onClick={() => {
+                          videoHandler("play");
+                        }}
+                      >
+                        <PlayTest role={"img"} width={16} height={16} />
+                      </div>
                     )}
                   </div>
-                  {/* <input
+                  <Rewind action={revert} />
+                  <Forward action={fastForward} />
+                  <div className={styles.volumeIconContainer}>
+                    <div className={styles.controlIconVolume}>
+                      {muted === true ? (
+                        <VolumeOff action={handleVolumeUnmute} />
+                      ) : (
+                        <Volume1 action={handleVolumeMute} />
+                      )}
+                    </div>
+                    {/* <input
                     type="range"
                     min="0"
                     max="100"
@@ -336,21 +358,69 @@ const VideoPlayer = ({ video }: any) => {
                       handleVolumeChange(e);
                     }}
                   /> */}
-                  <div className={styles.volumeRange}>
-                    <Slider percentage={volume} onChange={handleVolumeChange} />
+                    <div className={styles.volumeRange}>
+                      <Slider
+                        percentage={volume}
+                        onChange={handleVolumeChange}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className={styles.rightControls}>
-                <PictureInPicture action={pictureInPicture} />
-                <FullScreen action={fullScreen} />
+                <div className={styles.rightControls}>
+                  <PictureInPicture action={pictureInPicture} />
+                  <FullScreen action={fullScreen} />
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <div className={styles.videoBgGradient}></div>
       </div>
-      <div className={styles.videoBgGradient}></div>
-    </div>
+      <div className={styles.userInteractionContainer}>
+        <div className={styles.userInteractionWrapper}>
+          <div className={styles.userInteraction}>
+            <p>Share your thoughts: </p>
+            <div className={styles.interactiveIcons}>
+              <Like />
+              {/* <Comment /> */}
+            </div>
+          </div>
+          <div className={styles.socialMedia}>
+            <p>Tell your friends: </p>
+            <div className={styles.socialMediaIcons}>
+              <TwitterShareButton
+                url={`https://www.kalabars.vercel.app/video/${video?.public_id}`}
+                // quote={`🍿🎬 Watching an ${video?.title} on Kalabars! Check out this must-watch film now!`}
+                // hashtag="#Kalabars"
+              >
+                <TwitterIcon size={32} round={true} />
+              </TwitterShareButton>
+              <FacebookShareButton
+                url={`https://www.kalabars.vercel.app/video/${video?.public_id}`}
+                quote={`🍿🎬 Watching an ${video?.title} on Kalabars! Check out this must-watch film now!`}
+                hashtag="#Kalabars"
+              >
+                <FacebookIcon size={32} round={true} />
+              </FacebookShareButton>
+              <WhatsappShareButton
+                url={`https://www.kalabars.vercel.app/video/${video?.public_id}`}
+                // quote={`🍿🎬 Watching an ${video?.title} on Kalabars! Check out this must-watch film now!`}
+                // hashtag="#Kalabars"
+              >
+                <WhatsappIcon size={32} round={true} />
+              </WhatsappShareButton>
+              <LinkedinShareButton
+                url={`https://www.kalabars.vercel.app/video/${video?.public_id}`}
+                // quote={`🍿🎬 Watching an ${video?.title} on Kalabars! Check out this must-watch film now!`}
+                // hashtag="#Kalabars"
+              >
+                <LinkedinIcon size={32} round={true} />
+              </LinkedinShareButton>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
