@@ -10,7 +10,7 @@ const SightsCard = ({ cardData }) => {
   const [hovered, setHovered] = useState(false);
   const [number, setNumber] = useState();
   //Some videos lack images
-  if (cardData?.square_image === null) {
+  if (cardData?.portrait_image === null) {
     return null;
   }
 
@@ -18,7 +18,7 @@ const SightsCard = ({ cardData }) => {
     <div className={styles.categoryCardWrapper}>
       <Link href={`/video/${cardData?.public_id}`}>
         <img
-          src={`${process.env.NEXT_PUBLIC_API}/static/media/videos_images/${cardData?.square_image}`}
+          src={`${process.env.NEXT_PUBLIC_API}/static/media/videos_images/${cardData?.portrait_image}`}
           alt={cardData?.title}
           className={styles.cardImage}
         />

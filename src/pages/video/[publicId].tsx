@@ -13,14 +13,50 @@ import SideBarItem from "shared/SideBarItem/SideBarItem";
 import Image from "next/image";
 import { ToastContainer, toast } from "react-toastify";
 import { usePlaylist } from "global/AudioPlaylistContext";
-import Link from 'next/link'
+import Link from "next/link";
+import { EmptyQueue } from "shared/Icons/VideoPageIcons";
 
 type Videos = any;
 
-{/** TD:
-  * Fetch suggested videos by getting videos with a similar tag
-  * Get the video data from the video specifically rather than fetching all video data
-*/}
+{
+  /** TD:
+   * Fetch suggested videos by getting videos with a similar tag
+   * Get the video data from the video specifically rather than fetching all video data
+   */
+}
+
+const VideoQueue = ({videoWatchlist}) => {
+  if(videoWatchlist?.length === 0){
+    return(
+      <EmptyQueue/>
+    )
+  }
+  return (
+    <>
+      {videoWatchlist?.map((queueItem, index) => {
+        return (
+          <React.Fragment key={index}>
+            <Link
+              href={`https://kalabars.vercel.app/video/${queueItem?.public_id}`}
+            >
+              <div className={styles.queueItem}>
+                <img
+                  src={`https://content.kalabars.com/static/media/video_images/${queueItem?.landscape_image}`}
+                  alt="poster"
+                  className={styles.queueItemImage}
+                />
+                <div className={styles.queueItemInfo}>
+                  <h1>{queueItem?.title}</h1>
+                  <p>{queueItem?.creators_name}</p>
+                </div>
+              </div>
+            </Link>
+          </React.Fragment>
+        );
+      })}
+    </>
+  );
+};
 
 const Sight = ({ videos }: any) => {
 
@@ -31,7 +67,7 @@ const Sight = ({ videos }: any) => {
  
 
   const { videoWatchlist } = usePlaylist();
-  console.log(videoWatchlist)
+  console.log(videoWatchlist);
   const videosData = videos?.response?.result;
   const router = useRouter();
   const { publicId } = router.query;
@@ -80,6 +116,7 @@ const Sight = ({ videos }: any) => {
 
   return (
     <div className={styles.PageWrapper}>
+      <ToastContainer />
       <div className={styles.top}>
         <SideBarItem />
         <div className={styles.content}>
@@ -139,25 +176,7 @@ const Sight = ({ videos }: any) => {
               <div className={styles.queueContainer}>
                 <div className={styles.queueHeader}>QUEUE</div>
                 <div className={styles.queueItemsContainer}>
-                  {videoWatchlist?.map((queueItem, index) => {
-                    return (
-                      <React.Fragment key={index}>
-                        <Link href={`https://kalabars.vercel.app/video/${queueItem?.public_id}`}>
-                          <div className={styles.queueItem}>
-                            <img
-                              src={`https://content.kalabars.com/static/media/video_images/${queueItem?.landscape_image}`}
-                              alt="poster"
-                              className={styles.queueItemImage}
-                            />
-                            <div className={styles.queueItemInfo}>
-                              <h1>{queueItem?.title}</h1>
-                              <p>{queueItem?.creators_name}</p>
-                            </div>
-                          </div>
-                        </Link>
-                      </React.Fragment>
-                    );
-                  })}
+                  <VideoQueue videoWatchlist={videoWatchlist}/>
                 </div>
               </div>
             </div>

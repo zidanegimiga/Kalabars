@@ -1,43 +1,43 @@
 import React, { useState } from "react";
+import styles from "./Icons.module.scss";
+import { toast } from "react-toastify";
 
-const Like = () => {
-  const [liked, setLiked] = useState(false)
-  const [hovered, setHovered] = useState(false)
+const Like = ({ name }) => {
+  const [liked, setLiked] = useState(false);
+  const [hovered, setHovered] = useState(false);
+
+  const handleLikeIconClick = () => {
+    setLiked(!liked);
+    if (liked === false) {
+      toast(`${name} liked!`, {
+        theme: "dark",
+        style: {
+          backgroundColor: "#282828",
+        },
+        progressStyle: {
+          backgroundColor: "#FF3354",
+        },
+      });
+    }
+  };
+
   return (
     <div
       style={{ cursor: "pointer" }}
-      onClick={() => setLiked(!liked)}
+      onClick={handleLikeIconClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      className={styles.likeButton}
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
-        viewBox="0 0 32 32"
-        fill={liked ? "#FF3354" : "none"}
-      >
-        <mask
-          id="mask0_656_120"
-          //   style="mask-type:luminance"
-          maskUnits="userSpaceOnUse"
-          x="1"
-          y="4"
-          width="30"
-          height="26"
-        >
-          <path
-            d="M10 5.33325C5.95001 5.33325 2.66667 8.61659 2.66667 12.6666C2.66667 19.9999 11.3333 26.6666 16 28.2173C20.6667 26.6666 29.3333 19.9999 29.3333 12.6666C29.3333 8.61659 26.05 5.33325 22 5.33325C19.52 5.33325 17.3267 6.56459 16 8.44925C15.3238 7.48606 14.4254 6.69998 13.381 6.15758C12.3366 5.61518 11.1769 5.33242 10 5.33325Z"
-            stroke={liked ? "#FF3354" : "white"}
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </mask>
-        <g mask="url(#mask0_656_120)">
-          <path d="M0 0H32V32H0V0Z" fill={hovered ? "#FF3354" : "white"} />
-        </g>
-      </svg>
+      <div className={styles.heartBG}>
+        <div
+          className={
+            liked
+              ? styles["heartIconLiked"] + " " + styles["heartIcon"]
+              : styles.heartIcon
+          }
+        ></div>
+      </div>
     </div>
   );
 };
@@ -188,4 +188,94 @@ const Twitter = () => {
   );
 };
 
-export { Like, Comment, Twitter, Facebook }
+const EmptyQueue = () => {
+  return (
+    <div className={styles.emptyQueueIndicator}>
+      <svg
+        width="200"
+        height="191"
+        viewBox="0 0 200 191"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          y="51.4336"
+          width="126"
+          height="144"
+          rx="8"
+          transform="rotate(-15 0 51.4336)"
+          fill="#F1EEEE"
+        />
+        <rect
+          x="1.22474"
+          y="52.1407"
+          width="124"
+          height="142"
+          rx="7"
+          transform="rotate(-15 1.22474 52.1407)"
+          stroke="#FF3A5A"
+          strokeOpacity="0.7"
+          strokeWidth="2"
+          strokeDasharray="8 8"
+        />
+        <rect
+          x="77.7444"
+          y="19"
+          width="126"
+          height="144"
+          rx="8"
+          transform="rotate(15 77.7444 19)"
+          fill="#F1EEEE"
+        />
+        <rect
+          x="78.4515"
+          y="20.2247"
+          width="124"
+          height="142"
+          rx="7"
+          transform="rotate(15 78.4515 20.2247)"
+          stroke="#FF3A5A"
+          strokeOpacity="0.7"
+          strokeWidth="2"
+          strokeDasharray="8 8"
+        />
+        <rect x="36.4744" width="126" height="189" rx="8" fill="#F1EEEE" />
+        <rect
+          x="37.4744"
+          y="1"
+          width="124"
+          height="187"
+          rx="7"
+          stroke="#FF3A5A"
+          strokeOpacity="0.7"
+          strokeWidth="2"
+          strokeDasharray="8 8"
+        />
+        <g clipPath="url(#clip0_618_325)">
+          <path
+            d="M105.808 101.333L129.141 86.3332L105.808 71.3332V101.333ZM94.141 113C92.3077 113 90.7388 112.348 89.4343 111.043C88.1277 109.737 87.4743 108.167 87.4743 106.333V66.3332C87.4743 64.4998 88.1277 62.9298 89.4343 61.6232C90.7388 60.3187 92.3077 59.6665 94.141 59.6665H134.141C135.974 59.6665 137.544 60.3187 138.851 61.6232C140.155 62.9298 140.808 64.4998 140.808 66.3332V106.333C140.808 108.167 140.155 109.737 138.851 111.043C137.544 112.348 135.974 113 134.141 113H94.141ZM80.8077 126.333C78.9743 126.333 77.4054 125.681 76.101 124.377C74.7943 123.07 74.141 121.5 74.141 119.667V72.9998H80.8077V119.667H127.474V126.333H80.8077Z"
+            fill="#FF3A5A"
+            fillOpacity="0.7"
+          />
+          <path
+            d="M77.4744 70C77.7577 70 77.9954 69.904 78.1874 69.712C78.3787 69.5207 78.4744 69.2833 78.4744 69V66H81.4994C81.7827 66 82.016 65.904 82.1994 65.712C82.3827 65.5207 82.4744 65.2833 82.4744 65C82.4744 64.7167 82.3784 64.479 82.1864 64.287C81.995 64.0957 81.7577 64 81.4744 64H78.4744V60.975C78.4744 60.6917 78.3787 60.4583 78.1874 60.275C77.9954 60.0917 77.7577 60 77.4744 60C77.191 60 76.9537 60.0957 76.7624 60.287C76.5704 60.479 76.4744 60.7167 76.4744 61V64H73.4494C73.166 64 72.9327 64.0957 72.7494 64.287C72.566 64.479 72.4744 64.7167 72.4744 65C72.4744 65.2833 72.57 65.5207 72.7614 65.712C72.9534 65.904 73.191 66 73.4744 66H76.4744V69.025C76.4744 69.3083 76.5704 69.5417 76.7624 69.725C76.9537 69.9083 77.191 70 77.4744 70ZM77.4744 75C76.091 75 74.791 74.7373 73.5744 74.212C72.3577 73.6873 71.2994 72.975 70.3994 72.075C69.4994 71.175 68.787 70.1167 68.2624 68.9C67.737 67.6833 67.4744 66.3833 67.4744 65C67.4744 63.6167 67.737 62.3167 68.2624 61.1C68.787 59.8833 69.4994 58.825 70.3994 57.925C71.2994 57.025 72.3577 56.3123 73.5744 55.787C74.791 55.2623 76.091 55 77.4744 55C78.8577 55 80.1577 55.2623 81.3744 55.787C82.591 56.3123 83.6494 57.025 84.5494 57.925C85.4494 58.825 86.1617 59.8833 86.6864 61.1C87.2117 62.3167 87.4744 63.6167 87.4744 65C87.4744 66.3833 87.2117 67.6833 86.6864 68.9C86.1617 70.1167 85.4494 71.175 84.5494 72.075C83.6494 72.975 82.591 73.6873 81.3744 74.212C80.1577 74.7373 78.8577 75 77.4744 75Z"
+            fill="#FF3A5A"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_618_325">
+            <rect
+              width="80"
+              height="80"
+              fill="white"
+              transform="translate(67.4744 53)"
+            />
+          </clipPath>
+        </defs>
+      </svg>
+      <p className={styles.emptyQueueText}>Queue Empty</p>
+    </div>
+  );
+};
+
+export { Like, Comment, Twitter, Facebook, EmptyQueue };
