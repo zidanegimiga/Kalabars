@@ -72,6 +72,7 @@ const Sight = ({ videos }: any) => {
 
   return (
     <div className={styles.PageWrapper}>
+      <ToastContainer/>
       <div className={styles.top}>
         <SideBarItem />
         <div className={styles.content}>

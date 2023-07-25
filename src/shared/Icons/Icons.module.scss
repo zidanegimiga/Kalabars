@@ -1,4 +1,4 @@
-.playIcon{
+.playIcon {
     // background: #FF3354;
     width: 48px;
     height: 48px;
@@ -8,13 +8,13 @@
     cursor: pointer;
     transition: all ease-in-out 0.5s;
 
-    &:hover{
+    &:hover {
         filter: drop-shadow(0px 8px 6px rgba(0, 0, 0, 0.25));
         transform: scale(110%);
     }
 }
 
-.playIconL{
+.playIconL {
     width: 48px;
     height: 48px;
     position: relative;
@@ -22,27 +22,69 @@
     transition: all ease-in-out 0.5s;
 }
 
-.playIconSvg{
+.playIconSvg {
     position: absolute;
     top: 20%;
     left: 16%;
 }
 
-.fullScreen{
+.fullScreen {
     margin-top: 8px;
     width: 24px;
     height: 24px;
     transition: all ease-in-out 0.5s;
-    
-    &:hover{
+
+    &:hover {
         transform: scale(105%);
     }
 }
 
-.icon{
+.icon {
     margin-top: 12px;
 }
 
-.seekIcon{
+.seekIcon {}
 
+.likeButton{
+    position: relative;
+}
+
+.likeButton .heartIcon {
+    height: 100px;
+    width: 100px;
+    background: url("../../../public/heart.png");
+    background-position: left;
+    cursor: pointer;
+    position: absolute;
+    transform: scale(70%);
+}
+
+.likeButton .heartIconLiked {
+    animation: likeAnimation 0.7s steps(28) forwards;
+}
+
+@keyframes likeAnimation {
+    to {
+        background-position: right;
+    }
+}
+
+.likeButton .heartBG {
+    background: rgba(255, 192, 200, 0);
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 100ms ease;
+}
+
+.likeButton .heartBG:hover {
+    background: rgba(255, 192, 200, 0.7);
+}
+
+.likeButton {
+    display: flex;
+    align-items: center;
 }
