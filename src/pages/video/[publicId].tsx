@@ -127,7 +127,7 @@ const Sight = ({ videos }: any) => {
                   src={
                     `${process.env.NEXT_PUBLIC_API}` +
                     `/static/media/videos_images/` +
-                    video?.square_image
+                    video?.portrait_image
                   }
                   className={styles.videoDescriptionImage}
                   alt={""}
