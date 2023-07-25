@@ -1,16 +1,24 @@
 import React, { useState } from "react";
+import styles from './Icons.module.scss';
 
 const Like = () => {
-  const [liked, setLiked] = useState(false)
-  const [hovered, setHovered] = useState(false)
+  const [liked, setLiked] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  
   return (
     <div
       style={{ cursor: "pointer" }}
       onClick={() => setLiked(!liked)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      className={styles.likeButton}
     >
-      <svg
+      <div className={styles.heartBG}>
+        <div
+          className={liked ? styles["heartIconLiked"] + ' ' + styles['heartIcon'] : styles.heartIcon}
+        ></div>
+      </div>
+      {/* <svg
         xmlns="http://www.w3.org/2000/svg"
         width="32"
         height="32"
@@ -37,7 +45,7 @@ const Like = () => {
         <g mask="url(#mask0_656_120)">
           <path d="M0 0H32V32H0V0Z" fill={hovered ? "#FF3354" : "white"} />
         </g>
-      </svg>
+      </svg> */}
     </div>
   );
 };
