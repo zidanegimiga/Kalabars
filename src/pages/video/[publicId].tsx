@@ -3,7 +3,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import VideoPlayer from "features/Sights/Video/Video";
 import styles from "../../styles/VideoPage.module.scss";
 import { Instagram, Twitter, Share } from "shared/Icons/Twitter";
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { Playlist } from "../../shared/Icons/Playlist";
 import SightsCategory from "features/Sights/SightsCategory";
@@ -12,18 +12,61 @@ import SideBarItem from "shared/SideBarItem/SideBarItem";
 import Image from "next/image";
 import { ToastContainer, toast } from "react-toastify";
 import { usePlaylist } from "global/AudioPlaylistContext";
-import Link from 'next/link'
+import Link from "next/link";
+import { EmptyQueue } from "shared/Icons/VideoPageIcons";
 
 type Videos = any;
 
-{/** TD:
-  * Fetch suggested videos by getting videos with a similar tag
-  * Get the video data from the video specifically rather than fetching all video data
-*/}
+{
+  /** TD:
+   * Fetch suggested videos by getting videos with a similar tag
+   * Get the video data from the video specifically rather than fetching all video data
+   */
+}
+
+const VideoQueue = ({videoWatchlist}) => {
+  if(videoWatchlist?.length === 0){
+    return(
+      <EmptyQueue/>
+    )
+  }
+  return (
+    <>
+      {videoWatchlist?.map((queueItem, index) => {
+        return (
+          <React.Fragment key={index}>
+            <Link
+              href={`https://kalabars.vercel.app/video/${queueItem?.public_id}`}
+            >
+              <div className={styles.queueItem}>
+                <img
+                  src={`https://content.kalabars.com/static/media/video_images/${queueItem?.landscape_image}`}
+                  alt="poster"
+                  className={styles.queueItemImage}
+                />
+                <div className={styles.queueItemInfo}>
+                  <h1>{queueItem?.title}</h1>
+                  <p>{queueItem?.creators_name}</p>
+                </div>
+              </div>
+            </Link>
+          </React.Fragment>
+        );
+      })}
+    </>
+  );
+};
 
 const Sight = ({ videos }: any) => {
+
+  const[showFullDescription, setShowFullDescription] = useState(false);
+  const handleSeeMoreClick = ()=>{
+    setShowFullDescription(!showFullDescription);
+  };
+ 
+
   const { videoWatchlist } = usePlaylist();
-  console.log(videoWatchlist)
+  console.log(videoWatchlist);
   const videosData = videos?.response?.result;
   const router = useRouter();
   const { publicId } = router.query;
@@ -72,32 +115,45 @@ const Sight = ({ videos }: any) => {
 
   return (
     <div className={styles.PageWrapper}>
-      <ToastContainer/>
+      <ToastContainer />
       <div className={styles.top}>
         <SideBarItem />
         <div className={styles.content}>
           <VideoPlayer video={video} />
           <div className={styles.videoFeatures}>
             <div className={styles.videoDetails}>
-              <div className={styles.videoDescriptionContainer}>
+              <div className={styles.videoDescriptionContainer}>              
                 <img
                   src={
                     `${process.env.NEXT_PUBLIC_API}` +
                     `/static/media/videos_images/` +
                     video?.square_image
                   }
-                  width={120}
-                  height={120}
+                  className={styles.videoDescriptionImage}
                   alt={""}
-                />
+                />                
                 <div className={styles.videoTextualData}>
                   <div>
                     <div className={styles.videoTitle}>{video?.title}</div>
                     <div className={styles.videoDescription}>
-                      {video?.description}...
+                  {
+                    showFullDescription? video?.description:
+                    video?.description.slice(0, 100) + "..."}
+                    
+                    {video?.description.length>100 && (
+                      <div className={styles.seeMoreBtn}>
+                      {showFullDescription ? (
+                        <p onClick={handleSeeMoreClick}>SEE LESS</p>
+                      ) : (
+                        <p onClick={handleSeeMoreClick}>SEE MORE</p>
+                      )}
+                      
+                    </div>
+                    )}
                     </div>
                   </div>
-                  <div className={styles.seeMoreBtn}>SEE MORE</div>
+                  
+                 
                 </div>
               </div>
               <div className={styles.moreInfoContainer}>
@@ -119,25 +175,7 @@ const Sight = ({ videos }: any) => {
               <div className={styles.queueContainer}>
                 <div className={styles.queueHeader}>QUEUE</div>
                 <div className={styles.queueItemsContainer}>
-                  {videoWatchlist?.map((queueItem, index) => {
-                    return (
-                      <React.Fragment key={index}>
-                        <Link href={`https://kalabars.vercel.app/video/${queueItem?.public_id}`}>
-                          <div className={styles.queueItem}>
-                            <img
-                              src={`https://content.kalabars.com/static/media/video_images/${queueItem?.landscape_image}`}
-                              alt="poster"
-                              className={styles.queueItemImage}
-                            />
-                            <div className={styles.queueItemInfo}>
-                              <h1>{queueItem?.title}</h1>
-                              <p>{queueItem?.creators_name}</p>
-                            </div>
-                          </div>
-                        </Link>
-                      </React.Fragment>
-                    );
-                  })}
+                  <VideoQueue videoWatchlist={videoWatchlist}/>
                 </div>
               </div>
             </div>

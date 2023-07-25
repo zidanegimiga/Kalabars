@@ -12,42 +12,34 @@ const Sights = ({
   videos,
   drama,
   originals,
+  musicVideos,
   comedy,
   documentary,
-  staffPicks,
   kids
 }) => {
   const carouselVideos = videos?.response?.result;
-  // const carouselVideos = videos?.response?.result?.slice(15, 24);
-  console.log("Kids", kids);
+  console.log("Carousel: ", carouselVideos);
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.top}>
-        <SideBarItem/>
+        <SideBarItem />
         <div className={styles.content}>
           <MovieCarousel videos={carouselVideos} />
           <div id="more" className={styles.sightsCategoryWrapper}>
-            <SightsCategory
-              name={"Staff Picks"}
-              data={staffPicks?.response?.result}
-            />
-            <SightsCategory
-              name={"Kalabars Originals"}
-              data={originals?.response?.result}
-            />
             <SightsCategory name={"Comedy"} data={comedy?.response?.result} />
-            <SightsCategory name={"Documentary"} data={documentary?.response?.result} />
             <SightsCategory
-              name={"Drama"}
-              data={drama?.response?.result}
-            />{" "}
-            <SightsCategory
-              name={"Kids"}
-              data={kids?.response?.result}
+              name={"Documentary"}
+              data={documentary?.response?.result}
             />
+            <SightsCategory name={"Drama"} data={drama?.response?.result} />{" "}
+            <SightsCategory
+              name={"Music Videos"}
+              data={musicVideos?.response?.result}
+            />
+            <SightsCategory name={"Kids"} data={kids?.response?.result} />
           </div>
         </div>
-        <ToastContainer/>
+        <ToastContainer />
       </div>
     </div>
   );
@@ -57,9 +49,8 @@ export default Sights;
 
 
 export async function loadVideos() {
-  //All Videos
-  const resVideos = await fetch(process.env.NEXT_PUBLIC_API + `/tags/now-playing/videos`, {
-  // const resVideos = await fetch(process.env.NEXT_PUBLIC_API + `/videos/all`, {
+  //Carousel Vids
+  const resVideos = await fetch(process.env.NEXT_PUBLIC_API + `/tags/trending/videos`, {
     headers: {
       "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
     },
@@ -79,7 +70,7 @@ export async function loadVideos() {
 
   //Drama
   const dramaGenres = await fetch(
-    process.env.NEXT_PUBLIC_API + `/genres/drama/videos`,
+    process.env.NEXT_PUBLIC_API + `/tags/dram/videos`,
     {
       headers: {
         "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
@@ -90,7 +81,7 @@ export async function loadVideos() {
 
   //Documentary
   const documentaryGenres = await fetch(
-    process.env.NEXT_PUBLIC_API + `/genres/documentaries/videos`,
+    process.env.NEXT_PUBLIC_API + `/tags/documentary/videos`,
     {
       headers: {
         "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
@@ -101,7 +92,7 @@ export async function loadVideos() {
 
   //Comedy
   const comedyGenres = await fetch(
-    process.env.NEXT_PUBLIC_API + `/genres/comedy/videos`,
+    process.env.NEXT_PUBLIC_API + `/tags/comedy/videos`,
     {
       headers: {
         "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
@@ -109,17 +100,6 @@ export async function loadVideos() {
     }
   );
   const comedyGenre = await comedyGenres.json();
-
-  //Staff Picks
-  const staffPicksGenres = await fetch(
-    process.env.NEXT_PUBLIC_API + `/tags/staff-picks/videos`,
-    {
-      headers: {
-        "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
-      },
-    }
-  );
-  const staffPicks = await staffPicksGenres.json();
 
   //Kids
   const kidsRes = await fetch(
@@ -133,14 +113,26 @@ export async function loadVideos() {
   const kids = await kidsRes.json();
   console.log("Kids: ", kids)
 
+  //Music Videos
+  const musicVidRes = await fetch(
+    process.env.NEXT_PUBLIC_API + `/tags/music-videos/videos`,
+    {
+      headers: {
+        "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+      },
+    }
+  );
+  const musicVideos = await musicVidRes.json();
+  console.log("Kids: ", kids)
+
   return {
     videos: videos,
     originals: originals,
     comedy: comedyGenre,
     documentary: documentaryGenre,
     drama: dramaGenre,
-    staffPicks: staffPicks,
-    kids: kids
+    kids: kids,
+    musicVideos: musicVideos
   };
 }
 const genres = [
@@ -156,8 +148,8 @@ const genres = [
   "poetic",
 ];
 
-export async function getStaticProps() {
-  const { videos, originals, comedy, documentary, drama, staffPicks, kids } = await loadVideos();
+export async function getServerSideProps() {
+  const { videos, originals, comedy, documentary, drama, kids, musicVideos } = await loadVideos();
   
   return {
     props: {
@@ -166,8 +158,8 @@ export async function getStaticProps() {
       documentary,
       drama,
       comedy,
-      staffPicks,
-      kids
+      kids,
+      musicVideos
     },
   };
 }
