@@ -3,7 +3,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import VideoPlayer from "features/Sights/Video/Video";
 import styles from "../../styles/VideoPage.module.scss";
 import { Instagram, Twitter, Share } from "shared/Icons/Twitter";
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { useRouter } from "next/router";
 import { Playlist } from "../../shared/Icons/Playlist";
 import SightsCategory from "features/Sights/SightsCategory";
@@ -63,19 +63,36 @@ const Sight = ({ videos }: any) => {
   const handleSeeMoreClick = ()=>{
     setShowFullDescription(!showFullDescription);
   };
+  const [moreVideos, setMoreVideos] = useState([])
  
 
   const { videoWatchlist } = usePlaylist();
-  console.log(videoWatchlist);
+  // console.log(videoWatchlist);
   const videosData = videos?.response?.result;
   const router = useRouter();
   const { publicId } = router.query;
   const video = videosData?.find((video: any) => video?.public_id === publicId);
-  const suggestedVideos = videosData?.slice(50, 69);
-  console.log("Vid: ", suggestedVideos);
+  // const suggestedVideos = videosData?.slice(50, 69);
+  // console.log("Vid: ", video?.tags);
+
+  useEffect(() => {
+    async function loadSuggestions(){
+      const suggestionsRes = await fetch(
+        `https://content.kalabars.com/tags/${video?.tags[0]?.slug}/videos`
+      );
+
+      const suggestions = await suggestionsRes.json();
+      setMoreVideos(suggestions?.response?.result)
+      console.log("Suggestions: ", suggestions?.response?.result);
+    }
+
+    setTimeout(loadSuggestions, 3000)
+  }, []);
+
   if (router.isFallback) {
     return <h1>Loading...</h1>;
   }
+
   const backgroundImage =
     `${process.env.NEXT_PUBLIC_API}` +
     `/static/media/videos_images/` +
@@ -127,7 +144,7 @@ const Sight = ({ videos }: any) => {
                   src={
                     `${process.env.NEXT_PUBLIC_API}` +
                     `/static/media/videos_images/` +
-                    video?.square_image
+                    video?.portrait_image
                   }
                   className={styles.videoDescriptionImage}
                   alt={""}
@@ -181,7 +198,7 @@ const Sight = ({ videos }: any) => {
             </div>
           </div>
           <div className={styles.suggestedVideos}>
-            <SightsCategory name={"You might like:"} data={suggestedVideos} />
+            <SightsCategory name={"You might like:"} data={moreVideos} />
           </div>
         </div>
       </div>
