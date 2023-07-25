@@ -4,6 +4,7 @@ import VideoPlayer from "features/Sights/Video/Video";
 import styles from "../../styles/VideoPage.module.scss";
 import { Instagram, Twitter, Share } from "shared/Icons/Twitter";
 import React from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { Playlist } from "../../shared/Icons/Playlist";
 import SightsCategory from "features/Sights/SightsCategory";
@@ -22,6 +23,13 @@ type Videos = any;
 */}
 
 const Sight = ({ videos }: any) => {
+
+  const[showFullDescription, setShowFullDescription] = useState(false);
+  const handleSeeMoreClick = ()=>{
+    setShowFullDescription(!showFullDescription);
+  };
+ 
+
   const { videoWatchlist } = usePlaylist();
   console.log(videoWatchlist)
   const videosData = videos?.response?.result;
@@ -79,21 +87,22 @@ const Sight = ({ videos }: any) => {
           <div className={styles.videoFeatures}>
             <div className={styles.videoDetails}>
               <div className={styles.videoDescriptionContainer}>
+              
                 <img
                   src={
                     `${process.env.NEXT_PUBLIC_API}` +
                     `/static/media/videos_images/` +
                     video?.square_image
                   }
-                  width={120}
-                  height={120}
+                  className={styles.videoDescriptionImage}
                   alt={""}
                 />
+                
                 <div className={styles.videoTextualData}>
                   <div>
                     <div className={styles.videoTitle}>{video?.title}</div>
                     <div className={styles.videoDescription}>
-                      {video?.description}...
+                    {video?.description.slice(0, 100) + "..."}
                     </div>
                   </div>
                   <div className={styles.seeMoreBtn}>SEE MORE</div>

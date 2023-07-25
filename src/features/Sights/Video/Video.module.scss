@@ -305,6 +305,10 @@
   p{
     color: white
   }
+
+  @media (max-width: 456px) {
+    margin-top: 32px;
+  }
 }
 
 .userInteraction{
