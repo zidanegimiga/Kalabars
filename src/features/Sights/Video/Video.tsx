@@ -381,7 +381,7 @@ const VideoPlayer = ({ video }: any) => {
           <div className={styles.userInteraction}>
             <p>Share your thoughts: </p>
             <div className={styles.interactiveIcons}>
-              <Like />
+              <Like name={video?.title}/>
               {/* <Comment /> */}
             </div>
           </div>

@@ -1,21 +1,41 @@
 import React, { useState } from "react";
-import styles from './Icons.module.scss';
+import styles from "./Icons.module.scss";
+import { toast } from "react-toastify";
 
-const Like = () => {
+const Like = ({ name }) => {
   const [liked, setLiked] = useState(false);
   const [hovered, setHovered] = useState(false);
-  
+
+  const handleLikeIconClick = () => {
+    setLiked(!liked);
+    if (liked === false) {
+      toast(`${name} liked!`, {
+        theme: "dark",
+        style: {
+          backgroundColor: "#282828",
+        },
+        progressStyle: {
+          backgroundColor: "#FF3354",
+        },
+      });
+    }
+  };
+
   return (
     <div
       style={{ cursor: "pointer" }}
-      onClick={() => setLiked(!liked)}
+      onClick={handleLikeIconClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className={styles.likeButton}
     >
       <div className={styles.heartBG}>
         <div
-          className={liked ? styles["heartIconLiked"] + ' ' + styles['heartIcon'] : styles.heartIcon}
+          className={
+            liked
+              ? styles["heartIconLiked"] + " " + styles["heartIcon"]
+              : styles.heartIcon
+          }
         ></div>
       </div>
       {/* <svg
@@ -196,4 +216,4 @@ const Twitter = () => {
   );
 };
 
-export { Like, Comment, Twitter, Facebook }
+export { Like, Comment, Twitter, Facebook };

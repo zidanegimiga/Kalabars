@@ -29,11 +29,11 @@ const Sights = ({
           <div id="more" className={styles.sightsCategoryWrapper}>
             <SightsCategory
               name={"Staff Picks"}
-              data={staffPicks.response.result}
+              data={staffPicks?.response?.result}
             />
             <SightsCategory
               name={"Kalabars Originals"}
-              data={originals.response.result}
+              data={originals?.response?.result}
             />
             <SightsCategory name={"Comedy"} data={comedy?.response?.result} />
             <SightsCategory name={"Documentary"} data={documentary?.response?.result} />
