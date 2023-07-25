@@ -51,7 +51,7 @@ const Hero = ({ videos }) => {
         }}
       >
         {videos?.map(function (video, index) {
-          if (video.landscape_image === null) {
+          if (video?.large_image === null) {
             return null;
           }
           return (
@@ -60,7 +60,7 @@ const Hero = ({ videos }) => {
                 <img
                   src={
                     `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
-                    video.large_image
+                    video?.large_image
                   }
                   alt="Image description"
                   className={styles.poster}

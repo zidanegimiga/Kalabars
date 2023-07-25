@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import styles from "./SightsCategory.module.scss";
-import Down from "../../../../public/downIcon.svg";7
+import Down from "../../../../public/downIcon.svg";
 import SightsCard from "../SightsCard/";
 
-const SightsCategory = ({ name, data }) => {
-  
+const SightsCategory = ({ name, data }) => {  
   const classPerView = 8;
   /**
    * logic for the see more button
