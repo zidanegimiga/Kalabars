@@ -303,11 +303,19 @@
   margin-top: 8px;
 
   p{
-    color: white
+    color: white;
+    
+    @media (max-width: 456px){
+      display: none;
+    }
   }
 
   @media (max-width: 456px) {
     margin-top: 32px;
+  }
+  @media (max-width: 320px){
+    margin-top: 84px;
+    width: 70%;
   }
 }
 

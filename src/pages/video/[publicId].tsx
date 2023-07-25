@@ -86,8 +86,7 @@ const Sight = ({ videos }: any) => {
           <VideoPlayer video={video} />
           <div className={styles.videoFeatures}>
             <div className={styles.videoDetails}>
-              <div className={styles.videoDescriptionContainer}>
-              
+              <div className={styles.videoDescriptionContainer}>              
                 <img
                   src={
                     `${process.env.NEXT_PUBLIC_API}` +
@@ -96,16 +95,29 @@ const Sight = ({ videos }: any) => {
                   }
                   className={styles.videoDescriptionImage}
                   alt={""}
-                />
-                
+                />                
                 <div className={styles.videoTextualData}>
                   <div>
                     <div className={styles.videoTitle}>{video?.title}</div>
                     <div className={styles.videoDescription}>
-                    {video?.description.slice(0, 100) + "..."}
+                  {
+                    showFullDescription? video?.description:
+                    video?.description.slice(0, 100) + "..."}
+                    
+                    {video?.description.length>100 && (
+                      <div className={styles.seeMoreBtn}>
+                      {showFullDescription ? (
+                        <p onClick={handleSeeMoreClick}>SEE LESS</p>
+                      ) : (
+                        <p onClick={handleSeeMoreClick}>SEE MORE</p>
+                      )}
+                      
+                    </div>
+                    )}
                     </div>
                   </div>
-                  <div className={styles.seeMoreBtn}>SEE MORE</div>
+                  
+                 
                 </div>
               </div>
               <div className={styles.moreInfoContainer}>
