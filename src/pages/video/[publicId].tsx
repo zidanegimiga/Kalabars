@@ -3,7 +3,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import VideoPlayer from "features/Sights/Video/Video";
 import styles from "../../styles/VideoPage.module.scss";
 import { Instagram, Twitter, Share } from "shared/Icons/Twitter";
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { Playlist } from "../../shared/Icons/Playlist";
 import SightsCategory from "features/Sights/SightsCategory";
@@ -58,6 +58,13 @@ const VideoQueue = ({videoWatchlist}) => {
 };
 
 const Sight = ({ videos }: any) => {
+
+  const[showFullDescription, setShowFullDescription] = useState(false);
+  const handleSeeMoreClick = ()=>{
+    setShowFullDescription(!showFullDescription);
+  };
+ 
+
   const { videoWatchlist } = usePlaylist();
   console.log(videoWatchlist);
   const videosData = videos?.response?.result;
@@ -115,25 +122,38 @@ const Sight = ({ videos }: any) => {
           <VideoPlayer video={video} />
           <div className={styles.videoFeatures}>
             <div className={styles.videoDetails}>
-              <div className={styles.videoDescriptionContainer}>
+              <div className={styles.videoDescriptionContainer}>              
                 <img
                   src={
                     `${process.env.NEXT_PUBLIC_API}` +
                     `/static/media/videos_images/` +
                     video?.square_image
                   }
-                  width={120}
-                  height={120}
+                  className={styles.videoDescriptionImage}
                   alt={""}
-                />
+                />                
                 <div className={styles.videoTextualData}>
                   <div>
                     <div className={styles.videoTitle}>{video?.title}</div>
                     <div className={styles.videoDescription}>
-                      {video?.description}...
+                  {
+                    showFullDescription? video?.description:
+                    video?.description.slice(0, 100) + "..."}
+                    
+                    {video?.description.length>100 && (
+                      <div className={styles.seeMoreBtn}>
+                      {showFullDescription ? (
+                        <p onClick={handleSeeMoreClick}>SEE LESS</p>
+                      ) : (
+                        <p onClick={handleSeeMoreClick}>SEE MORE</p>
+                      )}
+                      
+                    </div>
+                    )}
                     </div>
                   </div>
-                  <div className={styles.seeMoreBtn}>SEE MORE</div>
+                  
+                 
                 </div>
               </div>
               <div className={styles.moreInfoContainer}>
