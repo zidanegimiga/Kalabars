@@ -13,6 +13,7 @@ import HamburgerIcon from "shared/HamburgerIcon/HamburgerIcon";
 const Nav = () => {
   const { openMenu, setOpenMenu } = useContext(KalabarsContext);
   const [mobileSearchForm, setMobileSearchForm] = useState(false);
+  const router = useRouter();
 
   const handleMenuClick = () => {
     setOpenMenu(!openMenu);
@@ -24,7 +25,6 @@ const Nav = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   const formData = new URLSearchParams();
-  const router = useRouter();
 
   const textColor = {
     color: router.pathname == "/sights" || "/videos/*" ? "white" : "black",
@@ -43,9 +43,19 @@ const Nav = () => {
           method: "POST",
           body: formData,
         });
+
         const searchArray = await res.json();
-        setSearchResults(searchArray.response.videos);
-        console.log("Search results: ", searchArray);
+        const audioResults = searchArray?.response?.audios;
+
+        if (router.pathname === "/sounds") {
+          setSearchResults(audioResults);
+          console.log("Audio: ", searchResults)
+        } else {
+          setSearchResults(searchArray?.response?.videos);
+          console.log("Audio: ", searchResults);
+        }
+
+        // console.log("Search results: ", searchArray);
       } catch (error) {
         console.log("There was a problem");
       }
