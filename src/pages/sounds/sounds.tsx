@@ -7,9 +7,9 @@ import { KalabarsContext } from "global/KalabarsContext";
 import { usePlaylist } from "global/AudioPlaylistContext";
 import Link from "next/link";
 import SideBarItem from "shared/SideBarItem/SideBarItem";
-import { ToastContainer, toast} from 'react-toastify'
+import { ToastContainer, toast } from "react-toastify";
 
-const Sounds = ({ podcasts }) => {
+const Sounds = ({}) => {
   const {
     currentAudio,
     playlist,
@@ -18,8 +18,66 @@ const Sounds = ({ podcasts }) => {
     playAudio,
     stopAudiocurrentAudio,
   } = usePlaylist();
+  const [data, setData] = useState([]);
+  const [pods, setPods] = useState([]);
+  const [topAudio, setTopAudio] = useState([]);
 
+  const loadAudioBook = async () => {
+    const musicRes = await fetch(
+      process.env.NEXT_PUBLIC_API + `/tags/audio-book/audios`,
+      {
+        headers: {
+          "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+        },
+      }
+    );
+    const musicData = await musicRes.json();
 
+    return musicData;
+  };
+
+  const loadPodcasts = async () => {
+    const podAudios = await fetch(
+      process.env.NEXT_PUBLIC_API + `/tags/podcast/audios`,
+      {
+        headers: {
+          "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+        },
+      }
+    );
+    const podcasts = await podAudios.json();
+
+    return podcasts;
+  };
+
+  const loadTopAudios = async () => {
+    const topAudiosRes = await fetch(
+      process.env.NEXT_PUBLIC_API + `/tags/top-audio/audios`,
+      {
+        headers: {
+          "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+        },
+      }
+    );
+    const topAudiosData = await topAudiosRes.json();
+    return topAudiosData
+  };
+
+  useEffect(() => {
+    loadAudioBook().then((musicData) => {
+      setData(musicData?.response?.result);
+    });
+
+    loadPodcasts().then((podcast) => {
+      setPods(podcast?.response?.result);
+    });
+
+    loadTopAudios().then((topAudio) => {
+      setTopAudio(topAudio?.response?.result);
+    });
+  }, []);
+
+  console.log("Data", data);
   const isObjectEmpty = (objectName) => {
     return (
       objectName &&
@@ -33,13 +91,15 @@ const Sounds = ({ podcasts }) => {
       <div className={styles.top}>
         <SideBarItem />
         <div className={styles.content}>
-          <SoundCategory title="Podcasts" category="podcasts"/>
-          <SoundCategory title="Audio Book" category={"music"} />
-          <SoundCategory title="Top Audios" category={"topAudio"} />          
+          <SoundCategory title="Podcasts" category="podcasts" data={pods}/>
+          <SoundCategory title="Audio Book" category="podcasts" data={data}/>
+          <SoundCategory title="Top Audio" category="podcasts" data={topAudio}/>
+          {/* <SoundCategory title="Audio Book" category={"music"} />
+          <SoundCategory title="Top Audios" category={"topAudio"} /> */}
           {/* <SoundCategory title="New Sounds" /> */}
         </div>
       </div>
-      { isObjectEmpty(currentAudio) === false && <Player /> }
+      {isObjectEmpty(currentAudio) === false && <Player />}
       <ToastContainer />
     </div>
   );
