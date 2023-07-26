@@ -60,21 +60,27 @@ const Sounds = ({}) => {
       }
     );
     const topAudiosData = await topAudiosRes.json();
-    return topAudiosData
+    return topAudiosData;
   };
 
   useEffect(() => {
-    loadAudioBook().then((musicData) => {
-      setData(musicData?.response?.result);
-    });
+    setTimeout(() => {
+      loadAudioBook().then((musicData) => {
+        setData(musicData?.response?.result);
+      });
+    }, 1000);
 
-    loadPodcasts().then((podcast) => {
-      setPods(podcast?.response?.result);
-    });
+    setTimeout(() => {
+      loadPodcasts().then((podcast) => {
+        setPods(podcast?.response?.result);
+      });
+    }, 3000);
 
-    loadTopAudios().then((topAudio) => {
-      setTopAudio(topAudio?.response?.result);
-    });
+    setTimeout(() => {
+      loadTopAudios().then((topAudio) => {
+        setTopAudio(topAudio?.response?.result);
+      });
+    }, 5000);
   }, []);
 
   const isObjectEmpty = (objectName) => {
@@ -90,9 +96,13 @@ const Sounds = ({}) => {
       <div className={styles.top}>
         <SideBarItem />
         <div className={styles.content}>
-          <SoundCategory title="Podcasts" category="podcasts" data={pods}/>
-          <SoundCategory title="Audio Book" category="podcasts" data={data}/>
-          <SoundCategory title="Top Audio" category="podcasts" data={topAudio}/>
+          <SoundCategory title="Podcasts" category="podcasts" data={pods} />
+          <SoundCategory title="Audio Book" category="podcasts" data={data} />
+          <SoundCategory
+            title="Top Audio"
+            category="podcasts"
+            data={topAudio}
+          />
           {/* <SoundCategory title="Audio Book" category={"music"} />
           <SoundCategory title="Top Audios" category={"topAudio"} /> */}
           {/* <SoundCategory title="New Sounds" /> */}
