@@ -18,7 +18,6 @@ const Sights = ({
   kids
 }) => {
   const carouselVideos = videos?.response?.result;
-  console.log("Carousel: ", carouselVideos);
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.top}>

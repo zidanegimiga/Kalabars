@@ -26,7 +26,9 @@ const SightsCard = ({ cardData }) => {
       <div className={styles.innerContainer}>
         <div className={styles.movieTitle}>{cardData?.title.toUpperCase()}</div>
         <div className={styles.movieType}>
-          {cardData?.genres[0]?.title} | {cardData?.duration} Minutes | Directed by <span style={{fontWeight: "500"}}> {cardData?.creators_name}</span>
+          {cardData?.genres[0]?.title} | 
+          {/* {cardData?.duration} Minutes  */}
+          {" "}Directed by <span style={{fontWeight: "500"}}> {cardData?.creators_name}</span>
         </div>
         <div className={styles.movieSummary}>
           {`${cardData?.description.slice(0, 100)}...`}
