@@ -68,13 +68,13 @@ const Sounds = ({}) => {
       loadAudioBook().then((musicData) => {
         setData(musicData?.response?.result);
       });
-    }, 1000);
+    }, 3000);
 
     setTimeout(() => {
       loadPodcasts().then((podcast) => {
         setPods(podcast?.response?.result);
       });
-    }, 3000);
+    }, 1000);
 
     setTimeout(() => {
       loadTopAudios().then((topAudio) => {
