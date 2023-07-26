@@ -124,10 +124,10 @@ const SoundCategory = ({ title, category }) => {
         {audioData?.map((audio, index) => {
           return <SoundsCard key={index} data={audio} loading={loading} />;
         })}
-{/*         {loading &&
+        {loading &&
           [0, 1, 2, 3, 4, 5, 6].map((skeleton, index) => {
             return <SoundsCardSkeleton key={index} />;
-        })} */}
+        })}
       </OwlCarousel>
     </div>
   );
