@@ -32,8 +32,6 @@ const Responsive = {
 };
 
 const SoundCategory = ({ title, category, data }) => {
-  const [loading, setLoading] = useState(false);
-  const [audioData, setAudioData] = useState([]);
 
   return (
     <div className={styles.categoryContainer}>
@@ -43,16 +41,16 @@ const SoundCategory = ({ title, category, data }) => {
         nav={true}
         navContainerClass={styles.arrow}
         navClass={[styles.prev, styles.next]}
-        center={audioData.length > 1}
-        loop={audioData.length > 1}
+        center={data.length > 1}
+        loop={data.length > 1}
       >
         {data?.map((audio, index) => {
-          return <SoundsCard key={index} data={audio} loading={loading} />;
+          return <SoundsCard key={index} data={audio} loading={false} />;
         })}
-        {loading &&
+        {/* {loading &&
           [0, 1, 2, 3, 4, 5, 6].map((skeleton, index) => {
             return <SoundsCardSkeleton key={index} />;
-          })}
+          })} */}
       </OwlCarousel>
     </div>
   );

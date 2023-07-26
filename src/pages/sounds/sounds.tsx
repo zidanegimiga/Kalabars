@@ -77,7 +77,6 @@ const Sounds = ({}) => {
     });
   }, []);
 
-  console.log("Data", data);
   const isObjectEmpty = (objectName) => {
     return (
       objectName &&
