@@ -88,12 +88,15 @@ const SoundCategory = ({ title, category }) => {
     switch (category) {
       case "podcasts":
         loadPodcasts();
+        console.log("Podcasts: ", loading)
         break;
       case "topAudio":
         loadTopAudios();
+        console.log("Top: ", loading)
         break;
       case "music":
         loadMusic();
+        console.log("Music: ", loading)
         break;
     }
     console.log(audioData)
