@@ -112,9 +112,11 @@
     font-weight: 300;
     letter-spacing: 1px;
     line-height: 110%;
+    height: 50%;
+    
 
     @media (max-width: 456px) {
-        height: 1%;
+        max-height: 100%;
       }
 }
 
