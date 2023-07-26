@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./SoundCategory.module.scss";
-import {SoundsCard, SoundsCardSkeleton} from "../SoundsCard/SoundsCard";
+import { SoundsCard, SoundsCardSkeleton } from "../SoundsCard/SoundsCard";
 var $ = require("jquery");
 // if (typeof window !== "undefined") {
 //   window.$ = window.jQuery = require("jquery");
@@ -8,7 +8,6 @@ var $ = require("jquery");
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import dynamic from "next/dynamic";
-
 
 const OwlCarousel = dynamic(() => import("react-owl-carousel"), { ssr: false });
 
@@ -28,7 +27,7 @@ const Responsive = {
   1024: {
     items: 4,
     margin: 24,
-    dots: true
+    dots: true,
   },
 };
 
@@ -53,7 +52,7 @@ const SoundCategory = ({ title, category }) => {
 
   const loadTopAudios = async () => {
     setLoading(true);
-    console.log(loading)
+    console.log(loading);
     const topAudiosRes = await fetch(
       process.env.NEXT_PUBLIC_API + `/tags/top-audio/audios`,
       {
@@ -64,7 +63,7 @@ const SoundCategory = ({ title, category }) => {
     );
     const topAudiosData = await topAudiosRes.json();
     setAudioData(topAudiosData.response.result);
-    console.log(audioData)
+    console.log(audioData);
     setLoading(false);
     console.log(loading);
   };
@@ -88,15 +87,18 @@ const SoundCategory = ({ title, category }) => {
     switch (category) {
       case "podcasts":
         loadPodcasts();
+        console.log("Podcasts: ", audioData);
         break;
       case "topAudio":
         loadTopAudios();
+        console.log("Top: ", audioData);
         break;
       case "music":
         loadMusic();
+        console.log("Music: ", audioData);
         break;
     }
-    console.log(audioData)
+    console.log(audioData);
   }, []);
 
   return (
@@ -127,12 +129,10 @@ const SoundCategory = ({ title, category }) => {
         {loading &&
           [0, 1, 2, 3, 4, 5, 6].map((skeleton, index) => {
             return <SoundsCardSkeleton key={index} />;
-        })}
+          })}
       </OwlCarousel>
     </div>
   );
 };
 
 export default SoundCategory;
-
-          
