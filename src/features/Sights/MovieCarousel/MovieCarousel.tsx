@@ -15,7 +15,7 @@ import { usePlaylist } from "global/AudioPlaylistContext";
 const Hero = ({ videos }) => {
   const router = useRouter();
   const [hovered, setHovered] = useState();
-  const [showDetails, setShowDetails] = useState(false);
+  const [showDetails, setShowDetails] = useState(true);
   const { addToWatchlist } = usePlaylist();
   // console.log(videos[0]);
 
