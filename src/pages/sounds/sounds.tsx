@@ -118,7 +118,7 @@ const Sounds = ({}) => {
         <div className={styles.content}>
           <SoundCategory title="Podcasts" category="podcasts" data={pods}/>
           <SoundCategory title="Audio Book" category="podcasts" data={data}/>
-          <SoundCategory title="Top Audio" category="podcasts" data={trueStory}/>
+          <SoundCategory title="True Story" category="podcasts" data={trueStory}/>
           <SoundCategory title="Top Audio" category="podcasts" data={topAudio}/>
         </div>
       </div>
