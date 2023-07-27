@@ -21,6 +21,7 @@ const Sounds = ({}) => {
   const [data, setData] = useState([]);
   const [pods, setPods] = useState([]);
   const [topAudio, setTopAudio] = useState([]);
+  const [trueStory, setTrueStory] = useState([]);
 
   const loadAudioBook = async () => {
     const musicRes = await fetch(
@@ -63,6 +64,19 @@ const Sounds = ({}) => {
     return topAudiosData;
   };
 
+  const loadTrueStory = async () => {
+    const topAudiosRes = await fetch(
+      process.env.NEXT_PUBLIC_API + `/tags/true-story/audios`,
+      {
+        headers: {
+          "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+        },
+      }
+    );
+    const topAudiosData = await topAudiosRes.json();
+    return topAudiosData;
+  };
+
   useEffect(() => {
     setTimeout(() => {
       loadAudioBook().then((musicData) => {
@@ -81,6 +95,12 @@ const Sounds = ({}) => {
         setTopAudio(topAudio?.response?.result);
       });
     }, 5000);
+
+    setTimeout(() => {
+      loadTrueStory().then((trueStory) => {
+        setTrueStory(trueStory?.response?.result);
+      });
+    }, 7000);
   }, []);
 
   const isObjectEmpty = (objectName) => {
@@ -96,16 +116,10 @@ const Sounds = ({}) => {
       <div className={styles.top}>
         <SideBarItem />
         <div className={styles.content}>
-          <SoundCategory title="Podcasts" category="podcasts" data={pods} />
-          <SoundCategory title="Audio Book" category="podcasts" data={data} />
-          <SoundCategory
-            title="Top Audio"
-            category="podcasts"
-            data={topAudio}
-          />
-          {/* <SoundCategory title="Audio Book" category={"music"} />
-          <SoundCategory title="Top Audios" category={"topAudio"} /> */}
-          {/* <SoundCategory title="New Sounds" /> */}
+          <SoundCategory title="Podcasts" category="podcasts" data={pods}/>
+          <SoundCategory title="Audio Book" category="podcasts" data={data}/>
+          <SoundCategory title="Top Audio" category="podcasts" data={trueStory}/>
+          <SoundCategory title="Top Audio" category="podcasts" data={topAudio}/>
         </div>
       </div>
       {isObjectEmpty(currentAudio) === false && <Player />}
