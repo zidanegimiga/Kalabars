@@ -15,7 +15,8 @@ const Sights = ({
   musicVideos,
   comedy,
   documentary,
-  kids
+  kids,
+  series
 }) => {
   const carouselVideos = videos?.response?.result;
   return (
@@ -31,6 +32,7 @@ const Sights = ({
               data={documentary?.response?.result}
             />
             <SightsCategory name={"Drama"} data={drama?.response?.result} />{" "}
+            <SightsCategory name={"Series"} data={series?.response?.result} />{" "}
             <SightsCategory
               name={"Music Videos"}
               data={musicVideos?.response?.result}
@@ -77,6 +79,17 @@ export async function loadVideos() {
     }
   );
   const dramaGenre = await dramaGenres.json();
+
+  //Series
+  const seriesRes = await fetch(
+    process.env.NEXT_PUBLIC_API + `/tags/multivideo/videos`,
+    {
+      headers: {
+        "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+      },
+    }
+  );
+  const series = await seriesRes.json();
 
   //Documentary
   const documentaryGenres = await fetch(
@@ -131,7 +144,8 @@ export async function loadVideos() {
     documentary: documentaryGenre,
     drama: dramaGenre,
     kids: kids,
-    musicVideos: musicVideos
+    musicVideos: musicVideos,
+    series: series
   };
 }
 const genres = [
@@ -148,7 +162,7 @@ const genres = [
 ];
 
 export async function getServerSideProps() {
-  const { videos, originals, comedy, documentary, drama, kids, musicVideos } = await loadVideos();
+  const { videos, originals, comedy, documentary, drama, kids, musicVideos, series } = await loadVideos();
   
   return {
     props: {
@@ -158,7 +172,8 @@ export async function getServerSideProps() {
       drama,
       comedy,
       kids,
-      musicVideos
+      musicVideos,
+      series
     },
   };
 }
