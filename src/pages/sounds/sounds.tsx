@@ -23,6 +23,7 @@ const Sounds = ({}) => {
   const [topAudio, setTopAudio] = useState([]);
   const [trueStory, setTrueStory] = useState([]);
   const [podvise, setPodvise] = useState([]);
+  const [hnt, setHNT] = useState([]);
 
   const loadAudioBook = async () => {
     const musicRes = await fetch(
@@ -91,6 +92,19 @@ const Sounds = ({}) => {
     return podviseResults;
   };
 
+  const loadHnT = async () => {
+    const handtRes = await fetch(
+      process.env.NEXT_PUBLIC_API + `/tags/h-and-t/audios`,
+      {
+        headers: {
+          "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+        },
+      }
+    );
+    const handtResResults = await handtRes.json();
+    return handtResResults;
+  };
+
   useEffect(() => {
     setTimeout(() => {
       loadAudioBook().then((musicData) => {
@@ -123,6 +137,13 @@ const Sounds = ({}) => {
       });
     }, 9000);
 
+    setTimeout(() => {
+      loadHnT().then((hntData) => {
+        setHNT(hntData?.response?.result);
+        // console.log(podvise);
+      });
+    }, 9000);
+
  }, []);
 
   const isObjectEmpty = (objectName) => {
@@ -142,6 +163,7 @@ const Sounds = ({}) => {
           <SoundCategory title="Audio Book" category="podcasts" data={data}/>
           <SoundCategory title="True Story" category="podcasts" data={trueStory}/>
           <SoundCategory title="Podvise" category="podcasts" data={podvise}/>
+          <SoundCategory title="H and T" category="podcasts" data={hnt}/>
           <SoundCategory title="Top Audio" category="podcasts" data={topAudio}/>
         </div>
       </div>
