@@ -21,6 +21,7 @@ const Hero = ({ videos }) => {
 
   const handleAddToWatchlist = (data) => {
     addToWatchlist(data);
+    console.log(data)
   };
 
   useEffect(() => {
