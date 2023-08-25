@@ -11,17 +11,22 @@ import styles from "./MovieCarousel.module.scss";
 import { PlayIcon } from "shared/Icons/Playback";
 import { usePlaylist } from "global/AudioPlaylistContext";
 
-
 const Hero = ({ videos }) => {
   const router = useRouter();
   const [hovered, setHovered] = useState();
+  const [width, setWidth] = useState(0);
   const [showDetails, setShowDetails] = useState(true);
   const { addToWatchlist } = usePlaylist();
   // console.log(videos[0]);
 
-  const handleAddToWatchlist = (data) =>{
+  const handleAddToWatchlist = (data) => {
     addToWatchlist(data);
-  }
+  };
+
+  useEffect(() => {
+    const w = window.innerWidth;
+    setWidth(w);
+  }, []);
 
   return (
     <div>
@@ -59,8 +64,11 @@ const Hero = ({ videos }) => {
               <div>
                 <img
                   src={
-                    `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
-                    video?.large_image
+                    width >= 460
+                      ? `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
+                        video?.large_image
+                      : `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
+                        video?.portrait_image
                   }
                   alt="Image description"
                   className={styles.poster}
@@ -100,7 +108,10 @@ const Hero = ({ videos }) => {
                       </div>
                       <div className={styles.iconsText}>Play Title</div>
                     </div>
-                    <div className={styles.iconWrapper} onClick={()=> handleAddToWatchlist(video)}>
+                    <div
+                      className={styles.iconWrapper}
+                      onClick={() => handleAddToWatchlist(video)}
+                    >
                       <div className={styles.icon}>
                         <Image
                           src={"/clock.png"}
