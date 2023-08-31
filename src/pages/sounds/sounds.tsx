@@ -21,6 +21,9 @@ const Sounds = ({}) => {
   const [data, setData] = useState([]);
   const [pods, setPods] = useState([]);
   const [topAudio, setTopAudio] = useState([]);
+  const [trueStory, setTrueStory] = useState([]);
+  const [podvise, setPodvise] = useState([]);
+  const [hnt, setHNT] = useState([]);
 
   const loadAudioBook = async () => {
     const musicRes = await fetch(
@@ -60,22 +63,88 @@ const Sounds = ({}) => {
       }
     );
     const topAudiosData = await topAudiosRes.json();
-    return topAudiosData
+    return topAudiosData;
+  };
+
+  const loadTrueStory = async () => {
+    const topAudiosRes = await fetch(
+      process.env.NEXT_PUBLIC_API + `/tags/true-story/audios`,
+      {
+        headers: {
+          "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+        },
+      }
+    );
+    const topAudiosData = await topAudiosRes.json();
+    return topAudiosData;
+  };
+
+  const loadPodvise = async () => {
+    const podviseRes = await fetch(
+      process.env.NEXT_PUBLIC_API + `/tags/podvise/audios`,
+      {
+        headers: {
+          "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+        },
+      }
+    );
+    const podviseResults = await podviseRes.json();
+    return podviseResults;
+  };
+
+  const loadHnT = async () => {
+    const handtRes = await fetch(
+      process.env.NEXT_PUBLIC_API + `/tags/h-and-t/audios`,
+      {
+        headers: {
+          "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+        },
+      }
+    );
+    const handtResResults = await handtRes.json();
+    return handtResResults;
   };
 
   useEffect(() => {
-    loadAudioBook().then((musicData) => {
-      setData(musicData?.response?.result);
-    });
+    setTimeout(() => {
+      loadAudioBook().then((musicData) => {
+        setData(musicData?.response?.result);
+      });
+    }, 3000);
 
-    loadPodcasts().then((podcast) => {
-      setPods(podcast?.response?.result);
-    });
+    setTimeout(() => {
+      loadPodcasts().then((podcast) => {
+        setPods(podcast?.response?.result);
+      });
+    }, 1000);
 
-    loadTopAudios().then((topAudio) => {
-      setTopAudio(topAudio?.response?.result);
-    });
-  }, []);
+    setTimeout(() => {
+      loadTopAudios().then((topAudio) => {
+        setTopAudio(topAudio?.response?.result);
+      });
+    }, 5000);
+
+    setTimeout(() => {
+      loadTrueStory().then((trueStory) => {
+        setTrueStory(trueStory?.response?.result);
+      });
+    }, 7000);
+
+    setTimeout(() => {
+      loadPodvise().then((podviseData) => {
+        setPodvise(podviseData?.response?.result);
+        console.log(podvise)
+      });
+    }, 9000);
+
+    setTimeout(() => {
+      loadHnT().then((hntData) => {
+        setHNT(hntData?.response?.result);
+        // console.log(podvise);
+      });
+    }, 9000);
+
+ }, []);
 
   const isObjectEmpty = (objectName) => {
     return (
@@ -92,10 +161,10 @@ const Sounds = ({}) => {
         <div className={styles.content}>
           <SoundCategory title="Podcasts" category="podcasts" data={pods}/>
           <SoundCategory title="Audio Book" category="podcasts" data={data}/>
+          <SoundCategory title="True Story" category="podcasts" data={trueStory}/>
+          <SoundCategory title="Podvise" category="podcasts" data={podvise}/>
+          <SoundCategory title="H and T" category="podcasts" data={hnt}/>
           <SoundCategory title="Top Audio" category="podcasts" data={topAudio}/>
-          {/* <SoundCategory title="Audio Book" category={"music"} />
-          <SoundCategory title="Top Audios" category={"topAudio"} /> */}
-          {/* <SoundCategory title="New Sounds" /> */}
         </div>
       </div>
       {isObjectEmpty(currentAudio) === false && <Player />}

@@ -11,17 +11,23 @@ import styles from "./MovieCarousel.module.scss";
 import { PlayIcon } from "shared/Icons/Playback";
 import { usePlaylist } from "global/AudioPlaylistContext";
 
-
 const Hero = ({ videos }) => {
   const router = useRouter();
   const [hovered, setHovered] = useState();
+  const [width, setWidth] = useState(0);
   const [showDetails, setShowDetails] = useState(true);
   const { addToWatchlist } = usePlaylist();
   // console.log(videos[0]);
 
-  const handleAddToWatchlist = (data) =>{
+  const handleAddToWatchlist = (data) => {
     addToWatchlist(data);
-  }
+    console.log(data)
+  };
+
+  useEffect(() => {
+    const w = window.innerWidth;
+    setWidth(w);
+  }, []);
 
   return (
     <div>
