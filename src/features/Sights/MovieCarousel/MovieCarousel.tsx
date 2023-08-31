@@ -147,14 +147,14 @@ const Hero = ({ videos }) => {
                         src={"/close.png"}
                         width={44}
                         height={48}
-                        alt="clock icon"
+                        alt="close icon"
                       />
                     ) : (
                       <Image
                         src={"/maximize.png"}
                         width={44}
                         height={44}
-                        alt="clock icon"
+                        alt="max icon"
                       />
                     )}
                   </div>
