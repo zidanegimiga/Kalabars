@@ -47,6 +47,14 @@
     // }
 }
 
+.posterContainer{
+    display: block;
+
+    @media (max-width: 456px) {
+        display: none;        
+    }
+}
+
 .poster {
     height: 100%;
     width: 100%;
@@ -83,6 +91,52 @@
         height: 100%;
     }
 
+}
+
+.mobilePosterContainer{
+    display: none;
+    @media (max-width: 456px) {
+        display: block;
+    }
+}
+
+.mobilePoster {
+    height: 100%;
+    width: 100%;
+    display: none;
+
+    @media (max-width: 2881px) {
+        height: 100%;
+    }
+
+    @media (max-width: 1441px) {
+        height: 100%;
+    }
+
+    @media (max-width: 821px) {
+        height: 65vh;
+    }
+
+    @media (max-width: 1115px) {
+        height: 100%;
+    }
+
+    @media (max-width: 835px) {
+        height: 58vh;
+    }
+
+    @media (max-width: 821px) {
+        height: 58vh;
+    }
+
+    @media (max-width: 769px) {
+        height: 100vh;
+    }
+
+    @media (max-width: 456px) {
+        display: block;
+        height: 100%;
+    }
 }
 
 .detailsWrapper {
