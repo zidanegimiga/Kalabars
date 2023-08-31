@@ -15,7 +15,7 @@ import { usePlaylist } from "global/AudioPlaylistContext";
 const Hero = ({ videos }) => {
   const router = useRouter();
   const [hovered, setHovered] = useState();
-  const [showDetails, setShowDetails] = useState(false);
+  const [showDetails, setShowDetails] = useState(true);
   const { addToWatchlist } = usePlaylist();
   // console.log(videos[0]);
 
@@ -135,14 +135,14 @@ const Hero = ({ videos }) => {
                         src={"/close.png"}
                         width={44}
                         height={48}
-                        alt="clock icon"
+                        alt="close icon"
                       />
                     ) : (
                       <Image
                         src={"/maximize.png"}
                         width={44}
                         height={44}
-                        alt="clock icon"
+                        alt="max icon"
                       />
                     )}
                   </div>
