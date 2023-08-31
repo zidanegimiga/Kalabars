@@ -304,15 +304,7 @@ const VideoPlayer = ({ video }: any) => {
                   <div>
                     {playing ? (
                       <div
-                        style={{
-                          backgroundColor: "white",
-                          height: 40,
-                          width: 40,
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          borderRadius: "50%",
-                        }}
+                        className={styles.playPauseBtn}
                         onClick={() => {
                           videoHandler("pause");
                         }}
@@ -321,15 +313,7 @@ const VideoPlayer = ({ video }: any) => {
                       </div>
                     ) : (
                       <div
-                        style={{
-                          backgroundColor: "white",
-                          height: 40,
-                          width: 40,
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          borderRadius: "50%",
-                        }}
+                        className={styles.playPauseBtn}
                         onClick={() => {
                           videoHandler("play");
                         }}
@@ -381,7 +365,7 @@ const VideoPlayer = ({ video }: any) => {
           <div className={styles.userInteraction}>
             <p>Share your thoughts: </p>
             <div className={styles.interactiveIcons}>
-              <Like name={video?.title}/>
+              <Like name={video?.title} />
               {/* <Comment /> */}
             </div>
           </div>

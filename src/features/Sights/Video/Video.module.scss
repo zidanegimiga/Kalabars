@@ -19,17 +19,17 @@
 
   @media (max-width: 501px) {
     padding-top: 40px;
-    height: 30vh;
+    height: 50vh;
     align-items: flex-start;
   }
 
   @media (max-width: 376px) {
-    height: 30vh;
+    height: 40vh;
     align-items: flex-start;
   }
 
   @media (max-width: 321px) {
-    height: 25vh;
+    height: 30vh;
     align-items: flex-start;
   }
 }
@@ -137,6 +137,23 @@
   gap: 8px
 }
 
+
+.playPauseBtn {
+  background-color: white;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+
+  @media (max-width: 451px) {
+    height: 24px;
+    width: 24px;
+    padding: 4px;    
+  }
+}
+
 .rightControls {
   display: flex;
   align-items: baseline;
@@ -146,6 +163,10 @@
 .volumeIconContainer {
   display: flex;
   align-items: center;
+
+  @media (max-width: 451px) {
+    display: none;    
+  }
 }
 
 .volumeRange {
