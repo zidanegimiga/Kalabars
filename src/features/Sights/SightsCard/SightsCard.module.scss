@@ -2,7 +2,7 @@
     border-radius: 16px;
     width: 400px;
     height: 720px;
-    background-color: #f8f8f8;
+    background-color: #ececec;
     display: flex;
     flex-direction: column;
     transition: all ease-in-out 0.5s;
@@ -11,6 +11,9 @@
     transition: all ease-in-out 0.5s;
     position: relative;
     
+    &:hover{
+        box-shadow: 4px 4px #88888850;
+    }
 
     @media (max-width: 769px) {
         width: 256px;   
