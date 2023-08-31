@@ -63,17 +63,26 @@ const Hero = ({ videos }) => {
           return (
             <div className={styles.hero} key={index}>
               <div>
-                <img
-                  src={
-                    width >= 460
-                      ? `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
-                        video?.large_image
-                      : `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
-                        video?.portrait_image
-                  }
-                  alt="Image description"
-                  className={styles.poster}
-                />
+                <div className={styles.posterContainer}>
+                  <img
+                    src={
+                      `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
+                      video?.large_image
+                    }
+                    alt="Image description"
+                    className={styles.poster}
+                  />
+                </div>
+                <div className={styles.mobilePosterContainer}>
+                  <img
+                    src={
+                      `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
+                      video?.portrait_image
+                    }
+                    alt="Image description"
+                    className={styles.mobilePoster}
+                  />
+                </div>
               </div>
               <div className={styles.detailsWrapper}>
                 <div className={styles.detailsContainer}>

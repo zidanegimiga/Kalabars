@@ -17,19 +17,19 @@
     align-items: flex-start;
   }
 
-  @media (max-width: 501px) {
+  @media (max-width: 530px) {
     padding-top: 40px;
-    height: 30vh;
+    height: 50vh;
     align-items: flex-start;
   }
 
   @media (max-width: 376px) {
-    height: 30vh;
+    height: 40vh;
     align-items: flex-start;
   }
 
   @media (max-width: 321px) {
-    height: 25vh;
+    height: 30vh;
     align-items: flex-start;
   }
 }
@@ -49,7 +49,7 @@
   width: fit-content;
   z-index: 2;
 
-  @media (max-width: 429px) {
+  @media (max-width: 530px) {
     width: 100%;
     align-items: flex-start;
   }
@@ -83,7 +83,7 @@
     height: 40vh;
   }
 
-  @media (max-width: 627px) {
+  @media (max-width: 530px) {
     width: 100%;
     height: 100%;
   }
@@ -137,6 +137,23 @@
   gap: 8px
 }
 
+
+.playPauseBtn {
+  background-color: white;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+
+  @media (max-width: 530px) {
+    height: 24px;
+    width: 24px;
+    padding: 4px;    
+  }
+}
+
 .rightControls {
   display: flex;
   align-items: baseline;
@@ -146,6 +163,10 @@
 .volumeIconContainer {
   display: flex;
   align-items: center;
+
+  @media (max-width: 530px) {
+    display: none;    
+  }
 }
 
 .volumeRange {
@@ -198,7 +219,7 @@
   display: flex;
   align-items: center;
 
-  @media (max-width: 426px) {
+  @media (max-width: 530px) {
     width: 70%;
   }
 }
@@ -305,12 +326,12 @@
   p{
     color: white;
     
-    @media (max-width: 456px){
+    @media (max-width: 530px){
       display: none;
     }
   }
 
-  @media (max-width: 456px) {
+  @media (max-width: 530px) {
     margin-top: 32px;
   }
   @media (max-width: 320px){
