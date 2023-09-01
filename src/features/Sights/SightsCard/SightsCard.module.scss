@@ -10,36 +10,40 @@
     cursor: pointer;
     transition: all ease-in-out 0.5s;
     position: relative;
-    
-    &:hover{
+
+    &:hover {
         box-shadow: 4px 4px #88888850;
     }
 
     @media (max-width: 769px) {
-        width: 256px;   
-        height: 640px;     
+        width: 256px;
+        height: 640px;
     }
 
-    @media (max-width: 426px) {
-        width: 80%; 
-        margin-bottom: 32px; 
-        height: 620px;   
-        margin-left: -8px;          
+    @media (max-width: 501px) {
+        width: 140px;
+        margin-bottom: 32px;
+        background-color: #2c2c2c00;
+        max-height: 300px;
+        border-radius: 4px;
+        margin: 0;
+        height: auto;
+        margin-right: 0;
     }
 
-    @media (max-width: 376px) {
-        width: 80%;        
-        min-height: 460px;
-        margin-left: -8px;
-             
-    }
+    // @media (max-width: 376px) {
+    //     // width: 80%;        
+    //     min-height: 460px;
+    //     margin-left: -8px;
 
-    @media (max-width: 496px) {
-        width: 80%;
-        margin-bottom: 32px; 
-        height: 720px;    
-                 
-    }
+    // }
+
+    // @media (max-width: 496px) {
+    //     // width: 80%;
+    //     margin-bottom: 32px; 
+    //     height: 720px;    
+
+    // }
 }
 
 // .innerCard{   
@@ -53,17 +57,21 @@
 //     cursor: pointer;
 //     transition: all ease-in-out 0.5s;
 //     overflow: hidden;
-   
+
 // }
 
 
 .cardImage {
     border-radius: 16px;
-    width: 100%;   
+    width: 100%;
+
+    @media (max-width: 501px) {
+        border-radius: 4px;
+    }
 }
 
 .movieTitle {
-    align-self:flex-start;
+    align-self: flex-start;
     padding-left: 16px;
     margin-top: 24px;
     font-size: 28px;
@@ -71,62 +79,76 @@
     text-transform: capitalize;
     font-family: 'Actor';
 
-    @media (max-width: 426px) {
-        font-size: 24px;
-        text-align: left;
-        margin-left: 8px
+    @media (max-width: 501px) {
+        // display: none;
+        color: white;
+        font-size: 14px;
+        padding: 0;
+        text-align: center;
+        font-weight: 400px;
+        margin-top: 8px    
     }
 }
 
-.cardBtn{
+.cardBtn {
     bottom: 2%;
     width: 60%;
     display: flex;
-    border-radius: 4px;    
+    border-radius: 4px;
     margin-left: 0;
     height: 50px;
     position: absolute;
-    p{
+
+    p {
         text-align: center;
         color: black;
         font-weight: 400;
         margin-left: 4px;
         font-family: 'Inter';
-        
+
     }
-    @media (max-width: 496px) {
-        
+
+    @media (max-width: 501px) {
+        display: none;
         bottom: 5%;
     }
-    
+
 }
 
-.innerContainer{
-    flex-direction: column; 
+.innerContainer {
+    flex-direction: column;
 }
 
-.movieSummary{
+.movieSummary {
     padding-left: 16px;
     padding-right: 16px;
     text-align: left;
     color: black;
     font-weight: 300;
-    margin-top: 24px;    
+    margin-top: 24px;
     margin-bottom: 24px;
-    font-family: 'Inter';    
+    font-family: 'Inter';
+
+    @media (max-width: 501px) {
+        display: none;
+    }
 }
 
-.movieType{
+.movieType {
     text-align: left;
     padding-left: 16px;
     color: black;
     font-weight: 400;
     font-family: 'inter';
     margin-top: 16px;
-    font-size: 14px;       
+    font-size: 14px;
+
+    @media (max-width: 501px) {
+        display: none;
+    }
 }
 
-.playIcon{
+.playIcon {
     padding: 2px;
     border: #2b2b2b solid 2px;
     display: flex;

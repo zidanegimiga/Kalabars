@@ -26,6 +26,7 @@ const Sights = ({
         <div className={styles.content}>
           <MovieCarousel videos={carouselVideos} />
           <div id="more" className={styles.sightsCategoryWrapper}>
+            <h2>🔥 KALABARS CATEGORIES 🔥</h2>
             <SightsCategory name={"Comedy"} data={comedy?.response?.result} />
             <SightsCategory
               name={"Documentary"}
