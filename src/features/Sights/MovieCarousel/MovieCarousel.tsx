@@ -17,7 +17,7 @@ const Hero = ({ videos }) => {
   const [width, setWidth] = useState(0);
   const [showDetails, setShowDetails] = useState(true);
   const { addToWatchlist } = usePlaylist();
-  // console.log(videos[0]);
+  console.log(videos[0]);
 
   const handleAddToWatchlist = (data) => {
     addToWatchlist(data);
@@ -171,9 +171,9 @@ const Hero = ({ videos }) => {
               </div>
               <div className={styles.detailsWrapperMobile}>
                 <div className={styles.detailsWrapperMobileContent}>
-                  <h2>{video.title}</h2>
+                  {/* <h2>{video.title}</h2> */}
                   <div className={styles.videoDetails}>
-                    <div className={styles.genre}>Thriller</div>
+                    <div className={styles.genre}>{video.genres[0]?.title}</div>
                     <div className={styles.category}>Short Film</div>
                     <div className={styles.category}>{video.creators_name}</div>
                     <div className={styles.category}>{video.duration} min</div>
