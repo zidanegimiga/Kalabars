@@ -80,6 +80,7 @@ const Nav = () => {
   }
 
   const handleSoundCardClick = (data) => {
+    setSearchInput("")
     setMobileSearchForm(false)
     playAudio(data);
   };
