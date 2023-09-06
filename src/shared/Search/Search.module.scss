@@ -27,20 +27,26 @@
     background: linear-gradient(91.3deg, #161616df 4.17%, #161616c6 99.55%);
     border-radius: 32px;
     padding: 8px 24px;
-    color: snow;
+    color: #fff;
     border: solid 1px #161616;
     font-size: 16px;
     height: 60%;
     width: 320px;
 
     &:placeholder {
-        color: snow;
+        color: #ffffff;
     }
 
     @media (max-width: 1441px) {
         font-size: 16px;
     }
 
+    @media (max-width: 586px) {
+        width: 75%;
+        margin-left: 16px;
+        background-color: #000000;
+        color: white;
+    }
     @media (max-width: 376px) {
         width: 60%;
     }
