@@ -50,6 +50,8 @@ const Player = () => {
     playAudio
   } = usePlaylist();
 
+  console.log("Current Audio: ", currentAudio)
+
   const audioRef = useRef(null);
   const timeline = useRef(null);
 
