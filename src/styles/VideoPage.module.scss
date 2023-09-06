@@ -84,6 +84,13 @@
     padding: 16px;
     padding-bottom: 32px;
     gap: 24px;
+
+    @media (max-width: 586px) {
+        width: 94%;
+        padding: 8px;
+        margin-top: 16px;
+        background: #2c2c2c;
+    }
 }
 
 .videoTextualData {
@@ -103,6 +110,12 @@
     text-transform: uppercase;
     letter-spacing: 4px;
     margin-bottom: 8px;
+
+    @media (max-width: 586px) {
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 2px;
+    }
 }
 
 .videoDescription {
@@ -155,6 +168,11 @@
     display: flex;
     margin-top: 24px;
     gap: 16px;
+
+    @media (max-width: 530px) {
+        margin-top: 16px;
+        margin-bottom: 24px;
+    }
 }
 
 .tag {
@@ -168,8 +186,12 @@
     padding: 2px 12px;
     color: #F8F8F8;
     font-family: Ubuntu;
-}
 
+    @media (max-width: 530px) {
+        height: 32px;
+        font-size: 12px;
+    }
+}
 
 .videoQueueContainer {
     // background: #F2F2F2;
@@ -260,6 +282,10 @@
     cursor: pointer;
 }
 
-.suggestedVideos{
+.suggestedVideos {
     margin-top: 64px;
+
+    @media (max-width: 530px) {
+        width: 100%;
+    }
 }
