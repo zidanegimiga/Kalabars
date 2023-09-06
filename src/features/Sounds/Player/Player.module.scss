@@ -223,7 +223,7 @@
     width: 32px;
     cursor: pointer;
 
-    @media (max-width: 449px) {
+    @media (max-width: 531px) {
         position: absolute;
         right: 64px;
         top: 25%
@@ -240,7 +240,7 @@
     gap: 8px;
     align-items: center;
 
-    @media (max-width: 449px) {
+    @media (max-width: 531px) {
         display: none
     }
 }
@@ -280,7 +280,7 @@
         min-width: 5px;
     }
 
-    @media (max-width: 449px) {
+    @media (max-width: 531px) {
         display: none
     }
 }
@@ -398,7 +398,7 @@
     @media (max-width: 769px) {
         width: 480px;        
     }
-    @media (max-width: 501px) {
+    @media (max-width: 531px) {
         width: 94%;
         bottom: 100%;
     }
