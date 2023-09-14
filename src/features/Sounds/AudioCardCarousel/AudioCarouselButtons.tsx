@@ -1,5 +1,5 @@
 import Button from "shared/Button"
-
+import styles from "./AudioCardCarousel.module.scss"
 interface AudioCardCarouselButtonsProps {
   disableLeftScroll: boolean
   setScrollLeft: () => void
@@ -16,29 +16,29 @@ export const AudioCardCarouselButtons = ({
   setScrollRight,
 }: AudioCardCarouselButtonsProps) => {
   return (
-    <div className="flex gap-4 mx-7">
-      {/* <Button
-        tooltipPosition="bottom"
-        iconDescription="zurück"
-        disabled={disableLeftScroll}
-        hasIconOnly
-        renderIcon={ArrowLeft16}
-        onClick={setScrollLeft}
-        className={scrollButtonCSS}
-      />
-      <Button
-        tooltipPosition="bottom"
-        disabled={disableRightScroll}
-        iconDescription="weiter"
-        hasIconOnly
-        renderIcon={ArrowRight16}
-        onClick={setScrollRight}
-        className={scrollButtonCSS}
-      /> */}
-      <Button fill="red" action={setScrollLeft} text="<" />
-      <Button fill="red" action={setScrollRight} text="<" />
+    <div className={styles.carouselBtnHug}>
+      <div className={styles.carouselBtnHugText}>
+        {" "}
+        Navigate carousel <b>-&gt;</b>
+      </div>
+      <div>
+        <button
+          onClick={setScrollLeft}
+          className={styles.carouselBtn}
+          disabled={disableLeftScroll}
+        >
+          &lt;
+        </button>
+        <button
+          onClick={setScrollRight}
+          className={styles.carouselBtn}
+          disabled={disableRightScroll}
+        >
+          &gt;
+        </button>
+      </div>
     </div>
-  )
+  );
 }
 
 export default AudioCardCarouselButtons
