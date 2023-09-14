@@ -17,10 +17,6 @@ export const AudioCardCarouselButtons = ({
 }: AudioCardCarouselButtonsProps) => {
   return (
     <div className={styles.carouselBtnHug}>
-      <div className={styles.carouselBtnHugText}>
-        {" "}
-        Navigate carousel <b>-&gt;</b>
-      </div>
       <div>
         <button
           onClick={setScrollLeft}
