@@ -21,7 +21,7 @@
         }
     }
 
-    @media (max-width: 426px) {
+    @media (max-width: 586px) {
         padding-left: 16px;
         padding-right: 16px;
         margin-bottom: 32px;
@@ -73,7 +73,6 @@
     width: fit-content;
     height: fit-content;
     color: white;
-    //   background-color: black;
     transition: background-color 0.2s ease;
     z-index: 3;
     border-radius: 50%;

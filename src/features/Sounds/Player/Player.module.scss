@@ -391,6 +391,7 @@
     background-color: #222222;
     border-radius: 8px 8px 0 0;
     overflow-y: scroll;
+    z-index: 5;
 
     @media (max-width: 1601px) {
         width: 640px;        
@@ -403,9 +404,9 @@
         bottom: 100%;
     }
     @media (max-width: 426px) {
-        width: 101.8%;
+        width: 95%;
         bottom: 130%;
-        right: 0%;        
+        right: 5%;        
     }
 }
 

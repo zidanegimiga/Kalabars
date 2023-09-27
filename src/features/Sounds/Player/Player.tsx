@@ -171,7 +171,6 @@ const Player = () => {
 
   const handlePlaylistItemClick = (data) => {
     playAudio(data);
-    // setIsCurrentAudioPlaying(false);
     console.log("Current Audio: ", currentAudio);
   };
 
