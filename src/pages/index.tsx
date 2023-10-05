@@ -11,14 +11,17 @@ import { ToastContainer, toast } from "react-toastify";
 const Sights = ({
   videos,
   drama,
-  originals,
   musicVideos,
   comedy,
   documentary,
   kids,
-  series
+  series,
+  featured,
+  thriller,
+  local
 }) => {
   const carouselVideos = videos?.response?.result;
+  console.log("F: ", featured)
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.top}>
@@ -27,18 +30,22 @@ const Sights = ({
           <MovieCarousel videos={carouselVideos} />
           <div id="more" className={styles.sightsCategoryWrapper}>
             <h2>🔥 KALABARS CATEGORIES 🔥</h2>
+            <SightsCategory name={"Masterclasses"} data={featured?.response?.result} />
+            <SightsCategory name={"Thriller"} data={thriller?.response?.result} />
             <SightsCategory name={"Comedy"} data={comedy?.response?.result} />
             <SightsCategory
               name={"Documentary"}
               data={documentary?.response?.result}
             />
             <SightsCategory name={"Drama"} data={drama?.response?.result} />{" "}
+            <SightsCategory name={"Local"} data={local?.response?.result} />{" "}
             <SightsCategory name={"Series"} data={series?.response?.result} />{" "}
             <SightsCategory
-              name={"Music Videos"}
+              name={"Music"}
               data={musicVideos?.response?.result}
             />
             <SightsCategory name={"Kids"} data={kids?.response?.result} />
+            
           </div>
         </div>
         <ToastContainer />
@@ -124,7 +131,6 @@ export async function loadVideos() {
     }
   );
   const kids = await kidsRes.json();
-  console.log("Kids: ", kids)
 
   //Music Videos
   const musicVidRes = await fetch(
@@ -136,7 +142,39 @@ export async function loadVideos() {
     }
   );
   const musicVideos = await musicVidRes.json();
-  console.log("Kids: ", kids)
+
+  //Featured
+  const featuredRes = await fetch(
+    process.env.NEXT_PUBLIC_API + `/tags/in-session/videos`,
+    {
+      headers: {
+        "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+      },
+    }
+  );
+  const featured = await featuredRes.json();
+
+  //Thriller
+  const thrillerRes = await fetch(
+    process.env.NEXT_PUBLIC_API + `/tags/thriller/videos`,
+    {
+      headers: {
+        "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+      },
+    }
+  );
+  const thriller = await thrillerRes.json();
+
+  //Local
+  const localRes = await fetch(
+    process.env.NEXT_PUBLIC_API + `/tags/local/videos`,
+    {
+      headers: {
+        "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+      },
+    }
+  );
+  const local = await localRes.json();
 
   return {
     videos: videos,
@@ -146,24 +184,15 @@ export async function loadVideos() {
     drama: dramaGenre,
     kids: kids,
     musicVideos: musicVideos,
-    series: series
+    series: series,
+    featured: featured,
+    thriller: thriller,
+    local: local
   };
 }
-const genres = [
-  "drama",
-  "series",
-  "in-session",
-  "jams",
-  "thriller",
-  "jams",
-  "local",
-  "food",
-  "comedy",
-  "poetic",
-];
 
 export async function getServerSideProps() {
-  const { videos, originals, comedy, documentary, drama, kids, musicVideos, series } = await loadVideos();
+  const { videos, originals, comedy, documentary, drama, kids, musicVideos, series, featured, thriller, local } = await loadVideos();
   
   return {
     props: {
@@ -174,7 +203,10 @@ export async function getServerSideProps() {
       comedy,
       kids,
       musicVideos,
-      series
+      series,
+      featured,
+      thriller,
+      local
     },
   };
 }
