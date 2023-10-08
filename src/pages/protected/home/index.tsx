@@ -8,7 +8,6 @@ const AdminHome = () => {
 
   useEffect(() => {
     const token = Cookies.get("token");
-    console.log("Token: ", token)
 
     if (!token) {
       router.replace("/protected/login");
