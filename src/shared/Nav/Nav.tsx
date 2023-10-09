@@ -266,7 +266,7 @@ const Nav = () => {
                                 height={"80px"}
                                 alt={item.title}
                               />
-                            </div>
+                            </div>                                                                                                                          
                             <div className={styles.resultDetails}>
                               <div className={styles.resultTitle}>
                                 {item.title}
@@ -274,9 +274,9 @@ const Nav = () => {
                               <div className={styles.resultCreator}>
                                 Creator: {item.creators_name}
                               </div>
-                              <div className={styles.resultTime}>
+                              {/* <div className={styles.resultTime}>
                                 {item.duration} min
-                              </div>
+                              </div> */}
                             </div>
                           </div>
                         </Link>
