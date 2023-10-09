@@ -12,6 +12,7 @@
     "@react-hook/resize-observer": "^1.2.6",
     "@reduxjs/toolkit": "^1.8.3",
     "@svgr/webpack": "^6.5.1",
+    "@vercel/analytics": "^1.1.0",
     "body-parser": "^1.20.2",
     "form-data": "^4.0.0",
     "jquery": "^3.7.0",
