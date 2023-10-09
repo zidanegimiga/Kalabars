@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-hook/resize-observer": "^1.2.6",
     "@reduxjs/toolkit": "^1.8.3",
     "@svgr/webpack": "^6.5.1",
     "body-parser": "^1.20.2",

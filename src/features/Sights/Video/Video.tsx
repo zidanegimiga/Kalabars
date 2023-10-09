@@ -44,6 +44,12 @@ const VideoPlayer = ({ video }: any) => {
     minimumIntegerDigits: 2,
   });
 
+
+  /**
+   * Format video time in the form of 00:00
+   * @param time 
+   * @returns formatted time
+   */
   const formatDuration = (time) => {
     const seconds = Math.floor(time % 60);
     const minutes = Math.floor(time / 60);
@@ -64,6 +70,9 @@ const VideoPlayer = ({ video }: any) => {
     }
   };
 
+  /**
+   * Handle video buffering
+   */
   const handleBuffering = () => {
     const video = videoRef.current;
     const bufferedTime = video.buffered.length > 0 ? video.buffered.end(0) : 0;
@@ -86,7 +95,10 @@ const VideoPlayer = ({ video }: any) => {
     videoRef.current.currentTime = Math.floor(percent * videoTime);
   };
 
-  //calculating the position of our mouse relative to the timeline
+  /**
+   * calculating the position of our mouse relative to the timeline
+   * @param e
+   */
   const handleTimelineHover = (e) => {
     e.preventDefault();
     const parentRect = timeline.current.getBoundingClientRect();
@@ -98,7 +110,10 @@ const VideoPlayer = ({ video }: any) => {
     setHoveredTime(timeHovered);
   };
 
-  //play/pause
+  /**
+   * Play-pause logic
+   * @param control
+   */
   const videoHandler = (control: any) => {
     if (control === "play") {
       videoRef.current.play();
@@ -109,7 +124,9 @@ const VideoPlayer = ({ video }: any) => {
     }
   };
 
-  //seeking
+  /**
+   * Player seeking
+   */
   const fastForward = () => {
     videoRef.current.currentTime += 5;
   };
@@ -118,7 +135,10 @@ const VideoPlayer = ({ video }: any) => {
     videoRef.current.currentTime -= 5;
   };
 
-  //screen
+  /**
+   * Screen control
+   * @param e
+   */
   const pictureInPicture = (e) => {
     videoRef.current.requestPictureInPicture();
   };
@@ -127,7 +147,10 @@ const VideoPlayer = ({ video }: any) => {
     videoRef.current.requestFullscreen();
   };
 
-  //volume
+  /**
+   * Handle volume
+   * @param e
+   */
   const handleVolumeChange = (e) => {
     videoRef.current.volume = e.target.value / 100;
     setVolume(Number(e.target.value));
@@ -155,6 +178,11 @@ const VideoPlayer = ({ video }: any) => {
     setVideoTime(videoRef.current.duration);
   };
 
+  /**
+   *
+   * @param event
+   * Implementing user keyboard controls
+   */
   const handleKeyDown = (event) => {
     switch (event.key) {
       case "m":

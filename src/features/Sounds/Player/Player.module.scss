@@ -90,6 +90,10 @@
     -webkit-tap-highlight-color: transparent;
     width: 100%;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+    @media (max-width: 586px) {
+        font-size: 12px;        
+    }
 }
 
 .audioArtist {
@@ -219,7 +223,7 @@
     width: 32px;
     cursor: pointer;
 
-    @media (max-width: 449px) {
+    @media (max-width: 531px) {
         position: absolute;
         right: 64px;
         top: 25%
@@ -236,7 +240,7 @@
     gap: 8px;
     align-items: center;
 
-    @media (max-width: 449px) {
+    @media (max-width: 531px) {
         display: none
     }
 }
@@ -276,7 +280,7 @@
         min-width: 5px;
     }
 
-    @media (max-width: 449px) {
+    @media (max-width: 531px) {
         display: none
     }
 }
@@ -387,6 +391,7 @@
     background-color: #222222;
     border-radius: 8px 8px 0 0;
     overflow-y: scroll;
+    z-index: 5;
 
     @media (max-width: 1601px) {
         width: 640px;        
@@ -394,14 +399,14 @@
     @media (max-width: 769px) {
         width: 480px;        
     }
-    @media (max-width: 501px) {
+    @media (max-width: 531px) {
         width: 94%;
         bottom: 100%;
     }
     @media (max-width: 426px) {
-        width: 101.8%;
+        width: 95%;
         bottom: 130%;
-        right: 0%;        
+        right: 5%;        
     }
 }
 

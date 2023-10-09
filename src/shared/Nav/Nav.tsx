@@ -19,6 +19,7 @@ const Nav = () => {
     currentAudio,
   } = usePlaylist();
   const router = useRouter();
+  console.log("Pathname: ", router.pathname === "/sounds")
 
   const handleMenuClick = () => {
     setOpenMenu(!openMenu);
@@ -78,12 +79,11 @@ const Nav = () => {
     setSearchModal(false);
   }
 
-    const handleSoundCardClick = (data) => {
-      // setCurrentAudioPlaying(data);
-      // setIsCurrentAudioPlaying(false);
-      playAudio(data);
-      console.log("Current Audio: ", currentAudio);
-    };
+  const handleSoundCardClick = (data) => {
+    setSearchInput("")
+    setMobileSearchForm(false)
+    playAudio(data);
+  };
 
   return (
     <div className={styles.NavContainer}>
@@ -158,30 +158,55 @@ const Nav = () => {
             <div className={styles.mobileSearchResultsModal}>
               {searchResults?.map((item, index) => (
                 <div key={index}>
-                  <Link href={`/video/${item?.public_id}`}>
-                    <div className={styles.result} key={index}>
-                      <div className={styles.resultimage}>
-                        <img
-                          src={
-                            `${process.env.NEXT_PUBLIC_API}/static/media/videos_images/` +
-                            item.landscape_image
-                          }
-                          width={"96px"}
-                          height={"80px"}
-                          alt={item.title}
-                        />
-                      </div>
-                      <div className={styles.resultDetails}>
-                        <div className={styles.resultTitle}>{item.title}</div>
-                        <div className={styles.resultCreator}>
-                          Creator: {item.creators_name}
+                  {router.pathname === "/sounds" ? (
+                    <div className={styles.result} onClick={() => handleSoundCardClick(item)}>
+                        <div className={styles.resultimage}>
+                          <img
+                            src={
+                              `${process.env.NEXT_PUBLIC_API}/static/media/audios_images/` +
+                              item.square_image
+                            }
+                            width={"96px"}
+                            height={"80px"}
+                            alt={item.title}
+                          />
                         </div>
-                        <div className={styles.resultTime}>
-                          {item.duration} min
+                        <div className={styles.resultDetails}>
+                          <div className={styles.resultTitle}>{item.title}</div>
+                          <div className={styles.resultCreator}>
+                            Creator: {item.creators_name}
+                          </div>
+                          <div className={styles.resultTime}>
+                            {item.duration} min
+                          </div>
                         </div>
-                      </div>
                     </div>
-                  </Link>
+                  ) : (
+                    <Link href={`/video/${item?.public_id}`}>
+                      <div className={styles.result} key={index}>
+                        <div className={styles.resultimage}>
+                          <img
+                            src={
+                              `${process.env.NEXT_PUBLIC_API}/static/audios/videos_images/` +
+                              item.landscape_image
+                            }
+                            width={"96px"}
+                            height={"80px"}
+                            alt={item.title}
+                          />
+                        </div>
+                        <div className={styles.resultDetails}>
+                          <div className={styles.resultTitle}>{item.title}</div>
+                          <div className={styles.resultCreator}>
+                            Creator: {item.creators_name}
+                          </div>
+                          <div className={styles.resultTime}>
+                            {item.duration} min
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  )}
                 </div>
               ))}
             </div>
@@ -203,7 +228,7 @@ const Nav = () => {
                     <>
                       {router.pathname === "/sounds" ? (
                         <div onClick={() => handleSoundCardClick(item)}>
-                          <div className={styles.result} key={index}>
+                          <div className={styles.result}>
                             <div className={styles.resultimage}>
                               <img
                                 src={
@@ -241,7 +266,7 @@ const Nav = () => {
                                 height={"80px"}
                                 alt={item.title}
                               />
-                            </div>
+                            </div>                                                                                                                          
                             <div className={styles.resultDetails}>
                               <div className={styles.resultTitle}>
                                 {item.title}
@@ -249,9 +274,9 @@ const Nav = () => {
                               <div className={styles.resultCreator}>
                                 Creator: {item.creators_name}
                               </div>
-                              <div className={styles.resultTime}>
+                              {/* <div className={styles.resultTime}>
                                 {item.duration} min
-                              </div>
+                              </div> */}
                             </div>
                           </div>
                         </Link>

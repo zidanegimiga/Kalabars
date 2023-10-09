@@ -50,6 +50,8 @@ const Player = () => {
     playAudio
   } = usePlaylist();
 
+  console.log("Current Audio: ", currentAudio)
+
   const audioRef = useRef(null);
   const timeline = useRef(null);
 
@@ -169,7 +171,6 @@ const Player = () => {
 
   const handlePlaylistItemClick = (data) => {
     playAudio(data);
-    // setIsCurrentAudioPlaying(false);
     console.log("Current Audio: ", currentAudio);
   };
 

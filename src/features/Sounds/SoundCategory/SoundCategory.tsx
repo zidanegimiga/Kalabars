@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./SoundCategory.module.scss";
 import { SoundsCard, SoundsCardSkeleton } from "../SoundsCard/SoundsCard";
+import AudioCardCarousel from "../AudioCardCarousel";
 var $ = require("jquery");
 // if (typeof window !== "undefined") {
 //   window.$ = window.jQuery = require("jquery");
@@ -36,22 +37,15 @@ const SoundCategory = ({ title, category, data }) => {
   return (
     <div className={styles.categoryContainer}>
       <h1>{title}</h1>
-      <OwlCarousel
-        responsive={Responsive}
-        nav={true}
-        navContainerClass={styles.arrow}
-        navClass={[styles.prev, styles.next]}
-        center={data.length > 1}
-        loop={data.length > 1}
-      >
+
+        <AudioCardCarousel>
         {data?.map((audio, index) => {
-          return <SoundsCard key={index} data={audio} loading={false} />;
+          return(
+            <SoundsCard key={index} data={audio} loading={false}/>
+          )
         })}
-        {/* {loading &&
-          [0, 1, 2, 3, 4, 5, 6].map((skeleton, index) => {
-            return <SoundsCardSkeleton key={index} />;
-          })} */}
-      </OwlCarousel>
+        </AudioCardCarousel>
+
     </div>
   );
 };

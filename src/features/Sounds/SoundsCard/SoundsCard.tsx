@@ -25,8 +25,6 @@ const SoundsCard = ({ data, loading }) => {
   };
 
   const handleSoundCardClick = (data) => {
-    // setCurrentAudioPlaying(data);
-    // setIsCurrentAudioPlaying(false);
     playAudio(data)
     console.log("Current Audio: ", currentAudio);
   };
@@ -52,7 +50,6 @@ const SoundsCard = ({ data, loading }) => {
             <div className={styles.cardTitle}>{data.title}</div>
             <div
               className={styles.playlistIcon}
-              // onClick={}
             >
               {isAddedToPlaylist(data?.id) ? (
                 <div onClick={() => handleRemoveFromPlaylist(data)}>
