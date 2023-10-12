@@ -9,8 +9,8 @@ function ArtistAndTitleFields({ videoForm, handleVideoFormChange }) {
         <input
           type="email"
           className={styles.input}
-          name="artist_name"
-          value={videoForm.artist_name}
+          name="creators_name"
+          value={videoForm.creators_name}
           onChange={handleVideoFormChange}
           required
         />
