@@ -12,12 +12,16 @@ import TagsField from "features/AdminInputFeatures/TagsSelection";
 import SynopsisField from "features/AdminInputFeatures/SynopsisField";
 import VideoUploadField from "features/AdminInputFeatures/VideoUpload";
 import ImageUpload from "features/AdminInputFeatures/ImageUpload";
+import { postVideo } from "features/AdminInputFeatures/Services/videoServices";
+import UploadProgressBar from "shared/ProgressBar";
 
 function UploadVideo() {
   useTokenValidation();
+  const [token, setToken] = useState("");
+  const [progress, setProgress] = useState(0);
 
   const [videoForm, setVideoForm] = useState({
-    artist_name: "",
+    creators_name: "",
     title: "",
     synopsis: "",
     type: "",
@@ -28,27 +32,31 @@ function UploadVideo() {
     large_image: null,
     portrait_image: null,
     landscape_image: null,
+    square_image: null,
   });
 
   const [genres, setGenres] = useState<VideoGenresType[]>([]);
-  const [token, setToken] = useState("");
-
   const initialTags = [];
-  const [selectedTags, setSelectedTags] = useState(initialTags);
+  const [selectedTags, setSelectedTags] = useState<string[]>(initialTags);
   const [newTag, setNewTag] = useState("");
   const [availableTags, setAvailableTags] = useState([]);
   const [showError, setShowError] = useState(false);
 
   const [largeImagePreview, setLargeImagePreview] = useState(null);
   const [portraitImagePreview, setPortraitImagePreview] = useState(null);
+  const [landscapeImagePreview, setLandscapeImagePreview] = useState(null);
+  const [squareImagePreview, setSquareImagePreview] = useState(null);
 
-  // Event handlers
   const handleVideoFormChange = ({ target }) => {
     const { name, value, type, files } = target;
 
     if (type === "select-multiple") {
       //@ts-ignore
-      const selectedOptions = Array.from(target.options).filter((option) => option.selected).map((option) => option.value);
+      const selectedOptions = Array.from(target.options)
+        //@ts-ignore
+        .filter((option) => option?.selected)
+        //@ts-ignore
+        .map((option) => option?.value);
 
       setVideoForm({
         ...videoForm,
@@ -67,9 +75,8 @@ function UploadVideo() {
     if (file && file.type === "video/mp4") {
       setVideoForm({
         ...videoForm,
-        video_file: URL.createObjectURL(file),
+        video_file: file,
       });
-      console.log("Video: ", videoForm.video_file);
     } else {
       setVideoForm({
         ...videoForm,
@@ -79,8 +86,10 @@ function UploadVideo() {
     }
   };
 
-  const handleImageFileSelection = (event, imageType) => {
-    const file = event.target.files[0];
+  type ImageType = "large_image" | "portrait_image" | "square_image" | "landscape_image"
+
+  const handleImageFileSelection = (event, imageType: ImageType) => {
+    const file: File = event.target.files[0];
     if (file) {
       setVideoForm({
         ...videoForm,
@@ -93,14 +102,27 @@ function UploadVideo() {
         setLargeImagePreview(previewURL);
       } else if (imageType === "portrait_image") {
         setPortraitImagePreview(previewURL);
+      } else if(imageType === "square_image"){
+        setSquareImagePreview(previewURL)
+      } else if(imageType === "landscape_image"){
+        setLandscapeImagePreview(previewURL)
       }
     }
   };
 
   const handleSelectTag = (event) => {
     const selectedTag = event.target.value;
-    if (!selectedTags.includes(selectedTag)) {
-      setSelectedTags([...selectedTags, selectedTag]);
+    const selectedTagsCopy = [...selectedTags];
+
+    if (!selectedTagsCopy.includes(selectedTag)) {
+      selectedTagsCopy.push(selectedTag);
+      setSelectedTags(selectedTagsCopy);
+
+      // Update videoForm with the selected tags
+      setVideoForm({
+        ...videoForm,
+        tags: selectedTagsCopy,
+      });
     }
   };
 
@@ -138,9 +160,8 @@ function UploadVideo() {
     setSelectedTags(updatedTags);
   };
 
-  // Fetch available tags when the component mounts
   useEffect(() => {
-    fetchAvailableTags();
+    fetchTags();
     const adminToken = Cookies.get("token");
     setToken(adminToken);
     const getGenres = getVideoGenres();
@@ -149,7 +170,7 @@ function UploadVideo() {
       .catch((e) => console.error(e));
   }, []);
 
-  const fetchAvailableTags = async () => {
+  const fetchTags = async () => {
     try {
       const response = await fetch(`${BASE_API_URL}/videos/tags`);
       if (response.ok) {
@@ -170,15 +191,42 @@ function UploadVideo() {
     { id: "Loss in love", text: "Loss in love" },
   ];
 
-  const postVideo = () => {
-    console.log("Video Form Data:", videoForm);
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await postVideo(
+        videoForm.video_file,
+        videoForm.creators_name,
+        videoForm.title,
+        videoForm.large_image,
+        videoForm.portrait_image,
+        videoForm.landscape_image,
+        videoForm.square_image,
+        videoForm.tags,
+        videoForm.genre,
+        videoForm.synopsis,
+        videoForm.type,
+        videoForm.series,
+        token,
+        setProgress
+      );
+
+      if (response.status === 200) {
+        console.log("Upload successful:", response);
+      } else {
+        console.error("Upload error:", response);
+      }
+    } catch (error) {
+      console.error("Upload error:", error);
+    }
   };
 
   return (
     <div className={styles.pageWrapper}>
       <h1>UPLOAD MEDIA</h1>
+      <UploadProgressBar progress={progress} />
       <div>
-        <form onSubmit={postVideo} className={styles.uploadForm}>
+        <form onSubmit={handleUpload} className={styles.uploadForm}>
           <div className={styles.errorMessage}>
             {showError && <p>This content already exists in the database</p>}
           </div>
@@ -196,11 +244,13 @@ function UploadVideo() {
           />
 
           {/* SERIES */}
-          <SeriesField
-            videoForm={videoForm}
-            handleVideoFormChange={handleVideoFormChange}
-            seriesOptions={seriesOptions}
-          />
+          {videoForm.type === "series" && (
+            <SeriesField
+              videoForm={videoForm}
+              handleVideoFormChange={handleVideoFormChange}
+              seriesOptions={seriesOptions}
+            />
+          )}
 
           {/* GENRES */}
           <GenreField
@@ -245,6 +295,18 @@ function UploadVideo() {
             handleImageFileSelection={handleImageFileSelection}
             previewURL={portraitImagePreview}
           />
+          <ImageUpload
+            imageType="landscape_image"
+            videoForm={videoForm}
+            handleImageFileSelection={handleImageFileSelection}
+            previewURL={landscapeImagePreview}
+          />
+          <ImageUpload
+            imageType="square_image"
+            videoForm={videoForm}
+            handleImageFileSelection={handleImageFileSelection}
+            previewURL={squareImagePreview}
+          />
 
           {/* Submit Button */}
           <input
@@ -254,6 +316,7 @@ function UploadVideo() {
             style={{ marginLeft: "15px" }}
           />
         </form>
+        <UploadProgressBar progress={progress} />
       </div>
     </div>
   );
