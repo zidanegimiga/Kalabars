@@ -1,16 +1,28 @@
 import React, { useEffect, useState } from "react";
-import styles from "./uploadVideo.module.scss"
+import styles from "./uploadVideo.module.scss";
 import { useTokenValidation } from "shared/hooks/usTokenValidation";
+import { BASE_API_URL } from "shared/constants";
+import { VideoGenresType, getVideoGenres } from "shared/services/genres";
+import Cookies from "js-cookie";
+import ArtistAndTitleFields from "features/AdminInputFeatures/ArtistAndTitleFields";
+import SelectVideoTypeField from "features/AdminInputFeatures/SelectVideoType";
+import SeriesField from "features/AdminInputFeatures/SelectSeries";
+import GenreField from "features/AdminInputFeatures/GenresSelection";
+import TagsField from "features/AdminInputFeatures/TagsSelection";
+import SynopsisField from "features/AdminInputFeatures/SynopsisField";
+import VideoUploadField from "features/AdminInputFeatures/VideoUpload";
+import ImageUpload from "features/AdminInputFeatures/ImageUpload";
 
-const UploadVideo = () => {
+function UploadVideo() {
   useTokenValidation();
+
   const [videoForm, setVideoForm] = useState({
-    artist_name: '',
-    title: '',
-    synopsis: '',
-    type: '',
-    series: '',
-    genre: '',
+    artist_name: "",
+    title: "",
+    synopsis: "",
+    type: "",
+    series: "",
+    genre: "",
     tags: [],
     video_file: null,
     large_image: null,
@@ -18,15 +30,25 @@ const UploadVideo = () => {
     landscape_image: null,
   });
 
+  const [genres, setGenres] = useState<VideoGenresType[]>([]);
+  const [token, setToken] = useState("");
+
+  const initialTags = [];
+  const [selectedTags, setSelectedTags] = useState(initialTags);
+  const [newTag, setNewTag] = useState("");
+  const [availableTags, setAvailableTags] = useState([]);
   const [showError, setShowError] = useState(false);
 
-  const handleVideoFormChange = (e) => {
-    const { name, value, type, files } = e.target;
+  const [largeImagePreview, setLargeImagePreview] = useState(null);
+  const [portraitImagePreview, setPortraitImagePreview] = useState(null);
 
-    if (type === 'select-multiple') {
-      const selectedOptions = Array.from(e.target.options)
-        .filter((option) => option?.selected)
-        .map((option) => option?.value);
+  // Event handlers
+  const handleVideoFormChange = ({ target }) => {
+    const { name, value, type, files } = target;
+
+    if (type === "select-multiple") {
+      //@ts-ignore
+      const selectedOptions = Array.from(target.options).filter((option) => option.selected).map((option) => option.value);
 
       setVideoForm({
         ...videoForm,
@@ -35,256 +57,206 @@ const UploadVideo = () => {
     } else {
       setVideoForm({
         ...videoForm,
-        [name]: type === 'file' ? files[0] : value,
+        [name]: type === "file" ? files[0] : value,
       });
     }
   };
 
-  const availableTags = ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5'];
-
-  const postVideo = () => {
-    // Implement your logic for posting video form data here
-    console.log('Video Form Data:', videoForm);
+  const handleVideoChange = (event) => {
+    const file = event.target.files[0];
+    if (file && file.type === "video/mp4") {
+      setVideoForm({
+        ...videoForm,
+        video_file: URL.createObjectURL(file),
+      });
+      console.log("Video: ", videoForm.video_file);
+    } else {
+      setVideoForm({
+        ...videoForm,
+        video_file: null,
+      });
+      alert("Please select a valid MP4 video file.");
+    }
   };
 
-  return(
+  const handleImageFileSelection = (event, imageType) => {
+    const file = event.target.files[0];
+    if (file) {
+      setVideoForm({
+        ...videoForm,
+        [imageType]: file,
+      });
+
+      const previewURL = URL.createObjectURL(file);
+
+      if (imageType === "large_image") {
+        setLargeImagePreview(previewURL);
+      } else if (imageType === "portrait_image") {
+        setPortraitImagePreview(previewURL);
+      }
+    }
+  };
+
+  const handleSelectTag = (event) => {
+    const selectedTag = event.target.value;
+    if (!selectedTags.includes(selectedTag)) {
+      setSelectedTags([...selectedTags, selectedTag]);
+    }
+  };
+
+  const handleNewTagChange = (event) => {
+    const typedTag = event.target.value;
+    setNewTag(typedTag);
+  };
+
+  const addNewTag = async (e) => {
+    e.preventDefault();
+    if (newTag.trim() !== "" && !selectedTags.includes(newTag)) {
+      try {
+        const response = await fetch(`${BASE_API_URL}/videos/tag`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-token": token,
+          },
+          body: JSON.stringify({ title: newTag }),
+        });
+        if (response.ok) {
+          setSelectedTags([...selectedTags, newTag]);
+          setNewTag("");
+        } else {
+          console.error("Failed to create a new tag");
+        }
+      } catch (error) {
+        console.error("Error creating a new tag: ", error);
+      }
+    }
+  };
+
+  const removeTag = (tag) => {
+    const updatedTags = selectedTags.filter((t) => t !== tag);
+    setSelectedTags(updatedTags);
+  };
+
+  // Fetch available tags when the component mounts
+  useEffect(() => {
+    fetchAvailableTags();
+    const adminToken = Cookies.get("token");
+    setToken(adminToken);
+    const getGenres = getVideoGenres();
+    getGenres
+      .then((genresData) => setGenres(genresData))
+      .catch((e) => console.error(e));
+  }, []);
+
+  const fetchAvailableTags = async () => {
+    try {
+      const response = await fetch(`${BASE_API_URL}/videos/tags`);
+      if (response.ok) {
+        const responseJson = await response.json();
+        const data = responseJson.response.result;
+        setAvailableTags(data.map((tag) => tag.title));
+        console.log("Tags: ", availableTags);
+      } else {
+        console.error("Failed to fetch available tags");
+      }
+    } catch (error) {
+      console.error("Error fetching available tags: ", error);
+    }
+  };
+
+  const seriesOptions = [
+    { id: "The book", text: "The book" },
+    { id: "Loss in love", text: "Loss in love" },
+  ];
+
+  const postVideo = () => {
+    console.log("Video Form Data:", videoForm);
+  };
+
+  return (
     <div className={styles.pageWrapper}>
       <h1>UPLOAD MEDIA</h1>
       <div>
-        <form onSubmit={postVideo} className="w3-panel">
+        <form onSubmit={postVideo} className={styles.uploadForm}>
           <div className={styles.errorMessage}>
-            {showError && <p>This Content already exists in database</p>}
+            {showError && <p>This content already exists in the database</p>}
           </div>
 
           {/* Artist Name */}
-          <div className={styles.inputFieldset}>
-            <div className={styles.inputGroup}>
-              <label className={styles.inputLabel}>CREATORS NAME</label>
-              <br />
-              <input
-                type="email"
-                className={styles.input}
-                name="artist_name"
-                value={videoForm.artist_name}
-                onChange={handleVideoFormChange}
-                required
-              />
-              {videoForm.artist_name === '' && 
-                <div style={{ color: 'red' }} className={styles.errorMessage}>
-                  <p>Please Enter Email</p>
-                </div>
-              }
-            </div>
-
-            {/* Content Title */}
-            <div className={styles.inputGroup}>
-              <label className={styles.inputLabel}>CONTENT TITLE</label>
-              <br />
-              <input
-                type="text"
-                className={styles.input}
-                name="title"
-                value={videoForm.title}
-                onChange={handleVideoFormChange}
-                required
-              />
-              {/* Error message */}
-              {videoForm.title === '' && 
-                <div style={{ color: 'red' }} className={styles.errorMessage}>
-                  <p>Title is required</p>
-                </div>
-              }
-            </div>
-          </div>
-
-          {/* Synopsis */}
-          <div className={styles.inputFieldset} style={{ marginLeft: '8px' }}>
-            <label className={styles.inputLabel}>SYNOPSIS</label>
-            <br />
-            <textarea
-              className={styles.inputTextArea}
-              name="synopsis"
-              value={videoForm.synopsis}
-              onChange={handleVideoFormChange}
-              placeholder="Max of 500 characters"
-              required
-            />
-            {/* Error messages */}
-            {videoForm.synopsis === '' && 
-              <div style={{ color: 'red' }} className={styles.errorMessage}>
-                <p>Please Enter synopsis</p>
-              </div>
-            }
-            {videoForm.synopsis.length > 500 && 
-              <div style={{ color: 'red' }} className={styles.errorMessage}>
-                <p>Error: Characters exceed 500</p>
-              </div>
-            }
-          </div>
+          <ArtistAndTitleFields
+            videoForm={videoForm}
+            handleVideoFormChange={handleVideoFormChange}
+          />
 
           {/* Type */}
-          <div className={styles.inputFieldset}>
-            <div className={styles.inputGroup}>
-              <label className={styles.inputLabel}>TYPE</label>
-              <br />
-              <select
-                className={styles.inputSelect}
-                style={{ height: '40px' }}
-                id="seeAnotherField"
-                name="type"
-                value={videoForm.type}
-                onChange={handleVideoFormChange}
-                required
-              >
-                <option className={styles.inputSelectOption}> * Select Type * </option>
-                <option className={styles.inputSelectOption} value="single">Single</option>
-                <option className={styles.inputSelectOption} value="series">Series</option>
-              </select>
-              {/* Error message */}
-              {videoForm.type === '' && 
-                <div style={{ color: 'red' }} className={styles.errorMessage}>
-                  <p>Please select video type</p>
-                </div>}
-            </div>
-          </div>
+          <SelectVideoTypeField
+            videoForm={videoForm}
+            handleVideoFormChange={handleVideoFormChange}
+          />
 
           {/* SERIES */}
-          <div className={styles.inputFieldset} id="otherFieldDiv" style={{ marginLeft: '8px' }}>
-            <label className={styles.inputLabel} htmlFor="seriesSelect">
-              SELECT SERIES
-            </label>
-            <br />
-            <select
-              id="seriesSelect"
-              className={styles.inputSelect}
-              style={{ height: '40px' }}
-              name="series"
-              value={videoForm.series}
-              onChange={handleVideoFormChange}
-              required
-            >
-              {/* {seriesOptions.map((option, index) => (
-                <option key={index} value={option}>
-                  {option}
-                </option>
-              ))} */}
-            </select>
-            {/* Error message */}
-            {videoForm.series === '' && (
-              <div style={{ color: 'red' }} className={styles.errorMessage}>
-                <p>Select the series or add new</p>
-              </div>
-            )}
-          </div>
+          <SeriesField
+            videoForm={videoForm}
+            handleVideoFormChange={handleVideoFormChange}
+            seriesOptions={seriesOptions}
+          />
 
           {/* GENRES */}
-          <div className={styles.inputFieldset} style={{ marginLeft: '8px' }}>
-            <label className={styles.inputLabel}>GENRE</label>
-            <br />
-            <select
-              className={styles.inputSelect}
-              style={{ height: '40px' }}
-              id="seeAnotherField"
-              name="genre"
-              value={videoForm.genre}
-              onChange={handleVideoFormChange}
-              required
-            >
-              {/* {
-                genreOptions?.map((item, index) => (
-                  <option key={index} value={item}>{item}</option>                  
-                ))
-              } */}
-            </select>
-            {/* Error message */}
-            {videoForm.genre === '' && <div style={{ color: 'red' }} className={styles.errorMessage}>Please select video genre</div>}
-          </div>
+          <GenreField
+            videoForm={videoForm}
+            handleVideoFormChange={handleVideoFormChange}
+            genres={genres}
+          />
 
           {/* TAGS */}
-          <div className={styles.inputFieldset} style={{ marginLeft: '8px' }}>
-            <label className={styles.inputLabel}>TAGS</label>
-            <br />
-            <select
-              multiple
-              className={styles.inputSelect}
-              style={{ height: '40px' }}
-              id="tags"
-              name="tags"
-              value={videoForm.tags}
-              onChange={handleVideoFormChange}
-              required
-            >
-              {availableTags.map((tag) => (
-                <option key={tag} value={tag}>
-                  {tag}
-                </option>
-              ))}
-            </select>
-            {videoForm.tags.length === 0 && (
-              <div style={{ color: 'red' }} className={styles.errorMessage}>
-                <p>Please select at least one tag</p>
-              </div>
-            )}
-          </div>
+          <TagsField
+            availableTags={availableTags}
+            selectedTags={selectedTags}
+            newTag={newTag}
+            handleSelectTag={handleSelectTag}
+            handleNewTagChange={handleNewTagChange}
+            addNewTag={addNewTag}
+            removeTag={removeTag}
+          />
+
+          {/* Synopsis */}
+          <SynopsisField
+            handleVideoFormChange={handleVideoFormChange}
+            videoForm={videoForm}
+          />
 
           {/* Video Upload */}
-          <div className={styles.inputFieldset} style={{ marginLeft: '8px' }}>
-            <label className={styles.inputLabel}>VIDEO UPLOAD</label>
-            <br />
-            <div>
-              <label htmlFor="video-upload" className={styles.inputLabel}>
-                UPLOAD NOW
-              </label>
-              <input
-                id="video-upload"
-                name="video"
-                type="file"
-                style={{ display: 'none' }}
-                onChange={handleVideoFormChange}
-                required
-              />
-            </div>
-            {/* Error message */}
-            {videoForm.video_file === null && <div style={{ color: 'red' }} className={styles.errorMessage}>
-                <p>Please upload a video</p> 
-              </div>
-            }
-          </div>
+          <VideoUploadField
+            videoForm={videoForm}
+            handleVideoChange={handleVideoChange}
+          />
 
           {/* Images */}
-          <div className={styles.inputFieldset}>
-            <label className={styles.inputLabel}>UPLOAD IMAGES(W x H)</label>
-            <br />
+          <ImageUpload
+            imageType="large_image"
+            videoForm={videoForm}
+            handleImageFileSelection={handleImageFileSelection}
+            previewURL={largeImagePreview}
+          />
+          <ImageUpload
+            imageType="portrait_image"
+            videoForm={videoForm}
+            handleImageFileSelection={handleImageFileSelection}
+            previewURL={portraitImagePreview}
+          />
 
-            <div className="w3-col s6 m3 l3">
-              <div>
-                <label htmlFor="file-upload1" className="custom-file-upload">
-                  1920 x 1100px
-                </label>
-                <input
-                  id="file-upload1"
-                  name="large_image"
-                  type="file"
-                  style={{ display: 'none' }}
-                  onChange={handleVideoFormChange}
-                  required
-                />
-              </div>
-              {/* Error message */}
-              {videoForm.large_image === null && (
-                <div style={{ color: 'red' }} className="w3-small"> 
-                  Large Image Required
-                </div>
-              )}
-            </div>
-
-            {/* Submit Button */}
-            <input type="submit" value="FINISH UPLOAD" className="w3-btn w3-orange w3-text-white w3-small w3-margin-top" style={{ marginLeft: '15px' }} />
-          </div>
+          {/* Submit Button */}
+          <input
+            type="submit"
+            value="FINISH UPLOAD"
+            className="w3-btn w3-orange w3-text-white w3-small w3-margin-top"
+            style={{ marginLeft: "15px" }}
+          />
         </form>
       </div>
     </div>
-  )
+  );
 }
 
 export default UploadVideo;

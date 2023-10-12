@@ -34,3 +34,4 @@ yarn-error.log*
 
 #vscode
 settings.json
+sessions.db
