@@ -11,7 +11,7 @@ import SearchInput from "shared/Search/Search";
 import HamburgerIcon from "shared/HamburgerIcon/HamburgerIcon";
 import { usePlaylist } from "global/AudioPlaylistContext";
 
-const Nav = () => {
+const Nav = ({scrolling}) => {
   const { openMenu, setOpenMenu } = useContext(KalabarsContext);
   const [mobileSearchForm, setMobileSearchForm] = useState(false);
   const {
@@ -34,6 +34,10 @@ const Nav = () => {
 
   const textColor = {
     color: router.pathname == "/sights" || "/videos/*" ? "white" : "black",
+  };
+
+  const navbarStyle = {
+    backgroundColor: scrolling ? '#f7f7f78c' : 'transparent',
   };
 
   const onSearchSubmit = async (term) => {
@@ -87,7 +91,7 @@ const Nav = () => {
 
   return (
     <div className={styles.NavContainer}>
-      <div className={styles.NavWrapper}>
+      <div className={styles.NavWrapper} style={navbarStyle}>
         <div className={styles.NavLeft}>
           <HamburgerIcon />
           <Link href={"/"}>

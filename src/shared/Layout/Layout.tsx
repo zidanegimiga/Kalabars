@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import styles from './Layout.module.scss';
 import Nav from 'shared/Nav';
@@ -13,6 +13,24 @@ const Layout = ({children}) => {
     type: 'website',
   };
 
+  const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <Head>
@@ -26,7 +44,7 @@ const Layout = ({children}) => {
         {/* {meta,date && <meta property="og:date" content={meta.date} key="og:date" />} */}
       </Head>
       <div className={styles.LayoutWrapper}>
-        <Nav />
+        <Nav scrolling={scrolling}/>
         {children}
       </div>
     </>
