@@ -9,7 +9,7 @@ import SideBarItem from "shared/SideBarItem/SideBarItem";
 import { ToastContainer, toast } from "react-toastify";
 
 const Sights = ({
-  videos,
+  carouselVideos,
   drama,
   musicVideos,
   comedy,
@@ -20,14 +20,14 @@ const Sights = ({
   thriller,
   local
 }) => {
-  const carouselVideos = videos?.response?.result;
+  const carouselVids = carouselVideos?.response?.result;
   console.log("F: ", featured)
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.top}>
         <SideBarItem />
         <div className={styles.content}>
-          <MovieCarousel videos={carouselVideos} />
+          <MovieCarousel videos={carouselVids} />
           <div id="more" className={styles.sightsCategoryWrapper}>
             <h2>🔥 KALABARS CATEGORIES 🔥</h2>
             <SightsCategory name={"Masterclasses"} data={featured?.response?.result} />
@@ -64,7 +64,7 @@ export async function loadVideos() {
       "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
     },
   });
-  const videos = await resVideos.json();
+  const carouselVideos = await resVideos.json();
   
   //originals
   const originalsGenres = await fetch(
@@ -177,7 +177,7 @@ export async function loadVideos() {
   const local = await localRes.json();
 
   return {
-    videos: videos,
+    carouselVideos,
     originals: originals,
     comedy: comedyGenre,
     documentary: documentaryGenre,
@@ -192,11 +192,11 @@ export async function loadVideos() {
 }
 
 export async function getServerSideProps() {
-  const { videos, originals, comedy, documentary, drama, kids, musicVideos, series, featured, thriller, local } = await loadVideos();
+  const { carouselVideos, originals, comedy, documentary, drama, kids, musicVideos, series, featured, thriller, local } = await loadVideos();
   
   return {
     props: {
-      videos,
+      carouselVideos,
       originals,
       documentary,
       drama,
