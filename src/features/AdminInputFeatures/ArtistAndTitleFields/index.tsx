@@ -7,7 +7,7 @@ function ArtistAndTitleFields({ videoForm, handleVideoFormChange }) {
       <div className={styles.inputGroup}>
         <label className={styles.inputLabel}>CREATOR&apos;S NAME</label>
         <input
-          type="email"
+          // type="email"
           className={styles.input}
           name="creators_name"
           value={videoForm.creators_name}

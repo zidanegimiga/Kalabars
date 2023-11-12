@@ -22,6 +22,7 @@ const Sights = ({
 }) => {
   const carouselVids = carouselVideos?.response?.result;
   console.log("F: ", featured)
+  
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.top}>
@@ -31,13 +32,13 @@ const Sights = ({
           <div id="more" className={styles.sightsCategoryWrapper}>
             <h2>🔥 KALABARS CATEGORIES 🔥</h2>
             <SightsCategory name={"Masterclasses"} data={featured?.response?.result} />
-            <SightsCategory name={"Thriller"} data={thriller?.response?.result} />
-            <SightsCategory name={"Comedy"} data={comedy?.response?.result} />
+            {/* <SightsCategory name={"Thriller"} data={thriller?.response?.result} /> */}
+            {/* <SightsCategory name={"Comedy"} data={comedy?.response?.result} /> */}
             <SightsCategory
               name={"Documentary"}
               data={documentary?.response?.result}
             />
-            <SightsCategory name={"Drama"} data={drama?.response?.result} />{" "}
+            {/* <SightsCategory name={"Drama"} data={drama?.response?.result} />{" "} */}
             <SightsCategory name={"Local"} data={local?.response?.result} />{" "}
             <SightsCategory name={"Series"} data={series?.response?.result} />{" "}
             <SightsCategory

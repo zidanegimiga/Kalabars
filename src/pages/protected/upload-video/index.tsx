@@ -173,10 +173,12 @@ function UploadVideo() {
   const fetchTags = async () => {
     try {
       const response = await fetch(`${BASE_API_URL}/videos/tags`);
+
       if (response.ok) {
         const responseJson = await response.json();
         const data = responseJson.response.result;
         setAvailableTags(data.map((tag) => tag.title));
+        
         console.log("Tags: ", availableTags);
       } else {
         console.error("Failed to fetch available tags");

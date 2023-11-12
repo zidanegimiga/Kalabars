@@ -20,7 +20,7 @@ export default async function handler(
 
       if (response.ok) {
         const data = await response.json();
-        const token = data.response.token;
+        const token = data.response?.token;
 
         const expiration = new Date();
         expiration.setDate(expiration.getDate() + 5);
