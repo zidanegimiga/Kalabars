@@ -8,7 +8,7 @@ type SightsCategoryProps = {
   data: any[];
 }
 
-const SightsCategory = ({ name, data }) => {  
+const SightsCategory: React.FC<SightsCategoryProps> = ({ name, data }) => {  
   const classPerView = 8;
   /**
    * logic for the see more button
@@ -23,21 +23,31 @@ const SightsCategory = ({ name, data }) => {
       <div className={styles.top}>
         <div className={styles.sightsCategoryTitle}>{name.toUpperCase()}</div>
         {
-          // next < data?.length && (
-          //   <div className={styles.moreButton}  onClick={seeMore}>
-          //     More <Down />
-          //   </div>
-          // )
+          next < data?.length && (
+            <div className={styles.moreButton}  onClick={seeMore}>
+              More <Down />
+            </div>
+          )
         }
       </div>
       <div className={styles.categoryCards}>
         {
-          // data?.slice(0, next)?.map((video, index) => (
-          data?.map((video, index) => (
+          data?.slice(0, next)?.map((video, index) => (
+          // data?.map((video, index) => (
             <div key={index}>
               <SightsCard cardData={video} />
             </div>
           ))
+        }
+      </div>
+      <div className={styles.top}>
+        <div className={styles.sightsCategoryTitle} >{name.toUpperCase()}</div>
+        {
+          next < data?.length && (
+            <div className={styles.moreButton} onClick={seeMore}>
+              More <Down />
+            </div>
+          )
         }
       </div>
     </div>

@@ -17,11 +17,9 @@ const Hero = ({ videos }) => {
   const [width, setWidth] = useState(0);
   const [showDetails, setShowDetails] = useState(true);
   const { addToWatchlist } = usePlaylist();
-  console.log(videos[0]);
 
   const handleAddToWatchlist = (data) => {
     addToWatchlist(data);
-    console.log(data)
   };
 
   useEffect(() => {

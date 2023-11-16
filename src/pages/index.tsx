@@ -8,6 +8,16 @@ import styles from "../styles/Sights.module.scss";
 import SideBarItem from "shared/SideBarItem/SideBarItem";
 import { ToastContainer, toast } from "react-toastify";
 
+interface VideoResponse {
+  response: {
+    result: any[]
+  }
+}
+
+interface VideoResponseResult {
+  
+}
+
 const Sights = ({
   carouselVideos,
   drama,
@@ -19,29 +29,28 @@ const Sights = ({
   featured,
   thriller,
   local,
-  masterclasses
+  masterclassesVideos
 }) => {
   const carouselVids = carouselVideos?.response?.result;
-  const [allVideos, setAllVideos] = useState([])
-  console.log("F: ", featured)
+  const [allVideos, setAllVideos] = useState<any>([]);
 
   async function loadAllVideos() {
    try{
-     const resVideos = await fetch(process.env.NEXT_PUBLIC_API + `/videos`, {
+     const resVideos = await fetch(process.env.NEXT_PUBLIC_API + `/videos/all`, {
        headers: {
          "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
        },
      });
      const allVideos = await resVideos.json();
-     setAllVideos(allVideos)
+     setAllVideos(allVideos);
+     console.log("All Videos: ", allVideos)
    } catch(e){
     console.log("Error: ", e)
    }
   }
 
   useEffect(()=>{
-    loadAllVideos()
-    console.log("All Videos: ", allVideos)
+    loadAllVideos();    
   }, [])
   
   return (
@@ -53,8 +62,8 @@ const Sights = ({
           <div id="more" className={styles.sightsCategoryWrapper}>
             <h2>🔥 KALABARS CATEGORIES 🔥</h2>
             <SightsCategory name={"Local"} data={local?.response?.result} />
-            <SightsCategory name={"Masterclasses"} data={masterclasses?.response?.result} />
-            <SightsCategory name={"Masterclasses"} data={featured?.response?.result} />
+            <SightsCategory name={"Masterclasses"} data={masterclassesVideos} />
+            {/* <SightsCategory name={"Masterclasses"} data={featured?.response?.result} /> */}
             <SightsCategory name={"Thriller"} data={thriller?.response?.result} />
             <SightsCategory name={"Comedy"} data={comedy?.response?.result} />
             <SightsCategory
@@ -62,12 +71,14 @@ const Sights = ({
               data={documentary?.response?.result}
             />
             <SightsCategory name={"Drama"} data={drama?.response?.result} />
+           
+            <SightsCategory name={""} data={allVideos?.response?.result} />   
             <SightsCategory name={"Series"} data={series?.response?.result} />
             <SightsCategory
               name={"Music"}
               data={musicVideos?.response?.result}
             />
-            <SightsCategory name={"Kids"} data={kids?.response?.result} />            
+            <SightsCategory name={"Kids"} data={kids?.response?.result} />          
           </div>
         </div>
         <ToastContainer />
@@ -224,6 +235,7 @@ export async function loadVideos() {
 
 export async function getServerSideProps() {
   const { carouselVideos, originals, comedy, documentary, drama, kids, musicVideos, series, featured, thriller, local, masterclasses } = await loadVideos();
+  const masterclassesVideos = [...masterclasses?.response?.result, ...featured?.response?.result];
   
   return {
     props: {
@@ -238,7 +250,7 @@ export async function getServerSideProps() {
       featured,
       thriller,
       local,
-      masterclasses
+      masterclassesVideos
     },
   };
 }
