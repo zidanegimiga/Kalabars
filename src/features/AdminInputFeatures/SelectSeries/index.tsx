@@ -1,7 +1,14 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import styles from "./selectSeries.module.scss";
 
-function SeriesField({ videoForm, handleVideoFormChange, seriesOptions }) {
+type SeriesProps = {
+  videoForm: any;
+  handleVideoFormChange: (e: ChangeEvent) => void;
+  seriesOptions: any;
+  mediaType: "audio" | "video"
+}
+
+function SeriesField({ videoForm, handleVideoFormChange, seriesOptions }: SeriesProps) {
   return (
     <div className={styles.inputFieldsetSynopsis} id="otherFieldDiv">
       <label className={styles.inputLabel} htmlFor="seriesSelect">

@@ -71,7 +71,9 @@ const Sight = ({ videos }: any) => {
   const videosData = videos?.response?.result;
   const router = useRouter();
   const { publicId } = router.query;
+  
   const video = videosData?.find((video: any) => video?.public_id === publicId);
+  console.log("Video: ", process.env.NEXT_PUBLIC_TOKEN);
   // const suggestedVideos = videosData?.slice(50, 69);
   // console.log("Vid: ", video?.tags);
 

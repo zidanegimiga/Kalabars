@@ -3,6 +3,11 @@ import styles from "./SightsCategory.module.scss";
 import Down from "../../../../public/downIcon.svg";
 import SightsCard from "../SightsCard/";
 
+type SightsCategoryProps = {
+  name?: string;
+  data: any[];
+}
+
 const SightsCategory = ({ name, data }) => {  
   const classPerView = 8;
   /**
@@ -17,18 +22,23 @@ const SightsCategory = ({ name, data }) => {
     <div className={styles.sightsCategory}>
       <div className={styles.top}>
         <div className={styles.sightsCategoryTitle}>{name.toUpperCase()}</div>
-        {next < data?.length && (
-          <div className={styles.moreButton}  onClick={seeMore}>
-            More <Down />
-          </div>
-        )}
+        {
+          // next < data?.length && (
+          //   <div className={styles.moreButton}  onClick={seeMore}>
+          //     More <Down />
+          //   </div>
+          // )
+        }
       </div>
       <div className={styles.categoryCards}>
-        {data?.slice(0, next)?.map((video, index) => (
-          <div key={index}>
-            <SightsCard cardData={video} />
-          </div>
-        ))}
+        {
+          // data?.slice(0, next)?.map((video, index) => (
+          data?.map((video, index) => (
+            <div key={index}>
+              <SightsCard cardData={video} />
+            </div>
+          ))
+        }
       </div>
     </div>
   );

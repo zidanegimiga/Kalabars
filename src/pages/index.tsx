@@ -2,7 +2,7 @@ import MovieCarousel from "features/Sights/MovieCarousel";
 import SightsCard from "features/Sights/SightsCard/SightsCard";
 import SightsCategory from "features/Sights/SightsCategory";
 import { dirname } from "path";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Down from "../../public/downIcon.svg";
 import styles from "../styles/Sights.module.scss";
 import SideBarItem from "shared/SideBarItem/SideBarItem";
@@ -18,10 +18,31 @@ const Sights = ({
   series,
   featured,
   thriller,
-  local
+  local,
+  masterclasses
 }) => {
   const carouselVids = carouselVideos?.response?.result;
+  const [allVideos, setAllVideos] = useState([])
   console.log("F: ", featured)
+
+  async function loadAllVideos() {
+   try{
+     const resVideos = await fetch(process.env.NEXT_PUBLIC_API + `/videos`, {
+       headers: {
+         "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+       },
+     });
+     const allVideos = await resVideos.json();
+     setAllVideos(allVideos)
+   } catch(e){
+    console.log("Error: ", e)
+   }
+  }
+
+  useEffect(()=>{
+    loadAllVideos()
+    console.log("All Videos: ", allVideos)
+  }, [])
   
   return (
     <div className={styles.pageWrapper}>
@@ -31,22 +52,22 @@ const Sights = ({
           <MovieCarousel videos={carouselVids} />
           <div id="more" className={styles.sightsCategoryWrapper}>
             <h2>🔥 KALABARS CATEGORIES 🔥</h2>
+            <SightsCategory name={"Local"} data={local?.response?.result} />
+            <SightsCategory name={"Masterclasses"} data={masterclasses?.response?.result} />
             <SightsCategory name={"Masterclasses"} data={featured?.response?.result} />
-            {/* <SightsCategory name={"Thriller"} data={thriller?.response?.result} /> */}
-            {/* <SightsCategory name={"Comedy"} data={comedy?.response?.result} /> */}
+            <SightsCategory name={"Thriller"} data={thriller?.response?.result} />
+            <SightsCategory name={"Comedy"} data={comedy?.response?.result} />
             <SightsCategory
               name={"Documentary"}
               data={documentary?.response?.result}
             />
-            {/* <SightsCategory name={"Drama"} data={drama?.response?.result} />{" "} */}
-            <SightsCategory name={"Local"} data={local?.response?.result} />{" "}
-            <SightsCategory name={"Series"} data={series?.response?.result} />{" "}
+            <SightsCategory name={"Drama"} data={drama?.response?.result} />
+            <SightsCategory name={"Series"} data={series?.response?.result} />
             <SightsCategory
               name={"Music"}
               data={musicVideos?.response?.result}
             />
-            <SightsCategory name={"Kids"} data={kids?.response?.result} />
-            
+            <SightsCategory name={"Kids"} data={kids?.response?.result} />            
           </div>
         </div>
         <ToastContainer />
@@ -66,6 +87,14 @@ export async function loadVideos() {
     },
   });
   const carouselVideos = await resVideos.json();
+
+  //Carousel Vids
+  const resMasterClasses = await fetch(process.env.NEXT_PUBLIC_API + `/tags/masterclasses/videos`, {
+    headers: {
+      "x-access-token": process.env.NEXT_PUBLIC_TOKEN,
+    },
+  });
+  const masterclasses = await resMasterClasses.json();
   
   //originals
   const originalsGenres = await fetch(
@@ -188,12 +217,13 @@ export async function loadVideos() {
     series: series,
     featured: featured,
     thriller: thriller,
-    local: local
+    local: local,
+    masterclasses: masterclasses
   };
 }
 
 export async function getServerSideProps() {
-  const { carouselVideos, originals, comedy, documentary, drama, kids, musicVideos, series, featured, thriller, local } = await loadVideos();
+  const { carouselVideos, originals, comedy, documentary, drama, kids, musicVideos, series, featured, thriller, local, masterclasses } = await loadVideos();
   
   return {
     props: {
@@ -207,7 +237,8 @@ export async function getServerSideProps() {
       series,
       featured,
       thriller,
-      local
+      local,
+      masterclasses
     },
   };
 }

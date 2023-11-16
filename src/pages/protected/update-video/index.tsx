@@ -5,12 +5,12 @@ import { BASE_API_URL } from "shared/constants";
 import { VideoGenresType, getVideoGenres } from "shared/services/genres";
 import Cookies from "js-cookie";
 import ArtistAndTitleFields from "features/AdminInputFeatures/ArtistAndTitleFields";
-import SelectVideoTypeField from "features/AdminInputFeatures/SelectVideoType";
+import SelectMediaTypeField from "features/AdminInputFeatures/SelectMediaType";
 import SeriesField from "features/AdminInputFeatures/SelectSeries";
 import GenreField from "features/AdminInputFeatures/GenresSelection";
 import TagsField from "features/AdminInputFeatures/TagsSelection";
 import SynopsisField from "features/AdminInputFeatures/SynopsisField";
-import VideoUploadField from "features/AdminInputFeatures/VideoUpload";
+import MediaUploadField from "features/AdminInputFeatures/VideoUpload";
 import ImageUpload from "features/AdminInputFeatures/ImageUpload";
 import { postVideo, updateVideo } from "features/AdminInputFeatures/Services/videoServices";
 import UploadProgressBar from "shared/ProgressBar";
@@ -204,7 +204,7 @@ const UpdateVideo = props => {
         videoForm.video_file,
         videoForm.trailer_file,
         videoForm.title,
-        videoForm.artist_name,        
+        videoForm.artist_name,
         videoForm.large_image,
         videoForm.portrait_image,
         videoForm.landscape_image,
@@ -245,11 +245,11 @@ const UpdateVideo = props => {
           />
           <div>
             <input name="public_id" placeholder="public_id" value={videoForm.public_id} onChange={handleVideoFormChange} />
-            <input name="artist_id" placeholder="artist_id"  value={videoForm.artist_id} onChange={handleVideoFormChange} />
+            <input name="artist_id" placeholder="artist_id" value={videoForm.artist_id} onChange={handleVideoFormChange} />
           </div>
 
           {/* Type */}
-          <SelectVideoTypeField
+          <SelectMediaTypeField
             videoForm={videoForm}
             handleVideoFormChange={handleVideoFormChange}
           />
@@ -288,7 +288,7 @@ const UpdateVideo = props => {
           />
 
           {/* Video Upload */}
-          <VideoUploadField
+          <MediaUploadField
             videoForm={videoForm}
             handleVideoChange={handleVideoChange}
           />

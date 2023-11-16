@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import styles from "./uploadVideo.module.scss";
+import styles from "./uploadAudio.module.scss";
 import { useTokenValidation } from "shared/hooks/usTokenValidation";
 import { BASE_API_URL } from "shared/constants";
-import { VideoGenresType, getVideoGenres } from "shared/services/genres";
+import { VideoGenresType, getAudioGenres } from "shared/services/genres";
 import Cookies from "js-cookie";
 import ArtistAndTitleFields from "features/AdminInputFeatures/ArtistAndTitleFields";
 import SelectMediaTypeField from "features/AdminInputFeatures/SelectMediaType";
@@ -20,18 +20,20 @@ function UploadVideo() {
   const [token, setToken] = useState("");
   const [progress, setProgress] = useState(0);
 
-  const [videoForm, setVideoForm] = useState({
-    creators_name: "",
+  const [audioForm, setAudioForm] = useState({
+    artist_name: "",
     title: "",
+    album_title: "",
     synopsis: "",
     type: "",
-    series: "",
+    album: "",
     genre: "",
     tags: [],
-    video_file: null,
-    large_image: null,
-    portrait_image: null,
-    landscape_image: null,
+    audio_file: null,
+    album_large: null,
+    album_portrait: null,
+    album_landscape: null,
+    album_square: null,
     square_image: null,
   });
 
@@ -47,7 +49,7 @@ function UploadVideo() {
   const [landscapeImagePreview, setLandscapeImagePreview] = useState(null);
   const [squareImagePreview, setSquareImagePreview] = useState(null);
 
-  const handleVideoFormChange = ({ target }) => {
+  const handleAudioFormChange = ({ target }) => {
     const { name, value, type, files } = target;
 
     if (type === "select-multiple") {
@@ -58,31 +60,31 @@ function UploadVideo() {
         //@ts-ignore
         .map((option) => option?.value);
 
-      setVideoForm({
-        ...videoForm,
+      setAudioForm({
+        ...audioForm,
         [name]: selectedOptions,
       });
     } else {
-      setVideoForm({
-        ...videoForm,
+      setAudioForm({
+        ...audioForm,
         [name]: type === "file" ? files[0] : value,
       });
     }
   };
 
-  const handleVideoChange = (event) => {
+  const handleAudioChange = (event) => {
     const file = event.target.files[0];
-    if (file && file.type === "video/mp4") {
-      setVideoForm({
-        ...videoForm,
-        video_file: file,
+    if (file && file.type === "audio/wav") {
+      setAudioForm({
+        ...audioForm,
+        audio_file: file,
       });
     } else {
-      setVideoForm({
-        ...videoForm,
-        video_file: null,
+      setAudioForm({
+        ...audioForm,
+        audio_file: null,
       });
-      alert("Please select a valid MP4 video file.");
+      alert("Please select a valid wav audio file.");
     }
   };
 
@@ -91,8 +93,8 @@ function UploadVideo() {
   const handleImageFileSelection = (event, imageType: ImageType) => {
     const file: File = event.target.files[0];
     if (file) {
-      setVideoForm({
-        ...videoForm,
+      setAudioForm({
+        ...audioForm,
         [imageType]: file,
       });
 
@@ -119,8 +121,8 @@ function UploadVideo() {
       setSelectedTags(selectedTagsCopy);
 
       // Update videoForm with the selected tags
-      setVideoForm({
-        ...videoForm,
+      setAudioForm({
+        ...audioForm,
         tags: selectedTagsCopy,
       });
     }
@@ -164,7 +166,7 @@ function UploadVideo() {
     fetchTags();
     const adminToken = Cookies.get("token");
     setToken(adminToken);
-    const getGenres = getVideoGenres();
+    const getGenres = getAudioGenres();
     getGenres
       .then((genresData) => setGenres(genresData))
       .catch((e) => console.error(e));
@@ -172,7 +174,7 @@ function UploadVideo() {
 
   const fetchTags = async () => {
     try {
-      const response = await fetch(`${BASE_API_URL}/videos/tags`);
+      const response = await fetch(`${BASE_API_URL}/audios/tags`);
 
       if (response.ok) {
         const responseJson = await response.json();
@@ -189,26 +191,36 @@ function UploadVideo() {
   };
 
   const seriesOptions = [
-    { id: "The book", text: "The book" },
-    { id: "Loss in love", text: "Loss in love" },
+    {
+      id: 'kenyan',
+      text: 'kenyan'
+    },
+    {
+      id: 'african',
+      text: 'african'
+    },
+    {
+      id: 'kalabars',
+      text: 'kalabars'
+    }
   ];
 
   const handleUpload = async (e) => {
     e.preventDefault();
     try {
       const response = await postVideo(
-        videoForm.video_file,
-        videoForm.creators_name,
-        videoForm.title,
-        videoForm.large_image,
-        videoForm.portrait_image,
-        videoForm.landscape_image,
-        videoForm.square_image,
-        videoForm.tags,
-        videoForm.genre,
-        videoForm.synopsis,
-        videoForm.type,
-        videoForm.series,
+        audioForm.audio_file,
+        audioForm.artist_name,
+        audioForm.title,
+        audioForm.album_large,
+        audioForm.album_portrait,
+        audioForm.album_landscape,
+        audioForm.square_image,
+        audioForm.tags,
+        audioForm.genre,
+        audioForm.synopsis,
+        audioForm.type,
+        audioForm.album,
         token,
         setProgress
       );
@@ -225,7 +237,7 @@ function UploadVideo() {
 
   return (
     <div className={styles.pageWrapper}>
-      <h1>UPLOAD MEDIA</h1>
+      <h1>UPLOAD AUDIO</h1>
       <UploadProgressBar progress={progress} />
       <div>
         <form onSubmit={handleUpload} className={styles.uploadForm}>
@@ -235,31 +247,31 @@ function UploadVideo() {
 
           {/* Artist Name */}
           <ArtistAndTitleFields
-            videoForm={videoForm}
-            handleVideoFormChange={handleVideoFormChange}
+            videoForm={audioForm}
+            handleVideoFormChange={handleAudioFormChange}
           />
 
           {/* Type */}
           <SelectMediaTypeField
-            videoForm={videoForm}
-            handleVideoFormChange={handleVideoFormChange}
-            mediaType="video"
+            videoForm={audioForm}
+            handleVideoFormChange={handleAudioFormChange}
+            mediaType="audio"
           />
 
           {/* SERIES */}
-          {videoForm.type === "series" && (
+          {audioForm.type === "album" && (
             <SeriesField
-              videoForm={videoForm}
-              handleVideoFormChange={handleVideoFormChange}
+              videoForm={audioForm}
+              handleVideoFormChange={handleAudioFormChange}
               seriesOptions={seriesOptions}
-              mediaType="video"
+              mediaType="audio"
             />
           )}
 
           {/* GENRES */}
           <GenreField
-            videoForm={videoForm}
-            handleVideoFormChange={handleVideoFormChange}
+            videoForm={audioForm}
+            handleVideoFormChange={handleAudioFormChange}
             genres={genres}
           />
 
@@ -276,39 +288,39 @@ function UploadVideo() {
 
           {/* Synopsis */}
           <SynopsisField
-            handleVideoFormChange={handleVideoFormChange}
-            videoForm={videoForm}
+            handleVideoFormChange={handleAudioFormChange}
+            videoForm={audioForm}
           />
 
           {/* Video Upload */}
           <MediaUploadField
-            videoForm={videoForm}
-            handleMediaChange={handleVideoChange}
-            mediaType="video"
+            videoForm={audioForm}
+            handleMediaChange={handleAudioChange}
+            mediaType="audio"
           />
 
           {/* Images */}
           <ImageUpload
             imageType="large_image"
-            videoForm={videoForm}
+            videoForm={audioForm}
             handleImageFileSelection={handleImageFileSelection}
             previewURL={largeImagePreview}
           />
           <ImageUpload
             imageType="portrait_image"
-            videoForm={videoForm}
+            videoForm={audioForm}
             handleImageFileSelection={handleImageFileSelection}
             previewURL={portraitImagePreview}
           />
           <ImageUpload
             imageType="landscape_image"
-            videoForm={videoForm}
+            videoForm={audioForm}
             handleImageFileSelection={handleImageFileSelection}
             previewURL={landscapeImagePreview}
           />
           <ImageUpload
             imageType="square_image"
-            videoForm={videoForm}
+            videoForm={audioForm}
             handleImageFileSelection={handleImageFileSelection}
             previewURL={squareImagePreview}
           />

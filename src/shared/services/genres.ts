@@ -21,7 +21,7 @@ export const getVideoGenres = async () => {
     return data.result
 };
 
-export const getAudiooGenres = async () => {
+export const getAudioGenres = async () => {
     const response = await fetch(`${BASE_API_URL}/audios/genres`);
     const responseJson = await response.json()
     const data: GenresApiSuccessfulResponseType = responseJson.response
