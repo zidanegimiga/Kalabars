@@ -14,8 +14,7 @@ interface VideoResponse {
   }
 }
 
-interface VideoResponseResult {
-  
+interface VideoResponseResult {  
 }
 
 const Sights = ({
@@ -43,14 +42,14 @@ const Sights = ({
      });
      const allVideos = await resVideos.json();
      setAllVideos(allVideos);
-     console.log("All Videos: ", allVideos)
+
    } catch(e){
     console.log("Error: ", e)
    }
   }
 
   useEffect(()=>{
-    loadAllVideos();    
+    loadAllVideos();   
   }, [])
   
   return (
@@ -63,15 +62,14 @@ const Sights = ({
             <h2>🔥 KALABARS CATEGORIES 🔥</h2>
             <SightsCategory name={"Local"} data={local?.response?.result} />
             <SightsCategory name={"Masterclasses"} data={masterclassesVideos} />
-            {/* <SightsCategory name={"Masterclasses"} data={featured?.response?.result} /> */}
+            <SightsCategory name={"Masterclasses"} data={featured?.response?.result} />
             <SightsCategory name={"Thriller"} data={thriller?.response?.result} />
             <SightsCategory name={"Comedy"} data={comedy?.response?.result} />
             <SightsCategory
               name={"Documentary"}
               data={documentary?.response?.result}
             />
-            <SightsCategory name={"Drama"} data={drama?.response?.result} />
-           
+            <SightsCategory name={"Drama"} data={drama?.response?.result} />           
             <SightsCategory name={""} data={allVideos?.response?.result} />   
             <SightsCategory name={"Series"} data={series?.response?.result} />
             <SightsCategory
@@ -219,22 +217,22 @@ export async function loadVideos() {
 
   return {
     carouselVideos,
-    originals: originals,
+    originals,
     comedy: comedyGenre,
     documentary: documentaryGenre,
     drama: dramaGenre,
-    kids: kids,
-    musicVideos: musicVideos,
-    series: series,
-    featured: featured,
-    thriller: thriller,
-    local: local,
-    masterclasses: masterclasses
+    kids,
+    musicVideos,
+    series,
+    featured,
+    thriller,
+    local,
+    masterclasses
   };
 }
 
 export async function getServerSideProps() {
-  const { carouselVideos, originals, comedy, documentary, drama, kids, musicVideos, series, featured, thriller, local, masterclasses } = await loadVideos();
+  const { carouselVideos, originals, documentary, drama, comedy, kids, musicVideos, series, featured, thriller, local, masterclasses } = await loadVideos();
   const masterclassesVideos = [...masterclasses?.response?.result, ...featured?.response?.result];
   
   return {

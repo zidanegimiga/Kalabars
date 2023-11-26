@@ -4,7 +4,7 @@ import Layout from "shared/Layout";
 import { AppProps } from "next/app";
 import "../styles/app.scss";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { KalabarsContext, KalabarsProvider } from "../global/KalabarsContext";
+import { KalabarsProvider } from "../global/KalabarsContext";
 import { PlaylistProvider } from "global/AudioPlaylistContext";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import 'react-toastify/dist/ReactToastify.css'
@@ -15,8 +15,7 @@ import { Analytics } from '@vercel/analytics/react';
 const App: FC = ({ Component, pageProps }: AppProps) => {
   return (
     <Theme appearance="light">
-      <div tabIndex={0}>
-        {/* <div tabIndex={0} onKeyDown={(e) => e.preventDefault()}> */}
+      <div>
         <KalabarsProvider>
           <NextNProgress
             color="#ff5a5a"
