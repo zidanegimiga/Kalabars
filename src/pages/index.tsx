@@ -60,21 +60,22 @@ const Sights = ({
           <MovieCarousel videos={carouselVids} />
           <div id="more" className={styles.sightsCategoryWrapper}>
             <h2>🔥 KALABARS CATEGORIES 🔥</h2>
-            <SightsCategory name={"Local"} data={local?.response?.result} />
+            <SightsCategory name={"Top Videos"} data={local?.response?.result} />
             <SightsCategory name={"Masterclasses"} data={masterclassesVideos} />
-            <SightsCategory name={"Masterclasses"} data={featured?.response?.result} />
+            {/* <SightsCategory name={"Masterclasses"} data={featured?.response?.result} /> */}
             <SightsCategory name={"Thriller"} data={thriller?.response?.result} />
             <SightsCategory name={"Comedy"} data={comedy?.response?.result} />
-            <SightsCategory
-              name={"Documentary"}
-              data={documentary?.response?.result}
-            />
+
             <SightsCategory name={"Drama"} data={drama?.response?.result} />           
-            <SightsCategory name={""} data={allVideos?.response?.result} />   
+            <SightsCategory name={"More Videos"} data={allVideos?.response?.result} />   
             <SightsCategory name={"Series"} data={series?.response?.result} />
             <SightsCategory
               name={"Music"}
               data={musicVideos?.response?.result}
+            />
+            <SightsCategory
+              name={"Documentary"}
+              data={documentary?.response?.result}
             />
             <SightsCategory name={"Kids"} data={kids?.response?.result} />          
           </div>
