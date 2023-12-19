@@ -1,9 +1,10 @@
 .sightsCategory{   
     margin-top: 10px;
-    width: 95%;
-    padding: 16px 48px;
+    width: 100%;
     padding-bottom: 48px;
     border-bottom: 1px solid #495a6a80;
+    padding-left: 48px;
+    padding-right: 24px;
     
 
     @media (max-width: 927px) {    
@@ -70,7 +71,7 @@
 .categoryCards{
     display: grid;
     grid-template-columns: auto auto auto auto auto;
-    gap: 32px;
+    row-gap: 56px;
     margin-bottom: 48px;
 
     @media (max-width: 1601px) {

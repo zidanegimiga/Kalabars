@@ -42,6 +42,7 @@ const Sights = ({
      });
      const allVideos = await resVideos.json();
      setAllVideos(allVideos);
+     console.log("All videos: ", allVideos)
 
    } catch(e){
     console.log("Error: ", e)
