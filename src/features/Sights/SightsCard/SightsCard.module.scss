@@ -105,65 +105,8 @@
     }
 }
 
-.cardBtn {
-    bottom: 2%;
-    width: 60%;
-    display: flex;
-    border-radius: 4px;
-    margin-left: 0;
-    height: 50px;
-    position: absolute;
-    display: none;
-
-    p {
-        text-align: center;
-        color: black;
-        font-weight: 400;
-        margin-left: 4px;
-        font-family: 'Inter';
-
-    }
-
-    @media (max-width: 501px) {
-        display: none;
-        bottom: 5%;
-    }
-
-}
-
 .innerContainer {
     flex-direction: column;
-}
-
-.movieSummary {
-    padding-left: 16px;
-    padding-right: 16px;
-    text-align: left;
-    color: black;
-    font-weight: 300;
-    margin-top: 24px;
-    margin-bottom: 24px;
-    font-family: 'Inter';
-    display: none;
-
-    @media (max-width: 501px) {
-        display: none;
-    }
-}
-
-.movieType {
-    display: none;
-    text-align: left;
-    padding-left: 16px;
-    color: black;
-    font-weight: 400;
-    font-family: 'inter';
-    margin-top: 16px;
-    font-size: 14px;
-
-    @media (max-width: 501px) {
-        display: none;
-    }
 }
 
 .playIcon {

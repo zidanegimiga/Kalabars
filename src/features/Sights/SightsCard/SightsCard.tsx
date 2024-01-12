@@ -12,6 +12,8 @@ import * as Separator from '@radix-ui/react-separator';
 const SightsCard = ({ cardData }) => {
   const [hovered, setHovered] = useState(false);
   const [number, setNumber] = useState();
+
+  const router = useRouter();
   //Some videos lack images
   if (cardData?.portrait_image === null) {
     return null;
@@ -29,28 +31,7 @@ const SightsCard = ({ cardData }) => {
             />
           </Link>
           <div className={styles.innerContainer}>
-            <div className={styles.movieTitle}>{cardData?.title.toUpperCase()}</div>
-            <div className={styles.movieType}>
-              {cardData?.genres[0]?.title} |
-              {/* {cardData?.duration} Minutes  */}
-              {" "}Directed by <span style={{ fontWeight: "500" }}> {cardData?.creators_name}</span>
-            </div>
-            <div className={styles.movieSummary}>
-              {`${cardData?.description.slice(0, 100)}...`}
-            </div>
-
-            <Link href={`/video/${cardData?.public_id}`}>
-              <div
-                className={styles.cardBtn}
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-              >
-                <div className={styles.playIcon}>
-                  <PlayIcon hovered={hovered} initialColor={"#2b2b2b"} />
-                </div>
-                <p>Play Title</p>
-              </div>
-            </Link>
+            <div className={styles.movieTitle} style={{color: router.pathname !== "/" ? "white" : "black"}}>{cardData?.title.toUpperCase()}</div>
           </div>
         </div>
       </HoverCard.Trigger>

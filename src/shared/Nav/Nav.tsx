@@ -96,15 +96,16 @@ const Nav = ({scrolling}) => {
           <HamburgerIcon />
           <Link href={"/"}>
             <div className={styles.logo}>
-              <Image
+              <img
                 width={100}
                 height={40}
                 alt="Logo"
                 src={"/kalabarslogo.svg"}
+                style={{filter: router.pathname !== "/" && router.pathname !== "/sounds" ? "invert(100%)" : "none"}}
               />
             </div>
           </Link>
-          <div className={styles.links}>
+          <div className={styles.links} style={{color: router.pathname == "/" || router.pathname == "/sounds" ? "#3b3b3b" : "#fff"}}>
             <div className={styles.link}>
               <Link href={"/"}>
                 <p>Sights</p>

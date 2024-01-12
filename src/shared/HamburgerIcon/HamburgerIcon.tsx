@@ -1,14 +1,21 @@
 import styles from "./HamburgerIcon.module.scss";
 import React, { useState, useContext } from "react";
 import { KalabarsContext } from "global/KalabarsContext";
+import { useRouter } from "next/router";
 
 const HamburgerIcon = () => {
   const { openMenu, setOpenMenu } = useContext(KalabarsContext);
+
+  const router = useRouter();
 
   const handleMenuClick = () => {
     setOpenMenu(!openMenu);
     console.log(openMenu);
   };
+
+  const barStyle = {
+    backgroundColor: router.pathname == "/" || router.pathname == "/sounds" ? "black" : "white"
+  }
   
   return (
     <div
@@ -23,13 +30,13 @@ const HamburgerIcon = () => {
     >
       <div className={styles.NavMenuIconBar}>
         {" "}
-        <div className={styles.NavMenuItemChild}></div>
+        <div className={styles.NavMenuItemChild} style={barStyle}></div>
       </div>
       <div className={styles.NavMenuIconBar}>
-        <div className={styles.NavMenuItemChild}></div>
+        <div className={styles.NavMenuItemChild} style={barStyle}></div>
       </div>
       <div className={styles.NavMenuIconBar}>
-        <div className={styles.NavMenuItemChild}></div>
+        <div className={styles.NavMenuItemChild} style={barStyle}></div>
       </div>
     </div>
   );
