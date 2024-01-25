@@ -1,15 +1,23 @@
 .pageWrapper{
     padding-top: 80px;
-    padding-right: 80px;
-    padding-left: 132px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100vw;
 }
 
 .uploadForm{
     width: 80%;
-    background-color: antiquewhite;
-    padding: 32px;
-    
+    background-color: antiquewhite;    
+}
+
+.contentWrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .inputFieldset{

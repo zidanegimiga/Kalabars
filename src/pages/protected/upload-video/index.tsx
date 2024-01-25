@@ -227,7 +227,7 @@ function UploadVideo() {
     <div className={styles.pageWrapper}>
       <h1>UPLOAD MEDIA</h1>
       <UploadProgressBar progress={progress} />
-      <div>
+      <div className={styles.contentWrapper}>
         <form onSubmit={handleUpload} className={styles.uploadForm}>
           <div className={styles.errorMessage}>
             {showError && <p>This content already exists in the database</p>}
